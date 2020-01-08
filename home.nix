@@ -44,6 +44,7 @@ in {
   manual.html.enable = true;
 
   home.packages = with pkgs; [
+    asdfVm
     # cachix
     niv
     nix-prefetch-scripts
