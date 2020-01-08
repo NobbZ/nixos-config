@@ -1,14 +1,18 @@
-{ sources, srcOnly, lib, ... }:
+_: pkgs:
 
-srcOnly rec {
-  name = "asdf-vm";
-  version = sources.asdf.version;
+let
+  asdf-vm-package = { sources, srcOnly, lib, ... }:
+    srcOnly rec {
+      name = "asdf-vm";
+      pname = "${name}-${version}";
+      version = sources.asdf.version;
 
-  src = sources.asdf;
+      src = sources.asdf;
 
-  meta = with lib; {
-    inherit (sources.asdf) homepage description;
-    license = licenses.mit;
-    maintainers = [ maintainers.nobbz ];
-  };
-}
+      meta = with lib; {
+        inherit (sources.asdf) homepage description;
+        license = licenses.mit;
+        maintainers = [ maintainers.nobbz ];
+      };
+    };
+in { asdf-vm = pkgs.callPackage asdf-vm-package { }; }

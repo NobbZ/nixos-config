@@ -46,14 +46,14 @@ in {
   home.file = {
     ".zsh/boot/asdf.zsh" = {
       text = ''
-        . ${pkgs.asdfVm}/asdf.sh
-        . ${pkgs.asdfVm}/completions/asdf.bash
+        . ${pkgs.asdf-vm}/asdf.sh
+        . ${pkgs.asdf-vm}/completions/asdf.bash
       '';
     };
   };
 
   home.packages = with pkgs; [
-    asdfVm
+    asdf-vm
     # cachix
     niv
     nix-prefetch-scripts
