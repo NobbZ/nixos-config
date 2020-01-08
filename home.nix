@@ -46,8 +46,9 @@ in {
   home.file = {
     ".zsh/boot/asdf.zsh" = {
       text = ''
-        . ${pkgs.asdf-vm}/asdf.sh
-        . ${pkgs.asdf-vm}/completions/asdf.bash
+        if which asdfloader 2>&1 >/dev/null; then
+          eval $(asdfloader)
+        fi
       '';
     };
   };
