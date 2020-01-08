@@ -45,6 +45,7 @@ let pkgs = import ./nix {}; in
 
   home.packages = with pkgs; [
     # cachix
+    niv
     nix-prefetch-scripts
     nix-review
     nixfmt
