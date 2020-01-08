@@ -1,4 +1,6 @@
-{ config, pkgs, ... }:
+{ ... }:
+
+let pkgs = import ./nix {}; in
 
 {
   programs = {
@@ -37,12 +39,12 @@
     };
   };
 
-  #  services = { lorri.enable = true; };
+  # services = { lorri.enable = true; };
 
   manual.html.enable = true;
 
   home.packages = with pkgs; [
-    cachix
+    # cachix
     nix-prefetch-scripts
     nix-review
     nixfmt

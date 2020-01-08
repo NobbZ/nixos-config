@@ -1,0 +1,26 @@
+{
+    "niv": {
+        "branch": "master",
+        "description": "Easy dependency management for Nix projects",
+        "homepage": "https://github.com/nmattia/niv",
+        "owner": "nmattia",
+        "repo": "niv",
+        "rev": "c20455616d5ec3196a66d34c184a0b8390b97b44",
+        "sha256": "0hy9w93qji61gmb5dg11njgcml4jybhv53y6ayny9cj8m1hvr9i0",
+        "type": "tarball",
+        "url": "https://github.com/nmattia/niv/archive/c20455616d5ec3196a66d34c184a0b8390b97b44.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs": {
+        "branch": "nixpkgs-unstable",
+        "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
+        "homepage": "https://github.com/NixOS/nixpkgs",
+        "owner": "NixOS",
+        "repo": "nixpkgs-channels",
+        "rev": "7e8454fb856573967a70f61116e15f879f2e3f6a",
+        "sha256": "0lnbjjvj0ivpi9pxar0fyk8ggybxv70c5s0hpsqf5d71lzdpxpj8",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/7e8454fb856573967a70f61116e15f879f2e3f6a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    }
+}
