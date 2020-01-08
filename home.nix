@@ -43,7 +43,17 @@ in {
 
   manual.html.enable = true;
 
+  home.file = {
+    ".zsh/boot/asdf.zsh" = {
+      text = ''
+        . ${pkgs.asdfVm}/asdf.sh
+        . ${pkgs.asdfVm}/completions/asdf.bash
+      '';
+    };
+  };
+
   home.packages = with pkgs; [
+    asdfVm
     # cachix
     niv
     nix-prefetch-scripts
