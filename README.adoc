@@ -14,4 +14,4 @@ I will probably never open them.
 Though I configured other programs by other means, as I (re) discover those sources I will add them to the list:
 
 .Sources for this new dotfile repo
-* https://gitlab.com/NobbZ/emacs.d::[emacs config]
+* https://gitlab.com/NobbZ/emacs.d[emacs config]
