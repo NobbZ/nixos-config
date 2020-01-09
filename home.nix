@@ -51,11 +51,17 @@ in {
         fi
       '';
     };
+    ".zsh/boot/exa.zsh" = {
+      text = ''
+        alias ll="exa --header --git --classify --long --binary --group --time-style=long-iso --links --all --all --group-directories-first --sort=name"
+      '';
+    };
   };
 
   home.packages = with pkgs; [
     asdf-vm
     # cachix
+    exa
     niv
     nix-prefetch-scripts
     nix-review
