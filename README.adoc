@@ -1,4 +1,5 @@
 = Dotfiles
+Norbert Melzer <timmelzer@gmail.com>
 :toc: macro
 
 This is just another approach to organize my dotfiles in a repository.
