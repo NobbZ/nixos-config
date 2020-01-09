@@ -59,6 +59,8 @@ in {
   };
 
   home.packages = with pkgs; [
+    antora
+    asciidoctor
     asdf-vm
     # cachix
     exa
