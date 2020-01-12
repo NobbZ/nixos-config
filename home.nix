@@ -1,5 +1,3 @@
-# ... }:
-
 let pkgs = import ./nix { };
 
 in {
