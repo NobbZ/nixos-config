@@ -3,9 +3,7 @@
 let pkgs = import ./nix { };
 
 in {
-  imports = [
-    ./modules
-  ];
+  imports = [];
   programs = {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
@@ -47,6 +45,12 @@ in {
   manual.html.enable = true;
 
   home.file = {
+    ".zsh/boot/asdf.zsh" = {
+      text = ''
+        . "${pkgs.asdf-vm}/asdf.sh"
+        . "${pkgs.asdf-vm}/completions/asdf.bash"
+      '';
+    };
     ".zsh/boot/exa.zsh" = {
       text = ''
         alias ll="exa --header --git --classify --long --binary --group --time-style=long-iso --links --all --all --group-directories-first --sort=name"
@@ -57,6 +61,7 @@ in {
   home.packages = with pkgs; [
     antora
     asciidoctor
+    asdf-vm
     # cachix
     exa
     niv
