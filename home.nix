@@ -1,4 +1,4 @@
-{ ... }:
+# ... }:
 
 let pkgs = import ./nix { };
 
@@ -10,6 +10,7 @@ in {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
+    asdf-vm.enable = true;
     bat.enable = true;
     direnv.enable = true;
     go.enable = true;
