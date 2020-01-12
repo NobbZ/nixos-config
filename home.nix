@@ -3,6 +3,7 @@
 let pkgs = import ./nix { };
 
 in {
+  imports = [];
   programs = {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
@@ -46,9 +47,8 @@ in {
   home.file = {
     ".zsh/boot/asdf.zsh" = {
       text = ''
-        if which asdfloader 2>&1 >/dev/null; then
-          eval $(asdfloader)
-        fi
+        . "${pkgs.asdf-vm}/asdf.sh"
+        . "${pkgs.asdf-vm}/completions/asdf.bash"
       '';
     };
     ".zsh/boot/exa.zsh" = {
