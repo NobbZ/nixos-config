@@ -1,4 +1,4 @@
-_: pkgs:
+self: super:
 
 let
   asdf-vm-package = { sources, srcOnly, lib, ... }:
@@ -15,4 +15,4 @@ let
         maintainers = [ maintainers.nobbz ];
       };
     };
-in { asdf-vm = pkgs.callPackage asdf-vm-package { }; }
+in { asdf-vm = self.callPackage asdf-vm-package { }; }
