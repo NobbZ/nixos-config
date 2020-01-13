@@ -1,7 +1,10 @@
-let pkgs = import <nixpkgs> { };
-
+let
+  overlays = import ./overs;
+  pkgs = import <nixpkgs> {
+    overlays = overlays;
+  };
 in {
-  nixpkgs.overlays = (import ./overs);
+  nixpkgs.overlays = overlays;
   imports = [ ./modules ];
   programs = {
     # Let Home Manager install and manage itself.
