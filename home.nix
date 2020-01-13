@@ -46,7 +46,7 @@ in {
   manual.html.enable = true;
 
   home.packages = with pkgs; [
-    # cachix
+    cachix
     niv
     nix-prefetch-scripts
     nix-review
