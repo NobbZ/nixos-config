@@ -1,3 +1,3 @@
 let sources = import ./sources.nix { };
 
-in [ (_: pkgs: { inherit sources; }) (import ./asdf-vm.nix) ]
+in [ (self: super: { inherit sources; }) (import ./asdf-vm) ]
