@@ -1,6 +1,6 @@
 let
   pkgs = import <nixpkgs> {
-    overlays = import ./overlays;
+    overlays = import ./overs;
     config = { };
   };
-in pkgs.mkShell rec { nativeBuildInputs = with pkgs; [ niv ]; }
+in pkgs.mkShell rec { nativeBuildInputs = with pkgs; [ niv lefthook ]; }
