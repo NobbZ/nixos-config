@@ -53,8 +53,6 @@ in {
   };
 
   home.packages = with pkgs; [
-    antora
-    asciidoctor
     # cachix
     exa
     niv
