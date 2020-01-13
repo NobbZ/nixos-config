@@ -10,6 +10,7 @@ in {
 
     asdf-vm.enable = true;
     bat.enable = true;
+    exa.enable = true;
     direnv.enable = true;
     jq.enable = true;
 
@@ -44,17 +45,8 @@ in {
 
   manual.html.enable = true;
 
-  home.file = {
-    ".zsh/boot/exa.zsh" = {
-      text = ''
-        alias ll="exa --header --git --classify --long --binary --group --time-style=long-iso --links --all --all --group-directories-first --sort=name"
-      '';
-    };
-  };
-
   home.packages = with pkgs; [
     # cachix
-    exa
     niv
     nix-prefetch-scripts
     nix-review
