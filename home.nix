@@ -10,7 +10,6 @@ in {
     asdf-vm.enable = true;
     bat.enable = true;
     direnv.enable = true;
-    go.enable = true;
     jq.enable = true;
 
     irssi = {
@@ -45,12 +44,6 @@ in {
   manual.html.enable = true;
 
   home.file = {
-    ".zsh/boot/asdf.zsh" = {
-      text = ''
-        . "${pkgs.asdf-vm}/asdf.sh"
-        . "${pkgs.asdf-vm}/completions/asdf.bash"
-      '';
-    };
     ".zsh/boot/exa.zsh" = {
       text = ''
         alias ll="exa --header --git --classify --long --binary --group --time-style=long-iso --links --all --all --group-directories-first --sort=name"
@@ -61,7 +54,6 @@ in {
   home.packages = with pkgs; [
     antora
     asciidoctor
-    asdf-vm
     # cachix
     exa
     niv
