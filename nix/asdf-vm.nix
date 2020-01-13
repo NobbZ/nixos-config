@@ -15,6 +15,4 @@ let
         maintainers = [ maintainers.nobbz ];
       };
     };
-in {
-  asdf-vm = pkgs.callPackage asdf-vm-package { };
-}
+in { asdf-vm = pkgs.callPackage asdf-vm-package { }; }

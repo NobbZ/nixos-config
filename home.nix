@@ -1,13 +1,13 @@
-{ ... }:
-
-let pkgs = import ./nix { };
+let pkgs = import <nixpkgs> { };
 
 in {
-  imports = [];
+  nixpkgs.overlays = (import ./nix);
+  imports = [ ./modules ];
   programs = {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
+    asdf-vm.enable = true;
     bat.enable = true;
     direnv.enable = true;
     go.enable = true;
