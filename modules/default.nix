@@ -1,5 +1,1 @@
-{
-  imports = [
-    ./asdf-vm
-  ];
-}
+{ imports = [ ./asdf-vm ]; }
