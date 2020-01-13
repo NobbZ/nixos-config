@@ -1,8 +1,6 @@
 let
   overlays = import ./overs;
-  pkgs = import <nixpkgs> {
-    overlays = overlays;
-  };
+  pkgs = import <nixpkgs> { overlays = overlays; };
 in {
   nixpkgs.overlays = overlays;
   imports = [ ./modules ];

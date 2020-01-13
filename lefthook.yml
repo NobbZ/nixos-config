@@ -1,5 +1,6 @@
 pre-commit:
   parallel: true
-  formatting:
-    glob: "*.nix"
-    run: echo {files}
+  commands:
+    formatting:
+      glob: "*.nix"
+      run: nixfmt -c {all_files}
