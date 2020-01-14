@@ -8,6 +8,8 @@ in {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
+    zshell.aliases = { hm = "cd ~/.config/nixpkgs"; };
+
     asdf-vm.enable = true;
     bat.enable = true;
     exa.enable = true;
