@@ -10,12 +10,9 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = [ pkgs.exa ];
 
-    home.file = {
-      ".zsh/boot/exa.zsh" = {
-        text = ''
-          alias ll="exa --header --git --classify --long --binary --group --time-style=long-iso --links --all --all --group-directories-first --sort=name"
-        '';
-      };
+    programs.zshell.aliases = {
+      ll =
+        "exa --header --git --classify --long --binary --group --time-style=long-iso --links --all --all --group-directories-first --sort=name";
     };
   };
 }
