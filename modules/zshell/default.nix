@@ -5,6 +5,8 @@ let
   aliasesStr = lib.concatStringsSep "\n"
     (lib.mapAttrsToList (k: v: "alias ${k}=${lib.escapeShellArg v}")
       cfg.aliases);
+  sourcesStr = lib.concatStringsSep "\n"
+    (builtins.map (s: ". ${s}") cfg.sources);
 in {
   options.programs.zshell = {
     aliases = lib.mkOption {
@@ -19,6 +21,10 @@ in {
       '';
       type = lib.types.attrsOf lib.types.str;
     };
+    sources = lib.mkOption {
+      default = [];
+      type = lib.types.listOf lib.types.str;
+    };
   };
 
   config = {
@@ -26,6 +32,11 @@ in {
       ".zsh/boot/aliases.zsh" = {
         text = ''
           ${aliasesStr}
+        '';
+      };
+      ".zsh/boot/sourcing.zsh" = {
+        text = ''
+          ${sourcesStr}
         '';
       };
     };
