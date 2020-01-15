@@ -1,1 +1,1 @@
-{ imports = [ ./asdf-vm ]; }
+{ imports = [ ./zshell ./asdf-vm ./exa ]; }

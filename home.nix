@@ -8,8 +8,11 @@ in {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
+    zshell.aliases = { hm = "cd ~/.config/nixpkgs"; };
+
     asdf-vm.enable = true;
     bat.enable = true;
+    exa.enable = true;
     direnv.enable = true;
     jq.enable = true;
 
@@ -44,19 +47,8 @@ in {
 
   manual.html.enable = true;
 
-  home.file = {
-    ".zsh/boot/exa.zsh" = {
-      text = ''
-        alias ll="exa --header --git --classify --long --binary --group --time-style=long-iso --links --all --all --group-directories-first --sort=name"
-      '';
-    };
-  };
-
   home.packages = with pkgs; [
-    antora
-    asciidoctor
-    # cachix
-    exa
+    cachix
     niv
     nix-prefetch-scripts
     nix-review
