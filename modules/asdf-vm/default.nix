@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
 
-let cfg = config.programs.asdf-vm;
+let
+  cfg = config.programs.asdf-vm;
+  files = [ "asdf.sh" "completions/asdf.bash" ];
 in {
   options.programs.asdf-vm = {
     enable = lib.mkEnableOption
@@ -10,13 +12,6 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = [ pkgs.asdf-vm ];
 
-    home.file = {
-      ".zsh/boot/asdf.zsh" = {
-        text = ''
-          . "${pkgs.asdf-vm}/asdf.sh"
-          . "${pkgs.asdf-vm}/completions/asdf.bash"
-        '';
-      };
-    };
+    programs.zshell.sources = builtins.map (f: "${pkgs.asdf-vm}/${f}") files;
   };
 }
