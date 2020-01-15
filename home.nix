@@ -3,7 +3,7 @@ let
   pkgs = import <nixpkgs> { overlays = overlays; };
 in {
   nixpkgs.overlays = overlays;
-  imports = [ ./modules ];
+  imports = [ ./modules ./profiles ./hosts ];
   programs = {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
