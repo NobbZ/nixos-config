@@ -48,6 +48,7 @@ in {
   manual.html.enable = true;
 
   home.packages = with pkgs; [
+    aur-tools
     cachix
     niv
     nix-prefetch-scripts
