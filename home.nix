@@ -51,7 +51,7 @@ in {
     aur-tools
     cachix
     niv
-    nix-prefetch-scripts
+    # nix-prefetch-scripts
     nix-review
     nixfmt
     nixops
