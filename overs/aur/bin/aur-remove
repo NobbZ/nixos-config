@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Taken from https://github.com/AladW/aurutils/commit/7ca83bcf2d17819ed46ad02eed8f1a412cf6ab4a
+
+set -o nounset
+
+package=$1
+
+set -ex
+
+aur repo --repo-list | while read -r repo_info; do
+    repo_name=$(echo "${repo_info}" | cut -f1)
+    repo_path=$(echo "${repo_info}" | cut -f2)/${repo_name}.db
+    # remove package from databse
+    repo-remove "$(readlink -e "${repo_path}")" "${package}"
+
+    find "$(dirname "${repo_path}")" -name "${package}*" -delete
+done
+
+if expac -Q '%n' "${package}" >/dev/null; then
+    sudo pacman -R "${package}"
+fi

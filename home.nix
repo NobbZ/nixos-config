@@ -1,15 +1,19 @@
-{ ... }:
-
-let pkgs = import ./nix { };
-
+let
+  overlays = import ./overs;
+  pkgs = import <nixpkgs> { overlays = overlays; };
 in {
+  nixpkgs.overlays = overlays;
+  imports = [ ./modules ./profiles ./hosts ];
   programs = {
     # Let Home Manager install and manage itself.
     home-manager.enable = true;
 
+    zshell.aliases = { hm = "cd ~/.config/nixpkgs"; };
+
+    asdf-vm.enable = true;
     bat.enable = true;
+    exa.enable = true;
     direnv.enable = true;
-    go.enable = true;
     jq.enable = true;
 
     irssi = {
@@ -43,29 +47,11 @@ in {
 
   manual.html.enable = true;
 
-  home.file = {
-    ".zsh/boot/asdf.zsh" = {
-      text = ''
-        if which asdfloader 2>&1 >/dev/null; then
-          eval $(asdfloader)
-        fi
-      '';
-    };
-    ".zsh/boot/exa.zsh" = {
-      text = ''
-        alias ll="exa --header --git --classify --long --binary --group --time-style=long-iso --links --all --all --group-directories-first --sort=name"
-      '';
-    };
-  };
-
   home.packages = with pkgs; [
-    antora
-    asciidoctor
-    asdf-vm
-    # cachix
-    exa
+    aur-tools
+    cachix
     niv
-    nix-prefetch-scripts
+    # nix-prefetch-scripts
     nix-review
     nixfmt
     nixops
