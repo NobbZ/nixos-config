@@ -3,6 +3,7 @@ let
   pkgs = import <nixpkgs> { overlays = overlays; };
 in {
   nixpkgs.overlays = overlays;
+  nixpkgs.config.allowUnfree = true;
   imports = [ ./modules ./profiles ./hosts ];
   programs = {
     # Let Home Manager install and manage itself.
@@ -45,7 +46,10 @@ in {
     };
   };
 
-  # services = { lorri.enable = true; };
+  services = {
+    # lorri.enable = true;
+    keybase.enable = true;
+  };
 
   manual.html.enable = true;
 
