@@ -1,8 +1,11 @@
 { pkgs, config, ... }:
 
-{
+let
+  keepassWithPlugins =
+    pkgs.keepass.override { plugins = [ pkgs.keepass-keepasshttp ]; };
+in {
   config = {
-    home.packages = [ pkgs.chromium ];
+    home.packages = [ pkgs.chromium keepassWithPlugins ];
 
     services.keyleds.enable = true;
 
