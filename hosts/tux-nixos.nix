@@ -2,7 +2,7 @@
 
 {
   config = {
-    home.packages = [ ];
+    home.packages = [ pkgs.chromium ];
 
     services.keyleds.enable = true;
 
