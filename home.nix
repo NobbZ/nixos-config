@@ -48,7 +48,6 @@ in {
 
   services = {
     # lorri.enable = true;
-    keybase.enable = true;
   };
 
   manual.html.enable = true;
