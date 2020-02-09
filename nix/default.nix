@@ -5,4 +5,5 @@ in [
   (import ./asdf-vm)
   (import ./aur)
   (import ./keyleds)
+  (import sources.emacs-overlay.outPath)
 ]
