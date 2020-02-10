@@ -5,10 +5,10 @@
         "homepage": "https://asdf-vm.com/",
         "owner": "asdf-vm",
         "repo": "asdf",
-        "rev": "33a3111dcb1310985ee4138069469b628beddc16",
-        "sha256": "1hhwmdvb6hjbcspymcncn9c1rpn3cmnis9zmw8j1rz82ah8jhlgz",
+        "rev": "4911678c5bd436174225276618e09e62faf31b55",
+        "sha256": "0sd6cy18azry70hgflmz51z3ibqxx0gdwrgjn1pz41wlcc39bmay",
         "type": "tarball",
-        "url": "https://github.com/asdf-vm/asdf/archive/33a3111dcb1310985ee4138069469b628beddc16.tar.gz",
+        "url": "https://github.com/asdf-vm/asdf/archive/4911678c5bd436174225276618e09e62faf31b55.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "version": "v0.7.6"
     },
