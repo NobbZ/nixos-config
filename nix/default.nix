@@ -4,6 +4,5 @@ in [
   (self: super: { inherit sources; })
   (import sources.emacs-overlay.outPath)
   (import ./myOverlay)
-  (import ./aur)
   (import ./keyleds)
 ]
