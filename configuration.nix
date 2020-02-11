@@ -93,17 +93,28 @@
     zsh.enable = true;
   };
 
-  virtualisation.virtualbox.host.enable = true;
+  virtualisation = {
+    docker.enable = true;
+    libvirtd.enable = true;
+    virtualbox.host.enable = true;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   # users.users.jane = {
   #   isNormalUser = true;
   #   extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   # };
-  users.users.nmelzer = {
-    isNormalUser = true;
-    shell = pkgs.zsh;
-    extraGroups = [ "wheel" "audio" "networkmanager" "vboxusers" ];
+  users.users = {
+    nmelzer = {
+      isNormalUser = true;
+      shell = pkgs.zsh;
+      extraGroups = [ "wheel" "audio" "networkmanager" "vboxusers" "libvirtd" "docker" ];
+    };
+
+    aroemer = {
+      isNormalUser = true;
+      extraGroups = [];
+    };
   };
 
   # This value determines the NixOS release with which your system is to be
