@@ -44,7 +44,7 @@ in {
       ];
 
       includes = [{
-        condition = "gitdir:~cloudseeds/**";
+        condition = "gitdir:~/cloudseeds/**";
         contents = { user.email = "norbert.melzer@cloudseeds.de"; };
       }];
     };
