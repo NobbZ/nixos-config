@@ -2,7 +2,7 @@
 
 {
   config = {
-    home.packages = [ pkgs.hydra ];
+    home.packages = [ ];
     profiles.development.enable = true;
   };
 }
