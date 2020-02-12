@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
 {
-  config = { home.packages = [ pkgs.hydra ]; };
+  config = {
+    home.packages = [ pkgs.hydra ];
+    profiles.development.enable = true;
+  };
 }
