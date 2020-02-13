@@ -12,6 +12,7 @@ in {
       home-manager.enable = true;
       bat.enable = true;
       exa.enable = true;
+      htop.enable = true;
     };
   };
 }

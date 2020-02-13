@@ -33,8 +33,6 @@ in {
       };
     };
 
-    htop = { enable = true; };
-
     tmux = {
       enable = true;
 
