@@ -89,6 +89,8 @@
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666"
   '';
 
+  services.transmission.enable = true;
+
   programs = {
     zsh.enable = true;
   };
