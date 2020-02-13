@@ -12,7 +12,6 @@ in {
     zshell.aliases = { hm = "cd ~/.config/nixpkgs"; };
 
     asdf-vm.enable = true;
-    bat.enable = true;
     exa.enable = true;
     direnv.enable = true;
     jq.enable = true;

@@ -7,5 +7,10 @@ in {
     enable = lib.mkEnableOption "The base profile, should be always enabled";
   };
 
-  config = lib.mkIf cfg.enable { programs.home-manager.enable = true; };
+  config = lib.mkIf cfg.enable {
+    programs = {
+      home-manager.enable = true;
+      bat.enable = true;
+    };
+  };
 }
