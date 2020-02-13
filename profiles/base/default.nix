@@ -11,6 +11,7 @@ in {
     programs = {
       home-manager.enable = true;
       bat.enable = true;
+      exa.enable = true;
     };
   };
 }
