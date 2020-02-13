@@ -5,10 +5,10 @@ in {
   nixpkgs.overlays = overlays;
   nixpkgs.config.allowUnfree = true;
   imports = [ ./modules ./profiles ./hosts ];
-  programs = {
-    # Let Home Manager install and manage itself.
-    home-manager.enable = true;
 
+  profiles.base.enable = true;
+
+  programs = {
     zshell.aliases = { hm = "cd ~/.config/nixpkgs"; };
 
     asdf-vm.enable = true;
