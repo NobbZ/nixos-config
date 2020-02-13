@@ -32,14 +32,6 @@ in {
         };
       };
     };
-
-    tmux = {
-      enable = true;
-
-      clock24 = true;
-      historyLimit = 10000;
-      terminal = "screen-256color";
-    };
   };
 
   services = {
