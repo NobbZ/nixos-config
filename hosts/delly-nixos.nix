@@ -2,6 +2,7 @@
 
 {
   config = {
+    profiles.development.enable = true;
     programs.zsh = {
       enable = true;
 
