@@ -21,6 +21,26 @@ in {
         historyLimit = 10000;
         terminal = "screen-256color";
       };
+
+      zshell.aliases = { hm = "cd ~/.config/nixpkgs"; };
+      zsh = {
+        enable = true;
+
+        enableCompletion = true;
+        enableAutosuggestions = true;
+
+        dotDir = ".config/zsh";
+
+        defaultKeymap = "emacs";
+
+        plugins = [{
+          name = "powerlevel10k";
+          src = pkgs.zsh-powerlevel10k;
+          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        }];
+
+        shellAliases = config.programs.zshell.aliases;
+      };
     };
   };
 }

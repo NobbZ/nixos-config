@@ -9,8 +9,6 @@ in {
   profiles.base.enable = true;
 
   programs = {
-    zshell.aliases = { hm = "cd ~/.config/nixpkgs"; };
-
     asdf-vm.enable = true;
     direnv.enable = true;
     jq.enable = true;
