@@ -1,1 +1,1 @@
-{ imports = [ ./development ]; }
+{ imports = [ ./browsing ./development ]; }

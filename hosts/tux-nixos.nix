@@ -5,10 +5,10 @@ let
     pkgs.keepass.override { plugins = [ pkgs.keepass-keepasshttp ]; };
 in {
   config = {
+    profiles.browsing.enable = true;
     profiles.development.enable = true;
 
-    home.packages =
-      [ pkgs.chromium pkgs.insync keepassWithPlugins pkgs.keybase-gui ];
+    home.packages = [ pkgs.insync keepassWithPlugins pkgs.keybase-gui ];
 
     services = {
       keyleds.enable = true;
