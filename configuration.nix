@@ -110,7 +110,7 @@
     nmelzer = {
       isNormalUser = true;
       shell = pkgs.zsh;
-      extraGroups = [ "wheel" "audio" "networkmanager" "vboxusers" "libvirtd" "docker" ];
+      extraGroups = [ "wheel" "audio" "networkmanager" "vboxusers" "libvirtd" "docker" "transmission" ];
     };
 
     aroemer = {
