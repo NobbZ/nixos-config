@@ -7,6 +7,7 @@ in {
   imports = [ ./modules ./profiles ./hosts ];
 
   profiles.base.enable = true;
+  fonts.fontconfig.enable = true;
 
   programs = {
     asdf-vm.enable = true;
