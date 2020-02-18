@@ -1,1 +1,1 @@
-{ imports = [ ./zshell ./asdf-vm ./exa ./keyleds ]; }
+{ imports = [ ./zshell ./asdf-vm ./exa ./keyleds ./languages ]; }
