@@ -8,6 +8,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    home.sessionVariables = { EDITOR = "emacs"; };
+
     programs = {
       home-manager.enable = true;
       bat.enable = true;
