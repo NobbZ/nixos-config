@@ -42,7 +42,6 @@ in {
   home.packages = with pkgs; [
     aur-tools
     cachix
-    emacsGit
     niv
     # nix-prefetch-scripts
     nix-review

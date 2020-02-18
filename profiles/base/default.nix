@@ -14,6 +14,11 @@ in {
       exa.enable = true;
       htop.enable = true;
 
+      emacs = {
+        enable = true;
+        package = pkgs.emacsGit;
+      };
+
       tmux = {
         enable = true;
 
