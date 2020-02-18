@@ -1,14 +1,27 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.programs.emacs;
+  emacsEnabled = config.programs.emacs.enable;
+  cfg = config.nobbz.emacs;
 
   prelude = ''
-    ;; -*- mode: emacs-lisp -*-
+    ;;; init --- Initialises emacs configuration
+
+    ;;; Commentary:
+
+    ;; This file bootstraps the configuration.
+    ;; It is generated via `home-manager' and read only.
+
+    ;;; Code:
+  '';
+
+  postlude = ''
+    (provide 'init)
+    ;;; init.el ends here
   '';
 
 in {
-  options.programs.emacs = {
+  options.nobbz.emacs = {
     extraConfig = lib.mkOption {
       type = lib.types.lines;
       default = "";
@@ -18,13 +31,16 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf emacsEnabled {
     home.file.".emacs.d/init.el" = {
       text = ''
         ${prelude}
 
         ;; extraConfig
+        (require 'nix-mode)
         ${cfg.extraConfig}
+
+        ${postlude}
       '';
     };
   };

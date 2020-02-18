@@ -8,6 +8,8 @@ in {
     profiles.browsing.enable = true;
     profiles.development.enable = true;
 
+    languages = { nix.enable = true; };
+
     home.packages = [ pkgs.insync keepassWithPlugins pkgs.keybase-gui ];
 
     services = {
