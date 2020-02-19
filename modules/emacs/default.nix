@@ -4,21 +4,35 @@ let
   emacsEnabled = config.programs.emacs.enable;
   cfg = config.programs.emacs;
 
-  prelude = ''
-    ;;; init --- Initialises emacs configuration
+  generatePrelude = { name, tagLine ? "", comment ? "", ... }:
+    let
+      generated = ";; This file is generated via `home-manager' and read only.";
+      comment' = (if comment == "" then
+        generated
+      else
+        builtins.concatStringsSep "\n" ([ generated "" ]
+          ++ (builtins.map (l: ";; ${l}") (lib.splitString "\n" comment))));
+    in ''
+      ;;; ${name} --- ${tagLine}
 
-    ;;; Commentary:
+      ;;; Commentary:
 
-    ;; This file bootstraps the configuration.
-    ;; It is generated via `home-manager' and read only.
+      ${comment'}
 
-    ;;; Code:
+      ;;; Code:
+    '';
+
+  generatePostlude = { name, ... }: ''
+    (provide '${name})
+    ;;; ${name}.el ends here
   '';
 
-  postlude = ''
-    (provide 'init)
-    ;;; init.el ends here
-  '';
+  prelude = generatePrelude {
+    name = "init";
+    tagLine = "Initialises emacs configuration";
+  };
+
+  postlude = generatePostlude { name = "init"; };
 
 in {
   options.programs.emacs = {
@@ -37,7 +51,6 @@ in {
         ${prelude}
 
         ;; extraConfig
-        (require 'nix-mode)
         ${cfg.extraConfig}
 
         ${postlude}
