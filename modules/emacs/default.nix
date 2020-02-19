@@ -2,7 +2,7 @@
 
 let
   emacsEnabled = config.programs.emacs.enable;
-  cfg = config.nobbz.emacs;
+  cfg = config.programs.emacs;
 
   prelude = ''
     ;;; init --- Initialises emacs configuration
@@ -21,7 +21,7 @@ let
   '';
 
 in {
-  options.nobbz.emacs = {
+  options.programs.emacs = {
     extraConfig = lib.mkOption {
       type = lib.types.lines;
       default = "";
