@@ -36,6 +36,14 @@ let
 
 in {
   options.programs.emacs = {
+    splashScreen = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      example = false;
+      description = ''
+        Enable the startup screen.
+      '';
+    };
     extraConfig = lib.mkOption {
       type = lib.types.lines;
       default = "";
@@ -51,6 +59,9 @@ in {
   };
 
   config = lib.mkIf emacsEnabled {
+    programs.emacs.extraConfig =
+      lib.mkIf (!cfg.splashScreen) "(setq inhibit-startup-screen t)";
+
     home.file.".emacs.d/init.el" = {
       text = ''
         ${prelude}

@@ -10,6 +10,8 @@ in {
 
     languages = { nix.enable = true; };
 
+    programs.emacs.splashScreen = false;
+
     home.packages = [ pkgs.insync keepassWithPlugins pkgs.keybase-gui ];
 
     services = {
