@@ -43,6 +43,11 @@ in {
         Extra preferences to add to <filename>init.el</filename>.
       '';
     };
+
+    module = lib.mkOption {
+      description = "Attribute set of modules to link into emacs configuration";
+      default = { };
+    };
   };
 
   config = lib.mkIf emacsEnabled {
