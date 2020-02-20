@@ -44,11 +44,20 @@ in {
         Enable the startup screen.
       '';
     };
+
     extraConfig = lib.mkOption {
       type = lib.types.lines;
       default = "";
       description = ''
         Extra preferences to add to <filename>init.el</filename>.
+      '';
+    };
+
+    packages.beacon.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = ''
+        Enable `beacon' for emacs.
       '';
     };
 
@@ -61,6 +70,8 @@ in {
   config = lib.mkIf emacsEnabled {
     programs.emacs.extraConfig =
       lib.mkIf (!cfg.splashScreen) "(setq inhibit-startup-screen t)";
+
+    programs.emacs.extraPackages = ep: [ ep.beacon ];
 
     home.file.".emacs.d/init.el" = {
       text = ''
