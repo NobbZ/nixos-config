@@ -32,6 +32,7 @@ in {
       Install = { WantedBy = [ "graphical-session.target" ]; };
 
       Service = {
+        Environment = "XDG_DATA_DIRS=${cfg.package}/share";
         ExecStart =
           "${cfg.package}/bin/keyledsd --config ${cfg.package}/share/keyledsd/keyledsd.conf.sample";
         Restart = "always";
