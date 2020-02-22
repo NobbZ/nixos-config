@@ -33,7 +33,7 @@ in {
 
       Service = {
         ExecStart =
-          "${cfg.package}/bin/keyledsds --config ${cfg.package}/share/keyledsd/keyledsd.conf.sample";
+          "${cfg.package}/bin/keyledsd --config ${cfg.package}/share/keyledsd/keyledsd.conf.sample";
         Restart = "always";
         RestartSec = 3;
       };
