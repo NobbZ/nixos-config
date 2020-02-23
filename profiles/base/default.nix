@@ -15,6 +15,7 @@ in {
       bat.enable = true;
       exa.enable = true;
       htop.enable = true;
+      advancedCopy = true;
 
       emacs = {
         enable = true;
