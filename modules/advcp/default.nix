@@ -1,9 +1,9 @@
-{ ... }:
+{ config, lib, pkgs, ... }:
 
-let cfg = config.programs.advcancedCopy;
+let cfg = config.programs.advancedCopy;
 
 in {
-  options.programs.advcancedCopy = {
+  options.programs.advancedCopy = {
     enable = lib.mkEnableOption "CP and MV with a progressbar";
   };
 
