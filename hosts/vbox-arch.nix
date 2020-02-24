@@ -2,10 +2,10 @@
 
 {
   config = {
-    home.packages = [ ];
+    home.packages = [ pkgs.fira-code ];
     profiles.development.enable = true;
     programs.zsh.enable = true;
-    programs.zsh.localVariables = {
+    home.sessionVariables = {
       FONTCONFIG_FILE = "${pkgs.fontconfig.out}/etc/fonts/fonts.conf";
     };
   };
