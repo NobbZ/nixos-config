@@ -8,7 +8,10 @@ in {
     profiles.browsing.enable = true;
     profiles.development.enable = true;
 
-    languages = { nix.enable = true; };
+    languages = {
+      elixir.enable = true;
+      nix.enable = true;
+    };
 
     programs.emacs.splashScreen = false;
 

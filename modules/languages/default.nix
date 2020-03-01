@@ -1,1 +1,1 @@
-{ imports = [ ./nix ]; }
+{ imports = [ ./elixir ./nix ]; }
