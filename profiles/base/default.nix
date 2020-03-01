@@ -37,6 +37,8 @@ in {
         enableCompletion = true;
         enableAutosuggestions = true;
 
+        autocd = true;
+
         dotDir = ".config/zsh";
 
         defaultKeymap = "emacs";
