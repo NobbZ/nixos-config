@@ -37,6 +37,8 @@ let
   bool2Lisp = b: if b then "t" else "nil";
 
 in {
+  imports = [ ./whichkey ];
+
   options.programs.emacs = {
     splashScreen = lib.mkOption {
       type = lib.types.bool;
