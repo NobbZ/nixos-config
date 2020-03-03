@@ -31,7 +31,7 @@ in {
         "*.iml"
         # backupfiles and shadow copies done by editors
         "*~"
-        "#*#"
+        "\\#*\\#"
         ".#*"
         # Elixir language server
         "/.elixir_ls"
