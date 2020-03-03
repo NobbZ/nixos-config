@@ -59,17 +59,5 @@
         "type": "tarball",
         "url": "https://github.com/serokell/nixfmt/archive/eeab5dff80190b57f90da5682a47e3e977724003.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "nixpkgs": {
-        "branch": "nixpkgs-unstable",
-        "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
-        "homepage": "https://github.com/NixOS/nixpkgs",
-        "owner": "NixOS",
-        "repo": "nixpkgs-channels",
-        "rev": "ddc2f887f5f4b31128e8d4a56cb524c1d36d6fd4",
-        "sha256": "1mgrns87gncr0lw18gg7aw5sdpkbbpmgpflq1klb0ywvkpq1cjhd",
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/ddc2f887f5f4b31128e8d4a56cb524c1d36d6fd4.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
