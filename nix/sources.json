@@ -12,6 +12,18 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "version": "v0.7.6"
     },
+    "elixir-ls": {
+        "branch": "master",
+        "description": "A frontend-independent IDE \"smartness\" server for Elixir. Implements the JSON-based \"Language Server Protocol\" standard and provides debugger support via VS Code's debugger protocol.",
+        "homepage": "",
+        "owner": "elixir-lsp",
+        "repo": "elixir-ls",
+        "rev": "ce36476131566db3fc5ae67a44bfe5d630431f50",
+        "sha256": "00iwaqrdv99cgq0l8b1hq5yfs45idqq9mrqpri2camipnx2639dl",
+        "type": "tarball",
+        "url": "https://github.com/elixir-lsp/elixir-ls/archive/ce36476131566db3fc5ae67a44bfe5d630431f50.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "emacs-overlay": {
         "branch": "master",
         "description": "Bleeding edge emacs overlay [maintainer=@adisbladis] ",

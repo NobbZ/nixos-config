@@ -1,24 +1,17 @@
-{ pkgs, stdenv, elixir, beamPackages, rebar3, hex ? beamPackages.hex
+{ sources, pkgs, stdenv, elixir, beamPackages, rebar3, hex ? beamPackages.hex
 , fetchFromGitHub, fetchMixDeps ? pkgs.callPackage ./fetch-mix-deps.nix { }
 , gitMinimal }:
 
-let
-  json = {
-    owner = "elixir-lsp";
-    repo = "elixir-ls";
-    rev = "ce36476131566db3fc5ae67a44bfe5d630431f50";
-    sha256 = "00iwaqrdv99cgq0l8b1hq5yfs45idqq9mrqpri2camipnx2639dl";
-  };
-in stdenv.mkDerivation rec {
-  name = "elixir-ls";
-  version = json.rev;
+stdenv.mkDerivation rec {
+  name = sources.elixir-ls.repo;
+  version = sources.elixir-ls.rev;
 
   nativeBuildInputs = [ elixir hex gitMinimal deps ];
 
   deps = fetchMixDeps { inherit name version src; };
 
   # refresh: nix-prefetch-git https://github.com/elixir-lsp/elixir-ls.git [--rev branchName | --rev sha]
-  src = fetchFromGitHub json;
+  src = fetchFromGitHub { inherit (sources.elixir-ls) owner repo rev sha256; };
 
   dontStrip = true;
 
