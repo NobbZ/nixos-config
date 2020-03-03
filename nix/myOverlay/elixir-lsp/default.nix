@@ -6,8 +6,8 @@ let
   json = {
     owner = "elixir-lsp";
     repo = "elixir-ls";
-    rev = "v0.3.0";
-    sha256 = "0yxma786nscl81jsghm1mix62kmm4h0bmgkmy35zz6svs1s33fzc";
+    rev = "ce36476131566db3fc5ae67a44bfe5d630431f50";
+    sha256 = "00iwaqrdv99cgq0l8b1hq5yfs45idqq9mrqpri2camipnx2639dl";
   };
 in stdenv.mkDerivation rec {
   name = "elixir-ls";
