@@ -34,6 +34,8 @@ let
 
   postlude = generatePostlude { name = "init"; };
 
+  bool2Lisp = b: if b then "t" else "nil";
+
 in {
   options.programs.emacs = {
     splashScreen = lib.mkOption {
@@ -68,8 +70,9 @@ in {
   };
 
   config = lib.mkIf emacsEnabled {
-    programs.emacs.extraConfig =
-      lib.mkIf (!cfg.splashScreen) "(setq inhibit-startup-screen t)";
+    programs.emacs.extraConfig = ''
+      (setq inhibit-startup-screen ${bool2Lisp (!cfg.splashScreen)})
+    '';
 
     programs.emacs.extraPackages = ep: [ ep.beacon ];
 
