@@ -23,7 +23,7 @@ let
     };
   }));
 
-  replacements = lib.concatStringsSep "  \n"
+  replacements = lib.concatStringsSep "\n  "
     (builtins.map ({ keys, replace, ... }: ''"${keys}" "${replace}"'')
       cfg.replacement);
 in {
