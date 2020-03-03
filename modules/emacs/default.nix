@@ -72,9 +72,21 @@ in {
   config = lib.mkIf emacsEnabled {
     programs.emacs.extraConfig = ''
       (setq inhibit-startup-screen ${bool2Lisp (!cfg.splashScreen)})
+
+      (setq-default
+       telephone-line-lhs '((accent . (telephone-line-vc-segment
+                                       telephone-line-erc-modified-channels-segment
+                                       telephone-line-process-segment))
+                           (nil     . (telephone-line-minor-mode-segment
+                                       telephone-line-buffer-segment)))
+       telephone-line-rhs '((nil    . (telephone-line-misc-info-segment))
+                            (accent . (telephone-line-major-mode-segment))
+                            (accent . (telephone-line-airline-position-segment))))
+
+      (telephone-line-mode t)
     '';
 
-    programs.emacs.extraPackages = ep: [ ep.beacon ];
+    programs.emacs.extraPackages = ep: [ ep.beacon ep.telephone-line ];
 
     home.file.".emacs.d/init.el" = {
       text = ''
