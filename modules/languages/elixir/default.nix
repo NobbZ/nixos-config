@@ -14,7 +14,7 @@ in {
       ;; Confire elixir related stuff
       (require 'eglot)
       (add-to-list 'eglot-server-programs
-                   '(elixir-mode . ("sh" "${pkgs.elixir-lsp}/language_server.sh")))
+                   '(elixir-mode . ("sh" "${pkgs.elixir-lsp}/bin/elixir-ls")))
 
       (add-hook 'elixir-mode-hook
                 (lambda ()
