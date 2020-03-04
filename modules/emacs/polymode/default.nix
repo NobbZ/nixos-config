@@ -14,9 +14,9 @@ in {
 
       (define-innermode poly-elisp-expr-nix-innermode
         :mode 'emacs-lisp-mode
-        :head-matcher "'''\n *;;.*\n"
+        :head-matcher (cons "'''\n\\( *;;.*\n\\)" 1)
         :tail-matcher " *''';$"
-        :head-mode 'host
+        :head-mode 'body
         :tail-mode 'host)
 
       (define-polymode poly-nix-mode
