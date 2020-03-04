@@ -48,6 +48,7 @@ in {
     ];
     programs.emacs.extraPackages = ep: [ ep.which-key ];
     programs.emacs.extraConfig = ''
+      ;; which-key
       (which-key-mode t)
       (setq-default which-key-idle-delay 0.1)
 

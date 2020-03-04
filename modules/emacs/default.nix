@@ -73,8 +73,10 @@ in {
 
   config = lib.mkIf emacsEnabled {
     programs.emacs.extraConfig = ''
+      ;; set splash screen
       (setq inhibit-startup-screen ${bool2Lisp (!cfg.splashScreen)})
 
+      ;; set up telephone line
       (setq-default
        telephone-line-lhs '((accent . (telephone-line-vc-segment
                                        telephone-line-erc-modified-channels-segment
