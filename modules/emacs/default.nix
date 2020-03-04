@@ -95,11 +95,11 @@ in {
 
       (add-hook 'after-init-hook 'global-company-mode)
       (with-eval-after-load 'company
-        ;; diminish 'company-mode "CMP")
-        (define-key company-mode-map   (kbd "M-+") '("complete"       . 'company-complete)
-        (define-key company-active-map (kbd "M-+") '("change backend" . 'company-other-backend)
-        (define-key company-active-map (kbd "C-n") '("next"           . 'company-select-next)
-        (define-key company-active-map (kbd "C-p") '("previous"       . 'company-select-previous)
+        ;; (diminish 'company-mode "CMP")
+        (define-key company-mode-map   (kbd "M-+") '("complete"       . 'company-complete))
+        (define-key company-active-map (kbd "M-+") '("change backend" . 'company-other-backend))
+        (define-key company-active-map (kbd "C-n") '("next"           . 'company-select-next))
+        (define-key company-active-map (kbd "C-p") '("previous"       . 'company-select-previous))
         (setq-default company-dabbrev-other-buffers 'all
                       company-tooltip-align-annotations t))
     '';
