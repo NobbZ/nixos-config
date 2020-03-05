@@ -1,5 +1,15 @@
 { pkgs, config, ... }:
 
 {
-  config = { profiles.development.enable = true; };
+  config = {
+    profiles.browsing.enable = true;
+    profiles.development.enable = true;
+
+    languages = {
+      nix.enable = true;
+      elixir.enable = true;
+    };
+
+    programs.emacs.splashScreen = false;
+  };
 }
