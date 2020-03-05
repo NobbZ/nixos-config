@@ -44,7 +44,8 @@ in {
     niv
     # nix-prefetch-scripts
     nix-review
-    (haskell.lib.doJailbreak haskellPackages.nixfmt)
+    # (haskell.lib.doJailbreak haskellPackages.nixfmt)
+    nixfmt
     nixops
   ];
 }
