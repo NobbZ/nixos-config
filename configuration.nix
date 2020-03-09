@@ -5,16 +5,23 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
+
+  nixpkgs.config.allowUnfree = true;
+  nix.useSandbox = false;
+
+  security.chromiumSuidSandbox.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = [ "zfs" "ntfs" "btrfs" "exfat" "avfs" ];
+  boot.cleanTmpDir = true;
 
+  hardware.enableRedistributableFirmware = true;
+  networking.enableRalinkFirmware = true;
 
   networking.hostName = "tux-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -36,10 +43,13 @@
 
   # Select internationalisation properties.
   i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "de";
+    # consoleFont = "Lat2-Terminus16";
+    # consoleKeyMap = "de";
     defaultLocale = "en_US.UTF-8";
   };
+
+  console.font = "Lat2-Terminus16";
+  console.keyMap = "de";
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -66,12 +76,19 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  services.fwupd.enable = true;
+
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
+  services.printing.drivers = [ pkgs.hplipWithPlugin ];
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+  };
+  hardware.bluetooth.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -91,9 +108,7 @@
 
   services.transmission.enable = true;
 
-  programs = {
-    zsh.enable = true;
-  };
+  programs = { zsh.enable = true; };
 
   virtualisation = {
     docker.enable = true;
@@ -110,12 +125,20 @@
     nmelzer = {
       isNormalUser = true;
       shell = pkgs.zsh;
-      extraGroups = [ "wheel" "audio" "networkmanager" "vboxusers" "libvirtd" "docker" "transmission" ];
+      extraGroups = [
+        "wheel"
+        "audio"
+        "networkmanager"
+        "vboxusers"
+        "libvirtd"
+        "docker"
+        "transmission"
+      ];
     };
 
     aroemer = {
       isNormalUser = true;
-      extraGroups = [];
+      extraGroups = [ ];
     };
   };
 
