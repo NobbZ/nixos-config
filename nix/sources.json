@@ -5,24 +5,25 @@
         "homepage": "https://asdf-vm.com/",
         "owner": "asdf-vm",
         "repo": "asdf",
-        "rev": "7cdfc0fa2a5f0f924a4486a971f5110102f58e54",
-        "sha256": "1a5kimb6j00mb8b2yxq2xgi81nvhi0k5ifa7j1g3d8r93rh6hzb4",
+        "rev": "2b22d8bf9f9a802578fd522b15dd39f2cdf30e68",
+        "sha256": "0a5sav0akvf1j1dkz1d33jm88f61nb86yjd2vqy2msk54j96galm",
         "type": "tarball",
-        "url": "https://github.com/asdf-vm/asdf/archive/7cdfc0fa2a5f0f924a4486a971f5110102f58e54.tar.gz",
+        "url": "https://github.com/asdf-vm/asdf/archive/2b22d8bf9f9a802578fd522b15dd39f2cdf30e68.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "version": "v0.7.6"
     },
     "elixir-ls": {
-        "branch": "master",
+        "branch": "v0.3.1",
         "description": "A frontend-independent IDE \"smartness\" server for Elixir. Implements the JSON-based \"Language Server Protocol\" standard and provides debugger support via VS Code's debugger protocol.",
         "homepage": "",
         "owner": "elixir-lsp",
         "repo": "elixir-ls",
-        "rev": "ce36476131566db3fc5ae67a44bfe5d630431f50",
-        "sha256": "00iwaqrdv99cgq0l8b1hq5yfs45idqq9mrqpri2camipnx2639dl",
+        "rev": "9e9c6cddc4f1d957bba1e53846561666f58e5bf1",
+        "sha256": "12w6zay55jkfhzhjdriqizwa6hicqak41is2rywlrwc1kw1bbdsa",
         "type": "tarball",
-        "url": "https://github.com/elixir-lsp/elixir-ls/archive/ce36476131566db3fc5ae67a44bfe5d630431f50.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+        "url": "https://github.com/elixir-lsp/elixir-ls/archive/9e9c6cddc4f1d957bba1e53846561666f58e5bf1.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "version": "0.3.1"
     },
     "emacs-overlay": {
         "branch": "master",
@@ -30,10 +31,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "275eef003de64110921848e5eb936ad1d964de09",
-        "sha256": "0l0v6sc9qrfmrxa1kkbk731sjl46wkfzd8b924kd5ck2q2f3yhy6",
+        "rev": "28e830be78440cd71600298419ba17c465ab445a",
+        "sha256": "1bagrpbwv9nn3glxnjlqj6qhjvvpq3fbqrmkdppjis8vmc47rn3j",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/275eef003de64110921848e5eb936ad1d964de09.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/28e830be78440cd71600298419ba17c465ab445a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -54,10 +55,10 @@
         "homepage": "https://nixfmt.serokell.io",
         "owner": "serokell",
         "repo": "nixfmt",
-        "rev": "eeab5dff80190b57f90da5682a47e3e977724003",
-        "sha256": "1sjkmi301lw6wpns30xz5gmm2mf24srxz86nkmi16y7bryybkq4y",
+        "rev": "9f064e28f7eac65b94b48af3260f0d1a92fa4d53",
+        "sha256": "15hjb9ds6axx0bgqbyd0r1mzyx23gk3gzvjkx6q12zg0s5k2kack",
         "type": "tarball",
-        "url": "https://github.com/serokell/nixfmt/archive/eeab5dff80190b57f90da5682a47e3e977724003.tar.gz",
+        "url": "https://github.com/serokell/nixfmt/archive/9f064e28f7eac65b94b48af3260f0d1a92fa4d53.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
