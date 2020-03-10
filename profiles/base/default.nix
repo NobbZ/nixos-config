@@ -8,7 +8,10 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.sessionVariables = { EDITOR = "emacs"; };
+    home.sessionVariables = rec {
+      EDITOR = "emacs -nw";
+      VISUAL = "emacs";
+    };
 
     programs = {
       home-manager.enable = true;
