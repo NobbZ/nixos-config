@@ -11,6 +11,7 @@ in {
     languages = {
       elixir.enable = true;
       nix.enable = true;
+      python.enable = true;
     };
 
     programs.emacs.splashScreen = false;
