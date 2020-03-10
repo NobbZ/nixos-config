@@ -12,9 +12,9 @@ in {
     programs.emacs = {
       extraPackages = ep: [ ep.magit ];
       extraConfig = ''
-                                 ;; prepare magit use from shell
-        												 (global-git-commit-mode)
-        						           '';
+        ;; prepare magit use from shell
+        (global-git-commit-mode)
+      '';
     };
 
     programs.git = {
