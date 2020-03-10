@@ -9,7 +9,13 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.emacs = { extraPackages = ep: [ ep.magit ]; };
+    programs.emacs = {
+      extraPackages = ep: [ ep.magit ];
+      extraConfig = ''
+                                 ;; prepare magit use from shell
+        												 (global-git-commit-mode)
+        						           '';
+    };
 
     programs.git = {
       enable = true;
