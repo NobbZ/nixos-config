@@ -13,14 +13,14 @@ in {
     programs.emacs.extraPackages = ep: [ ep.eglot ep.company ];
 
     programs.emacs.extraConfig = ''
-      ;; Configure python related stuff
-      (require 'eglot)
-			(add-to-list 'eglot-server-programs
-									 '(python-mode . ("${pyls}/bin/pyls")))
+            ;; Configure python related stuff
+            (require 'eglot)
+      			(add-to-list 'eglot-server-programs
+      									 '(python-mode . ("${pyls}/bin/pyls")))
 
-			(add-hook 'python-mode-hook
-								(lambda ()
-									(eglot-ensure)))
-    '';
+      			(add-hook 'python-mode-hook
+      								(lambda ()
+      									(eglot-ensure)))
+          '';
   };
 }

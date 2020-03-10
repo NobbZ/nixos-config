@@ -9,6 +9,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    programs.emacs = { extraPackages = ep: [ ep.magit ]; };
+
     programs.git = {
       enable = true;
 
