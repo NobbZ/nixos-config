@@ -113,14 +113,8 @@ in {
     ];
 
     home.file.".emacs.d/init.el" = {
-      text = ''
-        ${prelude}
-
-        ;; extraConfig
-        ${cfg.extraConfig}
-
-        ${postlude}
-      '';
+      text = pkgs.nobbzLib.emacs.generatePackage "init"
+        "Initialises emacs configuration" [ ] [ ] cfg.extraConfig;
     };
   };
 }
