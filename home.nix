@@ -4,7 +4,9 @@ let
 in {
   nixpkgs.overlays = overlays;
   nixpkgs.config.allowUnfree = true;
-  imports = [ ./modules ./profiles ./hosts ];
+
+  imports = [ ./modules ./profiles ./hosts ]
+    ++ (if builtins.pathExists ./secrets.nix then [ ./secrets.nix ] else [ ]);
 
   profiles.base.enable = true;
   fonts.fontconfig.enable = true;
