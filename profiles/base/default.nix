@@ -11,6 +11,7 @@ in {
     home.sessionVariables = rec {
       EDITOR = "emacs -nw";
       VISUAL = "emacs";
+      GIT_EDITOR = EDITOR;
     };
 
     programs = {
