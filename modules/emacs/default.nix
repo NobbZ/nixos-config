@@ -19,6 +19,19 @@ in {
       '';
     };
 
+    # TODO: rewrite into a "named" submodule
+    localPackages = lib.mkOption {
+      type = lib.types.listOf (lib.types.submodule {
+        options = {
+          name = lib.mkOption { type = lib.types.str; };
+          tag = lib.mkOption { type = lib.types.str; };
+          comments = lib.mkOption { type = lib.types.listOf lib.types.str; };
+          requires = lib.mkOption { type = lib.types.listOf lib.types.str; };
+          code = lib.mkOption { type = lib.types.str; };
+        };
+      });
+    };
+
     extraConfig = lib.mkOption {
       type = lib.types.lines;
       default = "";
