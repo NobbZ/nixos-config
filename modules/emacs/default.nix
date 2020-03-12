@@ -7,14 +7,13 @@ let
 
   bool2Lisp = b: if b then "t" else "nil";
 
-  lisps = lib.attrsets.mapAttrs' (k: v:
-    builtins.trace "${k}" {
-      name = ".emacs.d/lisp/${k}.el";
-      value = {
-        text = pkgs.nobbzLib.emacs.generatePackage k v.tag v.comments v.requires
-          v.code;
-      };
-    }) cfg.localPackages;
+  lisps = lib.attrsets.mapAttrs' (k: v: {
+    name = ".emacs.d/lisp/${k}.el";
+    value = {
+      text = pkgs.nobbzLib.emacs.generatePackage k v.tag v.comments v.requires
+        v.code;
+    };
+  }) cfg.localPackages;
 
   lispRequires = let
     names = lib.attrsets.mapAttrsToList (n: _: n) cfg.localPackages;
