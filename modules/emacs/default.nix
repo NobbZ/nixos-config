@@ -3,8 +3,24 @@
 let
   emacsEnabled = config.programs.emacs.enable;
   cfg = config.programs.emacs;
+  beaconEnabled = cfg.packages.beacon.enable;
 
   bool2Lisp = b: if b then "t" else "nil";
+
+  lisps = lib.attrsets.mapAttrs' (k: v:
+    builtins.trace "${k}" {
+      name = ".emacs.d/lisp/${k}.el";
+      value = {
+        text = pkgs.nobbzLib.emacs.generatePackage k v.tag v.comments v.requires
+          v.code;
+      };
+    }) cfg.localPackages;
+
+  lispRequires = let
+    names = lib.attrsets.mapAttrsToList (n: _: n) cfg.localPackages;
+    sorted = builtins.sort (l: r: l < r) names;
+    required = builtins.map (r: "(require '${r})") sorted;
+  in builtins.concatStringsSep "\n" required;
 
 in {
   imports = [ ./polymode ./whichkey ];
@@ -19,17 +35,15 @@ in {
       '';
     };
 
-    # TODO: rewrite into a "named" submodule
     localPackages = lib.mkOption {
-      type = lib.types.listOf (lib.types.submodule {
+      type = lib.types.attrsOf (lib.types.submodule ({ name, config, ... }: {
         options = {
-          name = lib.mkOption { type = lib.types.str; };
           tag = lib.mkOption { type = lib.types.str; };
           comments = lib.mkOption { type = lib.types.listOf lib.types.str; };
           requires = lib.mkOption { type = lib.types.listOf lib.types.str; };
           code = lib.mkOption { type = lib.types.str; };
         };
-      });
+      }));
     };
 
     extraConfig = lib.mkOption {
@@ -55,7 +69,25 @@ in {
   };
 
   config = lib.mkIf emacsEnabled {
+
+    programs.emacs.localPackages."init-beacon" = lib.mkIf beaconEnabled {
+      tag = "Setup beacon";
+      comments = [ ];
+      requires = [ ];
+      code = ''
+        ;; enable beacon minor mode globally
+        (beacon-mode 1)
+      '';
+    };
+
     programs.emacs.extraConfig = ''
+      ;; adjust the load-path to find further down required files
+      (add-to-list 'load-path
+                   (expand-file-name "lisp" user-emacs-directory))
+
+      ;; require all those local packages
+      ${lispRequires}
+
       ;; set splash screen
       (setq inhibit-startup-screen ${bool2Lisp (!cfg.splashScreen)})
 
@@ -89,15 +121,15 @@ in {
                       company-tooltip-align-annotations t))
     '';
 
-    programs.emacs.extraPackages = ep: [
-      ep.beacon
-      ep.telephone-line
-      ep.company
-    ];
+    programs.emacs.extraPackages = (ep:
+      [ ep.telephone-line ep.company ]
+      ++ (if beaconEnabled then [ ep.beacon ] else [ ]));
 
-    home.file.".emacs.d/init.el" = {
-      text = pkgs.nobbzLib.emacs.generatePackage "init"
-        "Initialises emacs configuration" [ ] [ ] cfg.extraConfig;
-    };
+    home.file = {
+      ".emacs.d/init.el" = {
+        text = pkgs.nobbzLib.emacs.generatePackage "init"
+          "Initialises emacs configuration" [ ] [ ] cfg.extraConfig;
+      };
+    } // lisps;
   };
 }
