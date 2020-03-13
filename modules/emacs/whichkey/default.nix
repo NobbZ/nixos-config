@@ -32,28 +32,35 @@ in {
   };
 
   config = lib.mkIf enabled {
-    programs.emacs.whichkey.replacement = [
-      {
-        keys = "C-x C-f";
-        replace = "find file";
-      }
-      {
-        keys = "C-x C-s";
-        replace = "write file";
-      }
-      {
-        keys = "C-x C-c";
-        replace = "leave emacs";
-      }
-    ];
-    programs.emacs.extraPackages = ep: [ ep.which-key ];
-    programs.emacs.extraConfig = ''
-      ;; which-key
-      (which-key-mode t)
-      (setq-default which-key-idle-delay 0.1)
+    programs.emacs = {
+      whichkey.replacement = [
+        {
+          keys = "C-x C-f";
+          replace = "find file";
+        }
+        {
+          keys = "C-x C-s";
+          replace = "write file";
+        }
+        {
+          keys = "C-x C-c";
+          replace = "leave emacs";
+        }
+      ];
+      extraPackages = ep: [ ep.which-key ];
+      localPackages."init-whichkey" = {
+        tag = "Setup and initialise whichkey";
+        comments = [ ];
+        requires = [ ];
+        code = ''
+          ;; which-key
+          (which-key-mode t)
+          (setq-default which-key-idle-delay 0.1)
 
-      (which-key-add-key-based-replacements
-        ${replacements})
-    '';
+          (which-key-add-key-based-replacements
+            ${replacements})
+        '';
+      };
+    };
   };
 }
