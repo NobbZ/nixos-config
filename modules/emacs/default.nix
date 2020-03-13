@@ -23,7 +23,7 @@ let
   in builtins.concatStringsSep "\n" required;
 
 in {
-  imports = [ ./polymode ./whichkey ];
+  imports = [ ./beacon.nix ./polymode ./whichkey ];
 
   options.programs.emacs = {
     splashScreen = lib.mkOption {
@@ -54,14 +54,6 @@ in {
       '';
     };
 
-    packages.beacon.enable = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-      description = ''
-        Enable `beacon' for emacs.
-      '';
-    };
-
     module = lib.mkOption {
       description = "Attribute set of modules to link into emacs configuration";
       default = { };
@@ -69,17 +61,6 @@ in {
   };
 
   config = lib.mkIf emacsEnabled {
-
-    programs.emacs.localPackages."init-beacon" = lib.mkIf beaconEnabled {
-      tag = "Setup beacon";
-      comments = [ ];
-      requires = [ ];
-      code = ''
-        ;; enable beacon minor mode globally
-        (beacon-mode 1)
-      '';
-    };
-
     programs.emacs.extraConfig = ''
       ;; adjust the load-path to find further down required files
       (add-to-list 'load-path
@@ -121,9 +102,7 @@ in {
                       company-tooltip-align-annotations t))
     '';
 
-    programs.emacs.extraPackages = (ep:
-      [ ep.telephone-line ep.company ]
-      ++ (if beaconEnabled then [ ep.beacon ] else [ ]));
+    programs.emacs.extraPackages = ep: [ ep.telephone-line ep.company ];
 
     home.file = {
       ".emacs.d/init.el" = {
