@@ -71,19 +71,6 @@ in {
       ;; set splash screen
       (setq inhibit-startup-screen ${bool2Lisp (!cfg.splashScreen)})
 
-      ;; set up telephone line
-      (setq-default
-       telephone-line-lhs '((accent . (telephone-line-vc-segment
-                                       telephone-line-erc-modified-channels-segment
-                                       telephone-line-process-segment))
-                           (nil     . (telephone-line-minor-mode-segment
-                                       telephone-line-buffer-segment)))
-       telephone-line-rhs '((nil    . (telephone-line-misc-info-segment))
-                            (accent . (telephone-line-major-mode-segment))
-                            (accent . (telephone-line-airline-position-segment))))
-
-      (telephone-line-mode t)
-
       ;; company
       (setq tab-always-indent 'complete)
       (add-to-list 'completion-styles 'initials t)
@@ -101,7 +88,7 @@ in {
                       company-tooltip-align-annotations t))
     '';
 
-    programs.emacs.extraPackages = ep: [ ep.telephone-line ep.company ];
+    programs.emacs.extraPackages = ep: [ ep.company ];
 
     home.file = {
       ".emacs.d/init.el" = {
