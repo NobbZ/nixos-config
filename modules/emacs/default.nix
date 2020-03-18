@@ -88,7 +88,7 @@ in {
                       company-tooltip-align-annotations t))
     '';
 
-    programs.emacs.extraPackages = ep: [ ep.company ];
+    programs.emacs.extraPackages = ep: [ ep.company ep.go-mode ep.company-go ];
 
     home.file = {
       ".emacs.d/init.el" = {
