@@ -68,6 +68,8 @@ in {
       ;; require all those local packages
       ${lispRequires}
 
+      (global-auto-revert-mode)
+
       ;; set splash screen
       (setq inhibit-startup-screen ${bool2Lisp (!cfg.splashScreen)})
 
