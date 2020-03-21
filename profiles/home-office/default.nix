@@ -8,7 +8,7 @@ in {
       "A profile that enables remote desktop to the workingplace";
 
     user = lib.mkOption {
-      type = lib.types.nullOr lib.types.string;
+      type = lib.types.nullOr lib.types.str;
       default = null;
       example = "jon.doe";
       description = ''
@@ -17,7 +17,7 @@ in {
     };
 
     pass = lib.mkOption {
-      type = lib.types.nullOr lib.types.string;
+      type = lib.types.nullOr lib.types.str;
       default = null;
       example = "secret";
       description = ''
@@ -26,7 +26,7 @@ in {
     };
 
     domain = lib.mkOption {
-      type = lib.types.nullOr lib.types.string;
+      type = lib.types.nullOr lib.types.str;
       default = null;
       example = "secret";
       description = ''
@@ -35,7 +35,7 @@ in {
     };
 
     host = lib.mkOption {
-      type = lib.types.nullOr lib.types.string;
+      type = lib.types.nullOr lib.types.str;
       default = null;
       example = "example.com";
       description = ''
