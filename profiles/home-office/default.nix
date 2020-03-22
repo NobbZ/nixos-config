@@ -51,6 +51,8 @@ in {
       (pkgs.writeShellScriptBin "home-office" ''
         ${pkgs.freerdp}/bin/xfreerdp '/u:${cfg.user}' '/p:${cfg.pass}' '/d:${cfg.domain}' '/v:${cfg.host}' /dynamic-resolution
       '')
+
+      pkgs.teamspeak_client
     ];
   };
 }
