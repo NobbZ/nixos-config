@@ -5,10 +5,10 @@
         "homepage": "https://asdf-vm.com/",
         "owner": "asdf-vm",
         "repo": "asdf",
-        "rev": "a15cb5bccb194b1f23ac761c7d9ddbefb7e729af",
-        "sha256": "0h9drjwps6kzvbcccix86hncrqvb5pwayld5v5abd77ngszn3p7l",
+        "rev": "3c3f0e67f698a540eac740ba1fa61825e4350b86",
+        "sha256": "0q0hgh05h98vjf7gsxjvsm2irjhgm099dcfsfjqlsdqy633ap0h3",
         "type": "tarball",
-        "url": "https://github.com/asdf-vm/asdf/archive/a15cb5bccb194b1f23ac761c7d9ddbefb7e729af.tar.gz",
+        "url": "https://github.com/asdf-vm/asdf/archive/3c3f0e67f698a540eac740ba1fa61825e4350b86.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "version": "v0.7.6"
     },
@@ -31,10 +31,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "20efd028e050f2641704a06f64dbc5cce7a03800",
-        "sha256": "13lap8p9wv42bmw39pq7q8wsf9hfa5sg1c39grkypy6i52kpx84k",
+        "rev": "afe5472fb50c219607e583802d545585425cb367",
+        "sha256": "02c2i6r0anknh9dvhma2q6hxmsh4n8m7m7mwvfxncd0g6msc15x2",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/20efd028e050f2641704a06f64dbc5cce7a03800.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/afe5472fb50c219607e583802d545585425cb367.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
