@@ -22,7 +22,8 @@ let
   in builtins.concatStringsSep "\n" required;
 
 in {
-  imports = [ ./beacon.nix ./polymode ./telephoneline.nix ./whichkey ];
+  imports =
+    [ ./beacon.nix ./helm.nix ./polymode ./telephoneline.nix ./whichkey ];
 
   options.programs.emacs = {
     splashScreen = lib.mkOption {
