@@ -1,6 +1,6 @@
-{ stdenv, elixir, rebar3, gitMinimal, cacert }:
+{ cacert, elixir, gitMinimal, lib, rebar3, stdenv, }:
 
-{ name, version, sha256 ? null, src, env ? "prod" }:
+{ name, version, sha256 ? lib.fakeSha256, src, env ? "prod" }:
 
 with stdenv;
 
