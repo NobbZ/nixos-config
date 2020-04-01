@@ -11,6 +11,7 @@ in {
 
     languages = {
       elixir.enable = true;
+      erlang.enable = true;
       nix.enable = true;
       python.enable = true;
     };

@@ -8,6 +8,7 @@
     languages = {
       nix.enable = true;
       elixir.enable = true;
+      erlang.enable = true;
     };
 
     programs.emacs.splashScreen = false;
