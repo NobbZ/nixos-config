@@ -37,6 +37,18 @@
         "url": "https://github.com/nix-community/emacs-overlay/archive/158239a79f5f6b8b1c969ecc5f0bc85ab183b056.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "erlang-ls": {
+        "branch": "0.3.0",
+        "description": "The Erlang Language Server",
+        "homepage": "https://erlang-ls.github.io/",
+        "owner": "erlang-ls",
+        "repo": "erlang_ls",
+        "rev": "a24a29c64078991dda513dcb6fd55ab33df793f0",
+        "sha256": "06p8dvji8kmfxm4jzn9d0258wls6s73yhhpn0kpicn3v1mmr53zi",
+        "type": "tarball",
+        "url": "https://github.com/erlang-ls/erlang_ls/archive/a24a29c64078991dda513dcb6fd55ab33df793f0.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",
