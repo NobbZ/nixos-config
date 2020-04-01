@@ -1,1 +1,1 @@
-{ imports = [ ./elixir ./python ./nix ]; }
+{ imports = [ ./elixir ./erlang ./python ./nix ]; }
