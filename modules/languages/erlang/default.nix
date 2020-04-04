@@ -31,7 +31,8 @@ in {
       (setq lsp-ui-doc-enable t)
       (setq lsp-ui-doc-position 'bottom)
 
-      (push 'company-lsp company-backends)
+      (eval-after-load 'company
+        '(push 'company-lsp company-backend))
 
       (eval-after-load 'erlang
         '(define-key erlang-mode-map (kbd "C-M-i") #'company-lsp))
