@@ -23,12 +23,13 @@ let
 
 in {
   imports = [
-    ./beacon.nix
     ./helm.nix
+    ./lsp.nix
     ./polymode
     ./projectile.nix
     ./telephoneline.nix
     ./whichkey
+    ./beacon.nix
   ];
 
   options.programs.emacs = {
