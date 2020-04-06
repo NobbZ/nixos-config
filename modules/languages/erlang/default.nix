@@ -9,15 +9,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.emacs.extraPackages = ep:
-      with ep; [
-        company-lsp
-        helm-lsp
-        lsp-origami
-        lsp-ui
-        yasnippet
-        erlang
-      ];
+    programs.emacs.extraPackages = ep: [ ep.erlang ];
 
     programs.emacs.lsp-mode = {
       enable = true;
@@ -25,34 +17,24 @@ in {
     };
 
     programs.emacs.extraConfig = ''
-      ;; Configure erlang related stuff
+            ;; Configure erlang related stuff
+      			(setq lsp-erlang-server-path "${erlang-ls}/bin/erlang_ls")
 
-      (yas-global-mode t)
+            (eval-after-load 'erlang
+              '(define-key erlang-mode-map (kbd "C-M-i") #'company-lsp))
 
-      (setq lsp-erlang-server-path "${erlang-ls}/bin/erlang_ls")
-      (setq lsp-log-io t)
-      (setq lsp-ui-sideline-enable t)
-      (setq lsp-ui-doc-enable t)
-      (setq lsp-ui-doc-position 'bottom)
+            (add-hook 'erlang-mode-hook
+                      (lambda ()
+                        (linum-mode)
+                        ('column-number-mode)
+                        (lsp)
+                        (add-hook 'before-save-hook 'lsp-format-buffer nil t)
+                        (subword-mode)
+                        (company-mode)
+                        (flycheck-mode)))
 
-      (eval-after-load 'company
-        '(push 'company-lsp company-backend))
-
-      (eval-after-load 'erlang
-        '(define-key erlang-mode-map (kbd "C-M-i") #'company-lsp))
-
-      (add-hook 'erlang-mode-hook
-                (lambda ()
-                  (linum-mode)
-                  ('column-number-mode)
-                  (lsp)
-                  (add-hook 'before-save-hook 'lsp-format-buffer nil t)
-                  (subword-mode)
-                  (company-mode)
-                  (flymake-mode)))
-
-      (add-hook 'origami-mode-hook 'lsp-origami-mode)
-      (add-hook 'erlang-mode-hook 'origami-mode)
-    '';
+            (add-hook 'origami-mode-hook 'lsp-origami-mode)
+            (add-hook 'erlang-mode-hook 'origami-mode)
+          '';
   };
 }

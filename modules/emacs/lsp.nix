@@ -32,11 +32,28 @@ in {
         comments = [ ];
         requires = [ "lsp-mode" ];
         code = ''
+          (yas-global-mode t)
+
+          (setq lsp-log-io t)
+          (setq lsp-ui-sideline-enable t)
+          (setq lsp-ui-doc-enable t)
+          (setq lsp-ui-doc-position 'bottom)
+
+          (eval-after-load 'company
+            '(push 'company-lsp company-backend))
+
           ${mode-hooks}
         '';
       };
 
-      extraPackages = ep: [ ep.lsp-mode ];
+      extraPackages = ep: [
+        ep.company-lsp
+        ep.helm-lsp
+        ep.lsp-mode
+        ep.lsp-origami
+        ep.lsp-ui
+        ep.yasnippet
+      ];
     };
   };
 }
