@@ -13,12 +13,16 @@ in {
       with ep; [
         company-lsp
         helm-lsp
-        lsp-mode
         lsp-origami
         lsp-ui
         yasnippet
         erlang
       ];
+
+    programs.emacs.lsp-mode = {
+      enable = true;
+      languages = [ "erlang" ];
+    };
 
     programs.emacs.extraConfig = ''
       ;; Configure erlang related stuff
