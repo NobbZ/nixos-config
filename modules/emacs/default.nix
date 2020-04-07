@@ -87,6 +87,7 @@ in {
       ep.go-mode
       ep.company-go
       ep.markdown-mode
+      ep.yaml-mode
     ];
 
     home.file = {
