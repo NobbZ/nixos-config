@@ -6,8 +6,9 @@
     profiles.development.enable = true;
 
     languages = {
-      nix.enable = true;
       elixir.enable = true;
+      lua.enable = true;
+      nix.enable = true;
       python.enable = true;
     };
 
