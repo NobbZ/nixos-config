@@ -89,6 +89,8 @@ in {
       ep.company-go
       ep.markdown-mode
       ep.yaml-mode
+      ep.docker-compose-mode
+      ep.dockerfile-mode
     ];
 
     home.file = {
