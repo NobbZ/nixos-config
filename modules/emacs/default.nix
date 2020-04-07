@@ -68,18 +68,20 @@ in {
 
   config = lib.mkIf emacsEnabled {
     programs.emacs.extraConfig = ''
-      ;; adjust the load-path to find further down required files
-      (add-to-list 'load-path
-                   (expand-file-name "lisp" user-emacs-directory))
+            ;; adjust the load-path to find further down required files
+            (add-to-list 'load-path
+                         (expand-file-name "lisp" user-emacs-directory))
 
-      ;; require all those local packages
-      ${lispRequires}
+            ;; require all those local packages
+            ${lispRequires}
 
-      (global-auto-revert-mode)
+      			(global-auto-revert-mode)
+      			(global-whitespace-mode)
+      			(global-linum-mode)
 
-      ;; set splash screen
-      (setq inhibit-startup-screen ${bool2Lisp (!cfg.splashScreen)})
-    '';
+            ;; set splash screen
+            (setq inhibit-startup-screen ${bool2Lisp (!cfg.splashScreen)})
+          '';
 
     programs.emacs.extraPackages = ep: [
       ep.go-mode
