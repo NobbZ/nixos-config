@@ -77,7 +77,7 @@ in {
       ${lispRequires}
 
       (global-auto-revert-mode)
-      global-whitespace-mode)
+      (global-whitespace-mode)
       (global-linum-mode)
 
       ;; set splash screen
