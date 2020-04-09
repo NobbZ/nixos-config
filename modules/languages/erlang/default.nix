@@ -17,24 +17,24 @@ in {
     };
 
     programs.emacs.extraConfig = ''
-            ;; Configure erlang related stuff
-      			(setq lsp-erlang-server-path "${erlang-ls}/bin/erlang_ls")
+      ;; Configure erlang related stuff
+      (setq lsp-erlang-server-path "${erlang-ls}/bin/erlang_ls")
 
-            (eval-after-load 'erlang
-              '(define-key erlang-mode-map (kbd "C-M-i") #'company-lsp))
+      (eval-after-load 'erlang
+        '(define-key erlang-mode-map (kbd "C-M-i") #'company-lsp))
 
-            (add-hook 'erlang-mode-hook
-                      (lambda ()
-                        (linum-mode)
-                        ('column-number-mode)
-                        (lsp)
-                        (add-hook 'before-save-hook 'lsp-format-buffer nil t)
-                        (subword-mode)
-                        (company-mode)
-                        (flycheck-mode)))
+      (add-hook 'erlang-mode-hook
+                (lambda ()
+                  (linum-mode)
+                  ('column-number-mode)
+                  (lsp)
+                  (add-hook 'before-save-hook 'lsp-format-buffer nil t)
+                  (subword-mode)
+                  (company-mode)
+                  (flycheck-mode)))
 
-            (add-hook 'origami-mode-hook 'lsp-origami-mode)
-            (add-hook 'erlang-mode-hook 'origami-mode)
-          '';
+      (add-hook 'origami-mode-hook 'lsp-origami-mode)
+      (add-hook 'erlang-mode-hook  'origami-mode)
+    '';
   };
 }

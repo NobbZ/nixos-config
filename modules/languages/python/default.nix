@@ -16,8 +16,8 @@ in {
     };
 
     programs.emacs.extraConfig = ''
-            ;; Configure python related stuff
-      			(setq lsp-pyls-server-command '("${pyls}/bin/pyls"))
-          '';
+      ;; Configure python related stuff
+      (setq lsp-pyls-server-command '("${pyls}/bin/pyls"))
+    '';
   };
 }
