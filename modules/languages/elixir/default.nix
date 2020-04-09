@@ -8,21 +8,24 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.emacs.extraPackages = ep: [ ep.eglot ep.elixir-mode ep.company ];
+    programs.emacs.extraPackages = ep: [ ep.elixir-mode ];
+
+    programs.emacs.lsp-mode = {
+      enable = true;
+      languages = [ "elixir" ];
+    };
 
     programs.emacs.extraConfig = ''
       ;; Confire elixir related stuff
-      (require 'eglot)
-      (add-to-list 'eglot-server-programs
-                   '(elixir-mode . ("sh" "${pkgs.elixir-lsp}/bin/elixir-ls")))
+      (setq lsp-clients-elixir-server-executable
+            '("${pkgs.bash}/bin/bash" "${pkgs.elixir-lsp}/bin/elixir-ls"))
 
       (add-hook 'elixir-mode-hook
                 (lambda ()
                   (subword-mode)
-                  (eglot-ensure)
                   (company-mode)
                   (flymake-mode)
-                  (add-hook 'before-save-hook 'eglot-format nil t)))
+                  (add-hook 'before-save-hook #'lsp-format-buffer nil t)))
     '';
   };
 }
