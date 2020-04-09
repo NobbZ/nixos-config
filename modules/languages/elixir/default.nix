@@ -17,8 +17,8 @@ in {
 
     programs.emacs.extraConfig = ''
       ;; Confire elixir related stuff
-      (setq lsp-clients-elixir-server-executable
-            '("${pkgs.bash}/bin/bash" "${pkgs.elixir-lsp}/bin/elixir-ls"))
+      (add-to-list 'exec-path "${pkgs.elixir-lsp}/bin")
+      (setq lsp-clients-elixir-server-executable "elixir-ls")
 
       (add-hook 'elixir-mode-hook
                 (lambda ()
