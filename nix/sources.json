@@ -61,6 +61,18 @@
         "url": "https://github.com/nmattia/niv/archive/372f96bff217a7a019de27667d04118cffa9841b.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "nix-direnv": {
+        "branch": "master",
+        "description": "A fast, persistent use_nix implementation for direnv [maintainer=@Mic92] ",
+        "homepage": "",
+        "owner": "nix-community",
+        "repo": "nix-direnv",
+        "rev": "063d43483ec1bc51fa6906989ad298d906a9ba51",
+        "sha256": "10j2h2xks5gyj57pgys372f47pajn8f0jpdmkjpav5ng65bzcaci",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/nix-direnv/archive/063d43483ec1bc51fa6906989ad298d906a9ba51.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "nixfmt": {
         "branch": "master",
         "description": "A formatter for Nix code",
