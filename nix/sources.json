@@ -5,10 +5,10 @@
         "homepage": "https://asdf-vm.com/",
         "owner": "asdf-vm",
         "repo": "asdf",
-        "rev": "4a3e3d6ebd1b544d0618a077a14165566d5b7a4a",
-        "sha256": "0cr9mnj9fy5riwn6wf4qmdqnjm8n3yxya5a4s4v5qq2wsmpclqc1",
+        "rev": "90b1e5d81671b039da0db287a5de96c36c6eb5e4",
+        "sha256": "0fwm4q22fcflh0ag27q7qzz95frxav0am5d6xcg3r4v6jx056ssg",
         "type": "tarball",
-        "url": "https://github.com/asdf-vm/asdf/archive/4a3e3d6ebd1b544d0618a077a14165566d5b7a4a.tar.gz",
+        "url": "https://github.com/asdf-vm/asdf/archive/90b1e5d81671b039da0db287a5de96c36c6eb5e4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "version": "v0.7.6"
     },
@@ -31,10 +31,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "c171011d500617d2a8dc40bc55e177036b6a019a",
-        "sha256": "0q652n3a1ar437lqwzm2fihrh7xhbynlglabyhh8wn78karxvlbr",
+        "rev": "64bda20d1a0d062e159bd0a8d398d0741af83375",
+        "sha256": "1z5dyalv56fja0xcqqksccyybx0b4a9gh0wk8mk36l7kkdz3hmbp",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/c171011d500617d2a8dc40bc55e177036b6a019a.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/64bda20d1a0d062e159bd0a8d398d0741af83375.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "erlang-ls": {
@@ -55,10 +55,10 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "372f96bff217a7a019de27667d04118cffa9841b",
-        "sha256": "1l0z6162zw60pdcdj03aq64qgf1vyzmf24i9pxca64i4sprl1b7p",
+        "rev": "f73bf8d584148677b01859677a63191c31911eae",
+        "sha256": "0jlmrx633jvqrqlyhlzpvdrnim128gc81q5psz2lpp2af8p8q9qs",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/372f96bff217a7a019de27667d04118cffa9841b.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/f73bf8d584148677b01859677a63191c31911eae.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-direnv": {
@@ -67,10 +67,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "nix-direnv",
-        "rev": "063d43483ec1bc51fa6906989ad298d906a9ba51",
-        "sha256": "10j2h2xks5gyj57pgys372f47pajn8f0jpdmkjpav5ng65bzcaci",
+        "rev": "5498c5404a148c0502978515829e034750e39ff7",
+        "sha256": "0w0dqi35hq6n54343hwnj29rpgra7hfvd2nqkiqx3cwfycni5mz1",
         "type": "tarball",
-        "url": "https://github.com/nix-community/nix-direnv/archive/063d43483ec1bc51fa6906989ad298d906a9ba51.tar.gz",
+        "url": "https://github.com/nix-community/nix-direnv/archive/5498c5404a148c0502978515829e034750e39ff7.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixfmt": {
