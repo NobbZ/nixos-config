@@ -49,6 +49,8 @@ in {
         "/.vscode"
         # Result folder for nix builds
         "result/"
+        # direnv caches
+        ".direnv/"
       ];
 
       includes = [{
