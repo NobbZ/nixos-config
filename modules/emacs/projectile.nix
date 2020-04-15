@@ -9,10 +9,11 @@ in {
       localPackages."init-projectile" = {
         tag = "Setup projectile";
         comments = [ ];
-        requires = [ "projectile" ];
+        requires = [ "projectile" "helm-projectile" ];
         code = ''
           ;; enable projectile
           (projectile-mode t)
+          (helm-projectile-on)
 
           (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
         '';
