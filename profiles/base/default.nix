@@ -41,7 +41,12 @@ in {
         terminal = "screen-256color";
       };
 
-      zshell.aliases = { hm = "cd ~/.config/nixpkgs"; };
+      zshell.aliases = {
+        hm = "cd ~/.config/nixpkgs";
+        hmb = "home-manager build";
+        hms = "home-manager switch";
+      };
+
       zsh = {
         enable = true;
 
