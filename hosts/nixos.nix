@@ -7,6 +7,7 @@
 
     languages = {
       elixir.enable = true;
+      go.enable = true;
       lua.enable = true;
       nix.enable = true;
       python.enable = true;
