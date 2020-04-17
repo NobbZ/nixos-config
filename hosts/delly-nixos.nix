@@ -10,6 +10,7 @@
       nix.enable = true;
       elixir.enable = true;
       erlang.enable = true;
+      python.enable = true;
     };
 
     programs.emacs.splashScreen = false;
