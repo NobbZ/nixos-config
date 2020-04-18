@@ -45,6 +45,7 @@ in {
         hm = "cd ~/.config/nixpkgs";
         hmb = "home-manager build";
         hms = "home-manager switch";
+        hmu = "nix-channel --update; hms";
       };
 
       zsh = {
