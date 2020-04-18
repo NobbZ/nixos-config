@@ -1,1 +1,1 @@
-{ imports = [ ./elixir ./erlang ./lua ./python ./nix ]; }
+{ imports = [ ./elixir ./erlang ./go ./lua ./python ./nix ]; }

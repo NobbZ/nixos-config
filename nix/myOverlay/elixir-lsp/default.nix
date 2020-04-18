@@ -37,10 +37,16 @@ stdenv.mkDerivation rec {
   installPhase = ''
     mkdir -p $out/bin
     cp -Rv release $out/lib
-    substitute release/language_server.sh $out/bin/language_server.sh \
-    --replace "ERL_LIBS=\"\$SCRIPTPATH:\$ERL_LIBS\"" "ERL_LIBS=$out/lib:\$ERL_LIBS" \
-    --replace "elixir -e" "${elixir}/bin/elixir -e"
-    chmod +x $out/bin/language_server.sh
-    mv $out/bin/language_server.sh $out/bin/elixir-ls
+
+    # Prepare the wrapper script
+    substitute release/language_server.sh $out/bin/elixir-ls \
+      --replace 'exec "''${dir}/launch.sh"' "exec $out/lib/launch.sh"
+    chmod +x $out/bin/elixir-ls
+
+    # prepare the launcher
+    substituteInPlace $out/lib/launch.sh \
+      --replace "ERL_LIBS=\"\$SCRIPTPATH:\$ERL_LIBS\"" \
+                "ERL_LIBS=$out/lib:\$ERL_LIBS" \
+      --replace "elixir -e" "${elixir}/bin/elixir -e"
   '';
 }
