@@ -4,6 +4,7 @@ let
   emacsEnabled = config.programs.emacs.enable;
   cfg = config.programs.emacs;
   beaconEnabled = cfg.packages.beacon.enable;
+  finalEmacs = config.programs.emacs.finalPackage;
 
   bool2Lisp = b: if b then "t" else "nil";
 
@@ -84,18 +85,21 @@ in {
       (setq inhibit-startup-screen ${bool2Lisp (!cfg.splashScreen)})
     '';
 
-    home.packages = [ (pkgs.writeShellScriptBin "emacs-wrapper" ''
-      emacsclient=${pkgs.emacsGit}/bin/emacsclient
-      xhost=${pkgs.xorg.xhost}/bin/xhost
+    home.packages = [
+      (let emacs = finalEmacs;
+      in pkgs.writeShellScriptBin "emacs-wrapper" ''
+        emacsclient=${emacs}/bin/emacsclient
+        xhost=${pkgs.xorg.xhost}/bin/xhost
 
-      kind="-t"
+        kind="-t"
 
-      if ''${xhost} 2>&1 >/dev/null; then
-        kind="-c"
-      fi
+        if ''${xhost} 2>&1 >/dev/null; then
+          kind="-c"
+        fi
 
-      exec ''${emacsclient} ''${kind} "$@"
-    '') ];
+        exec ''${emacsclient} ''${kind} "$@"
+      '')
+    ];
 
     programs.emacs.extraPackages = ep: [
       ep.go-mode
@@ -121,17 +125,13 @@ in {
 
         Service = {
           Type = "forking";
-          ExecStart = "${pkgs.emacsGit}/bin/emacs --daemon";
-          ExecStop = "${pkgs.emacsGit}/bin/emacs --eval '(kill-emacs)'";
-          Environment = [
-            "SSH_AUTH_SOCK=%t/keyring/ssh"
-          ];
+          ExecStart = "${finalEmacs}/bin/emacs --daemon";
+          ExecStop = "${finalEmacs}/bin/emacs --eval '(kill-emacs)'";
+          Environment = [ "SSH_AUTH_SOCK=%t/keyring/ssh" ];
           Restart = "always";
         };
 
-        Install = {
-          WantedBy = [ "default.target" ];
-        };
+        Install = { WantedBy = [ "default.target" ]; };
       };
     };
   };
