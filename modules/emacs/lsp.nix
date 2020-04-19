@@ -42,6 +42,12 @@ in {
           (eval-after-load 'company
             '(push 'company-lsp company-backend))
 
+          (dolist (match
+                    '("[/\\\\].direnv$"
+                      "[/\\\\]node_modules$"
+                      "/nix/store"))
+            (add-to-list 'lsp-file-watch-ignored match))
+
           ${mode-hooks}
         '';
       };
