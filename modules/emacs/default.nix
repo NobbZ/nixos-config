@@ -5,6 +5,8 @@ let
   cfg = config.programs.emacs;
   beaconEnabled = cfg.packages.beacon.enable;
   finalEmacs = config.programs.emacs.finalPackage;
+  emacsClient = "${finalEmacs}/bin/emacsclient";
+  emacsServer = "${finalEmacs}/bin/emacs";
 
   bool2Lisp = b: if b then "t" else "nil";
 
@@ -86,9 +88,7 @@ in {
     '';
 
     home.packages = [
-      (let emacs = finalEmacs;
-      in pkgs.writeShellScriptBin "emacs-wrapper" ''
-        emacsclient=${emacs}/bin/emacsclient
+      (pkgs.writeShellScriptBin "emacs-wrapper" ''
         xhost=${pkgs.xorg.xhost}/bin/xhost
 
         kind="-t"
@@ -97,7 +97,7 @@ in {
           kind="-c"
         fi
 
-        exec ''${emacsclient} ''${kind} "$@"
+        exec ${emacsClient} ''${kind} "$@"
       '')
     ];
 
@@ -125,8 +125,8 @@ in {
 
         Service = {
           Type = "forking";
-          ExecStart = "${finalEmacs}/bin/emacs --daemon";
-          ExecStop = "${finalEmacs}/bin/emacs --eval '(kill-emacs)'";
+          ExecStart = "${emacsServer} --daemon";
+          ExecStop = "${emacsServer} --eval '(kill-emacs)'";
           Environment = [ "SSH_AUTH_SOCK=%t/keyring/ssh" ];
           Restart = "always";
         };
