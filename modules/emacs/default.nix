@@ -84,6 +84,19 @@ in {
       (setq inhibit-startup-screen ${bool2Lisp (!cfg.splashScreen)})
     '';
 
+    home.packages = [ (pkgs.writeShellScriptBin "emacs-wrapper" ''
+      emacsclient=${pkgs.emacsGit}/bin/emacsclient
+      xhost=${pkgs.xorg.xhost}/bin/xhost
+
+      kind="-t"
+
+      if ''${xhost} 2>&1 >/dev/null; then
+        kind="-c"
+      fi
+
+      exec ''${emacsclient} ''${kind} "$@"
+    '') ];
+
     programs.emacs.extraPackages = ep: [
       ep.go-mode
       ep.company-go
@@ -99,5 +112,27 @@ in {
           "Initialises emacs configuration" [ ] [ ] cfg.extraConfig;
       };
     } // lisps;
+
+    systemd.user.services = {
+      emacs-server = {
+        Unit = {
+          Description = "Emacs: the extensible, self-documenting text editor";
+        };
+
+        Service = {
+          Type = "forking";
+          ExecStart = "${pkgs.emacsGit}/bin/emacs --daemon";
+          ExecStop = "${pkgs.emacsGit}/bin/emacs --eval '(kill-emacs)'";
+          Environment = [
+            "SSH_AUTH_SOCK=%t/keyring/ssh"
+          ];
+          Restart = "always";
+        };
+
+        Install = {
+          WantedBy = [ "default.target" ];
+        };
+      };
+    };
   };
 }
