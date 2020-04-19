@@ -28,7 +28,6 @@ in {
   imports = [
     ./helm.nix
     ./lsp.nix
-    ./polymode
     ./projectile.nix
     ./telephoneline.nix
     ./whichkey
