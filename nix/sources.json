@@ -31,10 +31,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "64bda20d1a0d062e159bd0a8d398d0741af83375",
-        "sha256": "1z5dyalv56fja0xcqqksccyybx0b4a9gh0wk8mk36l7kkdz3hmbp",
+        "rev": "4a62337419ddc79c8a00f020ca017cd81577711c",
+        "sha256": "0nqqx2g07l5jhh07s35zb6zy7cm2vnqgsa5vvq42r4xw1ci9phxk",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/64bda20d1a0d062e159bd0a8d398d0741af83375.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/4a62337419ddc79c8a00f020ca017cd81577711c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "erlang-ls": {
