@@ -1,3 +1,12 @@
 {
-  imports = [ ./advcp ./asdf-vm ./emacs ./exa ./keyleds ./languages ./zshell ];
+  imports = [
+    ./advcp
+    ./asdf-vm
+    ./awesome
+    ./emacs
+    ./exa
+    ./keyleds
+    ./languages
+    ./zshell
+  ];
 }

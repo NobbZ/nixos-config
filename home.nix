@@ -41,6 +41,8 @@ in {
 
   manual.html.enable = true;
 
+  xsession.windowManager.awesome.enable = true;
+
   home.packages = with pkgs; [
     cachix
     niv
