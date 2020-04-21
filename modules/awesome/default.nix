@@ -8,6 +8,11 @@ in {
       type = lib.types.str;
       default = "${pkgs.konsole}/bin/konsole";
     };
+
+    launcher = lib.mkOption {
+      type = lib.types.str;
+      default = "${pkgs.rofi}/bin/rofi -modi run#drun#window#ssh -show run";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -110,7 +115,7 @@ in {
       -- {{{ Menu
       -- Create a launcher widget and a main menu
       myawesomemenu = {
-         { "rofi", 'rofi -modi "run#ssh" -show run' },
+         { "launcher", '${cfg.launcher}' },
          { "hotkeys", function() return false, hotkeys_popup.show_help end},
          { "manual", terminal .. " -e man awesome" },
          { "edit config", editor_cmd .. " " .. awesome.conffile },
@@ -346,7 +351,7 @@ in {
          awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
             {description = "run prompt", group = "launcher"}),
 
-         awful.key({ modkey },            "d", function () awful.util.spawn('rofi -modi "run#ssh" -show run') end),
+         awful.key({ modkey },            "d", function () awful.util.spawn('${cfg.launcher}') end),
 
          awful.key({ modkey }, "x",
             function ()
