@@ -133,9 +133,8 @@ in {
           ExecStop = "${emacsServer} --eval '(kill-emacs)'";
           Environment = [
             "SSH_AUTH_SOCK=%t/keyring/ssh"
-            ("PATH=/home/nmelzer/bin:/run/wrappers/bin:"
-              + "/home/nmelzer/.nix-profile/bin:"
-              + "/etc/profiles/per-user/nmelzer/bin:"
+            ("PATH=%h/bin:/run/wrappers/bin:%h/.nix-profile/bin:"
+              + "/etc/profiles/per-user/%u/bin:"
               + "/nix/var/nix/profiles/default/bin:"
               + "/run/current-system/sw/bin")
           ];
