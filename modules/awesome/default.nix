@@ -16,6 +16,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    xsession.enable = true;
     home.file.".config/awesome/rc.lua".text = ''
       --[[
          Awesome WM configuration

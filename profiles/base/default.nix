@@ -14,6 +14,14 @@ in {
       GIT_EDITOR = EDITOR;
     };
 
+    xsession = {
+      enable = true;
+      numlock.enable = true;
+      profileExtra = ''
+        setxkbmap de
+      '';
+    };
+
     programs = {
       home-manager.enable = true;
       bat.enable = true;
