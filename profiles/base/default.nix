@@ -14,6 +14,8 @@ in {
       GIT_EDITOR = EDITOR;
     };
 
+    home.keyboard.layout = "de";
+
     xsession = {
       enable = true;
       numlock.enable = true;
