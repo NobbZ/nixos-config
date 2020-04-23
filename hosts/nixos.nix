@@ -11,6 +11,7 @@
       lua.enable = true;
       nix.enable = true;
       python.enable = true;
+      terraform.enable = true;
     };
 
     programs.emacs.splashScreen = false;

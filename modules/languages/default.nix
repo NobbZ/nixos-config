@@ -1,1 +1,1 @@
-{ imports = [ ./elixir ./erlang ./go ./lua ./python ./nix ]; }
+{ imports = [ ./elixir ./erlang ./go ./lua ./python ./nix ./terraform ]; }
