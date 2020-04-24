@@ -75,6 +75,9 @@ in {
       (add-to-list 'load-path
       (expand-file-name "lisp" user-emacs-directory))
 
+      ;; use a dark theme
+      (load-theme 'cyberpunk t)
+
       ;; require all those local packages
       ${lispRequires}
 
@@ -106,12 +109,13 @@ in {
     ];
 
     programs.emacs.extraPackages = ep: [
-      ep.go-mode
       ep.company-go
-      ep.markdown-mode
-      ep.yaml-mode
+      ep.cyberpunk-theme
       ep.docker-compose-mode
       ep.dockerfile-mode
+      ep.go-mode
+      ep.markdown-mode
+      ep.yaml-mode
     ];
 
     home.file = {
