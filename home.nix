@@ -12,7 +12,6 @@ in {
   fonts.fontconfig.enable = true;
 
   programs = {
-    asdf-vm.enable = true;
     direnv.enable = true;
     jq.enable = true;
 
