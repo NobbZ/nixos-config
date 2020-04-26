@@ -6,12 +6,7 @@
     profiles.development.enable = true;
     profiles.home-office.enable = true;
 
-    languages = {
-      nix.enable = true;
-      elixir.enable = true;
-      erlang.enable = true;
-      python.enable = true;
-    };
+    enabledLanguages = [ "clojure" "nix" "elixir" "erlang" "python" ];
 
     programs.emacs.splashScreen = false;
   };

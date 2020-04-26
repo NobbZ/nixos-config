@@ -5,14 +5,7 @@
     profiles.browsing.enable = true;
     profiles.development.enable = true;
 
-    languages = {
-      elixir.enable = true;
-      go.enable = true;
-      lua.enable = true;
-      nix.enable = true;
-      python.enable = true;
-      terraform.enable = true;
-    };
+    enabledLanguages = [ "elixir" "go" "lua" "nix" "python" "terraform" ];
 
     programs.emacs.splashScreen = false;
   };

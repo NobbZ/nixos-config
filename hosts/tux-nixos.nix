@@ -9,12 +9,7 @@ in {
     profiles.development.enable = true;
     profiles.home-office.enable = true;
 
-    languages = {
-      elixir.enable = true;
-      erlang.enable = true;
-      nix.enable = true;
-      python.enable = true;
-    };
+    enabledLanguages = [ "elixir" "erlang" "nix" "python" ];
 
     programs.emacs.splashScreen = false;
 
