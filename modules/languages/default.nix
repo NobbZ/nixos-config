@@ -8,7 +8,7 @@ let
 
 in {
   imports =
-    [ ./clojure ./elixir ./erlang ./go ./lua ./python ./nix ./terraform ];
+    [ ./c ./clojure ./elixir ./erlang ./go ./lua ./python ./nix ./terraform ];
 
   options.enabledLanguages =
     lib.mkOption { type = lib.types.listOf lib.types.str; };
