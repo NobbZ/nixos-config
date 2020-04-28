@@ -5,10 +5,10 @@
         "homepage": "https://asdf-vm.com/",
         "owner": "asdf-vm",
         "repo": "asdf",
-        "rev": "90b1e5d81671b039da0db287a5de96c36c6eb5e4",
-        "sha256": "0fwm4q22fcflh0ag27q7qzz95frxav0am5d6xcg3r4v6jx056ssg",
+        "rev": "ad73ea1fe2e6196ffab1807db78896fad2a8c628",
+        "sha256": "1wqpr93kfvzcv2an3svlxxxbdhrw9vp119fg8qdjdplrfyrxc05q",
         "type": "tarball",
-        "url": "https://github.com/asdf-vm/asdf/archive/90b1e5d81671b039da0db287a5de96c36c6eb5e4.tar.gz",
+        "url": "https://github.com/asdf-vm/asdf/archive/ad73ea1fe2e6196ffab1807db78896fad2a8c628.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "version": "v0.7.6"
     },
@@ -31,10 +31,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "4a62337419ddc79c8a00f020ca017cd81577711c",
-        "sha256": "0nqqx2g07l5jhh07s35zb6zy7cm2vnqgsa5vvq42r4xw1ci9phxk",
+        "rev": "1855f1c1868c0e45a37a9e1b80d7480abfd433aa",
+        "sha256": "19ryx6xqvjaa7yl5s2lnvia1xiyq28rd70gpy70805l2f1mz1x86",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/4a62337419ddc79c8a00f020ca017cd81577711c.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/1855f1c1868c0e45a37a9e1b80d7480abfd433aa.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "erlang-ls": {
@@ -67,10 +67,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "nix-direnv",
-        "rev": "5498c5404a148c0502978515829e034750e39ff7",
-        "sha256": "0w0dqi35hq6n54343hwnj29rpgra7hfvd2nqkiqx3cwfycni5mz1",
+        "rev": "f8da3dcb49c1459de8bb300cac10f06a5add5d9b",
+        "sha256": "1lwmg6mn3lf7s0345v53zadxn9v0x8z6pcbj90v5dx3pgrq41gs8",
         "type": "tarball",
-        "url": "https://github.com/nix-community/nix-direnv/archive/5498c5404a148c0502978515829e034750e39ff7.tar.gz",
+        "url": "https://github.com/nix-community/nix-direnv/archive/f8da3dcb49c1459de8bb300cac10f06a5add5d9b.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixfmt": {
@@ -79,10 +79,10 @@
         "homepage": "https://nixfmt.serokell.io",
         "owner": "serokell",
         "repo": "nixfmt",
-        "rev": "2877200f198370b9ec66e5d8f6706b4ab2fe25d0",
-        "sha256": "0dkqf7rcgzhrq1p5yqfqzg928k59sqdcfz1lbycjxrlxm588kdbr",
+        "rev": "ccfd9dab35faa61d714f515e017e43fbbff5d7ea",
+        "sha256": "1j4p1m1ypli46wpm06n9m9rpdvj1c6p8lqsxbxyl57rbcxhbsrr6",
         "type": "tarball",
-        "url": "https://github.com/serokell/nixfmt/archive/2877200f198370b9ec66e5d8f6706b4ab2fe25d0.tar.gz",
+        "url": "https://github.com/serokell/nixfmt/archive/ccfd9dab35faa61d714f515e017e43fbbff5d7ea.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
