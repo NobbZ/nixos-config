@@ -75,6 +75,12 @@ in {
       (add-to-list 'load-path
       (expand-file-name "lisp" user-emacs-directory))
 
+      ;; Move backups and autosaves out of the way
+      (setq backup-directory-alist
+            `((".*" . ,temporary-file-directory)))
+      (setq auto-save-file-name-transforms
+            `((".*" ,temporary-file-directory)))
+
       ;; use a dark theme
       (load-theme 'cyberpunk t)
 
