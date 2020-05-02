@@ -56,6 +56,7 @@ in {
         hmb = "home-manager build";
         hms = "home-manager switch";
         hmu = "nix-channel --update; hms";
+        ngc = "sudo nix-collect-garbage --verbose --delete-older-than 14d";
       };
 
       zsh = {
