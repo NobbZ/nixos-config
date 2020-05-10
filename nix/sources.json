@@ -5,10 +5,10 @@
         "homepage": "https://asdf-vm.com/",
         "owner": "asdf-vm",
         "repo": "asdf",
-        "rev": "5003cbdc85f7959de4294262ffa2eb402bf57728",
-        "sha256": "031zd0b3qvsaf6jfwf265zavlc0fyqx73cvvv0nrf9g12dsjc6m4",
+        "rev": "a90793547b12a672af9588de0418f873d4cfd01e",
+        "sha256": "0gbr3a1pmh9ddi75vqc0qqr4dm538fk8q34p9w1syshkbyp3s5jm",
         "type": "tarball",
-        "url": "https://github.com/asdf-vm/asdf/archive/5003cbdc85f7959de4294262ffa2eb402bf57728.tar.gz",
+        "url": "https://github.com/asdf-vm/asdf/archive/a90793547b12a672af9588de0418f873d4cfd01e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "version": "v0.7.6"
     },
@@ -31,10 +31,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "f1bd8b299a7530dcd176f2b1963ea9184937fd09",
-        "sha256": "1xfnb2qwpcwj7q9lj97bmny8n68p787pvfimyamyljkfrg18cnhp",
+        "rev": "54afb061bdd12c61bbfcc13bad98b7a3aab7d8d3",
+        "sha256": "0hrbg65d5h0cb0nky7a46md7vlvhajq1hf0328l2f7ln9hznqz6j",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/f1bd8b299a7530dcd176f2b1963ea9184937fd09.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/54afb061bdd12c61bbfcc13bad98b7a3aab7d8d3.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "erlang-ls": {
@@ -79,10 +79,10 @@
         "homepage": "https://nixfmt.serokell.io",
         "owner": "serokell",
         "repo": "nixfmt",
-        "rev": "ccfd9dab35faa61d714f515e017e43fbbff5d7ea",
-        "sha256": "1j4p1m1ypli46wpm06n9m9rpdvj1c6p8lqsxbxyl57rbcxhbsrr6",
+        "rev": "5e004dddb8e5cf6d3c974643bc0b1c3d696a4631",
+        "sha256": "1kc4ai79ag7n52rc7h79q4bmv872xpgbx78dpnarazr9z8brq97z",
         "type": "tarball",
-        "url": "https://github.com/serokell/nixfmt/archive/ccfd9dab35faa61d714f515e017e43fbbff5d7ea.tar.gz",
+        "url": "https://github.com/serokell/nixfmt/archive/5e004dddb8e5cf6d3c974643bc0b1c3d696a4631.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-mozilla": {
