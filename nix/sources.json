@@ -73,18 +73,6 @@
         "url": "https://github.com/nix-community/nix-direnv/archive/f8da3dcb49c1459de8bb300cac10f06a5add5d9b.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "nixfmt": {
-        "branch": "master",
-        "description": "A formatter for Nix code",
-        "homepage": "https://nixfmt.serokell.io",
-        "owner": "serokell",
-        "repo": "nixfmt",
-        "rev": "5e004dddb8e5cf6d3c974643bc0b1c3d696a4631",
-        "sha256": "1kc4ai79ag7n52rc7h79q4bmv872xpgbx78dpnarazr9z8brq97z",
-        "type": "tarball",
-        "url": "https://github.com/serokell/nixfmt/archive/5e004dddb8e5cf6d3c974643bc0b1c3d696a4631.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "nixpkgs-mozilla": {
         "branch": "master",
         "description": "mozilla related nixpkgs (extends nixos/nixpkgs repo)",
