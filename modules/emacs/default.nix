@@ -122,6 +122,8 @@ in {
       ep.go-mode
       ep.markdown-mode
       ep.yaml-mode
+
+      ep.bazel-mode
     ];
 
     home.file = {
