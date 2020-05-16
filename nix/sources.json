@@ -13,15 +13,15 @@
         "version": "v0.7.6"
     },
     "elixir-ls": {
-        "branch": "v0.3.3",
+        "branch": "v0.4.0",
         "description": "A frontend-independent IDE \"smartness\" server for Elixir. Implements the JSON-based \"Language Server Protocol\" standard and provides debugger support via VS Code's debugger protocol.",
         "homepage": "",
         "owner": "elixir-lsp",
         "repo": "elixir-ls",
-        "rev": "1256038da37b2581dadb0f15c51d9cff590034ee",
-        "sha256": "1kw0wcchxxd4zgkpv4v0nrbb79yk3pad683x9mgqb88x6zbp1spc",
+        "rev": "41532b96bc316257d71650f776108b78e17fd728",
+        "sha256": "0hcihvqv5hnnkgg1xckymghgrb0ar8gyzgfscbffwmj7ayh705p6",
         "type": "tarball",
-        "url": "https://github.com/elixir-lsp/elixir-ls/archive/1256038da37b2581dadb0f15c51d9cff590034ee.tar.gz",
+        "url": "https://github.com/elixir-lsp/elixir-ls/archive/41532b96bc316257d71650f776108b78e17fd728.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "version": "0.3.1"
     },
