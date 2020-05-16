@@ -7,8 +7,18 @@ let
   in builtins.foldl' reducer { } config.enabledLanguages;
 
 in {
-  imports =
-    [ ./c ./clojure ./elixir ./erlang ./go ./lua ./python ./rust ./nix ./terraform ];
+  imports = [
+    ./c
+    ./clojure
+    ./elixir
+    ./erlang
+    ./go
+    ./lua
+    ./python
+    ./rust
+    ./nix
+    ./terraform
+  ];
 
   options.enabledLanguages =
     lib.mkOption { type = lib.types.listOf lib.types.str; };
