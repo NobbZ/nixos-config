@@ -2,15 +2,15 @@ self: super:
 
 let
   erlLib =
-    super.callPackage <nixpkgs/pkgs/development/beam-modules/lib.nix> { };
+    self.callPackage <nixpkgs/pkgs/development/beam-modules/lib.nix> { };
 in rec {
-  advcp = super.callPackage (import ./advcp) { };
-  asdf-vm = super.callPackage (import ./asdf) { };
-  aur-tools = super.callPackage (import ./aur) { };
-  direnv-nix = super.callPackage (import ./direnv-nix) { };
-  elixir-lsp = super.callPackage (import ./elixir-lsp) { };
-  erlang-ls = super.callPackage (import ./erlang-ls) { };
-  keyleds = super.callPackage (import ./keyleds) { };
+  advcp = self.callPackage (import ./advcp) { };
+  asdf-vm = self.callPackage (import ./asdf) { };
+  aur-tools = self.callPackage (import ./aur) { };
+  direnv-nix = self.callPackage (import ./direnv-nix) { };
+  elixir-lsp = self.callPackage (import ./elixir-lsp) { };
+  erlang-ls = self.callPackage (import ./erlang-ls) { };
+  keyleds = self.callPackage (import ./keyleds) { };
 
   erlangR23 = erlLib.callErlang ({ mkDerivation }:
     mkDerivation {
