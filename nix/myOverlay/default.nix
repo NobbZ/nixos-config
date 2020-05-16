@@ -1,8 +1,7 @@
 self: super:
 
 let
-  erlLib =
-    self.callPackage <nixpkgs/pkgs/development/beam-modules/lib.nix> { };
+  erlLib = self.callPackage <nixpkgs/pkgs/development/beam-modules/lib.nix> { };
 in rec {
   advcp = self.callPackage (import ./advcp) { };
   asdf-vm = self.callPackage (import ./asdf) { };
@@ -21,6 +20,7 @@ in rec {
         substituteInPlace erts/configure.in --replace '-Wl,-no_weak_imports' ""
       '';
     }) { };
+  erlang = erlangR23;
 
   beam = super.beam // {
     packages = super.beam.packages // {
