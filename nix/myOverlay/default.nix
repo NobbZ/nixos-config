@@ -20,7 +20,6 @@ in rec {
         substituteInPlace erts/configure.in --replace '-Wl,-no_weak_imports' ""
       '';
     }) { };
-  erlang = erlangR23;
 
   beam = super.beam // {
     packages = super.beam.packages // {
