@@ -5,10 +5,10 @@
         "homepage": "https://asdf-vm.com/",
         "owner": "asdf-vm",
         "repo": "asdf",
-        "rev": "a90793547b12a672af9588de0418f873d4cfd01e",
-        "sha256": "0gbr3a1pmh9ddi75vqc0qqr4dm538fk8q34p9w1syshkbyp3s5jm",
+        "rev": "a7252e687ab65fc8dd04cfaa2be09446c84e312a",
+        "sha256": "0llbaxx69l68iy5v6jz5f0a1vacm6dpzvy3wvykaj864yzwm0ciy",
         "type": "tarball",
-        "url": "https://github.com/asdf-vm/asdf/archive/a90793547b12a672af9588de0418f873d4cfd01e.tar.gz",
+        "url": "https://github.com/asdf-vm/asdf/archive/a7252e687ab65fc8dd04cfaa2be09446c84e312a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "version": "v0.7.6"
     },
@@ -31,10 +31,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "54afb061bdd12c61bbfcc13bad98b7a3aab7d8d3",
-        "sha256": "0hrbg65d5h0cb0nky7a46md7vlvhajq1hf0328l2f7ln9hznqz6j",
+        "rev": "72a8788a266c7df2faec6da29d6497e465addc6e",
+        "sha256": "1chzjq3bmf8m5qncmmdxhf26q91c35hd5ixxk29afyrwyixv6728",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/54afb061bdd12c61bbfcc13bad98b7a3aab7d8d3.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/72a8788a266c7df2faec6da29d6497e465addc6e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "erlang-ls": {
@@ -67,10 +67,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "nix-direnv",
-        "rev": "f8da3dcb49c1459de8bb300cac10f06a5add5d9b",
-        "sha256": "1lwmg6mn3lf7s0345v53zadxn9v0x8z6pcbj90v5dx3pgrq41gs8",
+        "rev": "6366c7725d37753ea40e7a00398dd27837d85ce8",
+        "sha256": "17258sgh37ycycq5ihznkvcfjfkgx79dbj7c1px07zh3kakqclvh",
         "type": "tarball",
-        "url": "https://github.com/nix-community/nix-direnv/archive/f8da3dcb49c1459de8bb300cac10f06a5add5d9b.tar.gz",
+        "url": "https://github.com/nix-community/nix-direnv/archive/6366c7725d37753ea40e7a00398dd27837d85ce8.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-mozilla": {
