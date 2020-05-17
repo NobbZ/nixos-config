@@ -4,12 +4,11 @@ let emacsCfg = config.programs.emacs;
 in {
   config = lib.mkIf emacsCfg.enable {
     programs.emacs = {
-      extraPackages = ep: [ ep.helm ];
-
       localPackages."init-helm" = {
         tag = "Setup helm";
         comments = [ ];
         requires = [ "helm" ];
+        packageRequires = ep: [ ep.helm ];
         code = ''
           ;; enable and configure auto resize
           (helm-autoresize-mode t)
