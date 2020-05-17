@@ -18,6 +18,21 @@ let
     };
   }) cfg.localPackages;
 
+  confPackages = let
+    fileContent = lib.attrsets.mapAttrs' (k: v: {
+      name = "${k}";
+      value = {
+        ep = v.packageRequires;
+        src = pkgs.nobbzLib.emacs.generatePackage k v.tag v.comments v.requires
+          v.code;
+      };
+    }) cfg.localPackages;
+    derivations = lib.attrsets.mapAttrs (k: v: {
+      ep = v.ep;
+      src = pkgs.writeText "${k}.el" v.src;
+    }) fileContent;
+  in lib.traceVal derivations;
+
   lispRequires = let
     names = lib.attrsets.mapAttrsToList (n: _: n) cfg.localPackages;
     sorted = builtins.sort (l: r: l < r) names;
@@ -51,6 +66,10 @@ in {
           comments = lib.mkOption { type = lib.types.listOf lib.types.str; };
           requires = lib.mkOption { type = lib.types.listOf lib.types.str; };
           code = lib.mkOption { type = lib.types.str; };
+          packageRequires = lib.mkOption {
+            type = lib.types.unspecified;
+            default = _: [ ];
+          };
         };
       }));
     };
@@ -114,24 +133,32 @@ in {
       '')
     ];
 
-    programs.emacs.extraPackages = ep: [
-      ep.company-go
-      ep.cyberpunk-theme
-      ep.docker-compose-mode
-      ep.dockerfile-mode
-      ep.go-mode
-      ep.markdown-mode
-      ep.yaml-mode
+    programs.emacs.extraPackages = ep:
+      [
+        ep.company-go
+        ep.cyberpunk-theme
+        ep.docker-compose-mode
+        ep.dockerfile-mode
+        ep.go-mode
+        ep.markdown-mode
+        ep.yaml-mode
 
-      ep.bazel-mode
-    ];
+        ep.bazel-mode
+
+        # (ep.trivialBuild { pname = "configuration"; src = confPackages; })
+      ] ++ lib.attrsets.mapAttrsToList (k: v:
+        ep.trivialBuild {
+          pname = "k";
+          src = v.src;
+          packageRequires = v.ep ep;
+        }) confPackages;
 
     home.file = {
       ".emacs.d/init.el" = {
         text = pkgs.nobbzLib.emacs.generatePackage "init"
           "Initialises emacs configuration" [ ] [ ] cfg.extraConfig;
       };
-    } // lisps;
+    }; # // lisps;
 
     systemd.user.services = {
       emacs-server = {
