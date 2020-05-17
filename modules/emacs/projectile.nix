@@ -4,12 +4,11 @@ let emacsCfg = config.programs.emacs;
 in {
   config = lib.mkIf emacsCfg.enable {
     programs.emacs = {
-      extraPackages = ep: [ ep.projectile ep.helm-projectile ];
-
       localPackages."init-projectile" = {
         tag = "Setup projectile";
         comments = [ ];
         requires = [ "projectile" "helm-projectile" ];
+        packageRequires = ep: [ ep.projectile ep.helm-projectile ];
         code = ''
           ;; enable projectile
           (projectile-mode t)
