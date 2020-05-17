@@ -31,6 +31,14 @@ in {
         tag = "Setup and prepare the LSP mode";
         comments = [ ];
         requires = [ "lsp-mode" ];
+        packageRequires = ep: [
+          ep.company-lsp
+          ep.helm-lsp
+          ep.lsp-mode
+          ep.lsp-origami
+          ep.lsp-ui
+          ep.yasnippet
+        ];
         code = ''
           (yas-global-mode t)
 
@@ -51,15 +59,6 @@ in {
           ${mode-hooks}
         '';
       };
-
-      extraPackages = ep: [
-        ep.company-lsp
-        ep.helm-lsp
-        ep.lsp-mode
-        ep.lsp-origami
-        ep.lsp-ui
-        ep.yasnippet
-      ];
     };
   };
 }
