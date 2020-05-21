@@ -14,6 +14,7 @@ in {
     ./erlang
     ./go
     ./lua
+    ./ocaml
     ./python
     ./rust
     ./nix
