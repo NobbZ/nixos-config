@@ -3,4 +3,6 @@ let
     overlays = import ./nix;
     config = { };
   };
-in pkgs.mkShell rec { nativeBuildInputs = with pkgs; [ niv lefthook ]; }
+
+  inherit (pkgs) niv lefthook;
+in pkgs.mkShell { buildInputs = [ niv lefthook ]; }
