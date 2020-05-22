@@ -20,7 +20,12 @@ in {
         tag = "Setup elixir";
         comments = [ ];
         requires = [ "company" "lsp-clients" "flycheck" ];
-        packageRequires = ep: [ ep.lsp-mode ep.elixir-mode ep.company ep.flycheck ];
+        packageRequires = ep: [
+          ep.company
+          ep.elixir-mode
+          ep.flycheck
+          ep.lsp-mode
+        ];
         code = ''
           (add-to-list 'exec-path "${elixir-lsp}/bin")
           (setq lsp-clients-elixir-server-executable "elixir-ls")
