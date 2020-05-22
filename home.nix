@@ -34,9 +34,7 @@ in {
     };
   };
 
-  services = {
-    lorri.enable = true;
-  };
+  services = { lorri.enable = true; };
 
   manual.html.enable = true;
 
