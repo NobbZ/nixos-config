@@ -54,6 +54,9 @@ in {
       zshell.aliases = {
         hm = "cd ~/.config/nixpkgs";
         hmb = "home-manager build";
+        hme = "home-manager edit";
+        hmh = "home-manager-help";
+        hmn = "home-manager news";
         hms = "home-manager switch";
         hmu = "nix-channel --update; hms";
         ngc = "sudo nix-collect-garbage --verbose --delete-older-than 14d";
