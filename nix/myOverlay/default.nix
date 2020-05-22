@@ -10,7 +10,7 @@ in rec {
   elixir-lsp = self.callPackage (import ./elixir-lsp) { };
   erlang-ls = self.callPackage (import ./erlang-ls) { };
   keyleds = self.callPackage (import ./keyleds) { };
-  ocaml-lsp = self.callPackage ./ocaml-ls {};
+  ocaml-lsp = self.callPackage ./ocaml-ls { };
 
   erlangR23 = erlLib.callErlang ({ mkDerivation }:
     mkDerivation {
