@@ -35,7 +35,7 @@ in {
   };
 
   services = {
-    # lorri.enable = true;
+    lorri.enable = true;
   };
 
   manual.html.enable = true;
