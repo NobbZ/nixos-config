@@ -9,12 +9,11 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.emacs = {
-      extraPackages = ep: [ ep.company-terraform ep.terraform-mode ];
-
       localPackages."init-terraform" = {
         tag = "Setup and prepare terraform editing modes";
         comments = [ ];
         requires = [ "company-terraform" ];
+        packageRequires = ep: [ ep.company-terraform ep.terraform-mode ];
         code = ''
           (add-hook 'terraform-mode-hook
                     (lambda ()
