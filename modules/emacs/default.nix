@@ -31,7 +31,7 @@ let
       ep = v.ep;
       src = pkgs.writeText "${k}.el" v.src;
     }) fileContent;
-  in lib.traceVal derivations;
+  in derivations;
 
   lispRequires = let
     names = lib.attrsets.mapAttrsToList (n: _: n) cfg.localPackages;
