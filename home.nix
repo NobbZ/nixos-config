@@ -35,6 +35,8 @@ in {
   };
 
   services = { lorri.enable = true; };
+  systemd.user.services.lorri.Service.Environment =
+    [ "NIX_PATH=/home/demo/.nix-defexpr/channels" ];
 
   manual.html.enable = true;
 
