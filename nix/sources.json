@@ -38,16 +38,17 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "erlang-ls": {
-        "branch": "0.3.0",
+        "branch": "0.4.1",
         "description": "The Erlang Language Server",
         "homepage": "https://erlang-ls.github.io/",
         "owner": "erlang-ls",
         "repo": "erlang_ls",
-        "rev": "a24a29c64078991dda513dcb6fd55ab33df793f0",
-        "sha256": "06p8dvji8kmfxm4jzn9d0258wls6s73yhhpn0kpicn3v1mmr53zi",
+        "rev": "64313bba94e0b5877ffe99ce169478a12d8da049",
+        "sha256": "1jp4nrb4ns21jga7ysbqpwpkkmmsz90shcgk8qr4ibi4k0ly98ax",
         "type": "tarball",
-        "url": "https://github.com/erlang-ls/erlang_ls/archive/a24a29c64078991dda513dcb6fd55ab33df793f0.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+        "url": "https://github.com/erlang-ls/erlang_ls/archive/64313bba94e0b5877ffe99ce169478a12d8da049.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "version": "0.4.1"
     },
     "niv": {
         "branch": "master",
