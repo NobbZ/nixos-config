@@ -1,17 +1,4 @@
 {
-    "asdf": {
-        "branch": "master",
-        "description": "Extendable version manager with support for Ruby, Node.js, Elixir, Erlang & more",
-        "homepage": "https://asdf-vm.com/",
-        "owner": "asdf-vm",
-        "repo": "asdf",
-        "rev": "c3c9bf654817fdd475742c985b67abe20d1e3522",
-        "sha256": "0fv8j0hcns1dms75433i6lf3dnb6vyy7jnngsqcjj3g93kfb8vvg",
-        "type": "tarball",
-        "url": "https://github.com/asdf-vm/asdf/archive/c3c9bf654817fdd475742c985b67abe20d1e3522.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "version": "v0.7.6"
-    },
     "elixir-ls": {
         "branch": "v0.4.0",
         "description": "A frontend-independent IDE \"smartness\" server for Elixir. Implements the JSON-based \"Language Server Protocol\" standard and provides debugger support via VS Code's debugger protocol.",

@@ -11,7 +11,6 @@ let
   };
 in rec {
   advcp = self.callPackage (import ./advcp) { };
-  asdf-vm = self.callPackage (import ./asdf) { };
   aur-tools = self.callPackage (import ./aur) { };
   direnv-nix = self.callPackage (import ./direnv-nix) { };
   elixir-lsp = self.callPackage (import ./elixir-lsp) { };
