@@ -23,7 +23,7 @@
         "type": "tarball",
         "url": "https://github.com/elixir-lsp/elixir-ls/archive/41532b96bc316257d71650f776108b78e17fd728.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "version": "0.3.1"
+        "version": "0.4.0"
     },
     "emacs-overlay": {
         "branch": "master",
