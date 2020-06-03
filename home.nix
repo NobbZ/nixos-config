@@ -50,5 +50,6 @@ in {
     (haskell.lib.doJailbreak haskellPackages.nixfmt)
     # nixfmt
     nixops
+    exercism
   ];
 }
