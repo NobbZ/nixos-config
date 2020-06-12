@@ -11,6 +11,8 @@ in {
 
     enabledLanguages = [ "elixir" "erlang" "nix" "ocaml" "python" ];
 
+    languages.python.useMS = true;
+
     programs.emacs.splashScreen = false;
 
     home.packages = [ pkgs.insync keepassWithPlugins pkgs.keybase-gui ];
