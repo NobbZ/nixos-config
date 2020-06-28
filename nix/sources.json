@@ -1,16 +1,16 @@
 {
     "elixir-ls": {
-        "branch": "v0.4.0",
+        "branch": "v0.5.0",
         "description": "A frontend-independent IDE \"smartness\" server for Elixir. Implements the JSON-based \"Language Server Protocol\" standard and provides debugger support via VS Code's debugger protocol.",
         "homepage": "",
         "owner": "elixir-lsp",
         "repo": "elixir-ls",
-        "rev": "41532b96bc316257d71650f776108b78e17fd728",
-        "sha256": "0hcihvqv5hnnkgg1xckymghgrb0ar8gyzgfscbffwmj7ayh705p6",
+        "rev": "e50e153977af83238f196f0ab0c5aa0156c7573f",
+        "sha256": "0yak3qd4vclg04lfy2dmn6656ia3x4k0v0r4899wvvy74vfbvab6",
         "type": "tarball",
-        "url": "https://github.com/elixir-lsp/elixir-ls/archive/41532b96bc316257d71650f776108b78e17fd728.tar.gz",
+        "url": "https://github.com/elixir-lsp/elixir-ls/archive/e50e153977af83238f196f0ab0c5aa0156c7573f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "version": "0.4.0"
+        "version": "0.5.0"
     },
     "emacs-overlay": {
         "branch": "master",
