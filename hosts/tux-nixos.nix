@@ -1,6 +1,8 @@
 { pkgs, config, ... }:
 
 let
+  nixos = import <nixos> { config.allowUnfree = true; };
+
   keepassWithPlugins =
     pkgs.keepass.override { plugins = [ pkgs.keepass-keepasshttp ]; };
 in {
@@ -15,7 +17,7 @@ in {
 
     programs.emacs.splashScreen = false;
 
-    home.packages = [ pkgs.insync keepassWithPlugins pkgs.keybase-gui ];
+    home.packages = [ nixos.insync keepassWithPlugins pkgs.keybase-gui ];
 
     services = {
       keyleds.enable = true;
