@@ -1,9 +1,10 @@
-{ fetchFromGitHub, stdenv, lib, ocaml-ng, ... }:
+{ sources, fetchFromGitHub, stdenv, lib, ocaml-ng, ... }:
 
 let
   ocamlPackages = ocaml-ng.ocamlPackages_4_10;
 
-  inherit (ocamlPackages) buildDunePackage cppo yojson stdlib-shims menhir;
+  inherit (ocamlPackages)
+    buildDunePackage cppo yojson stdlib-shims menhir uutf dune-build-info;
 
   ppxy_yojson_conv_lib = buildDunePackage rec {
     pname = "ppx_yojson_conv_lib";
@@ -26,10 +27,8 @@ in buildDunePackage rec {
   useDune2 = true;
 
   src = fetchFromGitHub {
-    owner = "ocaml";
-    repo = "ocaml-lsp";
-    rev = "5d1d5d8b32f7be4f641c60e4d817e339886eb138";
-    sha256 = "0p20i2my1qxmp4y9364syxvqpdnnngzlip3c3k423lbzylsgrcmm";
+    inherit (sources.ocaml-lsp) owner repo rev;
+    sha256 = "06lhxzk8zj1nijazkyvl6l0xgpj9x0lyh9d74jll6zblmjqkmdb1";
     fetchSubmodules = true;
   };
 
@@ -43,5 +42,13 @@ in buildDunePackage rec {
     install ./_build/install/default/bin/ocamllsp $out/bin/ocamllsp
   '';
 
-  buildInputs = [ cppo yojson ppxy_yojson_conv_lib stdlib-shims menhir ];
+  buildInputs = [
+    cppo
+    yojson
+    ppxy_yojson_conv_lib
+    stdlib-shims
+    menhir
+    uutf
+    dune-build-info
+  ];
 }
