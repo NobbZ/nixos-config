@@ -73,16 +73,16 @@
         "url": "https://github.com/nix-community/nix-direnv/archive/3341c9dc6db5c01f2ff26f98e6b26c254fea3747.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "nixpkgs-channels": {
-        "branch": "nixos-unstable",
+    "nixos-stable": {
+        "branch": "nixos-20.03",
         "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "nixos",
         "repo": "nixpkgs-channels",
-        "rev": "f7c7509ecd0a49a2a7402cebb89351166bb136d2",
-        "sha256": "177z9zsvxgv968r6cjw6y9v6kc30npdk750ivi88cbc84yyzwjfm",
+        "rev": "d6260a33e43a500528b2be834d3ee4ad45441a6a",
+        "sha256": "18ailgn3d8smjdg66di3mg1q1l86s2s5ch856ifzy5kc3a224ssf",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs-channels/archive/f7c7509ecd0a49a2a7402cebb89351166bb136d2.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs-channels/archive/d6260a33e43a500528b2be834d3ee4ad45441a6a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-mozilla": {
@@ -95,6 +95,18 @@
         "sha256": "08fvzb8w80bkkabc1iyhzd15f4sm7ra10jn32kfch5klgl0gj3j3",
         "type": "tarball",
         "url": "https://github.com/mozilla/nixpkgs-mozilla/archive/e912ed483e980dfb4666ae0ed17845c4220e5e7c.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs-unstable": {
+        "branch": "nixos-unstable",
+        "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
+        "homepage": "https://github.com/NixOS/nixpkgs",
+        "owner": "nixos",
+        "repo": "nixpkgs-channels",
+        "rev": "f7c7509ecd0a49a2a7402cebb89351166bb136d2",
+        "sha256": "177z9zsvxgv968r6cjw6y9v6kc30npdk750ivi88cbc84yyzwjfm",
+        "type": "tarball",
+        "url": "https://github.com/nixos/nixpkgs-channels/archive/f7c7509ecd0a49a2a7402cebb89351166bb136d2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "ocaml-lsp": {
