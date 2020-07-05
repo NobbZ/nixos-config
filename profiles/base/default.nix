@@ -53,11 +53,11 @@ in {
 
       zshell.aliases = {
         hm = "cd ~/.config/nixpkgs";
-        hmb = "home-manager build";
+        hmb = "pushd ~/.config/nixpkgs; ./build.sh; popd";
         hme = "home-manager edit";
         hmh = "home-manager-help";
         hmn = "home-manager news";
-        hms = "home-manager switch";
+        hms = "pushd ~/.config/nixpkgs; ./switch.sh; popd";
         hmu = "nix-channel --update; hms";
         ngc = "sudo nix-collect-garbage --verbose --delete-older-than 14d";
       };
