@@ -148,7 +148,7 @@ in {
         # (ep.trivialBuild { pname = "configuration"; src = confPackages; })
       ] ++ lib.attrsets.mapAttrsToList (k: v:
         ep.trivialBuild {
-          pname = "k";
+          pname = k;
           src = v.src;
           packageRequires = v.ep ep;
         }) confPackages;
