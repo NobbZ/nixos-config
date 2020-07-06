@@ -117,22 +117,6 @@ in {
       (setq inhibit-startup-screen ${bool2Lisp (!cfg.splashScreen)})
     '';
 
-    programs.zsh.shellAliases = { emacs = "emacs-wrapper"; };
-
-    home.packages = [
-      (pkgs.writeShellScriptBin "emacs-wrapper" ''
-        xhost=${pkgs.xorg.xhost}/bin/xhost
-
-        kind="-t"
-
-        if ''${xhost} 2>&1 >/dev/null; then
-          kind="-c"
-        fi
-
-        exec ${emacsClient} ''${kind} "$@"
-      '')
-    ];
-
     programs.emacs.extraPackages = ep:
       [
         ep.company-go
