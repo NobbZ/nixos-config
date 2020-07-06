@@ -18,7 +18,10 @@ in {
           (add-to-list 'exec-path "${pkgs.ocaml-lsp}/bin")
           (setq lsp-ocaml-lang-server-command '("ocamllsp"))
 
-          (add-hook 'ocaml-mode-hook
+          (add-to-list 'auto-mode-alist '("\\.ml[iylp]?$" . caml-mode))
+          (autoload 'caml-mode "caml" "Major mode for editing OCaml code." t)
+
+          (add-hook 'caml-mode-hook
                     (lambda ()
                       (subword-mode)
                       (company-mode)
