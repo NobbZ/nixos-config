@@ -159,29 +159,5 @@ in {
           "Initialises emacs configuration" [ ] [ ] cfg.extraConfig;
       };
     }; # // lisps;
-
-    systemd.user.services = {
-      emacs-server = {
-        Unit = {
-          Description = "Emacs: the extensible, self-documenting text editor";
-        };
-
-        Service = {
-          Type = "forking";
-          ExecStart = "${emacsServer} --daemon";
-          ExecStop = "${emacsServer} --eval '(kill-emacs)'";
-          Environment = [
-            "SSH_AUTH_SOCK=%t/keyring/ssh"
-            ("PATH=%h/bin:/run/wrappers/bin:%h/.nix-profile/bin:"
-              + "/etc/profiles/per-user/%u/bin:"
-              + "/nix/var/nix/profiles/default/bin:"
-              + "/run/current-system/sw/bin")
-          ];
-          Restart = "always";
-        };
-
-        Install = { WantedBy = [ "default.target" ]; };
-      };
-    };
   };
 }
