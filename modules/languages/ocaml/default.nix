@@ -17,7 +17,7 @@ in {
       localPackages."init-ocaml" = {
         tag = "Setup OCaml";
         comments = [ ];
-        requires = [ ];
+        requires = [ "caml-font" ];
         packageRequires = ep: [ ep.lsp-mode ep.caml ep.company ep.flycheck ];
         code = ''
           (add-to-list 'exec-path "${pkgs.ocaml-lsp}/bin")
@@ -28,7 +28,8 @@ in {
 
           (add-hook 'caml-mode-hook
                     (lambda ()
-                      (require 'caml-font)
+                      (lsp-ui-mode)
+                      (lsp-lens-mode)
                       (subword-mode)
                       (company-mode)
                       (flycheck-mode)))
