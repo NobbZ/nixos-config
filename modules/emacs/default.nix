@@ -41,12 +41,13 @@ let
 
 in {
   imports = [
+    ./beacon.nix
+    ./company.nix
     ./helm.nix
     ./lsp.nix
     ./projectile.nix
     ./telephoneline.nix
     ./whichkey
-    ./beacon.nix
   ];
 
   options.programs.emacs = {
