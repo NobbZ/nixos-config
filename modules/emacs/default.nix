@@ -95,6 +95,8 @@ in {
       (add-to-list 'load-path
       (expand-file-name "lisp" user-emacs-directory))
 
+      (fset 'yes-or-no-p 'y-or-n-p)
+
       ;; Move backups and autosaves out of the way
       (setq backup-directory-alist
             `((".*" . ,temporary-file-directory)))
