@@ -8,6 +8,11 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    programs.emacs.lsp-mode = {
+      enable = true;
+      languages = [ "caml" ];
+    };
+
     programs.emacs = {
       localPackages."init-ocaml" = {
         tag = "Setup OCaml";
@@ -23,6 +28,7 @@ in {
 
           (add-hook 'caml-mode-hook
                     (lambda ()
+                      (require 'caml-font)
                       (subword-mode)
                       (company-mode)
                       (flycheck-mode)))
