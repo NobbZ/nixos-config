@@ -33,6 +33,9 @@ in {
         pl = "pull";
         root = "rev-parse --show-toplevel";
       };
+
+      extraConfig = { pull.rebase = false; };
+
       ignores = [
         # IntelliJ files and folders
         ".idea/"
