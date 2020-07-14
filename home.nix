@@ -51,5 +51,6 @@ in {
     # nixfmt
     exercism
     tmate
+    riot-desktop
   ];
 }
