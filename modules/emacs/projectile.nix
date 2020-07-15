@@ -7,7 +7,7 @@ in {
       localPackages."init-projectile" = {
         tag = "Setup projectile";
         comments = [ ];
-        requires = [ "projectile" "helm-projectile" ];
+        requires = [ "projectile" "helm-projectile" "tramp" ];
         packageRequires = ep: [ ep.projectile ep.helm-projectile ];
         code = ''
           ;; enable projectile
