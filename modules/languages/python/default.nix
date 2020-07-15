@@ -32,12 +32,21 @@ in {
       comments = [ ];
       requires = [ "lsp-mode" ];
       packageRequires = (ep:
-        [ (config.programs.emacs.localPackages."init-lsp".packageRequires ep) ]
-        ++ (if cfg.useMS then [ ep.lsp-python-ms ] else [ ]));
+        [
+          ep.python-docstring
+          (config.programs.emacs.localPackages."init-lsp".packageRequires ep)
+        ] ++ (if cfg.useMS then [ ep.lsp-python-ms ] else [ ]));
       code = ''
         ${lsHook}
 
         ${lsExec}
+
+        (add-hook 'python-mode-hook
+                  (lambda ()
+                    (subword-mode)
+                    (company-mode)
+                    (flycheck-mode)
+                    (python-docstring-mode)))
       '';
     };
   };
