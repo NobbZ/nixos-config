@@ -129,6 +129,7 @@ in {
         ep.go-mode
         ep.markdown-mode
         ep.yaml-mode
+        ep.adoc-mode
 
         ep.bazel-mode
 
