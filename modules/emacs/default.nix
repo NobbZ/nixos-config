@@ -131,7 +131,7 @@ in {
         ep.yaml-mode
         ep.adoc-mode
 
-        ep.bazel-mode
+        # ep.bazel-mode
 
         # (ep.trivialBuild { pname = "configuration"; src = confPackages; })
       ] ++ lib.attrsets.mapAttrsToList (k: v:
