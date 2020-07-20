@@ -28,7 +28,7 @@ in buildDunePackage rec {
 
   src = fetchFromGitHub {
     inherit (sources.ocaml-lsp) owner repo rev;
-    sha256 = "199c2ijhaqjc8nhcvk7fahlzwva7j5ic3aaxg4nq98h7gn9v6h17";
+    sha256 = "0i6lfj1gfb0vdhd4vxm21izi4pyxvfjj6py2h8nzwip51q8b37a7";
     fetchSubmodules = true;
   };
 
