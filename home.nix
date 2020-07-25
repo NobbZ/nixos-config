@@ -1,6 +1,9 @@
 let
   overlays = import ./nix;
   pkgs = import <nixpkgs> { overlays = overlays; };
+
+  nixPath = "nixpkgs=${<nixpkgs>}:nixos-config=/etc/nixos/configuration.nix:"
+    + "/nix/var/nix/profiles/per-user/root/channels";
 in {
   nixpkgs.overlays = overlays;
   nixpkgs.config.allowUnfree = true;
@@ -36,23 +39,27 @@ in {
 
   services = { lorri.enable = true; };
   systemd.user = {
-    services.lorri.Service.Environment =
-      [ "NIX_PATH=%h/.nix-defexpr/channels" ];
+    sessionVariables = { NIX_PATH = nixPath; };
+    services.lorri.Service.Environment = [ "NIX_PATH=${nixPath}" ];
   };
 
   manual.html.enable = true;
 
   xsession.windowManager.awesome.enable = true;
 
-  home.packages = with pkgs; [
-    cachix
-    niv
-    # nix-prefetch-scripts
-    nix-review
-    (haskell.lib.doJailbreak haskellPackages.nixfmt)
-    # nixfmt
-    exercism
-    tmate
-    riot-desktop
-  ];
+  home = {
+    sessionVariables = { NIX_PATH = nixPath; };
+
+    packages = with pkgs; [
+      cachix
+      niv
+      # nix-prefetch-scripts
+      nix-review
+      (haskell.lib.doJailbreak haskellPackages.nixfmt)
+      # nixfmt
+      exercism
+      tmate
+      riot-desktop
+    ];
+  };
 }
