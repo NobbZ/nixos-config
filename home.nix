@@ -59,7 +59,7 @@ in {
       # nixfmt
       exercism
       tmate
-      riot-desktop
+      element-desktop
     ];
   };
 }
