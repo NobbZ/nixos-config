@@ -13,6 +13,7 @@
 
   nixpkgs.config.allowUnfree = true;
   nix.useSandbox = false;
+  nix.autoOptimiseStore = true;
 
   security.chromiumSuidSandbox.enable = true;
 
