@@ -2,8 +2,11 @@ let
   overlays = import ./nix;
   pkgs = import <nixpkgs> { overlays = overlays; };
 
-  nixPath = "nixpkgs=${<nixpkgs>}:nixos-config=/etc/nixos/configuration.nix:"
-    + "/nix/var/nix/profiles/per-user/root/channels";
+  nixPath = builtins.concatStringsSep ":" [
+    "nixpkgs=${<nixpkgs>}"
+    "nixos-config=/etc/nixos/configuration.nix"
+    "/nix/var/nix/profiles/per-user/root/channels"
+  ];
 in {
   nixpkgs.overlays = overlays;
   nixpkgs.config.allowUnfree = true;
