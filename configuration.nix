@@ -29,7 +29,7 @@
   boot.cleanTmpDir = true;
 
   hardware.enableRedistributableFirmware = true;
-  networking.enableRalinkFirmware = true;
+  # networking.enableRalinkFirmware = true;
 
   networking.hostName = "tux-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
