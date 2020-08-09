@@ -44,6 +44,9 @@
   networking.interfaces.wlp4s0.useDHCP = true;
   networking.hostId = "21025bb1";
   networking.networkmanager.enable = true;
+  networking.extraHosts = ''
+    # 127.0.0.1 versions.teamspeak.com files.teamspeak-services.com
+  '';
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
