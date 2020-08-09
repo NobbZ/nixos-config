@@ -7,6 +7,8 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
+
+    ./cachix.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
