@@ -116,10 +116,19 @@
 
   services.transmission.enable = true;
 
+  services.zfs = {
+    autoScrub.enable = true;
+    autoSnapshot.enable = true;
+  };
+
   programs = { zsh.enable = true; };
 
   virtualisation = {
-    docker.enable = true;
+    docker = {
+      enable = true;
+      storageDriver = "zfs";
+    };
+
     libvirtd.enable = true;
     virtualbox.host.enable = true;
   };
