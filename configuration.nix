@@ -90,6 +90,8 @@
   services.printing.enable = true;
   services.printing.drivers = [ pkgs.hplipWithPlugin ];
 
+  services.ratbagd.enable = true;
+
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio = {
