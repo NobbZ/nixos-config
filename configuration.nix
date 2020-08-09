@@ -15,6 +15,10 @@
   nix.useSandbox = false;
   nix.autoOptimiseStore = true;
   nix.buildCores = 1;
+  nix.package = pkgs.nixUnstable;
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
 
   security.chromiumSuidSandbox.enable = true;
 
@@ -60,9 +64,9 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  # environment.systemPackages = with pkgs; [
-  #   wget vim
-  # ];
+  environment.systemPackages = with pkgs; [
+    nixFlakes
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
