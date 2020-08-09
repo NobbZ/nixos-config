@@ -92,6 +92,10 @@ in {
           bindkey "^[[1;5C" forward-word
         '';
 
+        sessionVariables = {
+          NIX_PATH = "nixpkgs=${<nixpkgs>}:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
+        };
+
         shellAliases = config.programs.zshell.aliases;
       };
     };
