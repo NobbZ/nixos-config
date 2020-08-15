@@ -19,6 +19,8 @@ in {
 
     home.packages = [ nixos.insync keepassWithPlugins pkgs.keybase-gui ];
 
+    programs.obs-studio.enable = true;
+
     services = {
       keyleds.enable = true;
       keybase.enable = true;
