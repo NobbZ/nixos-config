@@ -1,5 +1,5 @@
 {
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-20.03";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs-channels/nixos-20.03";
 
   outputs = { self, nixpkgs }: {
     nixosConfigurations = {
