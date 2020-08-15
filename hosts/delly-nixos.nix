@@ -9,7 +9,7 @@
     xsession.windowManager.awesome.terminalEmulator =
       "${pkgs.lxterminal}/bin/lxterminal";
 
-    enabledLanguages = [ "clojure" "nix" "elixir" "erlang" "python" "rust" ];
+    enabledLanguages = [ "clojure" "nix" "elixir" "erlang" "python" ];
 
     programs.emacs.splashScreen = false;
   };
