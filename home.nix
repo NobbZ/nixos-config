@@ -65,7 +65,6 @@ in {
       element-desktop
 
       openshift
-      kubectl
       kubernetes-helm
     ];
   };
