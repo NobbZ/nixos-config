@@ -63,9 +63,6 @@ in {
       exercism
       tmate
       element-desktop
-
-      openshift
-      kubernetes-helm
     ];
   };
 }

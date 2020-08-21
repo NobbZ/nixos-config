@@ -30,6 +30,7 @@ in {
       exa.enable = true;
       htop.enable = true;
       advancedCopy.enable = true;
+      openshift.enable = true;
 
       emacs = {
         enable = true;
