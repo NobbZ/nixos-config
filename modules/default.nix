@@ -7,6 +7,7 @@
     ./exa
     ./keyleds
     ./languages
+    ./openshift
     ./zshell
   ];
 }
