@@ -19,7 +19,7 @@ in {
       localPackages."init-elixir" = {
         tag = "Setup elixir";
         comments = [ ];
-        requires = [ "company" "lsp-clients" "flycheck" ];
+        requires = [ "company" "flycheck" ];
         packageRequires = ep: [
           ep.company
           ep.elixir-mode
