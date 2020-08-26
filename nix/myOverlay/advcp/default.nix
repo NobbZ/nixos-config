@@ -6,6 +6,7 @@ in stdenv.mkDerivation rec {
   version = "8.30";
 
   src = fetchurl {
+    name = "source-${name}-${version}.tar.xz";
     url = "ftp://ftp.gnu.org/gnu/${upstream}/${upstream}-${version}.tar.xz";
     sha256 = "0mxhw43d4wpqmvg0l4znk1vm10fy92biyh90lzdnqjcic2lb6cg8";
   };
