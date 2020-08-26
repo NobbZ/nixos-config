@@ -11,7 +11,10 @@ stdenv.mkDerivation rec {
   deps = fetchMixDeps { inherit name version src; };
 
   # refresh: nix-prefetch-git https://github.com/elixir-lsp/elixir-ls.git [--rev branchName | --rev sha]
-  src = fetchFromGitHub { inherit (sources.elixir-ls) owner repo rev sha256; };
+  src = fetchFromGitHub {
+    name = "source-${name}-${version}";
+    inherit (sources.elixir-ls) owner repo rev sha256;
+  };
 
   dontStrip = true;
 
