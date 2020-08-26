@@ -11,6 +11,7 @@ let
     version = "0.13.0";
 
     src = fetchFromGitHub {
+      name = "source-${pname}-${version}";
       owner = "janestreet";
       repo = "ppx_yojson_conv_lib";
       rev = "v${version}";
@@ -22,11 +23,12 @@ let
 
 in buildDunePackage rec {
   pname = "lsp";
-  version = "2020-05-18";
+  version = sources.ocaml-lsp.rev;
 
   useDune2 = true;
 
   src = fetchFromGitHub {
+    name = "source-${pname}-${version}";
     inherit (sources.ocaml-lsp) owner repo rev;
     sha256 = "sha256-RCFWYm0r9aEWJam4gP5HuDk6UPOZmFQN8QYni7GPxRA=";
     fetchSubmodules = true;
