@@ -1,6 +1,6 @@
 { beamPackages, sources, fetchFromGitHub, git, cacert }:
 
-beamPackages.rebar3Relx {
+beamPackages.rebar3Relx rec {
   name = "erlang-ls";
   version = sources.erlang-ls.branch;
   releaseType = "escript";
@@ -10,5 +10,8 @@ beamPackages.rebar3Relx {
   GIT_SSL_CAINFO = "${cacert}/etc/ssl/certs/ca-bundle.crt";
   SSL_CERT_FILE = "${cacert}/etc/ssl/certs/ca-bundle.crt";
 
-  src = fetchFromGitHub { inherit (sources.erlang-ls) owner repo rev sha256; };
+  src = fetchFromGitHub {
+    name = "source-${name}-${version}";
+    inherit (sources.erlang-ls) owner repo rev sha256;
+  };
 }
