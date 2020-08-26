@@ -5,6 +5,7 @@ stdenv.mkDerivation rec {
   version = "1.1.0";
 
   src = fetchFromGitHub {
+    name = "source-${name}-${version}";
     owner = "keyleds";
     repo = "keyleds";
     rev = "v${version}";
