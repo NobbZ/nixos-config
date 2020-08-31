@@ -17,7 +17,8 @@ in {
 
     programs.emacs.splashScreen = false;
 
-    home.packages = [ nixos.insync keepassWithPlugins pkgs.keybase-gui ];
+    home.packages =
+      [ nixos.insync keepassWithPlugins pkgs.keybase-gui pkgs.minikube ];
 
     programs.obs-studio.enable = true;
 
@@ -28,7 +29,6 @@ in {
     };
 
     systemd.user.services = {
-
       keybase-gui = {
         Unit = {
           Description = "Keybase GUI";
