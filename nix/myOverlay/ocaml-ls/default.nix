@@ -1,10 +1,40 @@
-{ sources, fetchFromGitHub, stdenv, lib, ocaml-ng, ... }:
+{ pkgs, sources, fetchFromGitHub, stdenv, lib, ocaml-ng, ... }:
 
 let
   ocamlPackages = ocaml-ng.ocamlPackages_4_10;
 
   inherit (ocamlPackages)
     buildDunePackage cppo yojson stdlib-shims menhir uutf dune-build-info;
+
+  result = buildDunePackage rec {
+    pname = "result";
+    version = "1.5";
+
+    src = fetchFromGitHub {
+      name = "source-${pname}-${version}";
+      owner = "janestreet";
+      repo = "result";
+      rev = version;
+      sha256 = "166laj8qk7466sdl037c6cjs4ac571hglw4l5qpyll6df07h6a7q";
+    };
+  };
+
+  csexp = buildDunePackage rec {
+    pname = "csexp";
+    version = "1.3.1";
+
+    useDune2 = true;
+
+    src = fetchFromGitHub {
+      name = "source-${pname}-${version}";
+      owner = "ocaml-dune";
+      repo = "csexp";
+      rev = "${version}";
+      sha256 = "117c4kipiag2mp1bspkrrs41c1p24hk8ndr4p0rvfx2i6rb9bsp0";
+    };
+
+    buildInputs = [ result ];
+  };
 
   ppxy_yojson_conv_lib = buildDunePackage rec {
     pname = "ppx_yojson_conv_lib";
@@ -30,7 +60,7 @@ in buildDunePackage rec {
   src = fetchFromGitHub {
     name = "source-${pname}-${version}";
     inherit (sources.ocaml-lsp) owner repo rev;
-    sha256 = "0zznswl82h2bj1q2ik9n4b6m4ql3gz2j9h6crc8bgsb9alqh5q85";
+    sha256 = "0ylzyhbg6hir347l9z3nnaapfp89jp7kyifk9xl9m3c5px78jahv";
     fetchSubmodules = true;
   };
 
@@ -52,5 +82,7 @@ in buildDunePackage rec {
     menhir
     uutf
     dune-build-info
+    csexp
+    result
   ];
 }
