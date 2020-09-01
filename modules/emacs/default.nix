@@ -130,6 +130,7 @@ in {
         ep.markdown-mode
         ep.yaml-mode
         ep.adoc-mode
+        ep.k8s-mode
 
         # ep.bazel-mode
 
