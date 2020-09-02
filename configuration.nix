@@ -167,6 +167,15 @@
   };
 
   nix.maxJobs = 2;
+
+  # services.kubernetes.roles = ["master" "node"];
+  # services.kubernetes.masterAddress = "192.168.178.76";
+  # services.kubernetes.kubelet.extraOpts = "--fail-swap-on=false";
+  # services.kubernetes.easyCerts = true;
+  # services.kubernetes.apiserver = {
+  #   securePort = 8443;
+  #   advertiseAddress = "192.168.178.76";
+  # };
   
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
@@ -174,4 +183,3 @@
   # should.
   system.stateVersion = "19.09"; # Did you read the comment?
 }
-
