@@ -10,11 +10,12 @@ let
 
   home-manager = (import sources.home-manager { inherit pkgs; }).home-manager;
 
-  inherit (pkgs) niv lefthook;
-in pkgs.mkShell {
+  inherit (pkgs) niv lefthook nixpkgs-fmt;
+in
+pkgs.mkShell {
   name = "home-manager-shell";
 
-  buildInputs = [ niv lefthook home-manager ];
+  buildInputs = [ niv lefthook home-manager nixpkgs-fmt ];
 
   NIX_PATH =
     "nixpkgs=${unstable}:nixos=${stable}:home-manager=${sources.home-manager}";

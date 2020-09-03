@@ -3,4 +3,4 @@ pre-commit:
   commands:
     formatting:
       glob: "*.nix"
-      run: nixfmt -c {all_files}
+      run: nixpkgs-fmt --check {all_files}
