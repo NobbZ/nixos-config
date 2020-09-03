@@ -1,11 +1,11 @@
 { pkgs, config, ... }:
-
 let
   nixos = import <nixos> { config.allowUnfree = true; };
 
   keepassWithPlugins =
     pkgs.keepass.override { plugins = [ pkgs.keepass-keepasshttp ]; };
-in {
+in
+{
   config = {
     profiles.browsing.enable = true;
     profiles.development.enable = true;
