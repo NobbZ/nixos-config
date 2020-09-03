@@ -63,6 +63,8 @@ in {
       exercism
       tmate
       element-desktop
+
+      (julia_13.overrideAttrs (oa: { doCheck = false; }))
     ];
   };
 }
