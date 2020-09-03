@@ -7,7 +7,8 @@ let
     "nixos-config=/etc/nixos/configuration.nix"
     "/nix/var/nix/profiles/per-user/root/channels"
   ];
-in {
+in
+{
   nixpkgs.overlays = overlays;
   nixpkgs.config.allowUnfree = true;
 
