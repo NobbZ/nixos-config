@@ -1,5 +1,4 @@
 { config, lib, pkgs, ... }:
-
 let
   emacsEnabled = config.programs.emacs.enable;
   cfg = config.programs.emacs;
@@ -10,36 +9,47 @@ let
 
   bool2Lisp = b: if b then "t" else "nil";
 
-  lisps = lib.attrsets.mapAttrs' (k: v: {
-    name = ".emacs.d/lisp/${k}.el";
-    value = {
-      text = pkgs.nobbzLib.emacs.generatePackage k v.tag v.comments v.requires
-        v.code;
-    };
-  }) cfg.localPackages;
-
-  confPackages = let
-    fileContent = lib.attrsets.mapAttrs' (k: v: {
-      name = "${k}";
+  lisps = lib.attrsets.mapAttrs'
+    (k: v: {
+      name = ".emacs.d/lisp/${k}.el";
       value = {
-        ep = v.packageRequires;
-        src = pkgs.nobbzLib.emacs.generatePackage k v.tag v.comments v.requires
+        text = pkgs.nobbzLib.emacs.generatePackage k v.tag v.comments v.requires
           v.code;
       };
-    }) cfg.localPackages;
-    derivations = lib.attrsets.mapAttrs (k: v: {
-      ep = v.ep;
-      src = pkgs.writeText "${k}.el" v.src;
-    }) fileContent;
-  in derivations;
+    })
+    cfg.localPackages;
 
-  lispRequires = let
-    names = lib.attrsets.mapAttrsToList (n: _: n) cfg.localPackages;
-    sorted = builtins.sort (l: r: l < r) names;
-    required = builtins.map (r: "(require '${r})") sorted;
-  in builtins.concatStringsSep "\n" required;
+  confPackages =
+    let
+      fileContent = lib.attrsets.mapAttrs'
+        (k: v: {
+          name = "${k}";
+          value = {
+            ep = v.packageRequires;
+            src = pkgs.nobbzLib.emacs.generatePackage k v.tag v.comments v.requires
+              v.code;
+          };
+        })
+        cfg.localPackages;
+      derivations = lib.attrsets.mapAttrs
+        (k: v: {
+          ep = v.ep;
+          src = pkgs.writeText "${k}.el" v.src;
+        })
+        fileContent;
+    in
+    derivations;
 
-in {
+  lispRequires =
+    let
+      names = lib.attrsets.mapAttrsToList (n: _: n) cfg.localPackages;
+      sorted = builtins.sort (l: r: l < r) names;
+      required = builtins.map (r: "(require '${r})") sorted;
+    in
+    builtins.concatStringsSep "\n" required;
+
+in
+{
   imports = [
     ./beacon.nix
     ./company.nix
@@ -135,17 +145,20 @@ in {
         # ep.bazel-mode
 
         # (ep.trivialBuild { pname = "configuration"; src = confPackages; })
-      ] ++ lib.attrsets.mapAttrsToList (k: v:
-        ep.trivialBuild {
-          pname = k;
-          src = v.src;
-          packageRequires = v.ep ep;
-        }) confPackages;
+      ] ++ lib.attrsets.mapAttrsToList
+        (k: v:
+          ep.trivialBuild {
+            pname = k;
+            src = v.src;
+            packageRequires = v.ep ep;
+          })
+        confPackages;
 
     home.file = {
       ".emacs.d/init.el" = {
         text = pkgs.nobbzLib.emacs.generatePackage "init"
-          "Initialises emacs configuration" [ ] [ ] cfg.extraConfig;
+          "Initialises emacs configuration" [ ] [ ]
+          cfg.extraConfig;
       };
     }; # // lisps;
   };

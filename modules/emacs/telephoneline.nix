@@ -1,7 +1,7 @@
 { config, lib, ... }:
-
 let ecfg = config.programs.emacs;
-in {
+in
+{
   config = lib.mkIf ecfg.enable {
     programs.emacs.localPackages."init-telephoneline" = {
       tag = "Setup telephone line";

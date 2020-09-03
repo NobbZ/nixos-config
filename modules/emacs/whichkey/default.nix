@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 with lib;
-
 let
   cfg = config.programs.emacs.whichkey;
   enabled = config.programs.emacs.enable;
@@ -26,7 +25,8 @@ let
   replacements = lib.concatStringsSep "\n  "
     (builtins.map ({ keys, replace, ... }: ''"${keys}" "${replace}"'')
       cfg.replacement);
-in {
+in
+{
   options.programs.emacs.whichkey = {
     replacement = lib.mkOption { type = keyReplacementType; };
   };

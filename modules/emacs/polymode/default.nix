@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 
 with lib;
-
 let emacs = config.programs.emacs;
-in {
+in
+{
   config = lib.mkIf emacs.enable {
     programs.emacs.extraPackages = ep: [ ep.polymode ];
 

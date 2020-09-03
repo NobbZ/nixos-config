@@ -1,7 +1,7 @@
 { config, lib, ... }:
-
 let emacsCfg = config.programs.emacs;
-in {
+in
+{
   config = lib.mkIf emacsCfg.enable {
     programs.emacs = {
       localPackages."init-helm" = {
@@ -28,4 +28,3 @@ in {
     };
   };
 }
-

@@ -1,7 +1,7 @@
 { config, lib, ... }:
-
 let cfg = config.programs.emacs.packages.beacon;
-in {
+in
+{
   options.programs.emacs.packages.beacon = {
     enable = lib.mkOption {
       type = lib.types.bool;

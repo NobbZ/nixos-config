@@ -1,5 +1,4 @@
 { config, lib, ... }:
-
 let
   cfg = config.programs.emacs.lsp-mode;
 
@@ -9,9 +8,11 @@ let
       uni = unique sorted;
       hooks = builtins.map (l: "'${l}-mode-hook") uni;
       add-hooks = builtins.map (h: "(add-hook ${h} #'lsp)") hooks;
-    in builtins.concatStringsSep "\n" add-hooks;
+    in
+    builtins.concatStringsSep "\n" add-hooks;
 
-in {
+in
+{
   options.programs.emacs.lsp-mode = {
     enable = lib.mkEnableOption "Enables and installs lsp-mode";
 

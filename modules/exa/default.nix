@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
-
 let cfg = config.programs.exa;
 
-in {
+in
+{
   options.programs.exa = {
     enable = lib.mkEnableOption "A modern version of 'ls'";
   };
