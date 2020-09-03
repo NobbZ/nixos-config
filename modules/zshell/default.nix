@@ -1,5 +1,4 @@
 { config, lib, pkgs, ... }:
-
 let
   cfg = config.programs.zshell;
   aliasesStr = lib.concatStringsSep "\n"
@@ -7,7 +6,8 @@ let
       cfg.aliases);
   sourcesStr =
     lib.concatStringsSep "\n" (builtins.map (s: ". ${s}") cfg.sources);
-in {
+in
+{
   options.programs.zshell = {
     aliases = lib.mkOption {
       default = { };

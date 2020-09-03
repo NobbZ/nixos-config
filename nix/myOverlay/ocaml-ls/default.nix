@@ -1,5 +1,4 @@
 { pkgs, sources, fetchFromGitHub, stdenv, lib, ocaml-ng, ... }:
-
 let
   ocamlPackages = ocaml-ng.ocamlPackages_4_10;
 
@@ -51,7 +50,8 @@ let
     buildInputs = [ yojson ];
   };
 
-in buildDunePackage rec {
+in
+buildDunePackage rec {
   pname = "lsp";
   version = sources.ocaml-lsp.rev;
 

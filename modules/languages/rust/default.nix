@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
-
 let cfg = config.languages.rust;
 
-in {
+in
+{
   options.languages.rust = {
     enable = lib.mkEnableOption "Enable support for Rust language";
   };

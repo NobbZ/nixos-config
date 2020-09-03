@@ -1,8 +1,8 @@
 { pkgs, lib, config, ... }:
-
 let cfg = config.programs.openshift;
 
-in {
+in
+{
   options.programs.openshift = {
     enable = lib.mkEnableOption "Tools to manage openshift instances";
   };

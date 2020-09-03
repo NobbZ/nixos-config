@@ -4,7 +4,8 @@ let
       prelude = generatePrelude { inherit name tagLine commentLines; };
       requires = generateRequires requireList;
       postlude = generatePostlude name;
-    in ''
+    in
+    ''
       ${prelude}
 
       ${requires}
@@ -19,7 +20,8 @@ let
       generated = "This file is generated! DO NOT CHANGE!";
       comments = builtins.concatStringsSep "\n"
         (builtins.map (l: if l == "" then "" else ";; ${l}") commentLines);
-    in ''
+    in
+    ''
       ;;; ${name} --- ${tagLine}
 
       ;;; Commentary:
@@ -38,9 +40,11 @@ let
     let
       sorted = builtins.sort (l: r: l < r) list;
       required = builtins.map (r: "(require '${r})") sorted;
-    in builtins.concatStringsSep "\n" required;
+    in
+    builtins.concatStringsSep "\n" required;
 
-in {
+in
+{
   emacs.generatePackage = name: tag: comments: requires: code:
     generatePackage {
       inherit name code;

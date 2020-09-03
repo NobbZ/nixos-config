@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
-
 let cfg = config.profiles.browsing;
 
-in {
+in
+{
   options.profiles.browsing = {
     enable = lib.mkEnableOption
       "A profile that enables a browser for the GUI and the terminal";

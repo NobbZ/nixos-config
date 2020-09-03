@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
-
 let cfg = config.languages.clojure;
 
-in {
+in
+{
   options.languages.clojure = {
     enable = lib.mkEnableOption "Enable support for the clojure language";
   };

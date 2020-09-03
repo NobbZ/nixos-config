@@ -1,10 +1,10 @@
 { sources, srcOnly, lib, ... }:
-
 let
   version = sources.asdf.version;
   pname = "asdf-vm";
 
-in srcOnly rec {
+in
+srcOnly rec {
   # pname = "asdf-vm";
   # version = sources.asdf.version;
   name = "${pname}-${version}";

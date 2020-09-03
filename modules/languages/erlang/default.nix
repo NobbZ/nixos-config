@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
-
 let
   cfg = config.languages.erlang;
   erlang-ls = pkgs.erlang-ls;
-in {
+in
+{
   options.languages.erlang = {
     enable = lib.mkEnableOption "Enable support for erlang language";
   };

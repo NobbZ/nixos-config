@@ -1,8 +1,8 @@
 { config, lib, ... }:
-
 let cfg = config.profiles.development;
 
-in {
+in
+{
   options.profiles.development = {
     enable = lib.mkEnableOption
       "A profile that enables the system to be used for developing programs";

@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
-
 let
   cfg = config.languages.elixir;
 
   inherit (pkgs) elixir-lsp;
-in {
+in
+{
   options.languages.elixir = {
     enable = lib.mkEnableOption "Enable support for elixir language";
   };

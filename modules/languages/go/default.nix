@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
-
 let cfg = config.languages.go;
 
-in {
+in
+{
   options.languages.go = {
     enable = lib.mkEnableOption "Enable support for the go language";
   };

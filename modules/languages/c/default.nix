@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
-
 let enabled = config.languages.c.enable || config.languages.cpp.enable;
 
-in {
+in
+{
   options.languages.c = {
     enable = lib.mkEnableOption "Enable support for C language";
   };

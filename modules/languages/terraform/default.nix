@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
-
 let cfg = config.languages.terraform;
 
-in {
+in
+{
   options.languages.terraform = {
     enable = lib.mkEnableOption "Enable support for the terraform lanugage";
   };

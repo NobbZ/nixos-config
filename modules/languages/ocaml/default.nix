@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
-
 let cfg = config.languages.ocaml;
 
-in {
+in
+{
   options.languages.ocaml = {
     enable = lib.mkEnableOption "Enable support for ocaml language";
   };

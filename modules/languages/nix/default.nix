@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
-
 let cfg = config.languages.nix;
 
-in {
+in
+{
   options.languages.nix = {
     enable = lib.mkEnableOption "Enable support for the nix language";
   };

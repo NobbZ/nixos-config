@@ -1,5 +1,4 @@
 { config, lib, pkgs, ... }:
-
 let
   cfg = config.languages.python;
   pyls = "${pkgs.python37Packages.python-language-server}/bin/pyls";
@@ -7,15 +6,18 @@ let
 
   lsBin = if cfg.useMS then mspyls else pyls;
 
-  lsHook = if cfg.useMS then
-    "(add-hook 'python-mode-hook (lambda () (require 'lsp-python-ms) (lsp)))"
-  else
-    "";
-  lsExec = if cfg.useMS then
-    ''(setq lsp-python-ms-executable "${lsBin}")''
-  else
-    ''(setq lsp-pyls-server-command '("${lsBin}"))'';
-in {
+  lsHook =
+    if cfg.useMS then
+      "(add-hook 'python-mode-hook (lambda () (require 'lsp-python-ms) (lsp)))"
+    else
+      "";
+  lsExec =
+    if cfg.useMS then
+      ''(setq lsp-python-ms-executable "${lsBin}")''
+    else
+      ''(setq lsp-pyls-server-command '("${lsBin}"))'';
+in
+{
   options.languages.python = {
     enable = lib.mkEnableOption "Enable support for python language";
     useMS = lib.mkEnableOption "Use MS language server rather than palantirs";

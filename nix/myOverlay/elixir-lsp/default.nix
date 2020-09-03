@@ -1,6 +1,14 @@
-{ beamPackages, callPackage, elixir, fetchFromGitHub, gitMinimal, rebar3
-, sources, stdenv, fetchMixDeps ? callPackage ./fetch-mix-deps.nix { }
-, hex ? beamPackages.hex }:
+{ beamPackages
+, callPackage
+, elixir
+, fetchFromGitHub
+, gitMinimal
+, rebar3
+, sources
+, stdenv
+, fetchMixDeps ? callPackage ./fetch-mix-deps.nix { }
+, hex ? beamPackages.hex
+}:
 
 stdenv.mkDerivation rec {
   name = sources.elixir-ls.repo;

@@ -1,7 +1,7 @@
 { pkgs, stdenv, fetchurl, fetchpatch, ... }:
-
 let upstream = "coreutils";
-in stdenv.mkDerivation rec {
+in
+stdenv.mkDerivation rec {
   name = "advcp";
   version = "8.30";
 

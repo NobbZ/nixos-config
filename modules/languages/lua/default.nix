@@ -1,8 +1,8 @@
 { config, lib, ... }:
-
 let cfg = config.languages.lua;
 
-in {
+in
+{
   options.languages.lua = {
     enable = lib.mkEnableOption "Enable support for lua language";
   };

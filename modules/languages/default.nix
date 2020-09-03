@@ -1,12 +1,13 @@
 { config, lib, pkgs, ... }:
-
 let
   cfg = config.languages;
 
-  langsEnabler = let reducer = l: r: { "${r}".enable = true; } // l;
-  in builtins.foldl' reducer { } config.enabledLanguages;
+  langsEnabler =
+    let reducer = l: r: { "${r}".enable = true; } // l;
+    in builtins.foldl' reducer { } config.enabledLanguages;
 
-in {
+in
+{
   imports = [
     ./c
     ./clojure

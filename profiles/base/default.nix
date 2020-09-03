@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
-
 let cfg = config.profiles.base;
 
-in {
+in
+{
   options.profiles.base = {
     enable = lib.mkEnableOption "The base profile, should be always enabled";
   };
