@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
-
 let cfg = config.xsession.windowManager.awesome;
 
-in {
+in
+{
   options.xsession.windowManager.awesome = {
     terminalEmulator = lib.mkOption {
       type = lib.types.str;
