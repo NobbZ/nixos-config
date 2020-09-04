@@ -6,7 +6,7 @@
     profiles.development.enable = true;
 
     enabledLanguages =
-      [ "elixir" "go" "lua" "nix" "python" "terraform" "ocaml" ];
+      [ "elixir" "go" "lua" "nix" "python" "terraform" ];
 
     languages.python.useMS = true;
 
