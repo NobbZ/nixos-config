@@ -168,15 +168,15 @@
 
   nix.maxJobs = 2;
 
-  # services.kubernetes.roles = ["master" "node"];
-  # services.kubernetes.masterAddress = "192.168.178.76";
-  # services.kubernetes.kubelet.extraOpts = "--fail-swap-on=false";
-  # services.kubernetes.easyCerts = true;
-  # services.kubernetes.apiserver = {
-  #   securePort = 8443;
-  #   advertiseAddress = "192.168.178.76";
-  # };
-  
+  services.kubernetes.roles = ["master" "node"];
+  services.kubernetes.masterAddress = "tux-nixos";
+  services.kubernetes.kubelet.extraOpts = "--fail-swap-on=false";
+  services.kubernetes.easyCerts = true;
+  services.kubernetes.apiserver = {
+    securePort = 8443;
+    advertiseAddress = "tux-nixos";
+  };
+
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
