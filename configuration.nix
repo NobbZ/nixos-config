@@ -173,8 +173,10 @@
   services.kubernetes.kubelet.extraOpts = "--fail-swap-on=false";
   services.kubernetes.easyCerts = true;
   services.kubernetes.apiserver = {
+    enable = true;
+    insecurePort = 80;
     securePort = 8443;
-    advertiseAddress = "tux-nixos";
+    advertiseAddress = "192.168.178.76";
   };
 
   # This value determines the NixOS release with which your system is to be
