@@ -6,7 +6,14 @@
       tux-nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
-        modules = [ ./configuration.nix ./hardware-configuration/tux-nixos.nix nixpkgs.nixosModules.notDetected ];
+        modules = [
+          ./configuration.nix
+
+          ./modules/flake.nix
+
+          ./hardware-configuration/tux-nixos.nix
+          nixpkgs.nixosModules.notDetected
+        ];
       };
     };
   };
