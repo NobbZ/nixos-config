@@ -10,6 +10,7 @@
           ./configuration.nix
 
           ./modules/flake.nix
+          ./modules/kubernetes.nix
 
           ./hardware-configuration/tux-nixos.nix
           nixpkgs.nixosModules.notDetected
