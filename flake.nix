@@ -10,6 +10,11 @@
         buildInputs = [ pkgs.gnumake pkgs.nixpkgs-fmt ];
       };
 
+    nixosModules = {
+      flake = ./modules/flake.nix;
+      kubernetes = ./modules/kubernetes.nix;
+    };
+
     nixosConfigurations = {
       tux-nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -17,8 +22,8 @@
         modules = [
           ./configuration.nix
 
-          ./modules/flake.nix
-          ./modules/kubernetes.nix
+          self.nixosModules.flake
+          self.nixosModules.kubernetes
 
           ./hardware-configuration/tux-nixos.nix
           nixpkgs.nixosModules.notDetected
