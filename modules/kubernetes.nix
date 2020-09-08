@@ -6,9 +6,10 @@ let
   # This IP is in the zerotier network, making the kubernetes network
   # available within the network only so far.
   ip = "192.168.178.76"; # TODO: make an option to configure.
-in {
+in
+{
   services.kubernetes = {
-    roles = ["master" "node"];
+    roles = [ "master" "node" ];
     masterAddress = hostname;
     kubelet.extraOpts = "--fail-swap-on=false";
     easyCerts = true;

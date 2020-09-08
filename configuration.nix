@@ -5,7 +5,8 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./cachix.nix
   ];
 
@@ -61,7 +62,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ ];
+  environment.systemPackages = with pkgs; [];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -156,7 +157,7 @@
 
     aroemer = {
       isNormalUser = true;
-      extraGroups = [ ];
+      extraGroups = [];
     };
   };
 
