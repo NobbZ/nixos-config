@@ -4,7 +4,7 @@
   outputs = { self, nixpkgs }: {
     devShell.x86_64-linux = let pkgs = nixpkgs.legacyPackages.x86_64-linux; in pkgs.mkShell {
       name = "nixos-builder";
-      buildInputs = [ pkgs.gnumake ];
+      buildInputs = [ pkgs.gnumake pkgs.nixpkgs-fmt ];
     };
 
     nixosConfigurations = {

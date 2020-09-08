@@ -1,5 +1,7 @@
 HOSTNAME = $(shell hostname)
 
+NIX_FILES = $(shell find . -name '*.nix' -type f)
+
 ifndef HOSTNAME
  $(error Hostname unknown)
 endif
@@ -13,3 +15,6 @@ build:
 update:
 	jq --raw-output '.nodes.root.inputs | keys | .[]' < flake.lock | \
 		xargs -n1 -P1 nix flake update --update-input
+
+format:
+	nix develop . -c nixpkgs-fmt $(NIX_FILES)
