@@ -19,15 +19,13 @@
       tux-nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
-        modules = [
-          ./configuration.nix
+        modules =
+          (with self.nixosModules; [ flake kubernetes ]) ++ [
+            ./configuration.nix
 
-          self.nixosModules.flake
-          self.nixosModules.kubernetes
-
-          ./hardware-configuration/tux-nixos.nix
-          nixpkgs.nixosModules.notDetected
-        ];
+            ./hardware-configuration/tux-nixos.nix
+            nixpkgs.nixosModules.notDetected
+          ];
       };
     };
   };
