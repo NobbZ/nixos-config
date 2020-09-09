@@ -16,7 +16,7 @@
     };
 
     nixosConfigurations = {
-      tux-nixos = nixpkgs.lib.nixosSystem (import ./hosts/tux-nixos.nix { inherit self nixpkgs;});
+      tux-nixos = nixpkgs.lib.nixosSystem (import ./hosts/tux-nixos.nix { inherit self nixpkgs; });
     };
   };
 }
