@@ -5,10 +5,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./cachix.nix
-  ];
+  imports = [];
 
   nixpkgs.config.allowUnfree = true;
   nix.useSandbox = false;

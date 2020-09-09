@@ -5,7 +5,7 @@
 
   modules =
     (with self.nixosModules; [ flake kubernetes ]) ++ [
-      ../configuration.nix
+      ./legacy/tux-nixos.nix
 
       ./hardware/tux-nixos.nix
       nixpkgs.nixosModules.notDetected

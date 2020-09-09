@@ -11,6 +11,7 @@
       };
 
     nixosModules = {
+      cachix = ./cachix.nix;
       flake = ./modules/flake.nix;
       kubernetes = ./modules/kubernetes.nix;
     };
