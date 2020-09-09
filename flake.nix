@@ -16,17 +16,7 @@
     };
 
     nixosConfigurations = {
-      tux-nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-
-        modules =
-          (with self.nixosModules; [ flake kubernetes ]) ++ [
-            ./configuration.nix
-
-            ./hardware-configuration/tux-nixos.nix
-            nixpkgs.nixosModules.notDetected
-          ];
-      };
+      tux-nixos = nixpkgs.lib.nixosSystem (import ./hosts/tux-nixos.nix { inherit self nixpkgs;});
     };
   };
 }
