@@ -16,5 +16,6 @@ build:
       nix-store --indirect --add-root $(pwd)/$host.result
       rm hosts/default.nix
     done
+    nix-collect-garbage --verbose
   after_script:
   - bash -c "comm -13 <(sort /tmp/store-path-pre-build | grep -v '\.drv$') <(nix path-info --all | grep -v '\.drv$' | sort) | cachix push nobbz"
