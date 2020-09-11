@@ -3,7 +3,7 @@ image: nixos/nix:latest
 build:
   before_script:
   - nix-env -iA nixpkgs.cachix nixpkgs.bash
-  - cachix use mycache
+  - cachix use nobbz
   - nix path-info --all > /tmp/store-path-pre-build
   script:
   - |
