@@ -11,9 +11,9 @@ build:
     for file in hosts/*.nix; do
       host=$(basename $file .nix)
       ln -s $host.nix hosts/default.nix
-      nix-shell --run "nix-store --realise --add-root $(pwd)/$host.result --indirect \\$(home-manager instantiate)
-      # mv result $host.result
-      # ln -s $(pwd)/$host.result /nix/var/nix/gcroots/$host.result
+      nix-shell --run "home-manager -v build"
+      mv result $host.result
+      ln -s $(pwd)/$host.result /nix/var/nix/gcroots/$host.result
       rm hosts/default.nix
     done
     nix-collect-garbage --verbose
