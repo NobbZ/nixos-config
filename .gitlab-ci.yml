@@ -13,7 +13,7 @@ build:
       ln -s $host.nix hosts/default.nix
       nix-shell --run "home-manager -v build"
       mv result $host.result
-      nix-store --indirect --add-root $(pwd)/$host.result
+      ln -s $(pwd)/$host.result /nix/var/nix/gcroots/$host.result
       rm hosts/default.nix
     done
     nix-collect-garbage --verbose
