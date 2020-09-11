@@ -18,10 +18,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "84ed097725cc11b563776bb6708d7713f9e3f9bf",
-        "sha256": "0ywvx1bq9vf6jygyvq9pky3nhdm4bgxnzdv810bbqc9lqqxd7xzm",
+        "rev": "1677075e7d32dd3ed259cdc59001b89e44faafd2",
+        "sha256": "1xa9yh208zp210nnd1p5nf8a116282sgms303mc1ksry6mh06plw",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/84ed097725cc11b563776bb6708d7713f9e3f9bf.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/1677075e7d32dd3ed259cdc59001b89e44faafd2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "erlang-ls": {
@@ -43,10 +43,10 @@
         "homepage": "https://rycee.gitlab.io/home-manager/",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "249650a07ee2d949fa599f3177a8c234adbd1bee",
-        "sha256": "0x858b7i15kx74aqwgi2n5ls7zjhcky95z9vbxfdlawmaz371dma",
+        "rev": "605a8fc92e2bb346b17d102d94d37af23c9b7d4e",
+        "sha256": "1cjxmhwn5vmb26x4zzmh1kgiv6xngb7ra61wgdlai6afw454v6ww",
         "type": "tarball",
-        "url": "https://github.com/nix-community/home-manager/archive/249650a07ee2d949fa599f3177a8c234adbd1bee.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/605a8fc92e2bb346b17d102d94d37af23c9b7d4e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {

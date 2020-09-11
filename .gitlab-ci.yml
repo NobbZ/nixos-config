@@ -1,0 +1,22 @@
+image: nixos/nix:latest
+
+build:
+  before_script:
+  - nix-env -iA nixpkgs.cachix nixpkgs.bash
+  - cachix use nobbz
+  - cachix use nix-community
+  - nix path-info --all > /tmp/store-path-pre-build
+  script:
+  - |
+    set -x
+    for file in hosts/*.nix; do
+      host=$(basename $file .nix)
+      ln -s $host.nix hosts/default.nix
+      nix-shell --run "home-manager -v build"
+      mv result $host.result
+      ln -s $(pwd)/$host.result /nix/var/nix/gcroots/$host.result
+      rm hosts/default.nix
+    done
+    nix-collect-garbage --verbose
+  after_script:
+  - bash -c "comm -13 <(sort /tmp/store-path-pre-build | grep -v '\.drv$') <(nix path-info --all | grep -v '\.drv$' | sort) | cachix push nobbz"
