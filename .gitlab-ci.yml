@@ -7,7 +7,7 @@ build:
   - nix path-info --all > /tmp/store-path-pre-build
   script:
   - |
-    set -ex
+    set -x
     for file in hosts/*.nix; do
       host=$(basename $file .nix)
       ln -s $host.nix hosts/default.nix
