@@ -11,6 +11,7 @@ build:
     for file in hosts/*.nix; do
       host=$(basename $file .nix)
       ln -s $host hosts/default.nix
+      ls -l . hosts
       nix-shell --run "home-manager -v build"
     done
   after_script:
