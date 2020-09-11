@@ -12,6 +12,8 @@ build:
       host=$(basename $file .nix)
       ln -s $host.nix hosts/default.nix
       nix-shell --run "home-manager -v build"
+      mv result $host.result
+      nix-store --indirect --add-root $(pwd)/$host.result
       rm hosts/default.nix
     done
   after_script:
