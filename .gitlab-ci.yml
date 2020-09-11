@@ -13,6 +13,7 @@ build:
       ln -s $host.nix hosts/default.nix
       ls -l . hosts
       nix-shell --run "home-manager -v build"
+      rm hosts/default.nix
     done
   after_script:
   - bash -c "comm -13 <(sort /tmp/store-path-pre-build | grep -v '\.drv$') <(nix path-info --all | grep -v '\.drv$' | sort) | cachix push nobbz"
