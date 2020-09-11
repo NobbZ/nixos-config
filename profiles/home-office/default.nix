@@ -9,7 +9,7 @@ in
 
     user = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
-      default = null;
+      default = "";
       example = "jon.doe";
       description = ''
         The username used to login to the RDP host
@@ -18,7 +18,7 @@ in
 
     pass = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
-      default = null;
+      default = "";
       example = "secret";
       description = ''
         The password used to login to the RDP host
@@ -27,7 +27,7 @@ in
 
     domain = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
-      default = null;
+      default = "";
       example = "secret";
       description = ''
         The domain used to login to the RDP host
@@ -36,7 +36,7 @@ in
 
     host = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
-      default = null;
+      default = "";
       example = "example.com";
       description = ''
         The hostname or IP of the RDP host
