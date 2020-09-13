@@ -10,7 +10,9 @@ let
 
   home-manager = (import sources.home-manager { inherit pkgs; }).home-manager;
 
-  inherit (pkgs) niv lefthook nixpkgs-fmt;
+  lefthook = pkgs.lefthook.override { buildGoModule = pkgs.buildGo114Module; };
+
+  inherit (pkgs) niv nixpkgs-fmt;
 in
 pkgs.mkShell {
   name = "home-manager-shell";
