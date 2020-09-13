@@ -18,10 +18,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "1677075e7d32dd3ed259cdc59001b89e44faafd2",
-        "sha256": "1xa9yh208zp210nnd1p5nf8a116282sgms303mc1ksry6mh06plw",
+        "rev": "4d99a9e2092d799f15df67e8760ecf528ecfca79",
+        "sha256": "1nqhxhb4cjrsj7mk6zv6gli9ixvs5bsxl0ims4qlzm8033bl5yiy",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/1677075e7d32dd3ed259cdc59001b89e44faafd2.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/4d99a9e2092d799f15df67e8760ecf528ecfca79.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "erlang-ls": {
@@ -115,10 +115,10 @@
         "homepage": null,
         "owner": "ocaml",
         "repo": "ocaml-lsp",
-        "rev": "0358d7db474ce5ef23a7eb7cefa39076403911da",
-        "sha256": "0j4kc0xq9dzvk04azzks21ahx36chmiwx8rdx8mklmdp1iyadz1c",
+        "rev": "27e3d175bffb9beb1f18b3a48f908bab39145686",
+        "sha256": "1cdhpr667rmrwfdrx58ffqzf9k7ggqg2iba58bjhg1adxf4x5vwd",
         "type": "tarball",
-        "url": "https://github.com/ocaml/ocaml-lsp/archive/0358d7db474ce5ef23a7eb7cefa39076403911da.tar.gz",
+        "url": "https://github.com/ocaml/ocaml-lsp/archive/27e3d175bffb9beb1f18b3a48f908bab39145686.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
