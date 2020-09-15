@@ -1,35 +1,36 @@
-{ cacert, elixir, gitMinimal, lib, rebar3, stdenv, }:
+{ stdenvNoCC, elixir, rebar, rebar3, git, cacert }:
 
-{ name, version, sha256 ? lib.fakeSha256, src, env ? "prod" }:
+{ name ? null, src, sha256 ? null, env ? "prod" }:
 
-with stdenv;
+stdenvNoCC.mkDerivation {
+  name = "mix-deps" + (if name != null then "-${name}" else "");
 
-mkDerivation {
-  name = "mix-deps-${name}-${version}";
+  nativeBuildInputs = [ elixir git cacert ];
 
-  nativeBuildInputs = [ elixir gitMinimal cacert ];
+  inherit src;
 
-  phases = [ "downloadPhase" "installPhase" ];
-
-  downloadPhase = ''
-    export HEX_HOME=$PWD
-    export MIX_HOME=$PWD
-    export MIX_ENV=${env}
-
-    cp -R ${src}/* .
-
+  configurePhase = ''
+    export MIX_ENV="${env}"
+    export HEX_HOME="$PWD/hex"
+    export MIX_HOME="$PWD/mix"
+    export MIX_DEPS_PATH="$out"
+    export MIX_REBAR="${rebar}/bin/rebar"
+    export MIX_REBAR3="${rebar3}/bin/rebar3"
+    export REBAR_GLOBAL_CONFIG_DIR="$PWD/rebar3"
+    export REBAR_CACHE_DIR="$PWD/rebar3.cache"
     mix local.hex --force
-    mix local.rebar rebar3 ${rebar3}/bin/rebar3
-    mix deps.get
   '';
 
-  installPhase = ''
-    mkdir -p "$out"
-    cp -R deps "$out"
+  buildPhase = ''
+    mix deps.get
+    find "$out" -path '*/.git/*' -a ! -name HEAD -exec rm -rf {} +
   '';
+
+  dontInstall = true;
 
   outputHashAlgo = "sha256";
   outputHashMode = "recursive";
+  outputHash = sha256;
 
-  impureEnvVars = lib.fetchers.proxyImpureEnvVars;
+  impureEnvVars = stdenvNoCC.lib.fetchers.proxyImpureEnvVars;
 }

@@ -1,24 +1,19 @@
-{ beamPackages
-, callPackage
-, elixir
-, fetchFromGitHub
-, gitMinimal
-, rebar3
-, sources
-, stdenv
-, fetchMixDeps ? callPackage ./fetch-mix-deps.nix { }
-, hex ? beamPackages.hex
-}:
-
+{ sources, stdenv, elixir, rebar3, hex, callPackage, git, cacert, fetchFromGitHub }:
+let
+  fetchMixDeps = callPackage ./fetch-mix-deps.nix { };
+in
 stdenv.mkDerivation rec {
-  name = sources.elixir-ls.repo;
-  version = sources.elixir-ls.rev;
+  name = "elixir-ls";
+  version = sources.elixir-ls.version;
 
-  nativeBuildInputs = [ elixir hex gitMinimal deps ];
+  nativeBuildInputs = [ elixir hex git deps cacert ];
 
-  deps = fetchMixDeps { inherit name version src; };
+  deps = fetchMixDeps {
+    name = "${name}-${version}";
+    inherit src;
+    sha256 = "1j7v56mfa087wi3x8kdcbqq0wsdiw284cwlccvxs1b60rypx5k55";
+  };
 
-  # refresh: nix-prefetch-git https://github.com/elixir-lsp/elixir-ls.git [--rev branchName | --rev sha]
   src = fetchFromGitHub {
     name = "source-${name}-${version}";
     inherit (sources.elixir-ls) owner repo rev sha256;
@@ -27,33 +22,28 @@ stdenv.mkDerivation rec {
   dontStrip = true;
 
   configurePhase = ''
-    runHook preConfigure
+    export MIX_ENV=prod
     export HEX_OFFLINE=1
-    export MIX_HOME=`pwd`
-
-    cp --no-preserve=all -R ${deps}/deps deps
-    mix local.rebar rebar3 ${rebar3}/bin/rebar3
-    runHook postConfigure
+    export HEX_HOME="$PWD/hex"
+    export MIX_HOME="$PWD"
+    export MIX_REBAR3="${rebar3}/bin/rebar3"
+    export REBAR_GLOBAL_CONFIG_DIR="$PWD/rebar3"
+    export REBAR_CACHE_DIR="$PWD/rebar3.cache"
+    cp --no-preserve=all -R ${deps} deps
+    mix deps.compile --no-deps-check
   '';
 
   buildPhase = ''
-    runHook preBuild
-    export MIX_ENV=prod
-
-    mix elixir_ls.release
-
-    runHook postBuild
+    mix do compile --no-deps-check, elixir_ls.release
   '';
 
   installPhase = ''
     mkdir -p $out/bin
     cp -Rv release $out/lib
-
     # Prepare the wrapper script
     substitute release/language_server.sh $out/bin/elixir-ls \
       --replace 'exec "''${dir}/launch.sh"' "exec $out/lib/launch.sh"
     chmod +x $out/bin/elixir-ls
-
     # prepare the launcher
     substituteInPlace $out/lib/launch.sh \
       --replace "ERL_LIBS=\"\$SCRIPTPATH:\$ERL_LIBS\"" \
