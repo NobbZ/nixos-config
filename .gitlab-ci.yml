@@ -10,6 +10,7 @@ build:
   - |
     set -x
     for file in hosts/*.nix; do
+      if [[ $file == _* ]]; then continue; fi
       host=$(basename $file .nix)
       ln -s $host.nix hosts/default.nix
       nix-shell --run "home-manager -v build"
