@@ -11,7 +11,7 @@ build:
     set -x
     for file in hosts/*.nix; do
       host=$(basename $file .nix)
-      if [[ $host == _* ]]; then continue; fi
+      if [[ $host =~ ^_.* ]]; then continue; fi
       ln -s $host.nix hosts/default.nix
       nix-shell --run "home-manager -v build"
       mv result $host.result
