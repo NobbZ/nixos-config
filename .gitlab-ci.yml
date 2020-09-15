@@ -8,8 +8,7 @@ build:
   - nix path-info --all > /tmp/store-path-pre-build
   script:
   - |
-    bash <<EOF
-    set -x
+    bash -x <<EOF
     for file in hosts/*.nix; do
       host=$(basename $file .nix)
       if [[ $host =~ ^_.* ]]; then continue; fi
