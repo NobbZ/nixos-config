@@ -8,10 +8,9 @@ build:
   - nix path-info --all > /tmp/store-path-pre-build
   script:
   - |
-    bash -x <<EOF
+    set -x
     for file in hosts/*.nix; do
       host=$(basename $file .nix)
-      if [[ "${host:0:1}" == "_" ]]; then continue; fi
       ln -s $host.nix hosts/default.nix
       nix-shell --run "home-manager -v build"
       mv result $host.result
@@ -19,6 +18,5 @@ build:
       rm hosts/default.nix
     done
     nix-collect-garbage --verbose
-    EOF
   after_script:
   - bash -c "comm -13 <(sort /tmp/store-path-pre-build | grep -v '\.drv$') <(nix path-info --all | grep -v '\.drv$' | sort) | cachix push nobbz"
