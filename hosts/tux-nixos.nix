@@ -18,7 +18,7 @@ in
     programs.emacs.splashScreen = false;
 
     home.packages =
-      [ nixos.insync keepassWithPlugins pkgs.keybase-gui pkgs.minikube pkgs.wine ];
+      [ nixos.insync keepassWithPlugins pkgs.keybase-gui pkgs.minikube ];
 
     programs.obs-studio.enable = true;
 
