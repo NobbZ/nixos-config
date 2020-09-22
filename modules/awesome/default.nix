@@ -32,10 +32,6 @@ let
     end
     -- }}}
   '';
-
-  rofi = pkgs.rofi.override {
-    plugins = [ pkgs.rofi-emoji ];
-  };
 in
 {
   options.xsession.windowManager.awesome = {
