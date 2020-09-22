@@ -30,6 +30,10 @@ let
     end
     -- }}}
   '';
+
+  rofi = pkgs.rofi.override {
+    plugins = [ pkgs.rofi-emoji ];
+  };
 in
 {
   options.xsession.windowManager.awesome = {
@@ -40,7 +44,7 @@ in
 
     launcher = lib.mkOption {
       type = lib.types.str;
-      default = "${pkgs.rofi}/bin/rofi -modi run#drun#window#ssh -show run";
+      default = "${rofi}/bin/rofi -modi run#drun#window#ssh#emoji -show run";
     };
   };
 
