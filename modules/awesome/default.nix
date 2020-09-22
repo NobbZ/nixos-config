@@ -42,7 +42,7 @@ in
 
     launcher = lib.mkOption {
       type = lib.types.str;
-      default = "${rofi}/bin/rofi -modi run#drun#window#ssh#emoji -show run";
+      default = "${rofi}/bin/rofi -modi run#drun#window#ssh#emoji#unicode:${pkgs.rofi-unicode}/bin/rofiunicode.sh -show run";
     };
   };
 
