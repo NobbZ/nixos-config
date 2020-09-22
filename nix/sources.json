@@ -120,5 +120,11 @@
         "type": "tarball",
         "url": "https://github.com/ocaml/ocaml-lsp/archive/27e3d175bffb9beb1f18b3a48f908bab39145686.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "rofiemoji-rofiunicode": {
+        "branch": "master",
+        "repo": "https://git.teknik.io/matf/rofiemoji-rofiunicode.git",
+        "rev": "b30ffa698f1979dae5495f04b20fec413fa085d6",
+        "type": "git"
     }
 }
