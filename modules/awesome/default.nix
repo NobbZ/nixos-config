@@ -2,6 +2,8 @@
 let
   cfg = config.xsession.windowManager.awesome;
 
+  rofi = pkgs.rofi.override { plugins = [ pkgs.rofi-emoji ]; };
+
   errorHandling = ''
     -- {{{ Error handling
     if awesome.startup_errors then
