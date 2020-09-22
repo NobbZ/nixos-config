@@ -16,6 +16,7 @@ rec {
   erlang-ls = self.callPackage (import ./erlang-ls) { };
   keyleds = self.callPackage (import ./keyleds) { };
   ocaml-lsp = self.callPackage ./ocaml-ls { };
+  rofi-unicode = self.callPackage ./rofi-unicode.nix { };
 
   keepass =
     self.callPackage (keepasspkgs.outPath + "/pkgs/applications/misc/keepass")
