@@ -12,12 +12,12 @@ let
 
   lefthook = pkgs.lefthook.override { buildGoModule = pkgs.buildGo114Module; };
 
-  inherit (pkgs) git niv nixpkgs-fmt;
+  inherit (pkgs) git gnumake niv nixpkgs-fmt;
 in
 pkgs.mkShell {
   name = "home-manager-shell";
 
-  buildInputs = [ git niv lefthook home-manager nixpkgs-fmt ];
+  buildInputs = [ git niv gnumake lefthook home-manager nixpkgs-fmt ];
 
   NIX_PATH =
     "nixpkgs=${unstable}:nixos=${stable}:home-manager=${sources.home-manager}";
