@@ -13,13 +13,15 @@ stdenvNoCC.mkDerivation rec {
     mkdir -pv $out/{bin,lists}
 
     install -v lists/* $out/lists
+    install -v *.sh $out/bin
+  '';
 
-    for f in *.sh; do
-      substitute $f $out/bin/$f \
+  postFixup = ''
+    for f in $out/bin/*.sh; do
+      substituteInPlace $f \
         --replace 'DIR="$HOME/.config/rofiemoji-rofiunicode/lists"' \
                   'DIR="${placeholder "out"}/lists"' \
         --replace 'xsel' '${xsel}/bin/xsel'
-      chmod +x $out/bin/$f
     done;
   '';
 }
