@@ -10,7 +10,6 @@ let
   };
 in
 rec {
-  advcp = self.callPackage (import ./advcp) { };
   direnv-nix = self.callPackage (import ./direnv-nix) { };
   elixir-lsp = self.beam.packages.erlang.callPackage (import ./elixir-lsp) { };
   erlang-ls = self.callPackage (import ./erlang-ls) { };
