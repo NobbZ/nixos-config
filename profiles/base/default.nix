@@ -34,7 +34,7 @@ in
 
       emacs = {
         enable = true;
-        package = pkgs.emacsGcc;
+        package = pkgs.emacsGit;
       };
 
       direnv = {
