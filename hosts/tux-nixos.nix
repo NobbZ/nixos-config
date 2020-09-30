@@ -18,7 +18,7 @@ in
     programs.emacs.splashScreen = false;
 
     home.packages =
-      [ nixos.insync keepassWithPlugins pkgs.keybase-gui pkgs.minikube ];
+      [ nixos.insync keepassWithPlugins pkgs.keybase-gui pkgs.minikube pkgs.lutris pkgs.steam ];
 
     programs.obs-studio.enable = true;
 
@@ -45,3 +45,4 @@ in
   };
   # environment.pathsToLink = [ "/share/zsh" ];
 }
+# /nix/store/7skqa8vxfydq7w3cix55ffvkmjb3b5da-python-2.7.18
