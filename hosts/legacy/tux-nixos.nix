@@ -119,7 +119,13 @@
     autoSnapshot.enable = true;
   };
 
-  programs = { zsh.enable = true; };
+  programs = {
+    # steam.enable = true;
+    zsh.enable = true;
+  };
+
+  hardware.opengl.driSupport32Bit = true;
+  hardware.pulseaudio.support32Bit = true;
 
   virtualisation = {
     docker = {
