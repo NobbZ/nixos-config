@@ -14,5 +14,7 @@
     languages.python.useMS = true;
 
     programs.emacs.splashScreen = false;
+
+    home.packages = [ pkgs.lutris pkgs.steam ];
   };
 }
