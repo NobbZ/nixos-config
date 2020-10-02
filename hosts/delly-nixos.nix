@@ -15,6 +15,6 @@
 
     programs.emacs.splashScreen = false;
 
-    home.packages = [ pkgs.lutris pkgs.steam ];
+    home.packages = [ ];
   };
 }
