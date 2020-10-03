@@ -1,5 +1,5 @@
 {
-  inputs.nixpkgs.url = "github:nixos/nixpkgs-channels/nixos-20.03";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-20.09";
 
   outputs = { self, nixpkgs }: {
     devShell.x86_64-linux = let
