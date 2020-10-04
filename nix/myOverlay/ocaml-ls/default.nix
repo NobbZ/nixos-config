@@ -2,6 +2,8 @@
 let
   ocamlPackages = ocaml-ng.ocamlPackages_4_10;
 
+  ocamlLspSourceSha = "07rqxddvxzfvc1lndzvz752jfa9grpm2c8w5k0f9fq5a8pxbb4jp";
+
   inherit (ocamlPackages)
     buildDunePackage cppo yojson stdlib-shims menhir uutf dune-build-info;
 
@@ -60,7 +62,7 @@ buildDunePackage rec {
   src = fetchFromGitHub {
     name = "source-${pname}-${version}";
     inherit (sources.ocaml-lsp) owner repo rev;
-    sha256 = "0kmfl4cm38wv29ky9y2lxmdklf9x75q5m5irjzxjdfi2cwf4hng4";
+    sha256 = ocamlLspSourceSha;
     fetchSubmodules = true;
   };
 
