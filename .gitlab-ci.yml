@@ -2,7 +2,7 @@ image: nixos/nix:latest
 
 build:
   before_script:
-  - nix-env -iA nixpkgs.cachix nixpkgs.bash
+  - nix-env -iA nixpkgs.cachix nixpkgs.bash nixpkgs.gnumake
   - cachix use nobbz
   - cachix use nix-community
   - nix path-info --all > /tmp/store-path-pre-build
