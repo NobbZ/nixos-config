@@ -11,11 +11,9 @@ build:
     set -x
     for file in hosts/*.nix; do
       host=$(basename $file .nix)
-      ln -s $host.nix hosts/default.nix
-      nix-shell --run "home-manager -v build"
+      make build HOST=$host
       mv result $host.result
       ln -s $(pwd)/$host.result /nix/var/nix/gcroots/$host.result
-      rm hosts/default.nix
     done
     nix-collect-garbage --verbose
   after_script:
