@@ -11,7 +11,7 @@ build:
     set -x
     for file in hosts/*.nix; do
       host=$(basename $file .nix)
-      make build HOST=$host
+      make build HOSTNAME=$host
       mv result $host.result
       ln -s $(pwd)/$host.result /nix/var/nix/gcroots/$host.result
     done
