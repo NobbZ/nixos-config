@@ -35,6 +35,7 @@ in
                       (subword-mode)
                       (company-mode)
                       (flycheck-mode)
+                      (lsp-lens-mode)
                       (add-hook 'before-save-hook #'lsp-format-buffer nil t)))
         '';
       };
