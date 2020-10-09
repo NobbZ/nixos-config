@@ -10,6 +10,12 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    programs.zshell.aliases = {
+      mdg = "mix deps.get";
+      mic = "mix compile";
+      mit = "mix test";
+    };
+
     programs.emacs = {
       lsp-mode = {
         enable = true;
