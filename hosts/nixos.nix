@@ -2,8 +2,7 @@
 
 {
   config = {
-    profiles.browsing.enable = true;
-    profiles.development.enable = true;
+    activeProfiles = [ "browsing" "development" ];
 
     enabledLanguages =
       [ "elixir" "go" "lua" "nix" "python" "terraform" ];

@@ -2,9 +2,7 @@
 
 {
   config = {
-    profiles.browsing.enable = true;
-    profiles.development.enable = true;
-    profiles.home-office.enable = true;
+    activeProfiles = [ "browsing" "development" "home-office" ];
 
     # xsession.windowManager.awesome.terminalEmulator =
     #   "${pkgs.lxterminal}/bin/lxterminal";

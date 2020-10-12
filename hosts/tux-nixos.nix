@@ -7,9 +7,7 @@ let
 in
 {
   config = {
-    profiles.browsing.enable = true;
-    profiles.development.enable = true;
-    profiles.home-office.enable = true;
+    activeProfiles = [ "browsing" "development" "home-office" ];
 
     enabledLanguages = [ "elixir" "erlang" "nix" "ocaml" "python" ];
 
