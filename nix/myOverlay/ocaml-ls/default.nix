@@ -2,7 +2,7 @@
 let
   ocamlPackages = ocaml-ng.ocamlPackages_4_10;
 
-  ocamlLspSourceSha = "07rqxddvxzfvc1lndzvz752jfa9grpm2c8w5k0f9fq5a8pxbb4jp";
+  ocamlLspSourceSha = "0yba81r92cc3g05m9zyadw405xniq43kxv099c70h0jfs0w1nk6d";
 
   inherit (ocamlPackages)
     buildDunePackage cppo yojson stdlib-shims menhir uutf dune-build-info;
