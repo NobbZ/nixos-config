@@ -25,6 +25,9 @@ switch:
 	nix-shell --run "home-manager ${HM_VERBOSE} $(OPTIONS) switch"
 	rm hosts/default.nix
 
+update:
+	nix-shell --run "niv update"
+
 news:
 	nix-shell --run "home-manager news"
 
