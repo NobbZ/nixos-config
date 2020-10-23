@@ -18,10 +18,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "04243c81b28675f503c4862001cb624a4c05a784",
-        "sha256": "0siisv8m25g5qk3f9l3yi76yqplyp3lxm4vr9wl34fix9i1qyszp",
+        "rev": "56f26eb7a3c7b4c2564b3c2738da1ab1b50770a6",
+        "sha256": "1r9admrda5hr12xw8iab3cpxi7kjpa8dbf78x6kkhl8jrr9nslf3",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/04243c81b28675f503c4862001cb624a4c05a784.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/56f26eb7a3c7b4c2564b3c2738da1ab1b50770a6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "erlang-ls": {
@@ -43,10 +43,10 @@
         "homepage": "https://rycee.gitlab.io/home-manager/",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e7d5531cfa770afc591f8dc5542eb4fba9962885",
-        "sha256": "0gx4pl4hfl08kswalzqbbrzcgpjzkd84h7r4nvvf5hkkhflx5ng5",
+        "rev": "9bf1f40af124573a54fd208b1f539eb694ef31a6",
+        "sha256": "03rf762b2c9lb0ngnq1jsr2fxjw3vmrbhhpb13g8pwrpkf15646l",
         "type": "tarball",
-        "url": "https://github.com/nix-community/home-manager/archive/e7d5531cfa770afc591f8dc5542eb4fba9962885.tar.gz",
+        "url": "https://github.com/nix-community/home-manager/archive/9bf1f40af124573a54fd208b1f539eb694ef31a6.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -79,10 +79,10 @@
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "nixos",
         "repo": "nixpkgs-channels",
-        "rev": "d3784204ba1a6bbb0c0ebf89b706bda50c113112",
-        "sha256": "0y1jznny96r4ngdiqnriq7c4pylf5dzmjc4c0hgi52lkrkhrly3v",
+        "rev": "7c2a362b58a1c2ba72d24aa3869da3b1a91d39e1",
+        "sha256": "0gl4xndyahasa9dv5mi3x9w8s457wl2xh9lcldizcn1irjvkrzs4",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs-channels/archive/d3784204ba1a6bbb0c0ebf89b706bda50c113112.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs-channels/archive/7c2a362b58a1c2ba72d24aa3869da3b1a91d39e1.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-mozilla": {
@@ -115,10 +115,10 @@
         "homepage": null,
         "owner": "ocaml",
         "repo": "ocaml-lsp",
-        "rev": "94e2c424b0c59bf387bc95bb0af9a81730de79fa",
-        "sha256": "1ryjwnj5c88297cx295q4wj8qqzdpdw2vb904bfjh6hfr8m7ggjy",
+        "rev": "625e36afad844c09df7f7ff1f44201c0b83275fd",
+        "sha256": "1pw8wr15az3wdwxc92pvvh5b8bmz85v9pkkj6ifzc3ylnw54jf31",
         "type": "tarball",
-        "url": "https://github.com/ocaml/ocaml-lsp/archive/94e2c424b0c59bf387bc95bb0af9a81730de79fa.tar.gz",
+        "url": "https://github.com/ocaml/ocaml-lsp/archive/625e36afad844c09df7f7ff1f44201c0b83275fd.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "rofiemoji-rofiunicode": {
