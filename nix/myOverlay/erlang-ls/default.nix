@@ -1,8 +1,8 @@
 { beamPackages, rebar3Relx, sources, fetchFromGitHub, git, cacert, pkgs }:
-
 let
   source = builtins.fromJSON (builtins.readFile ./source.json);
-in rebar3Relx rec {
+in
+rebar3Relx rec {
   name = "erlang-ls";
   version = "0.4.1"; # TODO: get in otheriwse
   releaseType = "escript";

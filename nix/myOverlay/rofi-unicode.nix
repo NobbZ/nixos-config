@@ -1,8 +1,8 @@
 { sources, stdenvNoCC, xsel }:
-
 let
   source = builtins.fromJSON (builtins.readFile ./rofi-unicode.json);
-in stdenvNoCC.mkDerivation rec {
+in
+stdenvNoCC.mkDerivation rec {
   pname = "rofiemoji-rofiunicode";
   version = "${source.rev}";
 
