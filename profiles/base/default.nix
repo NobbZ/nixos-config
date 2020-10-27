@@ -37,12 +37,7 @@ in
         package = pkgs.emacsGit;
       };
 
-      direnv = {
-        enable = true;
-        stdlib = ''
-          source ${pkgs.direnv-nix}/direnvrc
-        '';
-      };
+      direnv.enable = true;
 
       tmux = {
         enable = true;
