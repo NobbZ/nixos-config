@@ -13,7 +13,9 @@ rec {
   advcp = self.callPackage (import ./advcp) { };
   direnv-nix = self.callPackage (import ./direnv-nix) { };
   elixir-lsp = self.beam.packages.erlang.callPackage (import ./elixir-lsp) { };
-  erlang-ls = self.callPackage (import ./erlang-ls) { };
+  erlang-ls = super.beam.packages.erlang.callPackage (import ./erlang-ls) {
+    # beamPackages = super.beam.packages.erlangR21;
+  };
   keyleds = self.callPackage (import ./keyleds) { };
   ocaml-lsp = self.callPackage ./ocaml-ls { };
   rofi-unicode = self.callPackage ./rofi-unicode.nix { };
