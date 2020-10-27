@@ -1,0 +1,10 @@
+{
+  "url": "https://git.teknik.io/matf/rofiemoji-rofiunicode.git",
+  "rev": "b30ffa698f1979dae5495f04b20fec413fa085d6",
+  "date": "2020-01-05T04:06:07-08:00",
+  "path": "/nix/store/i6rnld4fhw8wjd14z45xjz1l8jh2pvrd-rofiemoji-rofiunicode",
+  "sha256": "1568m6d0g2v6cv1sbkk127n12d66z3xx09v80rfrqclgic6ihhml",
+  "fetchSubmodules": false,
+  "deepClone": false,
+  "leaveDotGit": false
+}

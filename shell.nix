@@ -1,7 +1,8 @@
 let
   sources = import ./nix/sources.nix;
   unstable = sources.nixpkgs-unstable;
-  stable = sources.nixos-stable;
+  stable = sources."nixpkgs-20.09";
+  # home-manager = sources.home-manager;
 
   pkgs = import unstable {
     overlays = import ./nix;
@@ -12,14 +13,14 @@ let
 
   lefthook = pkgs.lefthook.override { buildGoModule = pkgs.buildGo114Module; };
 
-  inherit (pkgs) git gnumake niv nixpkgs-fmt;
+  inherit (pkgs) git gnumake niv nixpkgs-fmt nix-prefetch-git nix-prefetch-github;
 in
 pkgs.mkShell {
   name = "home-manager-shell";
 
-  buildInputs = [ git niv gnumake lefthook home-manager nixpkgs-fmt ];
+  buildInputs = [ git niv gnumake lefthook home-manager nixpkgs-fmt nix-prefetch-git nix-prefetch-github ];
 
   NIX_PATH =
-    "nixpkgs=${unstable}:nixos=${stable}:home-manager=${sources.home-manager}";
+    "nixpkgs=${unstable}:nixos=${stable}:home-manager=${home-manager}";
   HOME_MANAGER_CONFIG = "./home.nix";
 }

@@ -1,8 +1,10 @@
 { beamPackages, rebar3Relx, sources, fetchFromGitHub, git, cacert, pkgs }:
 
-rebar3Relx rec {
+let
+  source = builtins.fromJSON (builtins.readFile ./source.json);
+in rebar3Relx rec {
   name = "erlang-ls";
-  version = sources.erlang-ls.branch;
+  version = "0.4.1"; # TODO: get in otheriwse
   releaseType = "escript";
 
   buildInputs = [ git ];
@@ -26,6 +28,6 @@ rebar3Relx rec {
 
   src = fetchFromGitHub {
     name = "source-${name}-${version}";
-    inherit (sources.erlang-ls) owner repo rev sha256;
+    inherit (source) owner repo rev sha256;
   };
 }

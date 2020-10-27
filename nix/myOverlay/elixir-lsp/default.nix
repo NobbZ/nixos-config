@@ -4,7 +4,7 @@ let
 in
 stdenv.mkDerivation rec {
   name = "elixir-ls";
-  version = sources.elixir-ls.version;
+  version = "0.6.0"; # TODO: get this from the JSON
 
   nativeBuildInputs = [ elixir hex git deps cacert ];
 
@@ -14,9 +14,9 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-nOTzXJnT093DeMzraQRplLwgk9Xg03Tn28xICMTDvq0=";
   };
 
-  src = fetchFromGitHub {
-    name = "source-${name}-${version}";
-    inherit (sources.elixir-ls) owner repo rev sha256;
+  src = fetchFromGitHub rec {
+    name = "source-${owner}-${repo}-${version}";
+    inherit (builtins.fromJSON (builtins.readFile ./source.json)) owner repo rev sha256;
   };
 
   dontStrip = true;

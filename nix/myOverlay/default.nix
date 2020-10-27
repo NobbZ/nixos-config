@@ -11,7 +11,6 @@ let
 in
 rec {
   advcp = self.callPackage (import ./advcp) { };
-  direnv-nix = self.callPackage (import ./direnv-nix) { };
   elixir-lsp = self.beam.packages.erlang.callPackage (import ./elixir-lsp) { };
   erlang-ls = super.beam.packages.erlang.callPackage (import ./erlang-ls) {
     # beamPackages = super.beam.packages.erlangR21;

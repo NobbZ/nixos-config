@@ -1,0 +1,130 @@
+{
+    "elixir-ls": {
+        "branch": "v0.6.0",
+        "description": "A frontend-independent IDE \"smartness\" server for Elixir. Implements the JSON-based \"Language Server Protocol\" standard and provides debugger support via VS Code's debugger protocol.",
+        "homepage": "",
+        "owner": "elixir-lsp",
+        "repo": "elixir-ls",
+        "rev": "63e95d46ff6d360cd57c035efc8f54ca46f8ea39",
+        "sha256": "0md7nr02ba3gs2xr9zwqvhjgxr7s0lg91sq8a95v07mjp1jgmpgc",
+        "type": "tarball",
+        "url": "https://github.com/elixir-lsp/elixir-ls/archive/63e95d46ff6d360cd57c035efc8f54ca46f8ea39.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "version": "0.6.0"
+    },
+    "emacs-overlay": {
+        "branch": "master",
+        "description": "Bleeding edge emacs overlay [maintainer=@adisbladis] ",
+        "homepage": "",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "a69588a3f7de6d68f20cea21562ab7f6f91a400a",
+        "sha256": "180jp31zfrlhnz490x6hckz6z3bvfxwz1613cg4zmf0lrflrl3gp",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/a69588a3f7de6d68f20cea21562ab7f6f91a400a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "erlang-ls": {
+        "branch": "0.4.1",
+        "description": "The Erlang Language Server",
+        "homepage": "https://erlang-ls.github.io/",
+        "owner": "erlang-ls",
+        "repo": "erlang_ls",
+        "rev": "64313bba94e0b5877ffe99ce169478a12d8da049",
+        "sha256": "1jp4nrb4ns21jga7ysbqpwpkkmmsz90shcgk8qr4ibi4k0ly98ax",
+        "type": "tarball",
+        "url": "https://github.com/erlang-ls/erlang_ls/archive/64313bba94e0b5877ffe99ce169478a12d8da049.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "version": "0.4.1"
+    },
+    "home-manager": {
+        "branch": "master",
+        "description": "Manage a user environment using Nix",
+        "homepage": "https://rycee.gitlab.io/home-manager/",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "abaebf3b346c4bef500c5bd2fdebbed109261a0c",
+        "sha256": "1gcv2ni4nsicpmi4ain568msvgxch8cj04fxf6qgvhdklmh2y84k",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/home-manager/archive/abaebf3b346c4bef500c5bd2fdebbed109261a0c.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "niv": {
+        "branch": "master",
+        "description": "Easy dependency management for Nix projects",
+        "homepage": "https://github.com/nmattia/niv",
+        "owner": "nmattia",
+        "repo": "niv",
+        "rev": "9d35b9e4837ab88517210b1701127612c260eccf",
+        "sha256": "0q50xhnm8g2yfyakrh0nly4swyygxpi0a8cb9gp65wcakcgvzvdh",
+        "type": "tarball",
+        "url": "https://github.com/nmattia/niv/archive/9d35b9e4837ab88517210b1701127612c260eccf.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nix-direnv": {
+        "branch": "master",
+        "description": "A fast, persistent use_nix implementation for direnv [maintainer=@Mic92] ",
+        "homepage": "",
+        "owner": "nix-community",
+        "repo": "nix-direnv",
+        "rev": "b54e2f2c4b21e32fbdab048b37e6e1492f6a5fda",
+        "sha256": "09shksmlkg1bd15jlf64gzxixlrkw8r8k14pcpwkb5m1s5f5vy21",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/nix-direnv/archive/b54e2f2c4b21e32fbdab048b37e6e1492f6a5fda.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixos-stable": {
+        "branch": "nixos-20.03",
+        "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
+        "homepage": "https://github.com/NixOS/nixpkgs",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "a26e92a67d884db696792d25dcc44c466a1bc8b4",
+        "sha256": "0w4sp4cgncr62vgzknny76whlansab94dq2lx27if77ir3zpfiia",
+        "type": "tarball",
+        "url": "https://github.com/nixos/nixpkgs/archive/a26e92a67d884db696792d25dcc44c466a1bc8b4.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs-mozilla": {
+        "branch": "master",
+        "description": "mozilla related nixpkgs (extends nixos/nixpkgs repo)",
+        "homepage": null,
+        "owner": "mozilla",
+        "repo": "nixpkgs-mozilla",
+        "rev": "57c8084c7ef41366993909c20491e359bbb90f54",
+        "sha256": "0lchhjys1jj8fdiisd2718sqd63ys7jrj6hq6iq9l1gxj3mz2w81",
+        "type": "tarball",
+        "url": "https://github.com/mozilla/nixpkgs-mozilla/archive/57c8084c7ef41366993909c20491e359bbb90f54.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs-unstable": {
+        "branch": "nixos-unstable",
+        "description": "A read-only mirror of NixOS/nixpkgs tracking the released channels. Send issues and PRs to",
+        "homepage": "https://github.com/NixOS/nixpkgs",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "5d0e2dedd5594cdf3ebbda8bc61310e227235a9c",
+        "sha256": "1npc0viqm99gbj1q6vfqj4j4gz8jg5s6c6iiv3j01z2dbimwqyab",
+        "type": "tarball",
+        "url": "https://github.com/nixos/nixpkgs/archive/5d0e2dedd5594cdf3ebbda8bc61310e227235a9c.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "ocaml-lsp": {
+        "branch": "master",
+        "description": "OCaml Language Server Protocol implementation",
+        "homepage": null,
+        "owner": "ocaml",
+        "repo": "ocaml-lsp",
+        "rev": "e129cfe315d197deb8f1ce93ea54158e784603f2",
+        "sha256": "1v3qki1hmjfy9gn7r1qv9r6jynsrcxqc9iznfkqb0gii3h3q9974",
+        "type": "tarball",
+        "url": "https://github.com/ocaml/ocaml-lsp/archive/e129cfe315d197deb8f1ce93ea54158e784603f2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "rofiemoji-rofiunicode": {
+        "branch": "master",
+        "repo": "https://git.teknik.io/matf/rofiemoji-rofiunicode.git",
+        "rev": "b30ffa698f1979dae5495f04b20fec413fa085d6",
+        "type": "git"
+    }
+}
