@@ -64,7 +64,6 @@ in
       exercism
       tmate
       element-desktop
-      ffmpeg-full
 
       (julia_13.overrideAttrs (oa: { doCheck = false; }))
 
