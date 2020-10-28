@@ -24,4 +24,4 @@ jobs:
       with:
         name: mycache
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
-    - run: nixos-rebuild build --flake .#${{ matrix.host }} -L
+    - run: nix build ".#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel -L
