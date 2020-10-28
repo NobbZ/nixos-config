@@ -16,26 +16,9 @@
         "type": "github"
       }
     },
-    "nixpkgs-2009": {
-      "locked": {
-        "lastModified": 1600181811,
-        "narHash": "sha256-ZUjQDAZWaWG+XEeNeO51sciwubEFdllbIpH4jJrfDxo=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "3b8ddb2f1ee6f4c0794fb6dfbd273c3599492b76",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-20.09",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs",
-        "nixpkgs-2009": "nixpkgs-2009"
+        "nixpkgs": "nixpkgs"
       }
     }
   },
