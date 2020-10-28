@@ -1,22 +1,10 @@
 { config, pkgs, ... }:
-let
-  vboxpkgs = pkgs.fetchFromGitHub {
-    owner = "bachp";
-    repo = "nixpkgs";
-    rev = "aaf75813cd7599c5e0939d5ac905cc281ab6e7db";
-    sha256 = pkgs.lib.fakeSha256;
-  };
-in
+
 {
   imports = [
     # <nixpkgs/nixos/modules/installer/virtualbox-demo.nix>
   ];
 
-  nixpkgs.overlays = [
-    (self: super: {
-      virtualboxGuestAdditions = self.callPackage (vboxpkgs.outPath + "/pkgs/applications/virtualization/virtualbox/guest-additions") { };
-    })
-  ];
   nixpkgs.config.allowUnfree = true;
 
   users.users.demo =
