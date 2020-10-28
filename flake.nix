@@ -10,13 +10,7 @@
         buildInputs = [ pkgs.gnumake pkgs.nixpkgs-fmt ];
       };
 
-    nixosModules = {
-      cachix = ./cachix.nix;
-      flake = ./modules/flake.nix;
-      intel = ./modules/intel.nix;
-      k3s = ./modules/k3s.nix;
-      kubernetes = ./modules/kubernetes.nix;
-    };
+    nixosModules = import ./modules;
 
     nixosConfigurations = {
       tux-nixos = nixpkgs.lib.nixosSystem (import ./hosts/tux-nixos.nix { inherit self nixpkgs; });
