@@ -1,11 +1,11 @@
 { nixpkgs, self, ... }@inputs:
-
 let
   inherit (nixpkgs.lib) nixosSystem;
-in nixpkgs.lib.fold
+in
+nixpkgs.lib.fold
   (p: attrs:
     attrs // {
       "${p}" = nixosSystem (import "${self}/hosts/${p}.nix" inputs);
     })
-  {}
+{ }
   [ "nixos" "tux-nixos" ]

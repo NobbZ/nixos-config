@@ -12,7 +12,8 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = lib.mkForce
-    { device = "/dev/disk/by-uuid/c1e4f201-3c0a-4d88-bd7c-fcd908412df2";
+    {
+      device = "/dev/disk/by-uuid/c1e4f201-3c0a-4d88-bd7c-fcd908412df2";
       fsType = "ext4";
     };
 

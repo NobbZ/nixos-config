@@ -9,6 +9,6 @@
 
       ./hardware/nixos.nix
       nixpkgs.nixosModules.notDetected
-      ({modulesPath, ...}: { imports = [ (modulesPath + "/installer/virtualbox-demo.nix") ]; })
+      ({ modulesPath, ... }: { imports = [ (modulesPath + "/installer/virtualbox-demo.nix") ]; })
     ];
 }

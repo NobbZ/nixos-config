@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 let
   vboxpkgs = pkgs.fetchFromGitHub {
     owner = "bachp";
@@ -15,13 +14,14 @@ in
 
   nixpkgs.overlays = [
     (self: super: {
-      virtualboxGuestAdditions = self.callPackage (vboxpkgs.outPath + "/pkgs/applications/virtualization/virtualbox/guest-additions") {};
+      virtualboxGuestAdditions = self.callPackage (vboxpkgs.outPath + "/pkgs/applications/virtualization/virtualbox/guest-additions") { };
     })
   ];
   nixpkgs.config.allowUnfree = true;
 
   users.users.demo =
-    { isNormalUser = true;
+    {
+      isNormalUser = true;
       description = "Demo user account";
       extraGroups = [ "wheel" "docker" ];
       uid = 1000;
@@ -69,37 +69,37 @@ in
   services.zerotierone.joinNetworks = [ "8286ac0e4768c8ae" ];
 
   # Let demo build as a trusted user.
-# nix.trustedUsers = [ "demo" ];
+  # nix.trustedUsers = [ "demo" ];
 
-# Mount a VirtualBox shared folder.
-# This is configurable in the VirtualBox menu at
-# Machine / Settings / Shared Folders.
-# fileSystems."/mnt" = {
-#   fsType = "vboxsf";
-#   device = "nameofdevicetomount";
-#   options = [ "rw" ];
-# };
+  # Mount a VirtualBox shared folder.
+  # This is configurable in the VirtualBox menu at
+  # Machine / Settings / Shared Folders.
+  # fileSystems."/mnt" = {
+  #   fsType = "vboxsf";
+  #   device = "nameofdevicetomount";
+  #   options = [ "rw" ];
+  # };
 
-# By default, the NixOS VirtualBox demo image includes SDDM and Plasma.
-# If you prefer another desktop manager or display manager, you may want
-# to disable the default.
-# services.xserver.desktopManager.plasma5.enable = lib.mkForce false;
-# services.xserver.displayManager.sddm.enable = lib.mkForce false;
+  # By default, the NixOS VirtualBox demo image includes SDDM and Plasma.
+  # If you prefer another desktop manager or display manager, you may want
+  # to disable the default.
+  # services.xserver.desktopManager.plasma5.enable = lib.mkForce false;
+  # services.xserver.displayManager.sddm.enable = lib.mkForce false;
 
-# Enable GDM/GNOME by uncommenting above two lines and two lines below.
-# services.xserver.displayManager.gdm.enable = true;
-# services.xserver.desktopManager.gnome3.enable = true;
+  # Enable GDM/GNOME by uncommenting above two lines and two lines below.
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome3.enable = true;
 
-# Set your time zone.
-# time.timeZone = "Europe/Amsterdam";
+  # Set your time zone.
+  # time.timeZone = "Europe/Amsterdam";
 
-# List packages installed in system profile. To search, run:
-# \$ nix search wget
+  # List packages installed in system profile. To search, run:
+  # \$ nix search wget
   # environment.systemPackages = with pkgs; [
   #   nixFlakes
   # ];
 
-# Enable the OpenSSH daemon.
+  # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
   swapDevices = [{
