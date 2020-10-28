@@ -22,6 +22,6 @@ jobs:
           experimental-features = nix-command flakes
     - uses: cachix/cachix-action@v6
       with:
-        name: mycache
+        name: NobbZ
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
     - run: nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel -L
