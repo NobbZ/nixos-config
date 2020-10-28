@@ -4,4 +4,5 @@
   intel = ./intel.nix;
   k3s = ./k3s.nix;
   kubernetes = ./kubernetes.nix;
+  virtualbox-demo = ./virtualbox-demo.nix;
 }
