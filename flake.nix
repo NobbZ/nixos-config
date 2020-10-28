@@ -9,9 +9,6 @@
 
     nixosModules = import ./modules;
 
-    nixosConfigurations = import ./hosts inputs; # with nixpkgs.lib; {
-    #   tux-nixos = nixosSystem (import ./hosts/tux-nixos.nix inputs);
-    #   nixos = nixosSystem (import ./hosts/nixos.nix inputs);
-    # };
+    nixosConfigurations = import ./hosts inputs;
   };
 }
