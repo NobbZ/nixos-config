@@ -9,6 +9,7 @@ jobs:
     strategy:
       matrix:
         host:
+        - delly-nixos
         - nixos
         - tux-nixos
     steps:
