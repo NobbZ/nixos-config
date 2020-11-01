@@ -8,4 +8,8 @@ nixpkgs.lib.fold
       "${p}" = nixosSystem (import "${self}/hosts/${p}.nix" inputs);
     })
 { }
-  [ "nixos" "tux-nixos" ]
+  [
+    "delly-nixos"
+    "nixos"
+    "tux-nixos"
+  ]
