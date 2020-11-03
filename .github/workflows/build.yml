@@ -1,7 +1,7 @@
 name: "builds"
 
 on:
-  pull_requests:
+  pull_request:
   push:
 
 jobs:
