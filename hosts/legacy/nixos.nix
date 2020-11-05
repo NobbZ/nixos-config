@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ self, config, pkgs, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -63,7 +63,7 @@
     size = 2048 * 4;
   }];
 
-  nix.distributedBuilds = true;
+  nix.distributedBuilds = false;
   nix.buildMachines = [
     {
       hostName = "builder-zerotier";
