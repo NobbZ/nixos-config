@@ -14,6 +14,9 @@ in
       extraConfig = ''
         ;; prepare magit use from shell
         (global-git-commit-mode)
+
+        ;; let magit autorefresh on file save within emacs
+        (add-hook 'after-save-hook 'magit-after-save-refresh-status t)
       '';
     };
 
