@@ -7,9 +7,9 @@ in
     enable = lib.mkEnableOption "Enable support for C language";
   };
 
-  options.languages.cpp = {
-    enable = lib.mkEnableOption "Enable support for C++ language";
-  };
+  # options.languages.cpp = {
+  #   enable = lib.mkEnableOption "Enable support for C++ language";
+  # };
 
   config = lib.mkIf enabled {
     programs.emacs.extraPackages = ep: [ ep.cmake-mode ];
