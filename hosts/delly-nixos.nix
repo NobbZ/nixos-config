@@ -7,7 +7,7 @@
     # xsession.windowManager.awesome.terminalEmulator =
     #   "${pkgs.lxterminal}/bin/lxterminal";
 
-    enabledLanguages = [ "clojure" "nix" "elixir" "erlang" "python" ];
+    enabledLanguages = [ "cpp" "clojure" "nix" "elixir" "erlang" "python" ];
 
     languages.python.useMS = true;
 
