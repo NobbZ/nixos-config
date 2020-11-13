@@ -10,6 +10,7 @@ in
 {
   imports = [
     ./c
+    ./c++
     ./clojure
     ./elixir
     ./erlang
