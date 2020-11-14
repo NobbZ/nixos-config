@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
-let cfg = config.profiles.base;
+let
+  cfg = config.profiles.base;
 
+  dag = lib.hm.dag;
 in
 {
   options.profiles.base = {
@@ -31,6 +33,55 @@ in
       htop.enable = true;
       advancedCopy.enable = true;
       openshift.enable = true;
+
+      ssh = {
+        enable = true;
+        compression = true;
+
+        matchBlocks = {
+          "*.nobbz.dev" = {
+            identityFile = "~/.ssh/nobbz_dev";
+            user = "root";
+          };
+
+          "gitlab.com" = {
+            identityFile = "~/.ssh/gitlab";
+          };
+
+          "github.com" = {
+            identityFile = "~/.ssh/github";
+          };
+
+          "*.actum.internal" = {
+            user = "norbert.melzer";
+            identityFile = "~/.ssh/actum-gitlab";
+          };
+
+          "*.vcp.internal" = {
+            user = "cloudseeds";
+            identityFile = "~/.ssh/vogel";
+          };
+
+          "deploy-vogel.custpoc.cloudseeds.de" = dag.entryBefore [
+            "*.custpoc.cloudseeds.de"
+            "*.cloudseeds.de"
+          ]
+            {
+              user = "cloudseeds";
+              identityFile = "~/.ssh/vogel";
+            };
+
+          "*.custpoc.cloudseeds.de" = dag.entryBefore [ "*.cloudseeds.de" ] {
+            user = "norbert.melzer";
+            identityFile = "~/.ssh/actum-gitlab";
+          };
+
+          "*.cloudseeds.de" = {
+            user = "norbert.melzer";
+            identityFile = "~/.ssh/cloudseeds";
+          };
+        };
+      };
 
       emacs = {
         enable = true;
