@@ -16,7 +16,6 @@ in
     };
 
     programs.emacs.extraConfig = ''
-      (add-to-list 'exec-path "${pkgs.rls}/bin")
       (setq lsp-rust-rls-server-command "rls")
 
       (add-hook 'rust-mode-hook
