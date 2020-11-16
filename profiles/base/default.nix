@@ -43,7 +43,7 @@ in
 
         matchBlocks = {
           "*.adoring_suess.zerotier" = dag.entryAfter zerotierHosts {
-            identityFile = "~/.ssh/id_rsa;";
+            identityFile = "~/.ssh/id_rsa";
             user = "nmelzer";
           };
 
