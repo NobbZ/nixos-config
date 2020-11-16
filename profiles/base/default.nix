@@ -86,6 +86,10 @@ in
               identityFile = "~/.ssh/vogel";
             };
 
+          "repo.cloudseeds.de" = dag.entryBefore [ "*.cloudseeds.de" ] {
+            identityFile = "~/.ssh/id_rsa";
+          };
+
           "*.custpoc.cloudseeds.de" = dag.entryBefore [ "*.cloudseeds.de" ] {
             user = "norbert.melzer";
             identityFile = "~/.ssh/actum-gitlab";
