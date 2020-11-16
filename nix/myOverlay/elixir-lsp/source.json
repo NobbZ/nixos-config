@@ -1,7 +1,7 @@
 {
     "owner": "elixir-lsp",
     "repo": "elixir-ls",
-    "rev": "63e95d46ff6d360cd57c035efc8f54ca46f8ea39",
-    "sha256": "sha256-7N36ZLiyHrBLUgjrkB4F+uT+JNyY/5S70G+oJUC2p1U=",
+    "rev": "3acc1fdb2ef2c1167935f7b6e74300e039200ec5",
+    "sha256": "sha256-CtmbZtIlkySlvznoiK/IBzypDa5tvwfwHCNjjqA0zBA=",
     "fetchSubmodules": true
 }
