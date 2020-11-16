@@ -3,6 +3,9 @@ let
   cfg = config.profiles.base;
 
   dag = lib.hm.dag;
+
+  # TODO: make these a bit more nice, so that repeating the hosts and individual config isn't necessary.
+  zerotierHosts = [ "delly-nixos.adoring_suess.zerotier" "tux-nixos.adoring_suess.zerotier" "nixos.adoring_suess.zerotier" ];
 in
 {
   options.profiles.base = {
@@ -39,6 +42,18 @@ in
         compression = true;
 
         matchBlocks = {
+          "*.adoring_suess.zerotier" = dag.entryAfter zerotierHosts {
+            identityFile = "~/.ssh/id_rsa;";
+            user = "nmelzer";
+          };
+
+          "delly-nixos.adoring_suess.zerotier".hostname = "172.24.199.101";
+          "tux-nixos.adoring_suess.zerotier".hostname = "172.24.198.250";
+          "nixos.adoring_suess.zerotier" = {
+            hostname = "172.24.231.199";
+            user = "demo";
+          };
+
           "*.nobbz.dev" = {
             identityFile = "~/.ssh/nobbz_dev";
             user = "root";
