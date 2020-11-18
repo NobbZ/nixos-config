@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, nixpkgs, ... }:
 
 {
   nix = {
@@ -6,6 +6,8 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+
+    registry.nixpkgs.flake = nixpkgs;
   };
 
   environment.systemPackages = [ pkgs.nixFlakes ];
