@@ -8,7 +8,8 @@
   imports = [ ];
 
   nixpkgs.config.allowUnfreePredicate = (pkg: builtins.elem (lib.getName pkg) [
-    "hplip" "zerotierone"
+    "hplip"
+    "zerotierone"
   ]);
   nix.autoOptimiseStore = true;
   nix.buildCores = 1;

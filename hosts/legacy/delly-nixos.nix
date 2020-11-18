@@ -7,7 +7,7 @@
 {
   nixpkgs.config.allowUnfree = true;
 
-  imports =    [    ];
+  imports = [ ];
 
   nix.useSandbox = false;
   nix.autoOptimiseStore = true;
