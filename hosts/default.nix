@@ -5,7 +5,9 @@ in
 nixpkgs.lib.fold
   (p: attrs:
     attrs // {
-      "${p}" = nixosSystem (import "${self}/hosts/${p}.nix" inputs);
+      "${p}" = nixosSystem ({
+        extraArgs = inputs;
+      } // (import "${self}/hosts/${p}.nix" inputs));
     })
 { }
   [
