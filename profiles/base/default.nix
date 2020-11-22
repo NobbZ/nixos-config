@@ -30,11 +30,13 @@ in
     };
 
     programs = {
-      home-manager.enable = true;
-      bat.enable = true;
-      exa.enable = true;
-      htop.enable = true;
       advancedCopy.enable = true;
+      bat.enable = true;
+      direnv.enable = true;
+      exa.enable = true;
+      home-manager.enable = true;
+      htop.enable = true;
+      jq.enable = true;
       openshift.enable = true;
 
       ssh = {
@@ -106,8 +108,6 @@ in
         enable = true;
         package = pkgs.emacsGit;
       };
-
-      direnv.enable = true;
 
       tmux = {
         enable = true;

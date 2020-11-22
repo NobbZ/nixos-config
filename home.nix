@@ -22,11 +22,6 @@ in
   profiles.base.enable = true;
   fonts.fontconfig.enable = true;
 
-  programs = {
-    direnv.enable = true;
-    jq.enable = true;
-  };
-
   services = { lorri.enable = true; };
   systemd.user = {
     sessionVariables = { NIX_PATH = nixPath; };
