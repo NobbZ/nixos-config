@@ -25,24 +25,6 @@ in
   programs = {
     direnv.enable = true;
     jq.enable = true;
-
-    irssi = {
-      enable = true;
-      networks = {
-        freenode = {
-          nick = "NobbZ";
-          server = {
-            address = "chat.freenode.net";
-            port = 6697;
-            autoConnect = true;
-          };
-          channels = {
-            nixos.autoJoin = true;
-            home-manager.autoJoin = true;
-          };
-        };
-      };
-    };
   };
 
   services = { lorri.enable = true; };
