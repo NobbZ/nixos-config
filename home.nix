@@ -1,3 +1,4 @@
+{ lib, ... }:
 let
   overlays = import ./nix;
   pkgs = import <nixpkgs> { overlays = overlays; };
