@@ -13,7 +13,7 @@ in
         tag = "Setup Agda";
         comments = [ ];
         requires = [ ];
-        packageRequires = ep: [ ep.agda2-mode ];
+        packageRequires = ep: with ep.melpaStablePackages; [ agda2-mode eri annotation ];
         code = ''
           (load-library "agda2-mode")
         '';
