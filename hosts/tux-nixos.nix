@@ -9,7 +9,16 @@ in
   config = {
     activeProfiles = [ "browsing" "development" "home-office" ];
 
-    enabledLanguages = [ "cpp" "elixir" "erlang" "nix" "python" "rust" ]; # "ocaml"
+    enabledLanguages = [
+      "agda"
+      "cpp"
+      "elixir"
+      "erlang"
+      "nix"
+      # "ocaml"
+      "python"
+      "rust"
+    ];
 
     languages.python.useMS = true;
 
