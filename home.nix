@@ -8,13 +8,16 @@ let
     "nixos-config=/etc/nixos/configuration.nix"
     "/nix/var/nix/profiles/per-user/root/channels"
   ];
+
+  optionalImport = path:
+    lib.optional (builtins.pathExists path) path;
 in
 {
   nixpkgs.overlays = overlays;
   nixpkgs.config.allowUnfree = true;
 
   imports = [ ./modules ./profiles ./hosts ]
-    ++ (if builtins.pathExists ./secrets.nix then [ ./secrets.nix ] else [ ]);
+    ++ optionalImport ./secrets.nix;
 
   profiles.base.enable = true;
   fonts.fontconfig.enable = true;
