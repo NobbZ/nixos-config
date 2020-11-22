@@ -16,7 +16,7 @@ in
     programs.emacs.splashScreen = false;
 
     home.packages =
-      [ nixos.insync keepassWithPlugins pkgs.keybase-gui pkgs.minikube pkgs.lutris pkgs.steam ];
+      [ nixos.insync pkgs.handbrake keepassWithPlugins pkgs.keybase-gui pkgs.minikube pkgs.lutris pkgs.steam ];
 
     programs.obs-studio.enable = true;
 
