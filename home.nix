@@ -64,6 +64,7 @@ in
       exercism
       tmate
       element-desktop
+      powershell
 
       (julia_13.overrideAttrs (oa: { doCheck = false; }))
 
