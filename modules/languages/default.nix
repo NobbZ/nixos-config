@@ -9,6 +9,7 @@ let
 in
 {
   imports = [
+    ./agda
     ./c
     ./c++
     ./clojure
