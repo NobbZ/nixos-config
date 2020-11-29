@@ -9,7 +9,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages =
-      [ pkgs.openshift (lib.setPrio 0 pkgs.kubectl) pkgs.kubernetes-helm ];
+      [ pkgs.sops pkgs.openshift (lib.setPrio 0 pkgs.kubectl) pkgs.kubernetes-helm ];
 
     programs.zsh.initExtra = ''
       # Enable autocomplete for oc, kubectl and helm

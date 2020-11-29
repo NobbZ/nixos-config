@@ -20,6 +20,7 @@ in
     };
 
     home.keyboard.layout = "de";
+    home.packages = [ pkgs.hydra-check ];
 
     xsession = {
       enable = true;

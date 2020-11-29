@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "36366eca0bc8b3a4f289d5e2724a49f920c2e96f",
-        "sha256": "1q4wifjzhm9amir94w891rvq98vq1kc6jgnwzn4j845w0yzcb17s",
+        "rev": "19930a3a7eca00f27de08cf9f1cdee249acbdc14",
+        "sha256": "1icxmisv2azm2yjz88sh233pzlcc9yzlh3ln3gja2c87i4j9sdb6",
         "type": "tarball",
-        "url": "https://github.com/nix-community/emacs-overlay/archive/36366eca0bc8b3a4f289d5e2724a49f920c2e96f.tar.gz",
+        "url": "https://github.com/nix-community/emacs-overlay/archive/19930a3a7eca00f27de08cf9f1cdee249acbdc14.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {
@@ -41,10 +41,10 @@
         "homepage": "",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e111e9d4c0570486f990f8000d91694075b7cea1",
-        "sha256": "0fll5nsx8bwhlv3zkg1zdr76kvcxcriq4d7wgl6lbzn91xybyl2n",
+        "rev": "9da0758c1cd4724cf09fd48fee11413f88c48c8d",
+        "sha256": "1n8wy4a5hfrx3fqxlxkwnganb5y1l450v36255jj58j7fkcys6ss",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/e111e9d4c0570486f990f8000d91694075b7cea1.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/9da0758c1cd4724cf09fd48fee11413f88c48c8d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-unstable": {
@@ -53,10 +53,10 @@
         "homepage": "",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "1121b2259b7d66e8c7c5131d1588a48c80ef9e58",
-        "sha256": "0w2i4byhfn8c9lq8a97xnix5alfandqkbyvh6lbpr9zrm63lmyip",
+        "rev": "6625284c397b44bc9518a5a1567c1b5aae455c08",
+        "sha256": "1w0czzv53sg35gp7sr506facbmzd33jm34p6cg23fb9kz5rf5c89",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/1121b2259b7d66e8c7c5131d1588a48c80ef9e58.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/6625284c397b44bc9518a5a1567c1b5aae455c08.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
