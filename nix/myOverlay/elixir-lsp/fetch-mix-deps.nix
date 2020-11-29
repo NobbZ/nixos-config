@@ -18,6 +18,7 @@ stdenvNoCC.mkDerivation {
     export MIX_REBAR3="${rebar3}/bin/rebar3"
     export REBAR_GLOBAL_CONFIG_DIR="$PWD/rebar3"
     export REBAR_CACHE_DIR="$PWD/rebar3.cache"
+    # mix local.rebar --force
     mix local.hex --force
   '';
 

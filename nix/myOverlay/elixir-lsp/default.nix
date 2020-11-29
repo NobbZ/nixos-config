@@ -1,10 +1,10 @@
 { sources, stdenv, elixir, rebar3, hex, callPackage, git, cacert, fetchFromGitHub }:
 let
-  fetchMixDeps = callPackage ./fetch-mix-deps.nix { };
+  fetchMixDeps = callPackage ./fetch-mix-deps.nix { inherit rebar3; };
 in
 stdenv.mkDerivation rec {
   name = "elixir-ls";
-  version = "0.6.0"; # TODO: get this from the JSON
+  version = "0.6.2"; # TODO: get this from the JSON
 
   nativeBuildInputs = [ elixir hex git deps cacert ];
 
