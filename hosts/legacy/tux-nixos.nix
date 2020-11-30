@@ -119,7 +119,15 @@
 
   services.zfs = {
     autoScrub.enable = true;
-    autoSnapshot.enable = true;
+    autoSnapshot = {
+      enable = true;
+      flags = "-k -p -u";
+      frequent = 6 * 4; # 6 hours!
+      hourly = 12;
+      daily = 3;
+      weekly = 4;
+      monthly = 2;
+    };
   };
 
   programs = {

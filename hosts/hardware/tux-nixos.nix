@@ -48,6 +48,18 @@
       fsType = "zfs";
     };
 
+  fileSystems."/etc/rancher" =
+    {
+      device = "/dev/rpool/disk/etc-rancher-part1";
+      fsType = "ext4";
+    };
+
+  fileSystems."/var/lib/rancher" =
+    {
+      device = "/dev/rpool/disk/var-lib-rancher-part1";
+      fsType = "ext4";
+    };
+
   swapDevices =
     [
       { device = "/dev/disk/by-uuid/9fc8f2be-fbbc-4ae1-b171-5f26facd6a29"; }
