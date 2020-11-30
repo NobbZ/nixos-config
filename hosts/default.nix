@@ -1,17 +1,14 @@
 { nixpkgs, self, ... }@inputs:
 let
   inherit (nixpkgs.lib) nixosSystem;
+
+  mkSystem = name: nixosSystem:
+    nixosSystem ({
+      extraArgs = inputs;
+    } // (import (./. + "/${name}.nix") inputs));
 in
-nixpkgs.lib.fold
-  (p: attrs:
-    attrs // {
-      "${p}" = nixosSystem ({
-        extraArgs = inputs;
-      } // (import "${self}/hosts/${p}.nix" inputs));
-    })
-{ }
-  [
-    "delly-nixos"
-    "nixos"
-    "tux-nixos"
-  ]
+{
+  delly-nixos = mkSystem "delly-nixos" nixpkgs.lib.nixosSystem;
+  tux-nixos = mkSystem "tux-nixos" nixpkgs.lib.nixosSystem;
+  nixos = mkSystem "nixos" inputs.nixpkgs-unstable.lib.nixosSystem;
+}
