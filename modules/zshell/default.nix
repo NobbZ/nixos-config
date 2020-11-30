@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.programs.zshell;
   aliasesStr = lib.concatStringsSep "\n"

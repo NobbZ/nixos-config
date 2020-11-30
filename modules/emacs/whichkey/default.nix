@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 with lib;
 let
   cfg = config.programs.emacs.whichkey;
   enabled = config.programs.emacs.enable;
 
-  keyReplacementType = types.listOf (types.submodule ({ config, ... }: {
+  keyReplacementType = types.listOf (types.submodule ({ ... }: {
     options = {
       keys = lib.mkOption {
         type = types.str;

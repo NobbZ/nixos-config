@@ -1,4 +1,4 @@
-{ sources, stdenvNoCC, xsel }:
+{ stdenvNoCC, xsel }:
 let
   source = builtins.fromJSON (builtins.readFile ./rofi-unicode.json);
 in

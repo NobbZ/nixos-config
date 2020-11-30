@@ -71,7 +71,7 @@ in
     };
 
     localPackages = lib.mkOption {
-      type = lib.types.attrsOf (lib.types.submodule ({ name, config, ... }: {
+      type = lib.types.attrsOf (lib.types.submodule ({ ... }: {
         options = {
           tag = lib.mkOption { type = lib.types.str; };
           comments = lib.mkOption { type = lib.types.listOf lib.types.str; };

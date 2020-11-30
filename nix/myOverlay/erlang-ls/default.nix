@@ -1,4 +1,4 @@
-{ beamPackages, rebar3Relx, sources, fetchFromGitHub, git, cacert, pkgs }:
+{ rebar3Relx, fetchFromGitHub, git, cacert }:
 let
   source = builtins.fromJSON (builtins.readFile ./source.json);
 in

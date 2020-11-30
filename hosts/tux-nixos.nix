@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 let
   nixos = import <nixos> { config.allowUnfree = true; };
 

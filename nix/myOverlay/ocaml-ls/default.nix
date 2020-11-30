@@ -1,4 +1,4 @@
-{ pkgs, sources, fetchFromGitHub, stdenv, lib, ocaml-ng, ... }:
+{ sources, fetchFromGitHub, ocaml-ng, ... }:
 let
   ocamlPackages = ocaml-ng.ocamlPackages_4_10;
 

@@ -1,4 +1,4 @@
-{ sources, stdenv, elixir, rebar3, hex, callPackage, git, cacert, fetchFromGitHub }:
+{ stdenv, elixir, rebar3, hex, callPackage, git, cacert, fetchFromGitHub }:
 let
   fetchMixDeps = callPackage ./fetch-mix-deps.nix { inherit rebar3; };
 in

@@ -1,4 +1,4 @@
-{ pkgs, stdenv, fetchurl, fetchpatch, ... }:
+{ stdenv, fetchurl, fetchpatch, ... }:
 let upstream = "coreutils";
 in
 stdenv.mkDerivation rec {
