@@ -1,7 +1,7 @@
 { lib, ... }:
 let
   overlays = import ./nix;
-  pkgs = import <nixpkgs> { overlays = overlays; };
+  pkgs = import <nixpkgs> { inherit overlays; };
 
   nixPath = builtins.concatStringsSep ":" [
     "nixpkgs=${<nixpkgs>}"

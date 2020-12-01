@@ -45,11 +45,8 @@ let
 
 in
 {
-  emacs.generatePackage = name: tag: comments: requires: code:
+  emacs.generatePackage = name: tagLine: commentLines: requireList: code:
     generatePackage {
-      inherit name code;
-      tagLine = tag;
-      commentLines = comments;
-      requireList = requires;
+      inherit name code tagLine commentLines requireList;
     };
 }
