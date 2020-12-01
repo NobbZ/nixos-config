@@ -20,12 +20,12 @@ ifneq ($(LOCAL),0)
 endif
 
 build:
-	ln -s $(HOSTNAME).nix hosts/default.nix
+	ln -fs $(HOSTNAME).nix hosts/default.nix
 	nix-shell --run "home-manager ${HM_VERBOSE} $(OPTIONS) build"
 	rm hosts/default.nix
 
 switch:
-	ln -s $(HOSTNAME).nix hosts/default.nix
+	ln -fs $(HOSTNAME).nix hosts/default.nix
 	nix-shell --run "home-manager ${HM_VERBOSE} $(OPTIONS) switch"
 	rm hosts/default.nix
 
