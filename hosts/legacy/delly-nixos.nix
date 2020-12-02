@@ -78,7 +78,6 @@
     firefox
     rsync
     chromium
-    opera
     git
     gparted
   ];
