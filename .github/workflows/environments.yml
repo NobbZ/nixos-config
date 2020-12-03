@@ -25,7 +25,7 @@ jobs:
     - uses: cachix/install-nix-action@v12
     - uses: cachix/cachix-action@v8
       with: { name: nobbz, signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}' }
-    - run: nix-shell --run 'nix-build -E "with import <nixpkgs> { overlays = [ (import ./overlays.nix) ]; }" ${{ matrix.package }}'
+    - run: nix-shell --run 'nix-build -E "(import <nixpkgs> { overlays = import ./overlays.nix; }).${{ matrix.package }}"'
   
   environment:
     name: Build for ${{ matrix.hostname }}
