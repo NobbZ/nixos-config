@@ -14,6 +14,7 @@ in
       "cpp"
       "elixir"
       "erlang"
+      "go"
       "nix"
       # "ocaml"
       "python"
