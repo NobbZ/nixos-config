@@ -18,7 +18,7 @@ in
 pkgs.mkShell {
   name = "home-manager-shell";
 
-  buildInputs = [ git niv gnumake lefthook home-manager nixpkgs-fmt nix-prefetch-git nix-prefetch-github ];
+  buildInputs = [ git niv gnumake lefthook home-manager nixpkgs-fmt nix-prefetch-git nix-prefetch-github nix-linter ];
 
   NIX_PATH =
     "nixpkgs=${unstable}:nixos=${stable}:home-manager=${home-manager}";
