@@ -29,6 +29,7 @@ jobs:
   
   environment:
     name: Build for ${{ matrix.hostname }}
+    needs: overlays
     runs-on: ubuntu-latest
     strategy:
       matrix:
