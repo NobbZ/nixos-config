@@ -19,7 +19,8 @@ let
     let
       generated = "This file is generated! DO NOT CHANGE!";
       comments = builtins.concatStringsSep "\n"
-        (builtins.map (l: if l == "" then "" else ";; ${l}") commentLines);
+        (builtins.map (l: if l == "" then "" else ";; ${l}")
+          ([ generated ] ++ commentLines));
     in
     ''
       ;;; ${name} --- ${tagLine}

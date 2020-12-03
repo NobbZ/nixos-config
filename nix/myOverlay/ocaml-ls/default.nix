@@ -1,7 +1,5 @@
-{ sources, fetchFromGitHub, ocaml-ng, ... }:
+{ sources, fetchFromGitHub, ... }:
 let
-  ocamlPackages = ocaml-ng.ocamlPackages_4_10;
-
   ocamlLspSourceSha = "1v9n4frag6igrqg774crh56vjjabmkkjwc2p6pyrzsyiq8b05w3l";
 
   inherit (ocamlPackages)

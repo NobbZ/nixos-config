@@ -1,7 +1,5 @@
 { config, lib, ... }:
 let
-  cfg = config.languages;
-
   langsEnabler =
     let reducer = l: r: { "${r}".enable = true; } // l;
     in builtins.foldl' reducer { } config.enabledLanguages;

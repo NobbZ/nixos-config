@@ -2,22 +2,8 @@
 let
   emacsEnabled = config.programs.emacs.enable;
   cfg = config.programs.emacs;
-  beaconEnabled = cfg.packages.beacon.enable;
-  finalEmacs = config.programs.emacs.finalPackage;
-  emacsClient = "${finalEmacs}/bin/emacsclient";
-  emacsServer = "${finalEmacs}/bin/emacs";
 
   bool2Lisp = b: if b then "t" else "nil";
-
-  lisps = lib.attrsets.mapAttrs'
-    (k: v: {
-      name = ".emacs.d/lisp/${k}.el";
-      value = {
-        text = pkgs.nobbzLib.emacs.generatePackage k v.tag v.comments v.requires
-          v.code;
-      };
-    })
-    cfg.localPackages;
 
   confPackages =
     let
@@ -160,6 +146,6 @@ in
           "Initialises emacs configuration" [ ] [ ]
           cfg.extraConfig;
       };
-    }; # // lisps;
+    };
   };
 }

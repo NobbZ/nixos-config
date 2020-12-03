@@ -1,7 +1,5 @@
 self: super:
 let
-  erlLib = self.callPackage <nixpkgs/pkgs/development/beam-modules/lib.nix> { };
-
   keepasspkgs = self.fetchFromGitHub {
     owner = "wnklmnn";
     repo = "nixpkgs";
