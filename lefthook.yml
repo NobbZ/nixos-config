@@ -4,3 +4,8 @@ pre-commit:
     formatting:
       glob: "*.nix"
       run: nixpkgs-fmt --check {all_files}
+
+    linting:
+      glob: "*.nix"
+      exclude: nix/sources.nix
+      run: nix-linter {all_files}
