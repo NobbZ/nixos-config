@@ -4,6 +4,9 @@ on:
   workflow_run:
     workflows:
     - "preflight"
+    types:
+    - completed
+    - requested
 
 jobs:
   builds:
