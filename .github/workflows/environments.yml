@@ -1,16 +1,14 @@
-name: "build the environments"
+name: "build"
 
 on:
-  workflow_run:
-    workflows:
-    - "preflight"
-    types:
-    - completed
-    - requested
+  push:
+    branches:
+    - master
+  pull_request:
 
 jobs:
-  builds:
-    name: Run check ${{ matrix.hostname }}
+  environment:
+    name: Build for ${{ matrix.hostname }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
