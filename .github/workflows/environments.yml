@@ -3,7 +3,7 @@ name: "build the environments"
 on:
   workflow_run:
     workflows:
-    - "Preflight – Linting"
+    - "preflight"
 
 jobs:
   builds:
