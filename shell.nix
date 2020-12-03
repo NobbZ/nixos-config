@@ -13,7 +13,7 @@ let
 
   lefthook = pkgs.lefthook.override { buildGoModule = pkgs.buildGo114Module; };
 
-  inherit (pkgs) git gnumake niv nixpkgs-fmt nix-prefetch-git nix-prefetch-github;
+  inherit (pkgs) git gnumake niv nixpkgs-fmt nix-prefetch-git nix-prefetch-github nix-linter;
 in
 pkgs.mkShell {
   name = "home-manager-shell";
