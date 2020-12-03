@@ -17,7 +17,6 @@ jobs:
         - elixir-lsp
         - erlang-ls
         - keyleds
-        - ocaml-lsp
         - rofi-unicode
         - keepass
     steps:
