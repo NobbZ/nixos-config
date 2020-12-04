@@ -125,9 +125,9 @@
   # services.keybase.enable = true;
 
   virtualisation = {
-    # docker = {
-    #   enable = true;
-    # };
+    docker = {
+      enable = true;
+    };
 
     # virtualbox.host.enable = true;
   };

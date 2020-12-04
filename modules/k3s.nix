@@ -5,7 +5,7 @@
     enable = true;
     package = unstable.legacyPackages.x86_64-linux.k3s;
     role = "server";
-    docker = false;
+    docker = true;
     extraFlags = "--write-kubeconfig-mode 644 --disable traefik --default-local-storage-path /opt/local-path-provisioner";
   };
 
