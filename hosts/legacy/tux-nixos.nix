@@ -118,6 +118,7 @@
   services.transmission.enable = true;
 
   services.zfs = {
+    trim.enable = false;
     autoScrub.enable = true;
     autoSnapshot = {
       enable = true;
