@@ -132,6 +132,9 @@
     # virtualbox.host.enable = true;
   };
 
+  programs.gc.enable = true;
+  programs.gc.maxAge = "30d";
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
     nmelzer = {
