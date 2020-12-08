@@ -127,6 +127,7 @@ in
         ep.yaml-mode
         ep.adoc-mode
         ep.k8s-mode
+        ep.buttercup
 
         # ep.bazel-mode
 
