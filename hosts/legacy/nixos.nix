@@ -77,6 +77,8 @@
 
   services.openssh.enable = true;
 
+  programs.gc.enable = true;
+
   swapDevices = [{
     device = "/var/swap-2";
     size = 2048 * 4;
