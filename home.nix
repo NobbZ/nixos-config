@@ -22,10 +22,8 @@ in
   profiles.base.enable = true;
   fonts.fontconfig.enable = true;
 
-  services = { lorri.enable = true; };
   systemd.user = {
     sessionVariables = { NIX_PATH = nixPath; };
-    services.lorri.Service.Environment = [ "NIX_PATH=${nixPath}" ];
   };
 
   manual.html.enable = true;
