@@ -45,7 +45,7 @@ in
       element-desktop
       powershell
 
-      (julia_13.overrideAttrs (_: { doCheck = false; }))
+      julia_15
 
       fira-code
     ];
