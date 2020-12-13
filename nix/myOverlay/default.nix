@@ -26,4 +26,11 @@ rec {
       { };
 
   nobbzLib = (import ./lib);
-}
+} //
+(super.lib.foldr
+  (v: acc:
+    acc // {
+      "julia_${v}" = super."julia_${v}".overrideAttrs (_: { doCheck = false; });
+    }))
+  { }
+  [ "15" "13" "10" ]
