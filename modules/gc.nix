@@ -5,7 +5,7 @@
     enable = lib.mkEnableOption "enable GC tool";
 
     maxAge = lib.mkOption {
-      type = lib.types.string;
+      type = lib.types.str;
       default = "180d";
     };
   };
