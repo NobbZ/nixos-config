@@ -1,4 +1,4 @@
-{ self, config, pkgs, ... }:
+{ self, config, pkgs, nixpkgs, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -65,6 +65,7 @@
 
   services.zerotierone.enable = true;
   services.zerotierone.joinNetworks = [ "8286ac0e4768c8ae" ];
+  services.zerotierone.package = (import nixpkgs { config.allowUnfree = true; system = pkgs.system; }).zerotierone;
 
   # Mount a VirtualBox shared folder.
   # This is configurable in the VirtualBox menu at
