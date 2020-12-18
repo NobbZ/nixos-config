@@ -50,8 +50,24 @@ in
             user = "nmelzer";
           };
 
-          "delly-nixos.adoring_suess.zerotier".hostname = "172.24.199.101";
-          "tux-nixos.adoring_suess.zerotier".hostname = "172.24.198.250";
+          "delly-nixos.adoring_suess.zerotier" = {
+            hostname = "172.24.199.101";
+          };
+          "tux-nixos.adoring_suess.zerotier" = {
+            hostname = "172.24.198.250";
+            localForwards = [
+              {
+                bind.port = 60080;
+                host.address = "fritz.box";
+                host.port = 80;
+              }
+              {
+                bind.port = 61080;
+                host.address = "192.168.178.2";
+                host.port = 80;
+              }
+            ];
+          };
           "nixos.adoring_suess.zerotier" = {
             hostname = "172.24.231.199";
             user = "demo";
