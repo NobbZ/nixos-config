@@ -134,6 +134,7 @@
   programs = {
     # steam.enable = true;
     zsh.enable = true;
+    zsh.enableCompletion = false;
   };
 
   hardware.opengl.driSupport32Bit = true;
