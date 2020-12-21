@@ -146,6 +146,8 @@
       storageDriver = "zfs";
     };
 
+    containers.enable = true;
+
     libvirtd.enable = true;
     virtualbox.host.enable = true;
   };
