@@ -34,6 +34,7 @@
   };
 
   programs.zsh.enable = true;
+  programs.zsh.enableCompletion = false;
 
   nix.useSandbox = true;
   nix.autoOptimiseStore = true;
