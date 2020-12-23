@@ -79,6 +79,7 @@ in
           };
 
           "gitlab.com" = {
+            addressFamily = "inet";
             identityFile = "~/.ssh/gitlab";
           };
 
