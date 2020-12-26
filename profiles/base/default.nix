@@ -53,6 +53,9 @@ in
           "delly-nixos.adoring_suess.zerotier" = {
             hostname = "172.24.199.101";
           };
+          "ryzen-ubuntu.adoring_suess.zerotier" = {
+            hostname = "172.24.237.73";
+          };
           "tux-nixos.adoring_suess.zerotier" = {
             hostname = "172.24.198.250";
             localForwards = [
