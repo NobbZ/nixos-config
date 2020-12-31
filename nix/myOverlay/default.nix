@@ -7,7 +7,7 @@ let
     sha256 = "03bd52y51xr6fhy3r8xggq84z39p94mhipw6xyjnm1niq7iim7cw";
   };
 
-  stable = import super.sources."nixpkgs-20.09" { };
+  stable = import super.inputs.nixpkgs-stable { inherit (super) system; };
 in
 rec {
   advcp = self.callPackage (import ./advcp) { };

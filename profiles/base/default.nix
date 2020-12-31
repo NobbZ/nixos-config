@@ -190,7 +190,7 @@ in
 
         sessionVariables = {
           NIX_PATH = builtins.concatStringsSep ":" [
-            "nixpkgs=${<nixpkgs>}"
+            "nixpkgs=${pkgs.inputs.nixpkgs-stable}"
             "nixos-config=/etc/nixos/configuration.nix"
             "/nix/var/nix/profiles/per-user/root/channels"
           ];
