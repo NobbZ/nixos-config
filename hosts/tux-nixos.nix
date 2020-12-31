@@ -1,6 +1,9 @@
 { pkgs, ... }:
 let
-  nixos = import pkgs.inputs.nixpkgs-stable { system = "x86_64-linux"; config.allowUnfree = true; };
+  nixos = import pkgs.inputs.nixpkgs-stable {
+    inherit (pkgs) system;
+    config.allowUnfree = true;
+  };
 
   keepassWithPlugins =
     pkgs.keepass.override { plugins = [ pkgs.keepass-keepasshttp ]; };
