@@ -41,7 +41,7 @@
       };
 
       packages.x86_64-linux = {
-        advcp = pkgs.advcp;
+        advcp = pkgs.callPackage ./package/advcp {};
         elixir-lsp = pkgs.elixir-lsp;
         erlang-ls = pkgs.erlang-ls;
         keyleds = pkgs.keyleds;

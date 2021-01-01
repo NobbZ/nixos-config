@@ -10,7 +10,6 @@ let
   stable = import final.inputs.nixpkgs-stable { inherit (prev) system; };
 in
 rec {
-  advcp = final.callPackage (import ./advcp) { };
   elixir-lsp = prev.beam.packages.erlang.callPackage (import ./elixir-lsp) {
     rebar3 = stable.beam.packages.erlang.rebar3;
   };
