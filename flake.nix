@@ -19,6 +19,11 @@
         emacs.overlay
         self.overlay
       ];
+
+      pkgs = import inputs.nixpkgs-unstable {
+        system = "x86_64-linux";
+        inherit overlays;
+      };
     in
     {
       overlay = import ./nix/myOverlay;
@@ -52,6 +57,12 @@
             imports = [ ./home.nix ./hosts/nixos.nix ];
           };
         };
+      };
+
+      devShell.x86_64-linux = pkgs.mkShell {
+        name = "home-manager-shell";
+
+        buildInputs = with pkgs; [ git lefthook nixpkgs-fmt nix-linter ];
       };
     };
 }
