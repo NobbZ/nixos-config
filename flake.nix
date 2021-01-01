@@ -12,32 +12,23 @@
     emacs.url = "github:nix-community/emacs-overlay";
   };
 
-  outputs = { self, home-manager, emacs, ... }@inputs:
+  outputs = { self, emacs, ... }@inputs:
     let
-      overlays = [
-        (_: _: { inherit inputs; })
-        emacs.overlay
-        self.overlay
-      ];
-
       pkgs = import inputs.nixpkgs-unstable {
         system = "x86_64-linux";
-        inherit overlays;
+        overlays = builtins.attrValues self.overlays;
       };
     in
     {
       overlay = import ./nix/myOverlay;
 
-      lib.mkHomeConfig = username: entrypoint:
-        home-manager.lib.homeManagerConfiguration {
-          inherit username;
-          homeDirectory = "/home/${username}";
-          system = "x86_64-linux";
-          configuration = { ... }: {
-            nixpkgs.overlays = overlays;
-            imports = [ ./home.nix entrypoint ];
-          };
-        };
+      overlays = {
+        inputs = _: _: { inherit inputs; };
+        emacs = emacs.overlay;
+        self = self.overlay;
+      };
+
+      lib = import ./lib inputs;
 
       homeConfigurations = {
         tux-nixos = self.lib.mkHomeConfig "nmelzer" ./hosts/tux-nixos.nix;
