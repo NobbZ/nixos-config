@@ -36,7 +36,23 @@
         nixos = self.lib.mkHomeConfig "demo" ./hosts/nixos.nix;
       };
 
-      packages.x86_64-linux = builtins.mapAttrs
+      apps.x86_64-linux = {
+        build = { type = "app"; program = "${self.packages.x86_64-linux.build-config}"; };
+      };
+
+      packages.x86_64-linux = {
+        build-config = pkgs.writeShellScript "build-config.sh" ''
+          set -ex
+
+          if [ -z $1 ]; then
+            name=$(${pkgs.nettools}/bin/hostname)
+          else
+            name=$1
+          fi
+
+          nix build --out-link "result-$name" ".#$name"
+        '';
+      } // builtins.mapAttrs
         (_: config:
           config.activationPackage)
         self.homeConfigurations;
