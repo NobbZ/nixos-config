@@ -18,6 +18,11 @@
         system = "x86_64-linux";
         overlays = builtins.attrValues self.overlays;
       };
+
+      pkgs-stable = import inputs.nixpkgs-stable {
+        system = "x86_64-linux";
+        overlays = builtins.attrValues self.overlays;
+      };
     in
     {
       overlay = import ./nix/myOverlay;
@@ -41,8 +46,10 @@
       };
 
       packages.x86_64-linux = {
-        advcp = pkgs.callPackage ./package/advcp {};
-        elixir-lsp = pkgs.elixir-lsp;
+        advcp = pkgs.callPackage ./packages/advcp { };
+        elixir-lsp = pkgs.beam.packages.erlang.callPackage ./packages/elixir-lsp {
+          rebar3 = pkgs-stable.beam.packages.erlang.rebar3;
+        };
         erlang-ls = pkgs.erlang-ls;
         keyleds = pkgs.keyleds;
         rofi-unicode = pkgs.rofi-unicode;

@@ -2,7 +2,7 @@
 let
   cfg = config.languages.elixir;
 
-  inherit (pkgs) elixir-lsp;
+  inherit (pkgs.inputs.self.packages.${pkgs.system}) elixir-lsp;
 in
 {
   options.languages.elixir = {
