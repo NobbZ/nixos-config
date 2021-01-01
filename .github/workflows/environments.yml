@@ -16,6 +16,7 @@ jobs:
         - advcp
         - elixir-lsp
         - erlang-ls
+        - emacsGit
         - keyleds
         - rofi-unicode
         - keepass

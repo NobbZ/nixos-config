@@ -51,6 +51,7 @@
         julia_10 = pkgs.julia_10;
         julia_13 = pkgs.julia_13;
         julia_15 = pkgs.julia_15;
+        emacsGit = pkgs.emacsGit;
 
         build-config = pkgs.writeShellScript "build-config.sh" ''
           set -ex
