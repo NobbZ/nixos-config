@@ -8,9 +8,6 @@ let
   };
 in
 rec {
-  erlang-ls = prev.beam.packages.erlang.callPackage (import ./erlang-ls) {
-    # beamPackages = super.beam.packages.erlangR21;
-  };
   keyleds = final.callPackage (import ./keyleds) { };
   ocaml-lsp = final.callPackage ./ocaml-ls { };
   rofi-unicode = final.callPackage ./rofi-unicode.nix { };

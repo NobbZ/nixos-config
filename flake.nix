@@ -50,7 +50,7 @@
         elixir-lsp = pkgs.beam.packages.erlang.callPackage ./packages/elixir-lsp {
           rebar3 = pkgs-stable.beam.packages.erlang.rebar3;
         };
-        erlang-ls = pkgs.erlang-ls;
+        erlang-ls = pkgs.beam.packages.erlang.callPackage ./packages/erlang-ls { };
         keyleds = pkgs.keyleds;
         rofi-unicode = pkgs.rofi-unicode;
         nix-zsh-completions = pkgs.nix-zsh-completions;
