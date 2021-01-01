@@ -27,37 +27,28 @@
     in
     {
       overlay = import ./nix/myOverlay;
+
+      lib.mkHomeConfig = username: entrypoint:
+        home-manager.lib.homeManagerConfiguration {
+          inherit username;
+          homeDirectory = "/home/${username}";
+          system = "x86_64-linux";
+          configuration = { ... }: {
+            nixpkgs.overlays = overlays;
+            imports = [ ./home.nix entrypoint ];
+          };
+        };
+
       homeConfigurations = {
-        tux-nixos = home-manager.lib.homeManagerConfiguration {
-          username = "nmelzer";
-          homeDirectory = "/home/nmelzer";
-          system = "x86_64-linux";
-          configuration = { ... }: {
-            nixpkgs.overlays = overlays;
-            imports = [ ./home.nix ./hosts/tux-nixos.nix ];
-          };
-        };
-
-        delly-nixos = home-manager.lib.homeManagerConfiguration {
-          username = "nmelzer";
-          homeDirectory = "/home/nmelzer";
-          system = "x86_64-linux";
-          configuration = { ... }: {
-            nixpkgs.overlays = overlays;
-            imports = [ ./home.nix ./hosts/delly-nixos.nix ];
-          };
-        };
-
-        nixos = home-manager.lib.homeManagerConfiguration {
-          username = "demo";
-          homeDirectory = "/home/demo";
-          system = "x86_64-linux";
-          configuration = { ... }: {
-            nixpkgs.overlays = overlays;
-            imports = [ ./home.nix ./hosts/nixos.nix ];
-          };
-        };
+        tux-nixos = self.lib.mkHomeConfig "nmelzer" ./hosts/tux-nixos.nix;
+        delly-nixos = self.lib.mkHomeConfig "nmelzer" ./hosts/delly-nixos.nix;
+        nixos = self.lib.mkHomeConfig "demo" ./hosts/nixos.nix;
       };
+
+      packages.x86_64-linux = builtins.mapAttrs
+        (_: config:
+          config.activationPackage)
+        self.homeConfigurations;
 
       devShell.x86_64-linux = pkgs.mkShell {
         name = "home-manager-shell";
