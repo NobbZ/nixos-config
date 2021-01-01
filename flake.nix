@@ -41,6 +41,17 @@
       };
 
       packages.x86_64-linux = {
+        advcp = pkgs.advcp;
+        elixir-lsp = pkgs.elixir-lsp;
+        erlang-ls = pkgs.erlang-ls;
+        keyleds = pkgs.keyleds;
+        rofi-unicode = pkgs.rofi-unicode;
+        nix-zsh-completions = pkgs.nix-zsh-completions;
+        keepass = pkgs.keepass;
+        julia_10 = pkgs.julia_10;
+        julia_13 = pkgs.julia_13;
+        julia_15 = pkgs.julia_15;
+
         build-config = pkgs.writeShellScript "build-config.sh" ''
           set -ex
 
