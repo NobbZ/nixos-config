@@ -2,7 +2,9 @@
 let
   cfg = config.xsession.windowManager.awesome;
 
-  rofi = pkgs.rofi.override { plugins = [ pkgs.rofi-emoji ]; };
+  rofi = pkgs.rofi.override {
+    plugins = [ pkgs.rofi-emoji ];
+  };
 
   errorHandling = ''
     -- {{{ Error handling
@@ -42,7 +44,7 @@ in
 
     launcher = lib.mkOption {
       type = lib.types.str;
-      default = "${rofi}/bin/rofi -modi run#drun#window#ssh#emoji#unicode:${pkgs.rofi-unicode}/bin/rofiunicode.sh -show run";
+      default = "${rofi}/bin/rofi -modi run#drun#window#ssh#emoji#unicode:${pkgs.inputs.self.packages.${pkgs.system}.rofi-unicode}/bin/rofiunicode.sh -show run";
     };
   };
 

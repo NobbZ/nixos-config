@@ -33,13 +33,13 @@ update:
 	nix-shell --run "niv update"
 
 update_elixir_ls:
-	nix-shell --run "nix-prefetch-github --rev v$(ELIXIR_LS_VSN) elixir-lsp elixir-ls > nix/myOverlay/elixir-lsp/source.json"
+	nix-shell --run "nix-prefetch-github --rev v$(ELIXIR_LS_VSN) elixir-lsp elixir-ls > packages/elixir-lsp/source.json"
 
 update_erlang_ls:
-	nix-shell --run "nix-prefetch-github --rev $(ERLANG_LS_VSN) erlang-ls erlang_ls > nix/myOverlay/erlang-ls/source.json"
+	nix-shell --run "nix-prefetch-github --rev $(ERLANG_LS_VSN) erlang-ls erlang_ls > packages/erlang-ls/source.json"
 
 update_emoji:
-	nix-shell --run "nix-prefetch-git https://git.teknik.io/matf/rofiemoji-rofiunicode.git > nix/myOverlay/rofi-unicode.json"
+	nix-shell --run "nix-prefetch-git https://git.teknik.io/matf/rofiemoji-rofiunicode.git > packages/rofi-unicode/rofi-unicode.json"
 
 news:
 	nix-shell --run "home-manager news"

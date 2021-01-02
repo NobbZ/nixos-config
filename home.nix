@@ -1,10 +1,7 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 let
-  overlays = import ./nix;
-  pkgs = import <nixpkgs> { inherit overlays; };
-
   nixPath = builtins.concatStringsSep ":" [
-    "nixpkgs=${<nixpkgs>}"
+    "nixpkgs=${pkgs.inputs.nixpkgs-unstable}"
     "nixos-config=/etc/nixos/configuration.nix"
     "/nix/var/nix/profiles/per-user/root/channels"
   ];
@@ -13,10 +10,9 @@ let
     lib.optional (builtins.pathExists path) path;
 in
 {
-  nixpkgs.overlays = overlays;
   nixpkgs.config.allowUnfree = true;
 
-  imports = [ ./modules ./profiles ./hosts ]
+  imports = [ ./modules ./profiles ]
     ++ optionalImport ./secrets.nix;
 
   profiles.base.enable = true;
@@ -49,5 +45,7 @@ in
 
       fira-code
     ];
+
+    stateVersion = "20.09";
   };
 }
