@@ -52,7 +52,7 @@
         };
         erlang-ls = pkgs.beam.packages.erlang.callPackage ./packages/erlang-ls { };
         keyleds = pkgs.callPackage ./packages/keyleds { };
-        rofi-unicode = pkgs.rofi-unicode;
+        rofi-unicode = pkgs.callPackage ./rofi-unicode.nix { };
         nix-zsh-completions = pkgs.nix-zsh-completions;
         keepass = pkgs.keepass;
         julia_10 = pkgs.julia_10;

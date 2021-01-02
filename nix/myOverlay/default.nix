@@ -8,7 +8,6 @@ let
   };
 in
 rec {
-  rofi-unicode = final.callPackage ./rofi-unicode.nix { };
   nix-zsh-completions = prev.nix-zsh-completions.overrideAttrs (_: {
     version = "overlay";
     src = final.fetchFromGitHub {
