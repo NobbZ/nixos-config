@@ -8,7 +8,6 @@ let
   };
 in
 rec {
-  keyleds = final.callPackage (import ./keyleds) { };
   ocaml-lsp = final.callPackage ./ocaml-ls { };
   rofi-unicode = final.callPackage ./rofi-unicode.nix { };
   nix-zsh-completions = prev.nix-zsh-completions.overrideAttrs (_: {

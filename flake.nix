@@ -51,7 +51,7 @@
           rebar3 = pkgs-stable.beam.packages.erlang.rebar3;
         };
         erlang-ls = pkgs.beam.packages.erlang.callPackage ./packages/erlang-ls { };
-        keyleds = pkgs.keyleds;
+        keyleds = pkgs.callPackage ./packages/keyleds { };
         rofi-unicode = pkgs.rofi-unicode;
         nix-zsh-completions = pkgs.nix-zsh-completions;
         keepass = pkgs.keepass;

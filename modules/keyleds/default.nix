@@ -9,7 +9,7 @@ in
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.keyleds;
+      default = pkgs.inputs.self.packages.${pkgs.system}.keyleds;
       defaultText = lib.literalExample "pkgs.keyleds";
       example = lib.literalExample "pkgs.keyleds";
       description = ''
