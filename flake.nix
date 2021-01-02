@@ -52,8 +52,16 @@
         };
         erlang-ls = pkgs.beam.packages.erlang.callPackage ./packages/erlang-ls { };
         keyleds = pkgs.callPackage ./packages/keyleds { };
-        rofi-unicode = pkgs.callPackage ./rofi-unicode.nix { };
-        nix-zsh-completions = pkgs.nix-zsh-completions;
+        rofi-unicode = pkgs.callPackage ./packages/rofi-unicode { };
+        nix-zsh-completions = pkgs.nix-zsh-completions.overrideAttrs (_: {
+          version = "overlay";
+          src = pkgs.fetchFromGitHub {
+            owner = "Ma27";
+            repo = "nix-zsh-completions";
+            rev = "939c48c182e9d018eaea902b1ee9d00a415dba86";
+            sha256 = "sha256-3HVYez/wt7EP8+TlhTppm968Wl8x5dXuGU0P+8xNDpo=";
+          };
+        });
         keepass = pkgs.keepass;
         julia_10 = pkgs.julia_10;
         julia_13 = pkgs.julia_13;
