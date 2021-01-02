@@ -8,7 +8,6 @@ let
   };
 in
 rec {
-  ocaml-lsp = final.callPackage ./ocaml-ls { };
   rofi-unicode = final.callPackage ./rofi-unicode.nix { };
   nix-zsh-completions = prev.nix-zsh-completions.overrideAttrs (_: {
     version = "overlay";
