@@ -46,6 +46,8 @@
         switch = { type = "app"; program = "${self.packages.x86_64-linux.switch-config}"; };
       };
 
+      defaultApp.x86_64-linux = self.apps.x86_64-linux.switch;
+
       packages.x86_64-linux = {
         advcp = pkgs.callPackage ./packages/advcp { };
         elixir-lsp = pkgs.beam.packages.erlang.callPackage ./packages/elixir-lsp {
