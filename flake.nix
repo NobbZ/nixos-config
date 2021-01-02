@@ -43,6 +43,7 @@
 
       apps.x86_64-linux = {
         build = { type = "app"; program = "${self.packages.x86_64-linux.build-config}"; };
+        switch = { type = "app"; program = "${self.packages.x86_64-linux.switch-config}"; };
       };
 
       packages.x86_64-linux = {
@@ -77,7 +78,18 @@
             name=$1
           fi
 
-          nix build --out-link "result-$name" ".#$name"
+          nix build -L --out-link "result-$name" ".#$name"
+        '';
+
+        switch-config = pkgs.writeShellScript "switch-config.sh" ''
+          set -ex
+
+          name=$(${pkgs.nettools}/bin/hostname)
+          outLink=$(mktemp -d)/result-$name
+
+          nix build -L --out-link "$outLink" ".#$name"
+          $outLink/activate
+          rm $outLink
         '';
       } // builtins.mapAttrs
         (_: config:
