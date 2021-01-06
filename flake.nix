@@ -114,7 +114,7 @@
           $outLink/activate
           rm $outLink
 
-          if [ "$name" = "WS0005" ]: then
+          if [ "$name" = "WS0005" ]; then
             nix optimise-store
             nix-collect-garbage --verbose
           fi
