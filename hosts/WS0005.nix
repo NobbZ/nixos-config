@@ -15,5 +15,7 @@
     programs.emacs.splashScreen = false;
 
     home.packages = [ pkgs.nixUnstable ];
+
+    programs.tmux.secureSocket = false; # disable /run sockets, as those seem to be not available in WSL
   };
 }
