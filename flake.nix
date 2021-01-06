@@ -39,6 +39,7 @@
         tux-nixos = self.lib.mkHomeConfig "nmelzer" ./hosts/tux-nixos.nix;
         delly-nixos = self.lib.mkHomeConfig "nmelzer" ./hosts/delly-nixos.nix;
         nixos = self.lib.mkHomeConfig "demo" ./hosts/nixos.nix;
+	WS0005 = self.lib.mkHomeConfig "nmelzer" ./hosts/WS0005.nix;
       };
 
       apps.x86_64-linux = {
