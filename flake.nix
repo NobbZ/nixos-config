@@ -39,7 +39,7 @@
         tux-nixos = self.lib.mkHomeConfig "nmelzer" ./hosts/tux-nixos.nix;
         delly-nixos = self.lib.mkHomeConfig "nmelzer" ./hosts/delly-nixos.nix;
         nixos = self.lib.mkHomeConfig "demo" ./hosts/nixos.nix;
-	WS0005 = self.lib.mkHomeConfig "nmelzer" ./hosts/WS0005.nix;
+        WS0005 = self.lib.mkHomeConfig "nmelzer" ./hosts/WS0005.nix;
       };
 
       apps.x86_64-linux = {
@@ -113,6 +113,11 @@
           nix build -L --out-link "$outLink" ".#$name"
           $outLink/activate
           rm $outLink
+
+          if [ "$name" = "WS0005" ]: then
+            nix optimise-store
+            nix-collect-garbage --verbose
+          fi
         '';
       } // builtins.mapAttrs
         (_: config:
