@@ -3,6 +3,12 @@
     # Main channels
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-20.09";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    cloud-native = {
+      url = "github:shanesveller/flake-cloud-native";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -55,7 +61,9 @@
           rebar3 = pkgs-stable.beam.packages.erlang.rebar3;
         };
         erlang-ls = pkgs.beam.packages.erlang.callPackage ./packages/erlang-ls { };
-        keyleds = pkgs.callPackage ./packages/keyleds { };
+        keyleds = pkgs.callPackage ./packages/keyleds {
+          stdenv = pkgs.gcc8Stdenv;
+        };
         rofi-unicode = pkgs.callPackage ./packages/rofi-unicode { };
         nix-zsh-completions = pkgs.nix-zsh-completions;
         keepass = pkgs.keepass;
@@ -64,33 +72,7 @@
         julia_15 = pkgs.julia_15;
         emacsGit = pkgs.emacsGit;
 
-        flux2 = pkgs.buildGoModule rec {
-          pname = "flux2";
-          version = "0.5.7";
-
-          src = pkgs.fetchFromGitHub {
-            name = "source-${pname}-v${version}";
-            owner = "fluxcd";
-            repo = "flux2";
-            rev = "v${version}";
-            sha256 = "sha256-auO2irVYPdyl37X13kkfOqEmotXNjqNBiojOXRVPQPc=";
-          };
-
-          vendorSha256 = "sha256-3iGlgfDcn3lLoAJPa8YH473ROGpmXq10DsIeD/ud5Cw=";
-
-          subPackages = [ "./cmd/flux" ];
-
-          runVend = true;
-
-          buildPhase = ''
-            go build -ldflags "-X main.VERSION=${version}" -o flux-bin ./cmd/flux
-          '';
-
-          installPhase = ''
-            mkdir -p $out/bin
-            install flux-bin $out/bin/flux
-          '';
-        };
+        flux2 = inputs.cloud-native.packages.x86_64-linux.flux2;
 
         build-config = pkgs.writeShellScript "build-config.sh" ''
           set -ex

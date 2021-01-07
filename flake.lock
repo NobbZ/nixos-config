@@ -1,5 +1,26 @@
 {
   "nodes": {
+    "cloud-native": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs-stable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1608578180,
+        "narHash": "sha256-cbvpyMCNw+1pTnPtPFEzkYNc0Reup4pvQrDTbyE1CiA=",
+        "owner": "shanesveller",
+        "repo": "flake-cloud-native",
+        "rev": "1a28bea3d45d1e3594a4d69953ab6314f56e0363",
+        "type": "github"
+      },
+      "original": {
+        "owner": "shanesveller",
+        "repo": "flake-cloud-native",
+        "type": "github"
+      }
+    },
     "emacs": {
       "locked": {
         "lastModified": 1609936594,
@@ -12,6 +33,21 @@
       "original": {
         "owner": "nix-community",
         "repo": "emacs-overlay",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1605370193,
+        "narHash": "sha256-YyMTf3URDL/otKdKgtoMChu4vfVL3vCMkRqpGifhUn0=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "5021eac20303a61fafe17224c087f5519baed54d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
         "type": "github"
       }
     },
@@ -69,6 +105,7 @@
     },
     "root": {
       "inputs": {
+        "cloud-native": "cloud-native",
         "emacs": "emacs",
         "home-manager": "home-manager",
         "nixpkgs-stable": "nixpkgs-stable",
