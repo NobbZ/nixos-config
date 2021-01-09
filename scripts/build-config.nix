@@ -1,4 +1,4 @@
-{ writeShellScriptBin, nettools, ... }:
+{ writeShellScriptBin, nettools, nixUnstable, ... }:
 
 writeShellScriptBin "build-config.sh" ''
   set -ex
@@ -9,7 +9,7 @@ writeShellScriptBin "build-config.sh" ''
     name=$1
   fi
 
-  nix build -L \
+  ${nixUnstable}/bin/nix build -L \
     --out-link "result-$name" \
     .#$name
 ''
