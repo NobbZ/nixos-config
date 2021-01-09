@@ -76,6 +76,9 @@
   services.zerotierone.enable = true;
   services.zerotierone.joinNetworks = [ "8286ac0e4768c8ae" ];
 
+  services.pgmanage.enable = true;
+  services.pgmanage.connections.k3s-hosted = "hostaddr=127.0.0.1 port=30432 dbname=postgres";
+  
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
