@@ -21,6 +21,7 @@
 
     apps.x86_64-linux = {
       build = { type = "app"; program = "${self.packages.x86_64-linux.build-config}/bin/build-config.sh"; };
+      switch = { type = "app"; program = "${self.packages.x86_64-linux.switch-config}/bin/switch-config.sh"; };
     };
   };
 }
