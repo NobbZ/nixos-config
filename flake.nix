@@ -74,6 +74,17 @@
 
         flux2 = inputs.cloud-native.packages.x86_64-linux.flux2;
 
+        update-config = pkgs.writeShellScript "update-config.sh" ''
+          set -ex
+          ${pkgs.nixUnstable}/bin/nix flake update --recreate-lock-file --commit-lock-file
+
+          hosts="${pkgs.lib.strings.concatStringsSep "\n" (builtins.map (n: ".#${n}") (builtins.attrNames self.homeConfigurations))}"
+
+          ${pkgs.nixUnstable}/bin/nix build $hosts
+
+          ${pkgs.nixUnstable}/bin/nix-collect-garbage --verbose
+        '';
+
         build-config = pkgs.writeShellScript "build-config.sh" ''
           set -ex
 
@@ -109,7 +120,7 @@
       devShell.x86_64-linux = pkgs.mkShell {
         name = "home-manager-shell";
 
-        buildInputs = with pkgs; [ git lefthook nixpkgs-fmt nix-linter ];
+        buildInputs = with pkgs; [ git lefthook nixpkgs-fmt ];
       };
     };
 }
