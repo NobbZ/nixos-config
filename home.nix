@@ -39,11 +39,7 @@ in
       exercism
       tmate
       element-desktop
-      (powershell.override {
-        lttng-ust = lttng-ust.override {
-          python = python3;
-        };
-      })
+      powershell
 
       julia_15
 
