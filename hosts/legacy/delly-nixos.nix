@@ -74,12 +74,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
-    emacs
-    firefox
     rsync
-    chromium
     git
-    gparted
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
