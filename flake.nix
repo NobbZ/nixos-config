@@ -4,6 +4,8 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-20.09";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    cryptomator.url = "github:nixos/nixpkgs/2eb8804497a506d8c1a0363f99a08ad1d688a24f";
+
     cloud-native = {
       url = "github:shanesveller/flake-cloud-native";
       inputs.nixpkgs.follows = "nixpkgs-stable";
@@ -71,6 +73,7 @@
         julia_13 = pkgs.julia_13;
         julia_15 = pkgs.julia_15;
         emacsGit = pkgs.emacsGit;
+        cryptomator = inputs.cryptomator.legacyPackages.x86_64-linux.cryptomator;
 
         flux2 = inputs.cloud-native.packages.x86_64-linux.flux2;
 

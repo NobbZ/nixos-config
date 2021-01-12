@@ -21,6 +21,22 @@
         "type": "github"
       }
     },
+    "cryptomator": {
+      "locked": {
+        "lastModified": 1609951575,
+        "narHash": "sha256-8m3dvQKjpFk/Y0tpqAa7e5eOUrQnsDY1bfvROGILZbY=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2eb8804497a506d8c1a0363f99a08ad1d688a24f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2eb8804497a506d8c1a0363f99a08ad1d688a24f",
+        "type": "github"
+      }
+    },
     "emacs": {
       "locked": {
         "lastModified": 1610339238,
@@ -106,6 +122,7 @@
     "root": {
       "inputs": {
         "cloud-native": "cloud-native",
+        "cryptomator": "cryptomator",
         "emacs": "emacs",
         "home-manager": "home-manager",
         "nixpkgs-stable": "nixpkgs-stable",
