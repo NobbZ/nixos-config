@@ -10,6 +10,10 @@
       "nix"
     ];
 
+    programs.zsh.initExtraBeforeCompInit = ''
+      . ~/.nix-profile/etc/profile.d/nix.sh
+    '';
+
     languages.python.useMS = true;
 
     programs.emacs.splashScreen = false;
