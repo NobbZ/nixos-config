@@ -54,7 +54,8 @@ in
         # Visual Studio Code project configuration
         "/.vscode"
         # Result folder for nix builds
-        "result/"
+        "result"
+        "result-*"
         # direnv caches
         ".direnv/"
       ];
