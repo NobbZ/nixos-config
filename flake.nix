@@ -110,9 +110,7 @@
           $outLink/activate
           rm $outLink
 
-          if [ "$name" = "WS0005" ]; then
-            nix-collect-garbage --verbose
-          fi
+          nix-collect-garbage --verbose
         '';
       } // builtins.mapAttrs
         (_: config:
