@@ -181,8 +181,6 @@
     };
   };
 
-  nix.maxJobs = 2;
-
   security.sudo.extraRules = [
     {
       commands = [
