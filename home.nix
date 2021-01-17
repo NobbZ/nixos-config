@@ -44,6 +44,7 @@ in
       julia_15
 
       fira-code
+      cascadia-code
     ];
 
     stateVersion = "20.09";
