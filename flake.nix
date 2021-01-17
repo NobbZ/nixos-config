@@ -79,17 +79,7 @@
 
         update-config = pkgs.callPackage ./scripts/update-config { };
         build-config = pkgs.callPackage ./scripts/build-config { };
-
-        switch-config = pkgs.writeShellScript "switch-config.sh" ''
-          set -ex
-
-          name=$(${pkgs.nettools}/bin/hostname)
-          outLink=$(mktemp -d)/result-$name
-
-          nix build -L --out-link "$outLink" ".#$name"
-          $outLink/activate
-          rm $outLink
-        '';
+        switch-config = pkgs.callPackage ./scripts/switch-config { };
       } // builtins.mapAttrs
         (_: config:
           config.activationPackage)
