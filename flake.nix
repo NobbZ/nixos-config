@@ -78,18 +78,7 @@
         flux2 = inputs.cloud-native.packages.x86_64-linux.flux2;
 
         update-config = pkgs.callPackage ./scripts/update-config { };
-
-        build-config = pkgs.writeShellScript "build-config.sh" ''
-          set -ex
-
-          if [ -z $1 ]; then
-            name=$(${pkgs.nettools}/bin/hostname)
-          else
-            name=$1
-          fi
-
-          nix build -L --out-link "result-$name" ".#$name"
-        '';
+        build-config = pkgs.callPackage ./scripts/build-config { };
 
         switch-config = pkgs.writeShellScript "switch-config.sh" ''
           set -ex
