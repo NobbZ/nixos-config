@@ -102,6 +102,10 @@ in
       ;; use a dark theme
       (load-theme 'cyberpunk t)
 
+      ;; Set a font
+      (add-to-list 'default-frame-alist
+                   '(font . "Cascadia Code PL-12"))
+
       ;; require all those local packages
       ${lispRequires}
 
@@ -111,6 +115,21 @@ in
 
       (setq-default indent-tabs-mode nil)
       (setq-default tab-width 2)
+      (setq-default whitespace-style
+                    '(face
+                      tabs
+                      spaces
+                      trailing
+                      lines-tail
+                      newline
+                      missing-newline-at-eof
+                      space-before-tab
+                      indentation
+                      empty
+                      space-after-tab
+                      space-mark
+                      tab-mark
+                      newline-mark))
 
       ;; set splash screen
       (setq inhibit-startup-screen ${bool2Lisp (!cfg.splashScreen)})
