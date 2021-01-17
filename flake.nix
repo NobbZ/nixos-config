@@ -36,7 +36,7 @@
       overlay = import ./nix/myOverlay;
 
       overlays = {
-        inputs = _: _: { inherit inputs; };
+        inputs = final: prev: { inherit inputs; };
         emacs = emacs.overlay;
         self = self.overlay;
       };
