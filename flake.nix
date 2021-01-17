@@ -84,8 +84,6 @@
           hosts="${pkgs.lib.strings.concatStringsSep "\n" (builtins.map (n: ".#${n}") (builtins.attrNames self.homeConfigurations))}"
 
           ${pkgs.nixUnstable}/bin/nix build $hosts
-
-          ${pkgs.nixUnstable}/bin/nix-collect-garbage --verbose
         '';
 
         build-config = pkgs.writeShellScript "build-config.sh" ''
@@ -109,8 +107,6 @@
           nix build -L --out-link "$outLink" ".#$name"
           $outLink/activate
           rm $outLink
-
-          nix-collect-garbage --verbose
         '';
       } // builtins.mapAttrs
         (_: config:
