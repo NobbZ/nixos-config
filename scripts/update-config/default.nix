@@ -1,8 +1,14 @@
-pkgs.writeShellScript "update-config.sh" ''
+{ writeShellScript, lib, inputs, nixUnstable, ... }:
+let
+  hostNames = builtins.attrNames inputs.self.homeConfigurations;
+  hostNamesBash = builtins.map (n: ".#${n}") hostNames;
+  hostNamesArray = "(${lib.escapeShellArgs hostNamesBash})";
+in
+writeShellScript "update-config.sh" ''
   set -ex
-  ${pkgs.nixUnstable}/bin/nix flake update --recreate-lock-file --commit-lock-file
+  ${nixUnstable}/bin/nix flake update --recreate-lock-file --commit-lock-file
 
-  hosts="${pkgs.lib.strings.concatStringsSep "\n" (builtins.map (n: ".#${n}") (builtins.attrNames self.homeConfigurations))}"
+  hosts=${hostNamesArray}
 
-  ${pkgs.nixUnstable}/bin/nix build $hosts
+  ${nixUnstable}/bin/nix build -L "''${hosts[@]}"
 ''
