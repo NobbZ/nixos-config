@@ -20,9 +20,6 @@ jobs:
         - keyleds
         - rofi-unicode
         - keepass
-        - julia_10
-        - julia_13
-        - julia_15
     steps:
     - uses: actions/checkout@v2.3.1
     - uses: cachix/install-nix-action@v12

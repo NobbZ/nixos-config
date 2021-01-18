@@ -69,9 +69,6 @@
         rofi-unicode = pkgs.callPackage ./packages/rofi-unicode { };
         nix-zsh-completions = pkgs.nix-zsh-completions;
         keepass = pkgs.keepass;
-        julia_10 = pkgs.julia_10;
-        julia_13 = pkgs.julia_13;
-        julia_15 = pkgs.julia_15;
         emacsGit = pkgs.emacsGit;
         cryptomator = inputs.cryptomator.legacyPackages.x86_64-linux.cryptomator;
 
