@@ -12,6 +12,7 @@
   nix.useSandbox = false;
   nix.autoOptimiseStore = true;
   nix.buildCores = 1;
+  nix.
   nix.gc.automatic = true;
 
   # Use the GRUB 2 boot loader.
