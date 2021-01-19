@@ -19,8 +19,7 @@ rec {
   });
 
   keepass =
-    final.callPackage (keepasspkgs.outPath + "/pkgs/applications/misc/keepass")
-      { };
+    final.callPackage "${keepasspkgs}/pkgs/applications/misc/keepass" { };
 
   nobbzLib = (import ./lib);
 } //
