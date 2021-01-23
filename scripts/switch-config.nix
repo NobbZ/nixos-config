@@ -25,6 +25,7 @@ writeShellScriptBin "switch-config.sh" ''
       name=$(${nettools}/bin/hostname)
     else
       printf "--name needs to be specified"
+      exit 1
     fi
   fi
   outLink=$(mktemp -d)/result-$name
