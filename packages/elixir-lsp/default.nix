@@ -1,10 +1,12 @@
-{ stdenv, elixir, rebar3, hex, callPackage, git, cacert, fetchFromGitHub }:
+{ stdenv, erlang, elixir, rebar3, hex, callPackage, git, cacert, fetchFromGitHub }:
 let
   fetchMixDeps = callPackage ./fetch-mix-deps.nix { inherit rebar3; };
+
+  source = builtins.fromJSON (builtins.readFile ./source.json);
 in
 stdenv.mkDerivation rec {
   name = "elixir-ls";
-  version = "0.6.2"; # TODO: get this from the JSON
+  version = "${source.version}-${erlang.version}-${elixir.version}";
 
   nativeBuildInputs = [ elixir hex git deps cacert ];
 
@@ -16,7 +18,7 @@ stdenv.mkDerivation rec {
 
   src = fetchFromGitHub rec {
     name = "source-${owner}-${repo}-${version}";
-    inherit (builtins.fromJSON (builtins.readFile ./source.json)) owner repo rev sha256;
+    inherit (source) owner repo rev sha256;
   };
 
   dontStrip = true;
@@ -46,8 +48,8 @@ stdenv.mkDerivation rec {
     chmod +x $out/bin/elixir-ls
     # prepare the launcher
     substituteInPlace $out/lib/launch.sh \
+      --replace "elixir" "${elixir}/bin/elixir" \
       --replace "ERL_LIBS=\"\$SCRIPTPATH:\$ERL_LIBS\"" \
-                "ERL_LIBS=$out/lib:\$ERL_LIBS" \
-      --replace "elixir -e" "${elixir}/bin/elixir -e"
+                "ERL_LIBS=$out/lib:\$ERL_LIBS"
   '';
 }
