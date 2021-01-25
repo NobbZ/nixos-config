@@ -21,5 +21,9 @@ in
         '';
       };
     };
+
+    programs.git.ignores = [
+      ".ccls-cache/"
+    ];
   };
 }
