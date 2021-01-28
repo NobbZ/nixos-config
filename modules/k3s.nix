@@ -1,4 +1,4 @@
-{ config, pkgs, unstable, ... }:
+{ config, lib, pkgs, unstable, ... }:
 
 {
   services.k3s = {
@@ -11,6 +11,13 @@
 
   systemd.services.k3s.path = [ pkgs.zfs ];
 
-  #  TODO: re-enable firewall once learned how to do with k3s
-  # systemd.services.firewall.enable = false;
+  # https://github.com/NixOS/nixpkgs/issues/103158
+  systemd.services.k3s.after = [ "network-online.service" "firewall.service" ];
+  systemd.services.k3s.serviceConfig.KillMode = lib.mkForce "control-group";
+  
+  # https://github.com/NixOS/nixpkgs/issues/98766
+  boot.kernelModules = [ "br_netfilter" "ip_conntrack" "ip_vs" "ip_vs_rr" "ip_vs_wrr" "ip_vs_sh" "overlay" ];  
+  networking.firewall.extraCommands = ''
+    iptables -A INPUT -i cni+ -j ACCEPT
+  '';
 }
