@@ -9,7 +9,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.config = { chromium = { enableWideVine = true; }; };
-    home.packages = with pkgs; [ chromium lynx ];
+    nixpkgs.config = { google-chrome = { enableWideVine = true; }; };
+    home.packages = with pkgs; [ google-chrome lynx ];
   };
 }
