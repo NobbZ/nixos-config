@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, pkgs, lib, ... }:
 let cfg = config.profiles.development;
 
 in
@@ -66,5 +66,7 @@ in
         contents = { user.email = "norbert.melzer@cloudseeds.de"; };
       }];
     };
+
+    home.packages = [ pkgs.ripgrep ];
   };
 }
