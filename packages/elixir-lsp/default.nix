@@ -13,7 +13,7 @@ stdenv.mkDerivation rec {
   deps = fetchMixDeps {
     name = "${name}-${version}";
     inherit src;
-    sha256 = "sha256-nOTzXJnT093DeMzraQRplLwgk9Xg03Tn28xICMTDvq0=";
+    sha256 = "sha256-bOWK146S8jim62QMPg8jzcVoHqw6c89ngnyoDZIhofs=";
   };
 
   src = fetchFromGitHub rec {
