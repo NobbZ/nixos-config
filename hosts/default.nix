@@ -10,5 +10,5 @@ in
 {
   delly-nixos = mkSystem "delly-nixos" nixpkgs.lib.nixosSystem;
   tux-nixos = mkSystem "tux-nixos" nixpkgs.lib.nixosSystem;
-  nixos = mkSystem "nixos" inputs.nixpkgs-unstable.lib.nixosSystem;
+  nixos = mkSystem "nixos" inputs.unstable.lib.nixosSystem;
 }
