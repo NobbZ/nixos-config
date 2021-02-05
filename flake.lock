@@ -8,11 +8,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1612118402,
-        "narHash": "sha256-B02FktuNZsLf7T0O7CdR37ljAoVKp+Mzt+L4hkaGPFY=",
+        "lastModified": 1612542287,
+        "narHash": "sha256-xpBu5JDTz/w95Nlrzd/a1iDyYHMBbN2HUZuu9E/nw6o=",
         "owner": "shanesveller",
         "repo": "flake-cloud-native",
-        "rev": "1f945b3fed46c3dfd54d87f6c6a813fc4dabffa9",
+        "rev": "e67fc9b96ba2ccad1f0e1cecc4b4a583f28c04ce",
         "type": "github"
       },
       "original": {
@@ -39,11 +39,11 @@
     },
     "emacs": {
       "locked": {
-        "lastModified": 1612513309,
-        "narHash": "sha256-YBQeIVCPp6Bfwn1XwE8qrmQrZNaAtW2ENQNModLeSA4=",
+        "lastModified": 1612556787,
+        "narHash": "sha256-XKLegJVxYUQO+10TNBrK+5WqSI5a6LOLrS22pdBDMF4=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "bbc5b8e784fb8c979b577c34379c491b4c06bd6a",
+        "rev": "d9c86f546e92e35430dc20e375a6a159ff1ed310",
         "type": "github"
       },
       "original": {
@@ -74,11 +74,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1612478557,
-        "narHash": "sha256-NJ9udcs0mrHXHAEkkUaKs/ofGQkYADGPR6G8muyIigw=",
+        "lastModified": 1612561117,
+        "narHash": "sha256-UEB+5KCINGyaAfkgqWeUhUwyBxTrlTLO+FjbYCG4exk=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "63d5d28db6068e58c24afa4089f13941500d5fe8",
+        "rev": "d4202875831a2d1b9dd3002d89b8c794af9e5a43",
         "type": "github"
       },
       "original": {
