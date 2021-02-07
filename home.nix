@@ -31,7 +31,6 @@ in
 
     packages = with pkgs; [
       cachix
-      niv
       # nix-prefetch-scripts
       nix-review
       exercism
