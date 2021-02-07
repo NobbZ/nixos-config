@@ -22,11 +22,4 @@ rec {
   #   final.callPackage "${keepasspkgs}/pkgs/applications/misc/keepass" { };
 
   nobbzLib = (import ./lib);
-} //
-(prev.lib.foldr
-  (v: acc:
-    acc // {
-      "julia_${v}" = prev."julia_${v}".overrideAttrs (_: { doCheck = false; });
-    }))
-  { }
-  [ "15" "13" "10" ]
+}
