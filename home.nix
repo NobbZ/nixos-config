@@ -34,8 +34,6 @@ in
       niv
       # nix-prefetch-scripts
       nix-review
-      (haskell.lib.doJailbreak haskellPackages.nixfmt)
-      # nixfmt
       exercism
       tmate
       element-desktop
