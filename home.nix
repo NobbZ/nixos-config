@@ -41,8 +41,6 @@ in
       element-desktop
       powershell
 
-      julia_15
-
       fira-code
       cascadia-code
     ];
