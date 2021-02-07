@@ -7,8 +7,3 @@ pre-commit:
 
     instantiate:
       run: nix-instantiate --eval ./overlays.nix
-
-    # linting:
-    #   glob: "*.nix"
-    #   exclude: nix/sources.nix
-    #   run: nix-linter {all_files}
