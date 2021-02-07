@@ -5,6 +5,9 @@ pre-commit:
       glob: "*.nix"
       run: nixpkgs-fmt --check {all_files}
 
+    instantiate:
+      run: nix-instantiate --eval ./overlays.nix
+
     # linting:
     #   glob: "*.nix"
     #   exclude: nix/sources.nix
