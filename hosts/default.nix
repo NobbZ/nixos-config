@@ -2,13 +2,21 @@
 let
   inherit (nixpkgs.lib) nixosSystem;
 
-  mkSystem = name: nixosSystem:
-    nixosSystem ({
+  mkSystem = name: nixpkgs: modules:
+    nixpkgs.lib.nixosSystem ({
       extraArgs = inputs;
-    } // (import (./. + "/${name}.nix") inputs));
+
+      system = "x86_64-linux";
+
+      modules = [
+        (./. + "/legacy/${name}.nix")
+        (./. + "/hardware/${name}.nix")
+        nixpkgs.nixosModules.notDetected
+      ] ++ modules;
+    });
 in
 {
-  delly-nixos = mkSystem "delly-nixos" nixpkgs.lib.nixosSystem;
-  tux-nixos = mkSystem "tux-nixos" nixpkgs.lib.nixosSystem;
-  nixos = mkSystem "nixos" inputs.unstable.lib.nixosSystem;
+  delly-nixos = mkSystem "delly-nixos" nixpkgs (with self.nixosModules; [ cachix flake k3s gc version ]);
+  tux-nixos = mkSystem "tux-nixos" nixpkgs (with self.nixosModules; [ cachix flake intel k3s gc version ]);
+  nixos = mkSystem "nixos" inputs.unstable (with self.nixosModules; [ cachix flake virtualbox-demo gc version ]);
 }
