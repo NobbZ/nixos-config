@@ -13,6 +13,7 @@ in
       extraPackages = ep: [ ep.magit ];
       extraConfig = ''
         ;; prepare magit use from shell
+        (require 'magit)
         (global-git-commit-mode)
 
         ;; let magit autorefresh on file save within emacs
