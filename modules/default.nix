@@ -1,11 +1,11 @@
 {
-  cachix = ./cachix.nix;
-  flake = ./flake.nix;
-  gc = ./gc.nix;
-  intel = ./intel.nix;
-  k3s = ./k3s.nix;
-  kubernetes = ./kubernetes.nix;
-  packet-iscsi = ./packet-iscsi.nix;
-  version = ./version.nix;
-  virtualbox-demo = ./virtualbox-demo.nix;
+  cachix = import ./cachix.nix;
+  flake = import ./flake.nix;
+  gc = import ./gc.nix;
+  intel = import ./intel.nix;
+  k3s = import ./k3s.nix;
+  kubernetes = import ./kubernetes.nix;
+  packet-iscsi = import ./packet-iscsi.nix;
+  version = import ./version.nix;
+  virtualbox-demo = import ./virtualbox-demo.nix;
 }
