@@ -11,7 +11,7 @@
 
     programs.emacs.splashScreen = false;
 
-    home.packages = [ pkgs.minikube ];
+    home.packages = [ pkgs.mysqlWorkbench ];
 
     systemd.user.services = {
       imwheel = {
