@@ -1,4 +1,4 @@
-{ stdenvNoCC, elixir, rebar, rebar3, git, cacert }:
+{ stdenvNoCC, lib, elixir, rebar, rebar3, git, cacert }:
 
 { name ? null, src, sha256 ? null, env ? "prod" }:
 
@@ -33,5 +33,5 @@ stdenvNoCC.mkDerivation {
   outputHashMode = "recursive";
   outputHash = sha256;
 
-  impureEnvVars = stdenvNoCC.lib.fetchers.proxyImpureEnvVars;
+  impureEnvVars = lib.fetchers.proxyImpureEnvVars;
 }
