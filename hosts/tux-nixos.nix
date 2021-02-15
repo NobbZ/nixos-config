@@ -33,6 +33,11 @@ in
 
     programs.obs-studio.enable = true;
 
+    xsession.windowManager.awesome.autostart = [
+      "${pkgs.blueman}/bin/blueman-applet"
+      "${pkgs.networkmanagerapplet}/bin/nm-applet"
+    ];
+
     services = {
       keyleds.enable = true;
       keybase.enable = true;
