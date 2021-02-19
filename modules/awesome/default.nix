@@ -6,6 +6,22 @@ let
     plugins = [ pkgs.rofi-emoji ];
   };
 
+  autostartScript =
+    let
+      entries = builtins.map (e: "\"${e}\",") cfg.autostart;
+    in
+    ''
+      -- Autorun programs
+      autorunApps = {
+        ${builtins.concatStringsSep "\n  " entries}
+      }
+
+      for app = 1, #autorunApps do
+        awful.util.spawn(autorunApps[app])
+      end
+      -- }}}
+    '';
+
   errorHandling = ''
     -- {{{ Error handling
     if awesome.startup_errors then
@@ -45,6 +61,11 @@ in
     launcher = lib.mkOption {
       type = lib.types.str;
       default = "${rofi}/bin/rofi -modi run#drun#window#ssh#emoji#unicode:${pkgs.inputs.self.packages.${pkgs.system}.rofi-unicode}/bin/rofiunicode.sh -show run";
+    };
+
+    autostart = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ ];
     };
   };
 
@@ -613,20 +634,7 @@ in
       client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
       -- }}}
 
-      -- Autorun programs
-      autorun = true;
-
-      autorunApps = {
-        "${pkgs.blueman}/bin/blueman-applet",
-        "${pkgs.networkmanagerapplet}/bin/nm-applet",
-      }
-
-      if autorun then
-        for app = 1, #autorunApps do
-          awful.util.spawn(autorunApps[app])
-        end
-      end
-      -- }}}
+      ${lib.optionalString (cfg.autostart != [ ]) autostartScript}
     '';
   };
 }
