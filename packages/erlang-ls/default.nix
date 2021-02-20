@@ -42,11 +42,11 @@ rebar3Relx rec {
   checkouts = fetchRebar3Deps {
     inherit name version;
     src = "${src}/rebar.lock";
-    sha256 = "sha256-QNSnRGHHWMlngZfHugBdF0FpyuvcuTIgoQKrUWNIfxE=";
+    sha256 = "sha256-CbpJV4swaNrr601MLCJVe9aE6akKRnFz1Yd5qcRjIfU=";
   };
 
   postPatch = ''
-    substituteInPlace src/erlang_ls.app.src \
+    substituteInPlace apps/els_lsp/src/els_lsp.app.src \
       --replace '{vsn, git}' '{vsn, "${version}"}'
   '';
 
