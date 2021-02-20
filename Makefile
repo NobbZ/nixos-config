@@ -9,7 +9,7 @@ NIX_FILES = $(shell find . -name '*.nix' -type f)
 
 ## Versions
 ELIXIR_LS_VSN = 0.6.5
-ERLANG_LS_VSN = 0.8.0
+ERLANG_LS_VSN = 0.10.0
 
 ifneq (${DEBUG},0)
   HM_VERBOSE = -v
