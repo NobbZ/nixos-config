@@ -87,7 +87,7 @@
         "type": "github"
       }
     },
-    "nixpkgs-stable": {
+    "nixpkgs": {
       "locked": {
         "lastModified": 1613551942,
         "narHash": "sha256-2jt80VjHx8Wf9GkPDy5JbH6jzSFRpYnIw6oa5lZ3XT4=",
@@ -103,7 +103,43 @@
         "type": "github"
       }
     },
-    "nixpkgs-unstable": {
+    "root": {
+      "inputs": {
+        "cloud-native": "cloud-native",
+        "cryptomator": "cryptomator",
+        "emacs": "emacs",
+        "home-manager": "home-manager",
+        "nixpkgs-stable": [
+          "system",
+          "nixpkgs"
+        ],
+        "nixpkgs-unstable": [
+          "system",
+          "unstable"
+        ],
+        "system": "system"
+      }
+    },
+    "system": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "unstable": "unstable"
+      },
+      "locked": {
+        "lastModified": 1613746064,
+        "narHash": "sha256-8BzRByw27fxqvDqoLk7oDCtyPIX7VAT8TLOkddtR+GQ=",
+        "owner": "NobbZ",
+        "repo": "nixos-config",
+        "rev": "603aedf6aafe64557fb7ab9402c98bcf5627191c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NobbZ",
+        "repo": "nixos-config",
+        "type": "github"
+      }
+    },
+    "unstable": {
       "locked": {
         "lastModified": 1613582597,
         "narHash": "sha256-6LvipIvFuhyorHpUqK3HjySC5Y6gshXHFBhU9EJ4DoM=",
@@ -117,16 +153,6 @@
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
-      }
-    },
-    "root": {
-      "inputs": {
-        "cloud-native": "cloud-native",
-        "cryptomator": "cryptomator",
-        "emacs": "emacs",
-        "home-manager": "home-manager",
-        "nixpkgs-stable": "nixpkgs-stable",
-        "nixpkgs-unstable": "nixpkgs-unstable"
       }
     }
   },

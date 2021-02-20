@@ -1,8 +1,9 @@
 {
   inputs = {
     # Main channels
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-20.09";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    system.url = "github:NobbZ/nixos-config";
+    nixpkgs-stable.follows = "system/nixpkgs";
+    nixpkgs-unstable.follows = "system/unstable";
 
     cryptomator.url = "github:nixos/nixpkgs/2eb8804497a506d8c1a0363f99a08ad1d688a24f";
 
