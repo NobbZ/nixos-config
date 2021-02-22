@@ -5,9 +5,10 @@
     activeProfiles = [ "browsing" "development" ];
 
     enabledLanguages = [
+      "erlang"
       "go"
-      "python"
       "nix"
+      "python"
     ];
 
     programs.zsh.initExtraBeforeCompInit = ''
