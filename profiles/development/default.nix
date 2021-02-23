@@ -39,7 +39,10 @@ in
         root = "rev-parse --show-toplevel";
       };
 
-      extraConfig = { pull.rebase = false; };
+      extraConfig = {
+        init.defaultBranch = "main";
+        pull.rebase = false;
+      };
 
       ignores = [
         # IntelliJ files and folders
@@ -64,7 +67,10 @@ in
 
       includes = [{
         condition = "gitdir:~/cloudseeds/**";
-        contents = { user.email = "norbert.melzer@cloudseeds.de"; };
+        contents = {
+          init.defaultBranch = "main";
+          user.email = "norbert.melzer@cloudseeds.de";
+        };
       }];
     };
 
