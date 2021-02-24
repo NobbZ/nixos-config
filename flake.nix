@@ -86,7 +86,7 @@
       devShell.x86_64-linux = pkgs.mkShell {
         name = "home-manager-shell";
 
-        buildInputs = with pkgs; [ git lefthook nixpkgs-fmt ];
+        buildInputs = with pkgs; [ git nixpkgs-fmt ];
       };
     };
 }
