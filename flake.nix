@@ -26,6 +26,7 @@
       pkgs = import inputs.nixpkgs-unstable {
         system = "x86_64-linux";
         overlays = builtins.attrValues self.overlays;
+        config.permittedInsecurePackages = [ "go-1.14.15" ];
       };
 
       pkgs-stable = import inputs.nixpkgs-stable {
@@ -86,7 +87,7 @@
       devShell.x86_64-linux = pkgs.mkShell {
         name = "home-manager-shell";
 
-        buildInputs = with pkgs; [ git nixpkgs-fmt ];
+        buildInputs = with pkgs; [ git lefthook nixpkgs-fmt ];
       };
     };
 }
