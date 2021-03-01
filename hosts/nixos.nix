@@ -11,6 +11,8 @@
 
     programs.emacs.splashScreen = false;
 
+    services.gnome-keyring.enable = true;
+
     home.packages = [ pkgs.mysqlWorkbench ];
 
     systemd.user.services = {
