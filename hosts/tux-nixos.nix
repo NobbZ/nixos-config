@@ -22,6 +22,7 @@ in
       # "ocaml"
       "python"
       "rust"
+      "tex"
     ];
 
     languages.python.useMS = true;

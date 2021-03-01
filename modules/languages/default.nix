@@ -15,11 +15,12 @@ in
     ./erlang
     ./go
     ./lua
+    ./nix
     ./ocaml
     ./python
     ./rust
-    ./nix
     ./terraform
+    ./tex
   ];
 
   options.enabledLanguages =
