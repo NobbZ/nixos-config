@@ -17,6 +17,11 @@
       fsType = "ext4";
     };
 
+  fileSystems."/home/demo/timmelzer@gmail.com" = {
+    device = "GDRIVE";
+    fsType = "vboxsf";
+  };
+
   swapDevices = [ ];
 
   nix.maxJobs = lib.mkDefault 2;
