@@ -68,7 +68,7 @@ in
       includes = [{
         condition = "gitdir:~/cloudseeds/**";
         contents = {
-          init.defaultBranch = "main";
+          init.defaultBranch = "master";
           user.email = "norbert.melzer@cloudseeds.de";
         };
       }];
