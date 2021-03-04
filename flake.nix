@@ -71,7 +71,7 @@
         rofi-unicode = pkgs.callPackage ./packages/rofi-unicode { };
         nix-zsh-completions = pkgs.nix-zsh-completions;
         keepass = pkgs.keepass;
-        emacsGit = pkgs.emacsGit;
+        emacsGit = pkgs.emacsPkgtGcc;
         cryptomator = inputs.cryptomator.legacyPackages.x86_64-linux.cryptomator;
 
         flux2 = inputs.cloud-native.packages.x86_64-linux.flux2;

@@ -127,7 +127,7 @@ in
 
       emacs = {
         enable = true;
-        package = pkgs.emacsGit;
+        package = pkgs.emacsPgtkGcc;
       };
 
       tmux = {
