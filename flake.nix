@@ -55,6 +55,7 @@
       apps.x86_64-linux = {
         build = { type = "app"; program = "${self.packages.x86_64-linux.build-config}"; };
         switch = { type = "app"; program = "${self.packages.x86_64-linux.switch-config}"; };
+        bump = { type = "app"; program = "${self.packages.x86_64-linux.bump-version}"; };
       };
 
       defaultApp.x86_64-linux = self.apps.x86_64-linux.switch;
@@ -79,6 +80,7 @@
         update-config = pkgs.callPackage ./scripts/update-config { };
         build-config = pkgs.callPackage ./scripts/build-config { };
         switch-config = pkgs.callPackage ./scripts/switch-config { };
+        bump-version = pkgs.callPackage ./scripts/bump-version { };
       } // builtins.mapAttrs
         (_: config:
           config.activationPackage)
