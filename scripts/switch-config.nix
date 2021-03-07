@@ -30,13 +30,13 @@ writeShellScriptBin "switch-config.sh" ''
   fi
   outLink=$(mktemp -d)/result-$name
 
-  ${nixUnstable}/bin/nix build -L \
-     --out-link "$outLink" \
-     .#$name
+  # nixos-rebuild build -L \
+  #    --out-link "$outLink" \
+  #    .#$name
 
   if [ -z "$targetHost" ]; then
     echo "Will activate, please enter your password to elevate"
-    sudo $outLink/bin/switch-to-configuration switch
+    sudo nixos-rebuild -L switch
   else
     storePath=$(readlink "$outLink")
     nix copy --to "ssh://root@$targetHost" "$storePath"
