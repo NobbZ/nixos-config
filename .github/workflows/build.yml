@@ -25,4 +25,4 @@ jobs:
       with:
         name: nobbz
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
-    - run: nix build -v -L --log-format raw .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel
+    - run: nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel -L
