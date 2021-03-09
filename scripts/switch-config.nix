@@ -36,7 +36,7 @@ writeShellScriptBin "switch-config.sh" ''
 
   if [ -z "$targetHost" ]; then
     echo "Will activate, please enter your password to elevate"
-    sudo nixos-rebuild -L switch
+    sudo nixos-rebuild switch -L --flake .#$name
   else
     storePath=$(readlink "$outLink")
     nix copy --to "ssh://root@$targetHost" "$storePath"
