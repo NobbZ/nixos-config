@@ -42,6 +42,4 @@ writeShellScriptBin "switch-config.sh" ''
     nix copy --to "ssh://root@$targetHost" "$storePath"
     ssh "root@$targetHost" "$storePath/bin/switch-to-configuration" switch
   fi
-
-  rm $outLink
 ''
