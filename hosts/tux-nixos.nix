@@ -33,6 +33,13 @@ in
       [ nixos.insync pkgs.handbrake keepassWithPlugins pkgs.keybase-gui pkgs.minikube pkgs.lutris pkgs.steam ];
 
     programs.obs-studio.enable = true;
+    programs.htop = {
+      detailedCpuTime = true;
+      meters.right = [
+        { kind = "Battery"; mode = 1; }
+        "Tasks" "LoadAverage" "Uptime"
+      ];
+    };
 
     xsession.windowManager.awesome.autostart = [
       "${pkgs.blueman}/bin/blueman-applet"
