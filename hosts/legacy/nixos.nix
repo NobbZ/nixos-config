@@ -42,6 +42,7 @@
   virtualisation = {
     docker.enable = true;
     docker.extraOptions = "--insecure-registry registry.cap01.cloudseeds.de";
+    podman.enable = true;
   };
 
   console.font = "Lat2-Terminus16";
