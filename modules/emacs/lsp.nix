@@ -33,7 +33,7 @@ in
         comments = [ ];
         requires = [ "lsp-mode" ];
         packageRequires = ep: [
-          ep.company-lsp
+          # ep.company-lsp
           ep.helm-lsp
           ep.lsp-mode
           ep.lsp-origami
