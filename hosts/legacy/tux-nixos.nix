@@ -114,6 +114,8 @@
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.windowManager.awesome.enable = true;
 
+  services.dbus.packages = with pkgs; [ gnome3.dconf ];
+
   services.udev.extraRules = ''
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666"
   '';
