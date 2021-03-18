@@ -12,6 +12,8 @@ in
   config = {
     activeProfiles = [ "browsing" "development" "home-office" ];
 
+    dconf.enable = true;
+
     enabledLanguages = [
       "agda"
       "cpp"
