@@ -104,7 +104,7 @@ in
 
       ;; Set a font
       (add-to-list 'default-frame-alist
-                   '(font . "Cascadia Code PL-12"))
+                   '(font . "Cascadia Code PL-10"))
 
       ;; require all those local packages
       ${lispRequires}
