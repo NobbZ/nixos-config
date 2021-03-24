@@ -1,4 +1,4 @@
-{ stdenvNoCC, xsel }:
+{ stdenvNoCC, xsel, fetchgit }:
 let
   source = builtins.fromJSON (builtins.readFile ./rofi-unicode.json);
 in
@@ -6,8 +6,8 @@ stdenvNoCC.mkDerivation rec {
   pname = "rofiemoji-rofiunicode";
   version = "${source.rev}";
 
-  src = builtins.fetchGit {
-    inherit (source) rev url;
+  src = fetchgit {
+    inherit (source) rev url sha256;
   };
 
   installPhase = ''
