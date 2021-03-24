@@ -10,6 +10,7 @@
     # languages.python.useMS = true;
 
     programs.emacs.splashScreen = false;
+    programs.emacs.extraPackages = ep: [ ep.robot-mode ];
 
     services.gnome-keyring.enable = true;
 
