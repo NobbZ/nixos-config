@@ -7,11 +7,6 @@
 
     cryptomator.url = "github:nixos/nixpkgs/2eb8804497a506d8c1a0363f99a08ad1d688a24f";
 
-    cloud-native = {
-      url = "github:shanesveller/flake-cloud-native";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -75,12 +70,18 @@
         emacsGit = pkgs.emacsPgtkGcc;
         cryptomator = inputs.cryptomator.legacyPackages.x86_64-linux.cryptomator;
 
-        flux2 = inputs.cloud-native.packages.x86_64-linux.flux2;
-
         update-config = pkgs.callPackage ./scripts/update-config { };
         build-config = pkgs.callPackage ./scripts/build-config { };
         switch-config = pkgs.callPackage ./scripts/switch-config { };
         bump-version = pkgs.callPackage ./scripts/bump-version { };
+      } // builtins.mapAttrs
+        (_: config:
+          config.activationPackage)
+        self.homeConfigurations;
+
+      checks.x86_64-linux = {
+        inherit (self.packages.x86_64-linux) advcp elixir-lsp erlang-ls keyleds
+          rofi-unicode nix-zsh-completions keepass emacsGit cryptomator;
       } // builtins.mapAttrs
         (_: config:
           config.activationPackage)
