@@ -12,11 +12,13 @@
 
     nixosConfigurations = import ./hosts inputs;
 
+    checks.x86_64-linux = builtins.mapAttrs (_: hostConfig: hostConfig.config.system.build.toplevel) self.nixosConfigurations;
+
     packages.x86_64-linux = (import ./scripts inputs)
       // builtins.mapAttrs
-        (_: hostConfig:
-          hostConfig.config.system.build.toplevel)
-        self.nixosConfigurations;
+      (_: hostConfig:
+        hostConfig.config.system.build.toplevel)
+      self.nixosConfigurations;
 
     apps.x86_64-linux = {
       build = { type = "app"; program = "${self.packages.x86_64-linux.build-config}/bin/build-config.sh"; };
