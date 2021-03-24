@@ -89,11 +89,11 @@
         "unstable": "unstable"
       },
       "locked": {
-        "lastModified": 1616478408,
-        "narHash": "sha256-HH8bHMUU2SsWD8JpqQ5WkVFh3oaJGkYw5zGPfDtZYdk=",
+        "lastModified": 1616627459,
+        "narHash": "sha256-HQkN5RoXTro4F3udm3520OFLWa4YTzvnZuBy0N+viLI=",
         "owner": "NobbZ",
         "repo": "nixos-config",
-        "rev": "9b8db02b45745d1373995e303c8fce191fd0abdd",
+        "rev": "c3fd1a186189cb2c8f8509f8ebcf471d7a478a8f",
         "type": "github"
       },
       "original": {
