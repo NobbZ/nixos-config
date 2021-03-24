@@ -93,6 +93,16 @@
 
   services.ratbagd.enable = true;
 
+  services.hydra = {
+    enable = true;
+    package = pkgs.hydra-unstable;
+
+    hydraURL = "https://localhost:3000";
+    notificationSender = "hydra@localhost";
+    buildMachinesFiles = [];
+    useSubstitutes = true;
+  };
+
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio = {
