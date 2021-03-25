@@ -102,6 +102,7 @@
     buildMachinesFiles = [];
     useSubstitutes = true;
   };
+  networking.firewall.allowedTCPPorts = [ 3000 ];
 
   # Enable sound.
   sound.enable = true;
