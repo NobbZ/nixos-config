@@ -163,6 +163,7 @@
     docker = {
       enable = true;
       storageDriver = "zfs";
+      extraOptions = "--storage-opt zfs.fsname=rpool/local/docker";
     };
 
     containers.enable = true;
