@@ -132,6 +132,7 @@
   '';
 
   services.transmission.enable = true;
+  systemd.services.transmission.after = [ "var-lib-transmission.mount" ];
 
   services.zfs = {
     trim.enable = false;
