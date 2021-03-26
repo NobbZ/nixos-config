@@ -24,6 +24,11 @@
       fsType = "zfs";
     };
 
+  fileSystems."/var/lib/transmission" = {
+    device = "rpool/local/transmission";
+    fsType = "zfs";
+  };
+
   fileSystems."/home" =
     {
       device = "rpool/safe/home";
