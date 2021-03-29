@@ -2,14 +2,14 @@
 
 stdenv.mkDerivation rec {
   name = "keyleds";
-  version = "1.1.0";
+  version = "1.1.1";
 
   src = fetchFromGitHub {
     name = "source-${name}-${version}";
     owner = "keyleds";
     repo = "keyleds";
     rev = "v${version}";
-    sha256 = "0ig4l9q5qgakya88z1rvziw0gyv329i5bbf32vgp71vyqdyysqr1";
+    sha256 = "sha256-KCWmaRmJTmZgTt7HW9o6Jt1u4x6+G2j6T9EqVt21U18=";
   };
 
   nativeBuildInputs = with pkgs; [ cmake pkgconfig ];
