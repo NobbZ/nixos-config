@@ -6,6 +6,23 @@ let
 
   # TODO: make these a bit more nice, so that repeating the hosts and individual config isn't necessary.
   zerotierHosts = [ "delly-nixos.adoring_suess.zerotier" "tux-nixos.adoring_suess.zerotier" "nixos.adoring_suess.zerotier" ];
+
+  zsh-complete = pkgs.stdenv.mkDerivation {
+    pname = "nix-zsh-completion-with-flakes";
+    version = "git";
+
+    src = builtins.fetchurl {
+      url = "https://github.com/gytis-ivaskevicius/nixfiles/raw/c0785c2b912a2736614734ee94440bc98c4f299f/overlays/shell-config/nix-completions.sh";
+      sha256 = "sha256:0xgpc5smqn9mam3pbd2s3ppn7m8axz5zn4qlrgrf8ggnykjjmkyx";
+    };
+
+    phases = [ "installPhase" ];
+
+    installPhase = ''
+      mkdir -p $out
+      cp $src $out/_nix
+    '';
+  };
 in
 {
   options.profiles.base = {
@@ -162,6 +179,11 @@ in
         defaultKeymap = "emacs";
 
         plugins = [
+          {
+            name = "nix-zsh-complete.zsh";
+            src = zsh-complete;
+            file = "_nix";
+          }
           {
             name = "powerlevel10k";
             src = pkgs.zsh-powerlevel10k;
