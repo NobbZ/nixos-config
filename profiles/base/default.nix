@@ -11,10 +11,7 @@ let
     pname = "nix-zsh-completion-with-flakes";
     version = "git";
 
-    src = builtins.fetchurl {
-      url = "https://github.com/gytis-ivaskevicius/nixfiles/raw/c0785c2b912a2736614734ee94440bc98c4f299f/overlays/shell-config/nix-completions.sh";
-      sha256 = "sha256:0xgpc5smqn9mam3pbd2s3ppn7m8axz5zn4qlrgrf8ggnykjjmkyx";
-    };
+    src = ./nix-completions.sh;
 
     phases = [ "installPhase" ];
 

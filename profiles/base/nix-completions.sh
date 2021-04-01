@@ -1,0 +1,1 @@
+<html><body>You are being <a href="https://raw.githubusercontent.com/gytis-ivaskevicius/nixfiles/c0785c2b912a2736614734ee94440bc98c4f299f/overlays/shell-config/nix-completions.sh">redirected</a>.</body></html>
