@@ -100,7 +100,7 @@ in
             `((".*" ,temporary-file-directory)))
 
       ;; use a dark theme
-      (load-theme 'cyberpunk t)
+      (load-theme 'dracula t)
 
       ;; Set a font
       (add-to-list 'default-frame-alist
@@ -138,7 +138,7 @@ in
     programs.emacs.extraPackages = ep:
       [
         ep.company-go
-        ep.cyberpunk-theme
+        ep.dracula-theme
         ep.docker-compose-mode
         ep.dockerfile-mode
         ep.go-mode
