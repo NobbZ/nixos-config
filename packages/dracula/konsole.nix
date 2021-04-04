@@ -1,8 +1,10 @@
-pkgs.stdenv.mkDerivation rec {
+{ stdenv, fetchFromGitHub }:
+
+stdenv.mkDerivation rec {
   pname = "dracula-konsole-theme";
   version = "fa85573";
 
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     name = "${pname}-${version}-source";
     owner = "dracula";
     repo = "konsole";

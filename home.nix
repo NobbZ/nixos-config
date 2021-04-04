@@ -33,6 +33,7 @@ in
       tmate
       element-desktop
       powershell
+      inputs.self.packages.${system}.dracula-konsole
 
       fira-code
       cascadia-code
