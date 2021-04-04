@@ -150,6 +150,17 @@ in
         clock24 = true;
         historyLimit = 10000;
         terminal = "screen-256color";
+
+        plugins = let tp = pkgs.tmuxPlugins; in [
+          {
+            plugin = tp.dracula;
+            extraConfig = ''
+              set -g @dracula-show-battery true
+              set -g @dracula-show-powerline true
+              set -g @dracula-refresh-rate 10
+            '';
+          }
+        ];
       };
 
       zshell.aliases = {
