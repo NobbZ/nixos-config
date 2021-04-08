@@ -22,7 +22,9 @@
         system = "x86_64-linux";
         overlays = [
           (final: prev: {
-            inherit (inputs.nixpkgs-stable.legacyPackages.x86_64-linux) tracker;
+            tracker = prev.tracker.overrideAttrs (_: {
+              dontCheck = true;
+            });
           })
         ] ++ builtins.attrValues self.overlays;
         config.permittedInsecurePackages = [ "go-1.14.15" ];
@@ -30,7 +32,13 @@
 
       pkgs-stable = import inputs.nixpkgs-stable {
         system = "x86_64-linux";
-        overlays = builtins.attrValues self.overlays;
+        overlays = [
+          (final: prev: {
+            tracker = prev.tracker.overrideAttrs (_: {
+              dontCheck = true;
+            });
+          })
+        ] ++ builtins.attrValues self.overlays;
       };
     in
     {
