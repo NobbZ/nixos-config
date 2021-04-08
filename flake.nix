@@ -20,13 +20,7 @@
     let
       pkgs = import inputs.nixpkgs-unstable {
         system = "x86_64-linux";
-        overlays = [
-          (final: prev: {
-            tracker = prev.tracker.overrideAttrs (_: {
-              dontCheck = true;
-            });
-          })
-        ] ++ builtins.attrValues self.overlays;
+        overlays = builtins.attrValues self.overlays;
         config.permittedInsecurePackages = [ "go-1.14.15" ];
       };
 
