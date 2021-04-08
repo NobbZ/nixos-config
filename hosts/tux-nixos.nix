@@ -44,7 +44,7 @@ in
     };
 
     xsession.windowManager.awesome.autostart = [
-      "${nixos.blueman}/bin/blueman-applet"
+      "${pkgs.blueman}/bin/blueman-applet"
       "${pkgs.networkmanagerapplet}/bin/nm-applet"
     ];
 
