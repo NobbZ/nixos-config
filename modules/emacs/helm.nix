@@ -8,7 +8,7 @@ in
         tag = "Setup helm";
         comments = [ ];
         requires = [ "helm" ];
-        packageRequires = ep: [ ep.helm ];
+        packageRequires = ep: [ ep.helm ep.helm-rg ];
         code = ''
           ;; enable and configure auto resize
           (helm-autoresize-mode t)
