@@ -9,7 +9,7 @@ writeScript "bump-version.py" ''
   from sys import argv
 
   version = {
-      "elixir-ls": "v0.6.5",
+      "elixir-ls": "v0.7.0",
       "erlang-ls": "0.13.0",
       "emoji": "master",
   }
