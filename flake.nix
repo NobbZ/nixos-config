@@ -26,13 +26,7 @@
 
       pkgs-stable = import inputs.nixpkgs-stable {
         system = "x86_64-linux";
-        overlays = [
-          (final: prev: {
-            tracker = prev.tracker.overrideAttrs (_: {
-              dontCheck = true;
-            });
-          })
-        ] ++ builtins.attrValues self.overlays;
+        overlays = builtins.attrValues self.overlays;
       };
     in
     {
