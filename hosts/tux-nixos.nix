@@ -32,8 +32,12 @@ in
     programs.emacs.splashScreen = false;
 
     home.packages =
-      [ nixos.insync pkgs.handbrake keepassWithPlugins pkgs.keybase-gui pkgs.minikube pkgs.lutris pkgs.steam pkgs.inputs.self.packages.${pkgs.system}.gnucash-de ];
+      [ nixos.insync pkgs.handbrake keepassWithPlugins pkgs.keybase-gui pkgs.minikube pkgs.lutris pkgs.steam pkgs.inputs.self.packages.${pkgs.system}.gnucash-de pkgs.gnome3.gnome-tweaks ];
 
+    gtk.enable = true;
+    gtk.theme.package = pkgs.gnome3.gnome_themes_standard;
+    gtk.theme.name = "Adwaita-dark";
+    
     programs.obs-studio.enable = true;
     programs.htop = {
       detailedCpuTime = true;
