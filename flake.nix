@@ -5,6 +5,8 @@
     nixpkgs-stable.follows = "system/nixpkgs";
     nixpkgs-unstable.follows = "system/unstable";
 
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
+
     cryptomator.url = "github:nixos/nixpkgs/2eb8804497a506d8c1a0363f99a08ad1d688a24f";
 
     home-manager = {
@@ -70,6 +72,7 @@
         emacsGit = pkgs.emacsPgtkGcc;
         cryptomator = inputs.cryptomator.legacyPackages.x86_64-linux.cryptomator;
         dracula-konsole = pkgs.callPackage ./packages/dracula/konsole.nix { };
+        gnucash-de = pkgs.callPackage ./packages/gnucash-de { };
 
         update-config = pkgs.callPackage ./scripts/update-config { };
         build-config = pkgs.callPackage ./scripts/build-config { };

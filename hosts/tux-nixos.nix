@@ -32,7 +32,7 @@ in
     programs.emacs.splashScreen = false;
 
     home.packages =
-      [ nixos.insync pkgs.handbrake keepassWithPlugins pkgs.keybase-gui pkgs.minikube pkgs.lutris pkgs.steam ];
+      [ nixos.insync pkgs.handbrake keepassWithPlugins pkgs.keybase-gui pkgs.minikube pkgs.lutris pkgs.steam pkgs.inputs.self.packages.${pkgs.system}.gnucash-de ];
 
     programs.obs-studio.enable = true;
     programs.htop = {
