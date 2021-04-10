@@ -37,7 +37,7 @@ in
     gtk.enable = true;
     gtk.theme.package = pkgs.gnome3.gnome_themes_standard;
     gtk.theme.name = "Adwaita-dark";
-    
+
     programs.obs-studio.enable = true;
     programs.htop = {
       detailedCpuTime = true;
