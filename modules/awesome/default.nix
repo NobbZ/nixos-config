@@ -60,7 +60,7 @@ in
 
     launcher = lib.mkOption {
       type = lib.types.str;
-      default = "${rofi}/bin/rofi -modi run#drun#window#ssh#emoji#unicode:${pkgs.inputs.self.packages.${pkgs.system}.rofi-unicode}/bin/rofiunicode.sh -show run -show-icons";
+      default = "${rofi}/bin/rofi -modi drun#run#window#ssh#emoji#unicode:${pkgs.inputs.self.packages.${pkgs.system}.rofi-unicode}/bin/rofiunicode.sh -show run -show-icons";
     };
 
     autostart = lib.mkOption {
