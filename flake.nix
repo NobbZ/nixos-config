@@ -2,7 +2,9 @@
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-20.09";
   inputs.unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  inputs.flake-utils.url = "github:numtide/flake-utils";
+
+  outputs = { self, nixpkgs, flake-utils, ... }@inputs: {
     devShell.x86_64-linux =
       nixpkgs.legacyPackages.x86_64-linux.callPackage
         ./packages/devShell.nix
@@ -11,7 +13,17 @@
     nixosModules = import ./nixos/modules;
     nixosConfigurations = import ./nixos/hosts inputs;
 
-    checks.x86_64-linux = builtins.mapAttrs (_: hostConfig: hostConfig.config.system.build.toplevel) self.nixosConfigurations;
+    checks.x86_64-linux =
+      let
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        nixos = pkgs.recurseIntoAttrs {
+          configs = pkgs.recurseIntoAttrs
+            (builtins.mapAttrs
+              (_: hostConfig: hostConfig.config.system.build.toplevel)
+              self.nixosConfigurations);
+        };
+      in
+      flake-utils.lib.flattenTree (pkgs.recurseIntoAttrs { inherit nixos; });
 
     packages.x86_64-linux = (import ./scripts inputs)
       // builtins.mapAttrs
