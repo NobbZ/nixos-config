@@ -90,11 +90,5 @@
         (_: config:
           config.activationPackage)
         self.homeConfigurations;
-
-      devShell.x86_64-linux = pkgs.mkShell {
-        name = "home-manager-shell";
-
-        buildInputs = with pkgs; [ git nixpkgs-fmt ];
-      };
     };
 }

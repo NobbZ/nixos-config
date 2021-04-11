@@ -1,9 +1,9 @@
-{ mkShell, gnumake, nixpkgs-fmt, git }:
+{ mkShell, nixpkgs-fmt, git }:
 
 mkShell {
-  name = "nixos-builder";
+  name = "system-and-home-builder";
 
-  buildInputs = [ gnumake nixpkgs-fmt git ];
+  buildInputs = [ nixpkgs-fmt git ];
 
   shellHook = ''
     ${git}/bin/git fetch origin
