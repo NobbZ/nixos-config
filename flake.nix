@@ -8,9 +8,8 @@
         ./packages/devShell.nix
         { };
 
-    nixosModules = import ./modules;
-
-    nixosConfigurations = import ./hosts inputs;
+    nixosModules = import ./nixos/modules;
+    nixosConfigurations = import ./nixos/hosts inputs;
 
     checks.x86_64-linux = builtins.mapAttrs (_: hostConfig: hostConfig.config.system.build.toplevel) self.nixosConfigurations;
 
