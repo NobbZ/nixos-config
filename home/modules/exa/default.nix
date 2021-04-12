@@ -3,10 +3,6 @@ let cfg = config.programs.exa;
 
 in
 {
-  options.programs.exa = {
-    enable = lib.mkEnableOption "A modern version of 'ls'";
-  };
-
   config = lib.mkIf cfg.enable {
     home.packages = [ pkgs.exa ];
 
