@@ -18,6 +18,11 @@
           (_: hostConfig: hostConfig.config.system.build.toplevel)
           self.nixosConfigurations);
       };
+      home = pkgs.recurseIntoAttrs {
+        configs = pkgs.recurseIntoAttrs (builtins.mapAttrs
+          (_: homeConfig: homeConfig.activationPackage)
+          self.homeConfigurations);
+      };
     in
     {
       devShell.x86_64-linux =
@@ -54,13 +59,13 @@
         gnucash-de = upkgs.callPackage ./home/packages/gnucash-de { };
       } // (import ./scripts inputs)
       // flake-utils.lib.flattenTree (pkgs.recurseIntoAttrs {
-        inherit nixos;
+        inherit nixos home;
       });
 
       lib = import ./home/lib inputs;
 
-      checks.x86_64-linux =
-        flake-utils.lib.flattenTree (pkgs.recurseIntoAttrs { inherit nixos; });
+      checks.x86_64-linux = self.packages.x86_64-linux;
+      # flake-utils.lib.flattenTree (pkgs.recurseIntoAttrs { inherit nixos; });
 
       apps.x86_64-linux = {
         build = { type = "app"; program = "${self.packages.x86_64-linux.build-config}/bin/build-config.sh"; };
