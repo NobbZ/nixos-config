@@ -35,6 +35,7 @@
 
       homeConfigurations = {
         tux-nixos = self.lib.mkHomeConfig "nmelzer" ./home/hosts/tux-nixos.nix;
+        delly-nixos = self.lib.mkHomeConfig "nmelzer" ./home/hosts/delly-nixos.nix;
       };
 
       overlay = import ./home/nix/myOverlay;
