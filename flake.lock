@@ -1,12 +1,62 @@
 {
   "nodes": {
+    "emacs": {
+      "locked": {
+        "lastModified": 1618252507,
+        "narHash": "sha256-NaeaQyyy1FACx2hjXImAhr7EWLdsGRxHn0e/B7EXeRk=",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "21eea8497bec65ad79b225e967e9a307f8524a2e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1618217525,
+        "narHash": "sha256-WGrhVczjXTiswQaoxQ+0PTfbLNeOQM6M36zvLn78AYg=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "c6169a2772643c4a93a0b5ac1c61e296cba68544",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1618177587,
+        "narHash": "sha256-9y5Y7YK2W+kzXBrYkrw964xWbo2O4m5A91PohkyGkj8=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "0a6227d667d1d2bc6a79de24fd12becc523f2e2f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1618093127,
-        "narHash": "sha256-H8QVD7WIDV6yCbyuwmWx/E+wbp9hM9tzk67Ioy1kLek=",
+        "lastModified": 1618170470,
+        "narHash": "sha256-6l43B/yy3dxAb3OaF20S0le83Uy+/ouUCXuJrIQP1Gs=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "b39544be6c2e554fc494140d1d8d1b412b2762a5",
+        "rev": "d170a7bc3971f6bf6499c549b046e9b3d3db3613",
         "type": "github"
       },
       "original": {
@@ -18,6 +68,9 @@
     },
     "root": {
       "inputs": {
+        "emacs": "emacs",
+        "flake-utils": "flake-utils",
+        "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "unstable": "unstable"
       }
