@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  nixos = import pkgs.inputs.nixpkgs-stable {
+  nixos = import pkgs.inputs.nixpkgs {
     inherit (pkgs) system;
     config.allowUnfree = true;
   };
