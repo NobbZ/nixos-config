@@ -14,7 +14,10 @@
 
     services.gnome-keyring.enable = true;
 
-    home.packages = [ pkgs.inputs.nixpkgs-stable.legacyPackages.x86_64-linux.mysqlWorkbench ];
+    home.packages = [
+      pkgs.inputs.nixpkgs-stable.legacyPackages.x86_64-linux.mysqlWorkbench
+      pkgs.inputs.self.packages.${pkgs.system}.gnucash-de
+    ];
 
     systemd.user.services = {
       imwheel = {
