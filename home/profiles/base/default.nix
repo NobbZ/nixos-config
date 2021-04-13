@@ -33,8 +33,12 @@ in
       GIT_EDITOR = EDITOR;
     };
 
+    gtk.enable = true;
+    gtk.theme.package = pkgs.gnome3.gnome_themes_standard;
+    gtk.theme.name = "Adwaita-dark";
+
     home.keyboard.layout = "de";
-    home.packages = [ pkgs.hydra-check ];
+    home.packages = [ pkgs.hydra-check pkgs.gnome3.dconf ];
 
     xsession = {
       enable = true;
