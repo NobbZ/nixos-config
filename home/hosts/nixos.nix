@@ -16,6 +16,7 @@
 
     home.packages = [
       pkgs.inputs.nixpkgs.legacyPackages.x86_64-linux.mysqlWorkbench
+      pkgs.inputs.self.packages.${pkgs.system}.gnucash-de
     ];
 
     systemd.user.services = {
