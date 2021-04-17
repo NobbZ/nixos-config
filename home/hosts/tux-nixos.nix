@@ -16,6 +16,7 @@ in
 
     enabledLanguages = [
       "agda"
+      "clojure"
       "cpp"
       "elixir"
       "erlang"
