@@ -147,6 +147,7 @@ in
         ep.adoc-mode
         ep.k8s-mode
         ep.buttercup
+        ep.adoc-mode
 
         # ep.bazel-mode
 
