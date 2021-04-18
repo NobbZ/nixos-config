@@ -59,6 +59,7 @@
         rofi-unicode = upkgs.callPackage ./home/packages/rofi-unicode { };
         dracula-konsole = upkgs.callPackage ./home/packages/dracula/konsole.nix { };
         gnucash-de = upkgs.callPackage ./home/packages/gnucash-de { };
+        kmymoney-de = upkgs.callPackage ./home/packages/kmymoney-de { };
       } // (import ./scripts inputs)
       // flake-utils.lib.flattenTree (pkgs.recurseIntoAttrs {
         inherit nixos home;
