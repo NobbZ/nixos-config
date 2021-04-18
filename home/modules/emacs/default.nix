@@ -148,6 +148,7 @@ in
         ep.k8s-mode
         ep.buttercup
         ep.adoc-mode
+        ep.hledger-mode
 
         # ep.bazel-mode
 
