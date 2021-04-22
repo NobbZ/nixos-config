@@ -153,7 +153,7 @@ in
         ep.buttercup
         ep.adoc-mode
         ep.hledger-mode
-        ep.beancount-mode
+        ep.typescript-mode
 
         # ep.bazel-mode
 
