@@ -133,10 +133,6 @@ in
 
       ;; set splash screen
       (setq inhibit-startup-screen ${bool2Lisp (!cfg.splashScreen)})
-
-      ;; beancount stuff
-      (require 'beancount)
-      (add-to-list 'auto-mode-alist '("\\.beancount\\'" . beancount-mode))
     '';
 
     programs.emacs.extraPackages = ep:
