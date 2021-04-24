@@ -1,7 +1,7 @@
-{ pkgs, lib, nixpkgs, unstable, self, ... }:
+{ pkgs, lib, nixpkgs, unstable, self, inputs, ... }:
 let
   nixPath = builtins.concatStringsSep ":" [
-    "nixpkgs=${pkgs.inputs.unstable}"
+    "nixpkgs=${inputs.unstable}"
     "nixos-config=/etc/nixos/configuration.nix"
     "/nix/var/nix/profiles/per-user/root/channels"
   ];

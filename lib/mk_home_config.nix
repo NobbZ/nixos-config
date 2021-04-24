@@ -18,6 +18,7 @@ home-manager.lib.homeManagerConfiguration {
           stable = inputs.nixpkgs.legacyPackages.${system};
           unstable = inputs.unstable.legacyPackages.${system};
           self = inputs.self.packages.${system};
+          inherit inputs;
         };
       })
       ../home/home.nix

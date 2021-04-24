@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 let
   cfg = config.profiles.base;
 
@@ -224,7 +224,7 @@ in
 
         sessionVariables = {
           NIX_PATH = builtins.concatStringsSep ":" [
-            "nixpkgs=${pkgs.inputs.nixpkgs}"
+            "nixpkgs=${inputs.nixpkgs}"
             "nixos-config=/etc/nixos/configuration.nix"
             "/nix/var/nix/profiles/per-user/root/channels"
           ];
