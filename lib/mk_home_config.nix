@@ -16,12 +16,12 @@ home-manager.lib.homeManagerConfiguration {
   inherit username system;
   homeDirectory = "/home/${username}";
   configuration = { lib, ... }: {
+    _module = { inherit args; };
     nixpkgs.overlays = builtins.attrValues inputs.self.overlays;
     nixpkgs.config.allowUnfreePredicate = (pkg: builtins.elem (lib.getName pkg) [
       "insync"
     ]);
     imports = [
-      (_: { _module = { inherit args; }; })
       ../home/home.nix
       entrypoint
     ];
