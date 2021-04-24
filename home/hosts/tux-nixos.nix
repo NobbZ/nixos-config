@@ -1,10 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, unstable, self, ... }:
 let
-  nixos = import pkgs.inputs.nixpkgs {
-    inherit (pkgs) system;
-    config.allowUnfree = true;
-  };
-
   keepassWithPlugins =
     pkgs.keepass.override { plugins = [ pkgs.keepass-keepasshttp ]; };
 in
@@ -32,8 +27,23 @@ in
 
     programs.emacs.splashScreen = false;
 
-    home.packages =
-      [ nixos.insync pkgs.handbrake keepassWithPlugins pkgs.keybase-gui pkgs.minikube pkgs.lutris pkgs.steam pkgs.inputs.self.packages.${pkgs.system}.gnucash-de pkgs.gnome3.gnome-tweaks ];
+    home.packages = let
+      p = pkgs;
+      s = self;
+    in
+      [
+        p.insync
+        p.handbrake
+        p.keybase-gui
+        p.minikube
+        p.lutris
+        p.steam
+        p.gnome3.gnome-tweaks
+
+        s.gnucash-de
+
+        keepassWithPlugins
+      ];
 
     programs.obs-studio.enable = true;
     programs.htop = {

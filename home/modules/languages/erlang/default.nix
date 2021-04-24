@@ -1,7 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, self, ... }:
 let
   cfg = config.languages.erlang;
-  erlang-ls = pkgs.inputs.self.packages.${pkgs.system}.erlang-ls;
+
+  inherit (self) erlang-ls;
 in
 {
   options.languages.erlang = {

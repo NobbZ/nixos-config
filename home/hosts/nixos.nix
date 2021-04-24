@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, stable, self, ... }:
 
 {
   config = {
@@ -15,8 +15,8 @@
     services.gnome-keyring.enable = true;
 
     home.packages = [
-      pkgs.inputs.nixpkgs.legacyPackages.x86_64-linux.mysqlWorkbench
-      pkgs.inputs.self.packages.${pkgs.system}.gnucash-de
+      stable.mysqlWorkbench
+      self.gnucash-de
     ];
 
     systemd.user.services = {

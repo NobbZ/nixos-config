@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, nixpkgs, unstable, self, ... }:
 let
   nixPath = builtins.concatStringsSep ":" [
     "nixpkgs=${pkgs.inputs.unstable}"
@@ -18,27 +18,28 @@ in
     sessionVariables = { NIX_PATH = nixPath; };
   };
 
-  manual.html.enable = true;
-
   xsession.windowManager.awesome.enable = true;
 
   home = {
     sessionVariables = { NIX_PATH = nixPath; };
 
-    packages = with pkgs; [
-      cachix
+    packages = let
+      p = pkgs;
+      s = self;
+    in [
+      p.cachix
       # nix-prefetch-scripts
-      nix-review
-      exercism
-      tmate
-      element-desktop
-      powershell
-      inputs.self.packages.${system}.dracula-konsole
+      p.nix-review
+      p.exercism
+      p.tmate
+      p.element-desktop
+      p.powershell
+      s.dracula-konsole
 
-      fira-code
-      cascadia-code
+      p.fira-code
+      p.cascadia-code
 
-      (pkgs.callPackage ({ lib, buildGoModule, fetchFromGitHub }:
+      (p.callPackage ({ lib, buildGoModule, fetchFromGitHub }:
 
         # Currently `buildGo114Module` is passed as `buildGoModule` from
         # `../default.nix`. Please remove the fixed 1.14 once a new release has been

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, self, ... }:
 let cfg = config.programs.advancedCopy;
 
 in
@@ -8,7 +8,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ pkgs.inputs.self.packages.${pkgs.system}.advcp ];
+    home.packages = [ self.advcp ];
 
     programs.zshell.aliases = {
       cp = "advcp -g";

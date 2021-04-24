@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, self, ... }:
 let
   cfg = config.xsession.windowManager.awesome;
 
@@ -60,7 +60,7 @@ in
 
     launcher = lib.mkOption {
       type = lib.types.str;
-      default = "${rofi}/bin/rofi -modi drun#run#window#ssh#emoji#unicode:${pkgs.inputs.self.packages.${pkgs.system}.rofi-unicode}/bin/rofiunicode.sh -show drun -show-icons";
+      default = "${rofi}/bin/rofi -modi drun#run#window#ssh#emoji#unicode:${self.rofi-unicode}/bin/rofiunicode.sh -show drun -show-icons";
     };
 
     autostart = lib.mkOption {

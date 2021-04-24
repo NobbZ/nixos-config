@@ -1,8 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, self, ... }:
 let
   cfg = config.languages.elixir;
 
-  inherit (pkgs.inputs.self.packages.${pkgs.system}) elixir-lsp;
+  inherit (self) elixir-lsp;
 in
 {
   options.languages.elixir = {
