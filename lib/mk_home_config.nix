@@ -20,7 +20,7 @@ home-manager.lib.homeManagerConfiguration {
           self = inputs.self.packages.${system};
         };
       })
-      ../home.nix
+      ../home/home.nix
       entrypoint
     ];
   };

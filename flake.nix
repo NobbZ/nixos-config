@@ -65,7 +65,7 @@
         inherit nixos home;
       });
 
-      lib = import ./home/lib inputs;
+      lib = import ./lib inputs;
 
       checks.x86_64-linux = self.packages.x86_64-linux;
       # flake-utils.lib.flattenTree (pkgs.recurseIntoAttrs { inherit nixos; });
