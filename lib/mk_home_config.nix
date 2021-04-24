@@ -2,8 +2,16 @@
 
 username: entrypoint:
 
-let system = "x86_64-linux"; in
+let
+  system = "x86_64-linux";
 
+  args = {
+    stable = inputs.nixpkgs.legacyPackages.${system};
+    unstable = inputs.unstable.legacyPackages.${system};
+    self = inputs.self.packages.${system};
+    inherit inputs;
+  };
+in
 home-manager.lib.homeManagerConfiguration {
   inherit username system;
   homeDirectory = "/home/${username}";
@@ -13,14 +21,7 @@ home-manager.lib.homeManagerConfiguration {
       "insync"
     ]);
     imports = [
-      (_: {
-        _module.args = {
-          stable = inputs.nixpkgs.legacyPackages.${system};
-          unstable = inputs.unstable.legacyPackages.${system};
-          self = inputs.self.packages.${system};
-          inherit inputs;
-        };
-      })
+      (_: { _module = { inherit args; }; })
       ../home/home.nix
       entrypoint
     ];
