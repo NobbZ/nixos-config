@@ -7,10 +7,6 @@ let
   ];
 in
 {
-  nixpkgs.config.allowUnfree = true;
-
-  imports = [ ./modules ./profiles ];
-
   profiles.base.enable = true;
   fonts.fontconfig.enable = true;
 

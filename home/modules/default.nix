@@ -1,12 +1,11 @@
+{ filterAttrs, mapAttrs, mapAttrsToList, ... }:
+
+let
+  modules = let
+    all = builtins.readDir ./.;
+    dirs = filterAttrs (k: v: v == "directory") all;
+  in mapAttrs (k: v: ./. + "/${k}") dirs;
+in
 {
-  imports = [
-    ./advcp
-    ./awesome
-    ./emacs
-    ./exa
-    ./keyleds
-    ./languages
-    ./openshift
-    ./zshell
-  ];
-}
+  all-modules = mapAttrsToList (k: v: v) modules;
+} // modules

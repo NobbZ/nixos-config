@@ -33,6 +33,7 @@
       nixosModules = import ./nixos/modules;
       nixosConfigurations = import ./nixos/hosts inputs;
 
+      homeModules = import ./home/modules pkgs.lib;
       homeConfigurations = {
         tux-nixos = self.lib.mkHomeConfig "nmelzer" ./home/hosts/tux-nixos.nix;
         delly-nixos = self.lib.mkHomeConfig "nmelzer" ./home/hosts/delly-nixos.nix;

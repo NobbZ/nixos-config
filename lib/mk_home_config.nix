@@ -19,9 +19,11 @@ home-manager.lib.homeManagerConfiguration {
     _module = { inherit args; };
     nixpkgs.overlays = builtins.attrValues inputs.self.overlays;
     nixpkgs.config.allowUnfreePredicate = (pkg: builtins.elem (lib.getName pkg) [
-      "insync"
+      "insync" "teamspeak-client" "google-chrome" "steam" "steam-original"
+      "steam-runtime"
     ]);
-    imports = [
+    imports = inputs.self.homeModules.all-modules ++ [
+      ../home/profiles
       ../home/home.nix
       entrypoint
     ];
