@@ -12,6 +12,8 @@
     "zerotierone"
   ]);
   nix.autoOptimiseStore = false; # I do use ZFS dedup, lets see whats quicker!
+  nix.gc.automatic = true;
+  nix.gc.options = "--delete-older-than 10d";
   nix.buildCores = 1;
 
   security.chromiumSuidSandbox.enable = true;
