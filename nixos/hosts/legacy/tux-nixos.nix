@@ -11,7 +11,7 @@
     "hplip"
     "zerotierone"
   ]);
-  nix.autoOptimiseStore = true;
+  nix.autoOptimiseStore = false; # I do use ZFS dedup, lets see whats quicker!
   nix.buildCores = 1;
 
   security.chromiumSuidSandbox.enable = true;
