@@ -13,6 +13,7 @@
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       upkgs = unstable.legacyPackages.x86_64-linux;
+      epkgs = import unstable { system = "x86_63-linux"; overlays = [ self.overlays.emacs ]; };
       nixos = pkgs.recurseIntoAttrs {
         configs = pkgs.recurseIntoAttrs (builtins.mapAttrs
           (_: hostConfig: hostConfig.config.system.build.toplevel)
@@ -61,6 +62,7 @@
         dracula-konsole = upkgs.callPackage ./home/packages/dracula/konsole.nix { };
         gnucash-de = upkgs.callPackage ./home/packages/gnucash-de { };
         kmymoney-de = upkgs.callPackage ./home/packages/kmymoney-de { };
+        emacs = epkgs.emacsPgtkGcc;
       } // (import ./scripts inputs)
       // flake-utils.lib.flattenTree (pkgs.recurseIntoAttrs {
         inherit nixos home;
