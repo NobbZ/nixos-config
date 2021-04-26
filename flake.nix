@@ -13,7 +13,7 @@
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       upkgs = unstable.legacyPackages.x86_64-linux;
-      epkgs = import unstable { system = "x86_63-linux"; overlays = [ self.overlays.emacs ]; };
+      epkgs = import unstable { system = "x86_64-linux"; overlays = [ self.overlays.emacs ]; };
       nixos = pkgs.recurseIntoAttrs {
         configs = pkgs.recurseIntoAttrs (builtins.mapAttrs
           (_: hostConfig: hostConfig.config.system.build.toplevel)
