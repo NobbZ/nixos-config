@@ -1,7 +1,6 @@
 { pkgs, config, lib, ... }:
-
-let 
-  packet-block-storage = 
+let
+  packet-block-storage =
     pkgs.stdenv.mkDerivation {
       name = "packet-block-storage";
       src = pkgs.fetchFromGitHub {
@@ -11,10 +10,16 @@ let
         sha256 = "0h4lpvz7v6xhl14kkwrjp202lbagj6wp2wqgrqdc6cfb4h0mf9fq";
       };
       nativeBuildInputs = [ pkgs.makeWrapper ];
-      installPhase = 
+      installPhase =
         let
           deps = with pkgs; [
-            which jq curl gawk kmod openiscsi multipath-tools
+            which
+            jq
+            curl
+            gawk
+            kmod
+            openiscsi
+            multipath-tools
           ];
           wrapIt = prog: ''
             cp ${prog} $out/bin
@@ -22,34 +27,37 @@ let
             substituteInPlace $out/bin/${prog} --replace /lib/udev/scsi_id ${pkgs.udev}/lib/udev/scsi_id
             wrapProgram $out/bin/${prog} --prefix PATH : ${lib.makeBinPath deps}
           '';
-        in ''
+        in
+        ''
           mkdir -p $out/bin
           ${wrapIt "packet-block-storage-attach"}
           ${wrapIt "packet-block-storage-detach"}
-      '';
+        '';
     };
-  
-in {
+
+in
+{
   environment.systemPackages = [ packet-block-storage pkgs.multipath-tools pkgs.openiscsi ];
 
   systemd.sockets.multipathd = {
     description = "multipathd control socket";
     before = [ "sockets.target" ];
 
-    listenStreams = ["@/org/kernel/linux/storage/multipathd"];
+    listenStreams = [ "@/org/kernel/linux/storage/multipathd" ];
   };
 
   systemd.services.multipathd = {
     description = "Device-Mapper Multipath Device Controller";
     before = [
-      "iscsi.service" "iscsid.service"
+      "iscsi.service"
+      "iscsid.service"
     ];
     after = [ "multipathd.socket" "systemd-udevd.service" ];
     unitConfig = {
       DefaultDependencies = false;
     };
     wants = [ "multipathd.socket" "blk-availability.service" ];
-    conflicts = ["shutdown.target"];
+    conflicts = [ "shutdown.target" ];
     serviceConfig = {
       Type = "notify";
       NotifyAccess = "main";

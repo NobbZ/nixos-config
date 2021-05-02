@@ -1,7 +1,6 @@
 { home-manager, ... }@inputs:
 
 username: entrypoint:
-
 let
   system = "x86_64-linux";
 
@@ -19,7 +18,11 @@ home-manager.lib.homeManagerConfiguration {
     _module = { inherit args; };
     nixpkgs.overlays = builtins.attrValues inputs.self.overlays;
     nixpkgs.config.allowUnfreePredicate = (pkg: builtins.elem (lib.getName pkg) [
-      "insync" "teamspeak-client" "google-chrome" "steam" "steam-original"
+      "insync"
+      "teamspeak-client"
+      "google-chrome"
+      "steam"
+      "steam-original"
       "steam-runtime"
     ]);
     imports = inputs.self.homeModules.all-modules ++ [

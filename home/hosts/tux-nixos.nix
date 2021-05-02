@@ -27,10 +27,11 @@ in
 
     programs.emacs.splashScreen = false;
 
-    home.packages = let
-      p = pkgs;
-      s = self;
-    in
+    home.packages =
+      let
+        p = pkgs;
+        s = self;
+      in
       [
         p.insync
         p.handbrake
@@ -50,7 +51,9 @@ in
       detailedCpuTime = true;
       meters.right = [
         { kind = "Battery"; mode = 1; }
-        "Tasks" "LoadAverage" "Uptime"
+        "Tasks"
+        "LoadAverage"
+        "Uptime"
       ];
     };
 

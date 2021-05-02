@@ -1,6 +1,7 @@
 { runCommand, makeWrapper, kmymoney }:
 
-runCommand "kmymoney-de-${kmymoney.version}" {
+runCommand "kmymoney-de-${kmymoney.version}"
+{
   nativeBuildInputs = [ makeWrapper ];
 } ''
   mkdir -p $out/{bin,share/applications}

@@ -80,7 +80,7 @@
 
   services.pgmanage.enable = true;
   services.pgmanage.connections.k3s-hosted = "hostaddr=127.0.0.1 port=30432 dbname=postgres";
-  
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -101,7 +101,7 @@
 
     hydraURL = "https://localhost:3000";
     notificationSender = "hydra@localhost";
-    buildMachinesFiles = [];
+    buildMachinesFiles = [ ];
     useSubstitutes = true;
   };
   networking.firewall.allowedTCPPorts = [ 3000 ];

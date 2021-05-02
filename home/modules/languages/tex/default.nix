@@ -1,5 +1,4 @@
 { config, lib, pkgs, ... }:
-
 let cfg = config.languages.tex;
 
 in
