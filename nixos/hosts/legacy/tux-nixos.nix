@@ -160,7 +160,7 @@
   hardware.pulseaudio.support32Bit = true;
 
   hardware.opengl.enable = true;
-  hardware.opengl.extraPackages = [ pkgs.vaapiIntel ];
+  hardware.opengl.extraPackages = [ pkgs.vaapiIntel pkgs.beignet ];
 
   virtualisation = {
     docker = {
