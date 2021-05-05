@@ -6,7 +6,7 @@
 
 {
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.contentAddressedByDefault = 1;
+  nixpkgs.config.contentAddressedByDefault = true;
 
   imports = [ ];
 
