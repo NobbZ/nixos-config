@@ -2,6 +2,8 @@
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-20.09";
   inputs.unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
+  inputs.nix.url = "github:nixos/nix/master";
+
   inputs.home-manager.url = "github:nix-community/home-manager";
   inputs.home-manager.inputs.nixpkgs.follows = "unstable";
 
