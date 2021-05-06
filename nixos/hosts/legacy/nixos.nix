@@ -2,6 +2,7 @@
 
 {
   nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.contentAddressedByDefault = true;
 
   #   environment.extraSetup = ''
   #   ln -s ${pkgs.pinentry-gtk2}/bin/pinentry $out/bin/pinentry-gtk-2

@@ -1,7 +1,5 @@
-{ nixpkgs, self, ... }@inputs:
+{ self, ... }@inputs:
 let
-  inherit (nixpkgs.lib) nixosSystem;
-
   mkSystem = name: nixpkgs: modules:
     nixpkgs.lib.nixosSystem ({
       extraArgs = inputs;

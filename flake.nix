@@ -15,8 +15,8 @@
       upkgs = unstable.legacyPackages.x86_64-linux;
       epkgs = import unstable { system = "x86_64-linux"; overlays = [ self.overlays.emacs ]; };
       nixos = pkgs.recurseIntoAttrs {
-        configs = pkgs.recurseIntoAttrs (builtins.mapAttrs
-          (_: hostConfig: hostConfig.config.system.build.toplevel)
+        configs = pkgs.dontRecurseIntoAttrs (builtins.mapAttrs
+          (_: hostConfig: pkgs.dontRecurseIntoAttrs hostConfig.config.system.build.toplevel)
           self.nixosConfigurations);
       };
       home = pkgs.recurseIntoAttrs {
