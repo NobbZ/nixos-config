@@ -15,7 +15,6 @@
   nix.gc.automatic = true;
   nix.gc.options = "--delete-older-than 10d";
   nix.buildCores = 1;
-  nixpkgs.config.contentAddressedByDefault = true;
 
   security.chromiumSuidSandbox.enable = true;
 
