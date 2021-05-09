@@ -1,4 +1,4 @@
-{ pkgs, lib, nixpkgs, unstable, self, inputs, ... }:
+{ config, pkgs, lib, nixpkgs, unstable, self, inputs, ... }:
 let
   nixPath = builtins.concatStringsSep ":" [
     "nixpkgs=${inputs.unstable}"
@@ -38,6 +38,11 @@ in
         p.cascadia-code
 
         p.lefthook
+
+        (p.writeShellScriptBin "timew" ''
+          export TIMEWARRIORDB="${config.home.homeDirectory}/timmelzer@gmail.com/timewarrior"
+          exec ${p.timewarrior}/bin/timew "$@"
+        '')
       ];
 
     stateVersion = "20.09";
