@@ -63,6 +63,8 @@ in
         "result-*"
         # direnv caches
         ".direnv/"
+        # emacs/python stuff
+        "flycheck_*.py"
       ];
 
       includes = [{
