@@ -4,7 +4,7 @@
   nix = {
     package = nix.packages.x86_64-linux.nix; # pkgs.nixUnstable;
     extraOptions = ''
-      experimental-features = nix-command flakes ca-derivations ca-references
+      experimental-features = nix-command flakes
     '';
 
     registry.nixpkgs.flake = nixpkgs;

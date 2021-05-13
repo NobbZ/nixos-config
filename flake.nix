@@ -1,6 +1,7 @@
 {
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-20.09";
   inputs.unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+  inputs.master.url = "github:nixos/nixpkgs/master";
 
   inputs.nix.url = "github:nixos/nix/master";
 
@@ -10,12 +11,13 @@
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
   inputs.emacs.url = "github:nix-community/emacs-overlay";
+  inputs.emacs.inputs.nixpkgs.follows = "master";
 
   outputs = { self, nixpkgs, unstable, flake-utils, emacs, ... }@inputs:
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       upkgs = unstable.legacyPackages.x86_64-linux;
-      epkgs = import unstable { system = "x86_64-linux"; overlays = [ self.overlays.emacs ]; };
+      epkgs = import inputs.master { system = "x86_64-linux"; overlays = [ self.overlays.emacs ]; };
       nixos = pkgs.recurseIntoAttrs {
         configs = pkgs.dontRecurseIntoAttrs (builtins.mapAttrs
           (_: hostConfig: pkgs.dontRecurseIntoAttrs hostConfig.config.system.build.toplevel)
@@ -64,7 +66,7 @@
         dracula-konsole = upkgs.callPackage ./home/packages/dracula/konsole.nix { };
         gnucash-de = upkgs.callPackage ./home/packages/gnucash-de { };
         kmymoney-de = upkgs.callPackage ./home/packages/kmymoney-de { };
-        emacs = epkgs.emacsPgtkGcc;
+        emacs = epkgs.emacsGcc;
       } // (import ./scripts inputs)
       // flake-utils.lib.flattenTree (pkgs.recurseIntoAttrs {
         inherit nixos home;

@@ -2,6 +2,8 @@
 let
   cfg = config.profiles.base;
 
+  inherit (inputs.self.packages.x86_64-linux) emacs;
+
   dag = lib.hm.dag;
 
   # TODO: make these a bit more nice, so that repeating the hosts and individual config isn't necessary.
@@ -145,7 +147,7 @@ in
 
       emacs = {
         enable = true;
-        package = pkgs.emacsPgtkGcc;
+        package = emacs;
       };
 
       tmux = {

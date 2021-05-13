@@ -67,6 +67,22 @@
         "type": "github"
       }
     },
+    "master": {
+      "locked": {
+        "lastModified": 1620922851,
+        "narHash": "sha256-P26+loLskC8k/XLfnTn+MfCR5DxRCydeFVeNXdzmV4E=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "cd0b34aff2df6a0ff382be9757dcd4045846fd45",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nix": {
       "inputs": {
         "lowdown-src": "lowdown-src",
@@ -123,6 +139,7 @@
         "emacs": "emacs",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
+        "master": "master",
         "nix": "nix",
         "nixpkgs": "nixpkgs_2",
         "unstable": "unstable"

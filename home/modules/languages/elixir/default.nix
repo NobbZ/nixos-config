@@ -34,7 +34,7 @@ in
         ];
         code = ''
           (add-to-list 'exec-path "${elixir-lsp}/bin")
-          (setq lsp-clients-elixir-server-executable "elixir-ls")
+          (setq lsp-elixir-server-command '("elixir-ls"))
 
           (add-hook 'elixir-mode-hook
                     (lambda ()
