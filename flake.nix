@@ -17,6 +17,7 @@
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       upkgs = unstable.legacyPackages.x86_64-linux;
+      mpkgs = inputs.master.legacyPackages.x86_64-linux;
       epkgs = import unstable { system = "x86_64-linux"; overlays = [ self.overlays.emacs ]; };
       nixos = pkgs.recurseIntoAttrs {
         configs = pkgs.dontRecurseIntoAttrs (builtins.mapAttrs
@@ -64,7 +65,7 @@
         };
         rofi-unicode = upkgs.callPackage ./home/packages/rofi-unicode { };
         dracula-konsole = upkgs.callPackage ./home/packages/dracula/konsole.nix { };
-        gnucash-de = upkgs.callPackage ./home/packages/gnucash-de { };
+        gnucash-de = mpkgs.callPackage ./home/packages/gnucash-de { };
         kmymoney-de = upkgs.callPackage ./home/packages/kmymoney-de { };
         emacs = epkgs.emacsGcc;
       } // (import ./scripts inputs)
