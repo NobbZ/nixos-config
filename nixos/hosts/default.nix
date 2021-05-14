@@ -14,7 +14,7 @@ let
     });
 in
 {
-  delly-nixos = mkSystem "delly-nixos" inputs.unstable (with self.nixosModules; [ cachix flake gc version ]);
+  delly-nixos = mkSystem "delly-nixos" inputs.nixpkgs (with self.nixosModules; [ cachix flake gc version ]);
   tux-nixos = mkSystem "tux-nixos" inputs.nixpkgs (with self.nixosModules; [ flake intel gc version ]);
   nixos = mkSystem "nixos" inputs.unstable (with self.nixosModules; [ cachix flake virtualbox-demo gc version ]);
 }
