@@ -1,23 +1,23 @@
 { config, pkgs, lib, nixpkgs, unstable, self, inputs, ... }:
 let
-  nixPath = builtins.concatStringsSep ":" [
-    "nixpkgs=${inputs.unstable}"
-    "nixos-config=/etc/nixos/configuration.nix"
-    "/nix/var/nix/profiles/per-user/root/channels"
-  ];
+  # nixPath = builtins.concatStringsSep ":" [
+  #   "nixpkgs=${inputs.unstable}"
+  #   "nixos-config=/etc/nixos/configuration.nix"
+  #   "/nix/var/nix/profiles/per-user/root/channels"
+  # ];
 in
 {
   profiles.base.enable = true;
   fonts.fontconfig.enable = true;
 
   systemd.user = {
-    sessionVariables = { NIX_PATH = nixPath; };
+    # sessionVariables = { NIX_PATH = nixPath; };
   };
 
   xsession.windowManager.awesome.enable = true;
 
   home = {
-    sessionVariables = { NIX_PATH = nixPath; };
+    # sessionVariables = { NIX_PATH = nixPath; };
 
     packages =
       let

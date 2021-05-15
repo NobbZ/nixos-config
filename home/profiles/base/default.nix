@@ -215,11 +215,11 @@ in
         '';
 
         sessionVariables = {
-          NIX_PATH = builtins.concatStringsSep ":" [
-            "nixpkgs=${inputs.nixpkgs}"
-            "nixos-config=/etc/nixos/configuration.nix"
-            "/nix/var/nix/profiles/per-user/root/channels"
-          ];
+          # NIX_PATH = builtins.concatStringsSep ":" [
+          #   "nixpkgs=${inputs.nixpkgs}"
+          #   "nixos-config=/etc/nixos/configuration.nix"
+          #   "/nix/var/nix/profiles/per-user/root/channels"
+          # ];
         };
 
         shellAliases = config.programs.zshell.aliases;
