@@ -10,7 +10,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.emacs.extraPackages = ep: [ ep.erlang ];
+    programs.emacs.extraPackages = ep: [
+      (ep.erlang.overrideAttrs (oa: {
+        buildInputs = oa.buildInputs ++ [ pkgs.perl pkgs.ncurses ];
+      }))
+    ];
 
     programs.emacs.lsp-mode = {
       enable = true;
