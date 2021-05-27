@@ -1,18 +1,16 @@
-{ pkgs, lib, stable, self, ... }:
+{ pkgs, stable, self, ... }:
 
 {
   config = {
     activeProfiles = [ "browsing" "development" ];
 
     enabledLanguages =
-      [ "go" "lua" "nix" "python" "terraform" ];
+      [ "elixir" "go" "lua" "nix" "python" "terraform" ];
 
     # languages.python.useMS = true;
 
     programs.emacs.splashScreen = false;
     programs.emacs.extraPackages = ep: [ ep.robot-mode ];
-
-    programs.advancedCopy.enable = lib.mkForce false;
 
     services.gnome-keyring.enable = true;
 
