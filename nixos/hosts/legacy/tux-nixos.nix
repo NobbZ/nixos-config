@@ -2,8 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
-
+{ config, pkgs, lib, unstable, ... }:
+let upkgs = import unstable { system = "x86_64-linux"; }; in
 {
   imports = [ ];
 
@@ -75,7 +75,7 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  services.ipfs.enable = true;
+  # services.ipfs.enable = true;
 
   services.zerotierone.enable = true;
   services.zerotierone.joinNetworks = [ "8286ac0e4768c8ae" ];
@@ -94,16 +94,16 @@
 
   services.ratbagd.enable = true;
 
-  services.hydra = {
-    enable = true;
-    package = pkgs.hydra-unstable;
+  # services.hydra = {
+  #   enable = true;
+  #   package = pkgs.hydra-unstable;
 
-    hydraURL = "https://localhost:3000";
-    notificationSender = "hydra@localhost";
-    buildMachinesFiles = [ ];
-    useSubstitutes = true;
-  };
-  networking.firewall.allowedTCPPorts = [ 3000 ];
+  #   hydraURL = "https://localhost:3000";
+  #   notificationSender = "hydra@localhost";
+  #   buildMachinesFiles = [ ];
+  #   useSubstitutes = true;
+  # };
+  # networking.firewall.allowedTCPPorts = [ 3000 ];
 
   # Enable sound.
   sound.enable = true;
@@ -166,6 +166,7 @@
       enable = true;
       storageDriver = "zfs";
       extraOptions = "--storage-opt zfs.fsname=rpool/local/docker";
+      package = upkgs.docker;
     };
 
     containers.enable = true;
