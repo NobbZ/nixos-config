@@ -44,6 +44,7 @@
         tux-nixos = self.lib.mkHomeConfig "nmelzer" ./home/hosts/tux-nixos.nix;
         delly-nixos = self.lib.mkHomeConfig "nmelzer" ./home/hosts/delly-nixos.nix;
         nixos = self.lib.mkHomeConfig "demo" ./home/hosts/nixos.nix;
+        WS0005 = self.lib.mkHomeConfig "WS0005" ./home/hosts/WS0005.nix;
       };
 
       overlay = import ./home/nix/myOverlay;
