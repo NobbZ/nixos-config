@@ -34,12 +34,13 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.interfaces.enp0s20u3u1.useDHCP = true;
   networking.interfaces.enp5s0f2.useDHCP = true;
-  networking.interfaces.wlp0s20u6.useDHCP = true;
-  networking.interfaces.wlp4s0.useDHCP = true;
+  networking.interfaces.wlp4s0.useDHCP = false;
   networking.hostId = "21025bb1";
   networking.networkmanager.enable = true;
+  networking.networkmanager.unmanaged = [
+    "mac:80:fa:5b:09:15:6e"
+  ];
   networking.extraHosts = ''
     # 127.0.0.1 versions.teamspeak.com files.teamspeak-services.com
   '';

@@ -8,55 +8,35 @@
     [ ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" "sr_mod" "rtsx_pci_sdmmc" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
     {
-      device = "rpool/safe/root";
-      fsType = "zfs";
+      device = "/dev/disk/by-uuid/440c8ce1-1799-4239-936f-a54c879941a5";
+      fsType = "ext4";
+    };
+
+  fileSystems."/home" =
+    {
+      device = "/dev/disk/by-uuid/8119ca17-576f-49a2-9496-946d6759a59b";
+      fsType = "ext4";
     };
 
   fileSystems."/nix" =
     {
-      device = "rpool/local/nix";
-      fsType = "zfs";
-    };
-
-  fileSystems."/var/lib/transmission" = {
-    device = "rpool/local/transmission";
-    fsType = "zfs";
-  };
-
-  fileSystems."/home" =
-    {
-      device = "rpool/safe/home";
-      fsType = "zfs";
+      device = "/dev/disk/by-uuid/48574e4d-3a82-4b04-ac28-d55c32fa3aff";
+      fsType = "ext4";
     };
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/27F3-0DEA";
+      device = "/dev/disk/by-uuid/7000-3A85";
       fsType = "vfat";
     };
 
-  fileSystems."/home/aroemer" =
-    {
-      device = "rpool/safe/home/aroemer";
-      fsType = "zfs";
-    };
-
-  fileSystems."/home/nmelzer" =
-    {
-      device = "rpool/safe/home/nmelzer";
-      fsType = "zfs";
-    };
-
-  swapDevices =
-    [
-      { device = "/dev/disk/by-uuid/9fc8f2be-fbbc-4ae1-b171-5f26facd6a29"; }
-    ];
+  swapDevices = [ ];
 
   nix.maxJobs = lib.mkDefault 4;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
