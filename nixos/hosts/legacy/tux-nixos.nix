@@ -14,7 +14,6 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
   nix.autoOptimiseStore = false; # I do use ZFS dedup, lets see whats quicker!
   nix.gc.automatic = true;
   nix.gc.options = "--delete-older-than 10d";
-  nix.buildCores = 1;
 
   security.chromiumSuidSandbox.enable = true;
 
@@ -165,8 +164,8 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
   virtualisation = {
     docker = {
       enable = true;
-      storageDriver = "zfs";
-      extraOptions = "--storage-opt zfs.fsname=rpool/local/docker";
+      # storageDriver = "zfs";
+      # extraOptions = "--storage-opt zfs.fsname=rpool/local/docker";
       package = upkgs.docker;
     };
 
