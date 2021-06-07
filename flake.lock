@@ -2,11 +2,11 @@
   "nodes": {
     "emacs": {
       "locked": {
-        "lastModified": 1622920819,
-        "narHash": "sha256-OhNIHH1NkfFpDghOTQ670xHr8hQWCym/NW1xnfqExl0=",
+        "lastModified": 1623002031,
+        "narHash": "sha256-9hUNVwrk1tloxoNZkfy9v8J/zir0eq76grifen78WHA=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "8e63b4865f49636c9d990d5946d3d8db132536ec",
+        "rev": "9f84a92c7eb20df4180191acd906c69ed2e4aca9",
         "type": "github"
       },
       "original": {
@@ -37,11 +37,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1622938142,
-        "narHash": "sha256-eNA2HPZI/iO4MCi/FCs+nRuFbpuMplM93Aj6YA2XCyY=",
+        "lastModified": 1623015085,
+        "narHash": "sha256-UB+xeEL03L63IkRONFx9fIqdjALe1qbeKgFM/d+HSak=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "7591c8041d290d4bb99679e9fed2d8061a8f0435",
+        "rev": "afb5fd962cdd122b70a7c0f3ad78c8ec6a75766b",
         "type": "github"
       },
       "original": {
@@ -69,11 +69,11 @@
     },
     "master": {
       "locked": {
-        "lastModified": 1622963410,
-        "narHash": "sha256-WcoEKXDLMDJA+1BmtEkTHx5zG2pH3jtiEQGmCcNZOUM=",
+        "lastModified": 1623041055,
+        "narHash": "sha256-sAlxB5HPmZ3x/EHW6K7kBDGVY5zLUemUIU/YGHD8zlw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c850d5a5501b6621b7ad8a83211499ec79531639",
+        "rev": "91fc48660666442120e014cf23c22c7d546fcf76",
         "type": "github"
       },
       "original": {
@@ -120,11 +120,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1622689964,
-        "narHash": "sha256-SDvBKMlTtRoMjNrfOMMO+7VNRW7AomvOt1uZK7gg37o=",
+        "lastModified": 1622969169,
+        "narHash": "sha256-tn+rsNarZD3A1QgqLmsZmPloAAAg/CXki7+1ytf6cwQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "47e580e291ff40bbde191e9fed35128727963b0c",
+        "rev": "b52409e65eb55d4f75ccf1561f4d87c1a43f7b2f",
         "type": "github"
       },
       "original": {
