@@ -84,11 +84,6 @@ in
                 host.address = "fritz.box";
                 host.port = 80;
               }
-              {
-                bind.port = 61080;
-                host.address = "192.168.178.2";
-                host.port = 80;
-              }
             ];
           };
           "nixos.adoring_suess.zerotier" = {
