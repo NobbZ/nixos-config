@@ -77,7 +77,7 @@ in
             hostname = "172.24.237.73";
           };
           "tux-nixos.adoring_suess.zerotier" = {
-            hostname = "172.24.198.250";
+            hostname = "172.24.152.168";
             localForwards = [
               {
                 bind.port = 60080;
