@@ -33,7 +33,7 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
-  networking.interfaces.enp5s0f2.useDHCP = true;
+  networking.interfaces.enp5s0f2.useDHCP = false;
   networking.interfaces.wlp4s0.useDHCP = false;
   networking.hostId = "21025bb1";
   networking.networkmanager.enable = true;
@@ -75,7 +75,7 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # services.ipfs.enable = true;
+  services.ipfs.enable = true;
 
   services.zerotierone.enable = true;
   services.zerotierone.joinNetworks = [ "8286ac0e4768c8ae" ];
