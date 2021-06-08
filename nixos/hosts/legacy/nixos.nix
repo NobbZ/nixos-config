@@ -69,6 +69,8 @@
   services.zerotierone.joinNetworks = [ "8286ac0e4768c8ae" ];
   services.zerotierone.package = (import nixpkgs { config.allowUnfree = true; system = pkgs.system; }).zerotierone;
 
+  services.ipfs.enable = true;
+
   # Mount a VirtualBox shared folder.
   # This is configurable in the VirtualBox menu at
   # Machine / Settings / Shared Folders.
