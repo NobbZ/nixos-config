@@ -151,6 +151,8 @@ in
         ep.hledger-mode
         ep.typescript-mode
 
+        ep.ledger-mode
+
         # ep.bazel-mode
 
         # (ep.trivialBuild { pname = "configuration"; src = confPackages; })
