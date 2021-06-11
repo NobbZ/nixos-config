@@ -2,6 +2,8 @@
 
 {
   config = {
+    nixpkgs.config.contentAddressedByDefault = true;
+
     activeProfiles = [ "browsing" "development" "home-office" ];
 
     # xsession.windowManager.awesome.terminalEmulator =
