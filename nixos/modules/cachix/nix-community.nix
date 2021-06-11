@@ -1,5 +1,7 @@
+{ config, lib, ... }:
+
 {
-  nix = {
+  nix = lib.mkIf (config.networking.hostName != "delly-nixos") {
     binaryCaches = [
       "https://nix-community.cachix.org"
     ];

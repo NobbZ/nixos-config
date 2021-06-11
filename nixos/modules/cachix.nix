@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 let
   folder = ./cachix;
   toImport = name: value: folder + ("/" + name);
@@ -7,7 +7,7 @@ let
 in
 {
   inherit imports;
-  nix.binaryCaches = [ "https://cache.nixos.org/" ];
+  nix.binaryCaches = lib.mkDefault (lib.optional (config.networking.hostName != "delly-nixos") "https://cache.nixos.org/");
 
   environment.systemPackages = [ pkgs.cachix ];
 }
