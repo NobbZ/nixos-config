@@ -14,7 +14,7 @@
   nix.autoOptimiseStore = true;
   nix.buildCores = 1;
   nix.maxJobs = 2;
-  nix.gc.automatic = true;
+  # nix.gc.automatic = true;
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
