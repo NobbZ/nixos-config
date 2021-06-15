@@ -1,7 +1,5 @@
-{ config, pkgs, nixpkgs, nix,  lib, ... }:
-
+{ config, pkgs, nixpkgs, nix, lib, ... }:
 let hostname = config.networking.hostName; in
-
 {
   nix = {
     package = nix.packages.x86_64-linux.nix; # pkgs.nixUnstable;
