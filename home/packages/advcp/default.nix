@@ -5,8 +5,6 @@ stdenv.mkDerivation rec {
   name = "advcp";
   version = "8.30";
 
-  __contentAddressed = true;
-
   src = fetchurl {
     name = "source-${name}-${version}.tar.xz";
     url = "ftp://ftp.gnu.org/gnu/${upstream}/${upstream}-${version}.tar.xz";
