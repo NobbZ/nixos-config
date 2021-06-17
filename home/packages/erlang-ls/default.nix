@@ -42,7 +42,7 @@ rebar3Relx rec {
   checkouts = fetchRebar3Deps {
     inherit name version;
     src = "${src}/rebar.lock";
-    sha256 = "sha256-8rszfcrFsunH7CqywSQ6m0NzjtrmtQB2EbzpzQCsNe0=";
+    sha256 = "sha256-nm3e5DfehSCjjTPADSzohilOBFW4QiXnokwVNrpDZ1E=";
   };
 
   postPatch = ''
