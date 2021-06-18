@@ -8,9 +8,62 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.contentAddressedByDefault = true;
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      SDL = with prev; prev.SDL.overrideAttrs(o: {
+        patches = [
+          # "${prev.pkgs}/pkgs/development/libraries/SDL/find-headers.patch"
+          "${builtins.head o.patches}"
+
+          # Fix window resizing issues, e.g. for xmonad
+          # Ticket: http://bugzilla.libsdl.org/show_bug.cgi?id=1430
+          (fetchpatch {
+            name = "fix_window_resizing.diff";
+            url = "https://bugs.debian.org/cgi-bin/bugreport.cgi?msg=10;filename=fix_window_resizing.diff;att=2;bug=66
+5779";
+            sha256 = "1z35azc73vvi19pzi6byck31132a8w1vzrghp1x3hy4a4f9z4gc6";
+          })
+          # Fix drops of keyboard events for SDL_EnableUNICODE
+          (fetchpatch {
+            url = "https://github.com/libsdl-org/SDL-1.2/commit/0332e2bb18dc68d6892c3b653b2547afe323854b.patch";
+            sha256 = "sha256-5V6K0oTN56RRi48XLPQsjgLzt0a6GsjajDrda3ZEhTw=";
+          })
+          # Ignore insane joystick axis events
+          (fetchpatch {
+            url = "https://github.com/libsdl-org/SDL-1.2/commit/ab99cc82b0a898ad528d46fa128b649a220a94f4.patch";
+            sha256 = "sha256-uussXT9Spsg8WUX5CNHZ6HthYy3HE381xi03Ygv3hwU=";
+          })
+          # https://bugzilla.libsdl.org/show_bug.cgi?id=1769
+          (fetchpatch {
+            url = "https://github.com/libsdl-org/SDL-1.2/commit/5d79977ec7a6b58afa6e4817035aaaba186f7e9f.patch";
+            sha256 = "sha256-JvMP7+P/NmWLNsCGfElDLdlA99Nbggw+5jskD572fXU=";
+          })
+          # Workaround X11 bug to allow changing gamma
+          # Ticket: https://bugs.freedesktop.org/show_bug.cgi?id=27222
+          (fetchpatch {
+            name = "SDL_SetGamma.patch";
+            url = "https://src.fedoraproject.org/cgit/rpms/SDL.git/plain/SDL-1.2.15-x11-Bypass-SetGammaRamp-when-chang
+ing-gamma.patch?id=04a3a7b1bd88c2d5502292fad27e0e02d084698d";
+            sha256 = "0x52s4328kilyq43i7psqkqg7chsfwh0aawr50j566nzd7j51dlv";
+          })
+          # Fix a build failure on OS X Mavericks
+          # Ticket: https://bugzilla.libsdl.org/show_bug.cgi?id=2085
+          (fetchpatch {
+            url = "https://github.com/libsdl-org/SDL-1.2/commit/19039324be71738d8990e91b9ba341b2ea068445.patch";
+            sha256 = "sha256-CPcLE+8JMKoiJEdIWNVphIMIgDOIJBmkSNO1zuM97B8=";
+          })
+          (fetchpatch {
+            url = "https://github.com/libsdl-org/SDL-1.2/commit/7933032ad4d57c24f2230db29f67eb7d21bb5654.patch";
+            sha256 = "sha256-6CdDVsrka8zlqFrZ2SCo62DuiSWiGJIfLi/rMX2v0W4=";
+          })
+        ];
+      });
+    })
+  ];
+
   imports = [ ];
 
-  nix.useSandbox = false;
+  # nix.useSandbox = false;
   nix.autoOptimiseStore = true;
   nix.buildCores = 1;
   nix.maxJobs = 2;
@@ -19,7 +72,7 @@
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
-  boot.loader.grub.useOSProber = true;
+  boot.loader.grub.useOSProber = false;
 
   # boot.loader.grub.efiSupport = true;
   # boot.loader.grub.efiInstallAsRemovable = true;
@@ -32,7 +85,7 @@
   boot.extraModulePackages = with config.boot.kernelPackages; [
     rtl8192eu
   ];
-  boot.supportedFilesystems = [ "zfs" "ntfs-3g" ];
+  boot.supportedFilesystems = []; # "zfs" "ntfs-3g" ];
 
   # boot.kernelPackages = pkgs.linuxPackages_4_19;
   boot.kernel.sysctl = {
@@ -52,12 +105,12 @@
   networking.enableB43Firmware = true;
 
   networking.useDHCP = false;
-  networking.interfaces.enp0s25.useDHCP = true;
-  networking.interfaces.wlan0.useDHCP = true;
+  networking.interfaces.enp0s25.useDHCP = false;
+  networking.interfaces.wlan0.useDHCP = false;
   networking.hostId = "62a007d6"; # required by ZFS
 
-  hardware.opengl.driSupport32Bit = true;
-  hardware.pulseaudio.support32Bit = true;
+  # hardware.opengl.driSupport32Bit = true;
+  # hardware.pulseaudio.support32Bit = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -117,7 +170,7 @@
 
   # Enable the KDE Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.plasma5.enable = false;
   services.xserver.windowManager.awesome.enable = true;
 
   # services.kbfs.enable = true;
@@ -125,7 +178,7 @@
 
   virtualisation = {
     docker = {
-      enable = true;
+      enable = false;
     };
 
     # virtualbox.host.enable = true;
