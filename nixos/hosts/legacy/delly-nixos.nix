@@ -10,6 +10,21 @@
 
   nixpkgs.overlays = [
     (final: prev: {
+      mercurial = prev.mercurial.overrideAttrs(o: {
+        patches = [
+          (prev.fetchpatch {
+            name = "D10638.diff";
+            url = "https://phab.mercurial-scm.org/D10638?download=true";
+            sha256 = "sha256-rigsbfmVO0vdOG48p4bF3t9cXl0PyNEsO1QAHYkY0VU=";
+          })
+          (prev.fetchpatch {
+            name = "D10639.diff";
+            url = "https://phab.mercurial-scm.org/D10639?download=true";
+            sha256 = "sha256-iyEmQh/7IM5U48qTlH3rALa+WQ2TOG2yS+iELlqmsUA=";
+          })
+        ];
+      });
+
       SDL = with prev; prev.SDL.overrideAttrs(o: {
         patches = [
           # "${prev.pkgs}/pkgs/development/libraries/SDL/find-headers.patch"
@@ -85,7 +100,7 @@ ing-gamma.patch?id=04a3a7b1bd88c2d5502292fad27e0e02d084698d";
   boot.extraModulePackages = with config.boot.kernelPackages; [
     rtl8192eu
   ];
-  boot.supportedFilesystems = []; # "zfs" "ntfs-3g" ];
+  boot.supportedFilesystems = [ "zfs" "ntfs-3g" ];
 
   # boot.kernelPackages = pkgs.linuxPackages_4_19;
   boot.kernel.sysctl = {
