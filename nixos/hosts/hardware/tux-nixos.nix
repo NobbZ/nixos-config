@@ -30,6 +30,11 @@
       fsType = "ext4";
     };
 
+  fileSystems."/var/lib/docker" = {
+    device = "/dev/disk/by-uuid/5da6b8c1-2598-48f1-9541-49c50e95aac9";
+    fsType = "ext4";
+  };
+
   fileSystems."/boot" =
     {
       device = "/dev/disk/by-uuid/7000-3A85";
