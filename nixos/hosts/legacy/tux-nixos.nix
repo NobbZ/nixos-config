@@ -12,7 +12,7 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
     "zerotierone"
   ]);
   nix.autoOptimiseStore = true;
-  nix.gc.automatic = false;
+  nix.gc.automatic = true;
   nix.gc.options = "--delete-older-than 10d";
 
   security.chromiumSuidSandbox.enable = true;
