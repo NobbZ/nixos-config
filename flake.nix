@@ -24,11 +24,10 @@
           (_: hostConfig: pkgs.dontRecurseIntoAttrs hostConfig.config.system.build.toplevel)
           self.nixosConfigurations);
       };
-      home = pkgs.recurseIntoAttrs {
-        configs = pkgs.recurseIntoAttrs (builtins.mapAttrs
-          (_: homeConfig: homeConfig.activationPackage)
-          self.homeConfigurations);
-      };
+      home = pkgs.lib.attrsets.mapAttrs' (k: v: {
+        name = "home/configs/${k}";
+        value = v.activationPackage;
+      }) self.homeConfigurations;
     in
     {
       devShell.x86_64-linux =
@@ -70,8 +69,8 @@
         kmymoney-de = upkgs.callPackage ./home/packages/kmymoney-de { };
         emacs = epkgs.emacsGcc;
       } // (import ./scripts inputs)
-      // flake-utils.lib.flattenTree (pkgs.recurseIntoAttrs {
-        inherit nixos home;
+      // home // flake-utils.lib.flattenTree (pkgs.recurseIntoAttrs {
+        inherit nixos;
       });
 
       lib = import ./lib inputs;
