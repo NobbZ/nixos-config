@@ -24,10 +24,12 @@
           (_: hostConfig: pkgs.dontRecurseIntoAttrs hostConfig.config.system.build.toplevel)
           self.nixosConfigurations);
       };
-      home = pkgs.lib.attrsets.mapAttrs' (k: v: {
-        name = "home/configs/${k}";
-        value = v.activationPackage;
-      }) self.homeConfigurations;
+      home = pkgs.lib.attrsets.mapAttrs'
+        (k: v: {
+          name = "home/configs/${k}";
+          value = v.activationPackage;
+        })
+        self.homeConfigurations;
     in
     {
       devShell.x86_64-linux =

@@ -11,8 +11,8 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
     "hplip"
     "zerotierone"
   ]);
-  nix.autoOptimiseStore = false; # I do use ZFS dedup, lets see whats quicker!
-  nix.gc.automatic = true;
+  nix.autoOptimiseStore = true;
+  nix.gc.automatic = false;
   nix.gc.options = "--delete-older-than 10d";
 
   security.chromiumSuidSandbox.enable = true;
