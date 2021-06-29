@@ -19,11 +19,12 @@
       upkgs = unstable.legacyPackages.x86_64-linux;
       mpkgs = inputs.master.legacyPackages.x86_64-linux;
       epkgs = import unstable { system = "x86_64-linux"; overlays = [ self.overlays.emacs ]; };
-      nixos = pkgs.recurseIntoAttrs {
-        configs = pkgs.dontRecurseIntoAttrs (builtins.mapAttrs
-          (_: hostConfig: pkgs.dontRecurseIntoAttrs hostConfig.config.system.build.toplevel)
-          self.nixosConfigurations);
-      };
+      nixos = pkgs.lib.attrsets.mapAttrs'
+        (k: v: {
+          name = "nixos/configs/${k}";
+          value = v.config.system.build.toplevel;
+        })
+        self.nixosConfigurations;
       home = pkgs.lib.attrsets.mapAttrs'
         (k: v: {
           name = "home/configs/${k}";
@@ -71,9 +72,8 @@
         kmymoney-de = upkgs.callPackage ./home/packages/kmymoney-de { };
         emacs = epkgs.emacsGcc;
       } // (import ./scripts inputs)
-      // home // flake-utils.lib.flattenTree (pkgs.recurseIntoAttrs {
-        inherit nixos;
-      });
+      // home
+      // nixos;
 
       lib = import ./lib inputs;
 
