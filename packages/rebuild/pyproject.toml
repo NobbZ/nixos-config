@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "rebuild"
+version = "0.1.0"
+description = ""
+authors = ["Norbert Melzer <timmelzer@gmail.com>"]
+
+[tool.poetry.scripts]
+rebuild = 'rebuild.main:main'
+
+[tool.poetry.dependencies]
+python = "^3.8"
+click = "^8.0.1"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
