@@ -1,4 +1,4 @@
-{ config, pkgs, nixpkgs, nix, lib, ... }:
+{ config, pkgs, nixpkgs-2105, nix, lib, ... }:
 let
   hostname = __trace config.networking.hostName config.networking.hostName;
   caEnabled = __elem hostname [ "delly-nixos" "tux-nixos" ];
@@ -11,7 +11,7 @@ in
       experimental-features = nix-command flakes ${caOpts}
     '';
 
-    registry.nixpkgs.flake = nixpkgs;
+    registry.nixpkgs.flake = nixpkgs-2105;
   };
 
   environment.systemPackages = [ nix.packages.x86_64-linux.nix ];

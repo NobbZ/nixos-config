@@ -1,5 +1,6 @@
 {
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-20.09";
+  inputs.nixpkgs-2009.url = "github:nixos/nixpkgs/nixos-20.09";
+  inputs.nixpkgs-2105.url = "github:nixos/nixpkgs/nixos-21.05";
   inputs.unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.master.url = "github:nixos/nixpkgs/master";
 
@@ -13,9 +14,9 @@
   inputs.emacs.url = "github:nix-community/emacs-overlay";
   inputs.emacs.inputs.nixpkgs.follows = "master";
 
-  outputs = { self, nixpkgs, unstable, flake-utils, emacs, ... }@inputs:
+  outputs = { self, nixpkgs-2009, nixpkgs-2105, unstable, flake-utils, emacs, ... }@inputs:
     let
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      pkgs = nixpkgs-2009.legacyPackages.x86_64-linux;
       upkgs = unstable.legacyPackages.x86_64-linux;
       mpkgs = inputs.master.legacyPackages.x86_64-linux;
       epkgs = import unstable { system = "x86_64-linux"; overlays = [ self.overlays.emacs ]; };
@@ -34,7 +35,7 @@
     in
     {
       devShell.x86_64-linux =
-        nixpkgs.legacyPackages.x86_64-linux.callPackage
+        nixpkgs-2105.legacyPackages.x86_64-linux.callPackage
           ./packages/devShell.nix
           { };
 

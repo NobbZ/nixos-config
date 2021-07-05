@@ -1,4 +1,4 @@
-{ config, pkgs, lib, nixpkgs, unstable, self, inputs, ... }:
+{ config, pkgs, lib, nixpkgs-2105, unstable, self, inputs, ... }:
 let
   # nixPath = builtins.concatStringsSep ":" [
   #   "nixpkgs=${inputs.unstable}"
