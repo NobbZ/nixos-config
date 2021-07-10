@@ -10,7 +10,7 @@
 
   nixpkgs.overlays = [
     (final: prev: {
-      mercurial = prev.mercurial.overrideAttrs(o: {
+      mercurial = prev.mercurial.overrideAttrs (o: {
         patches = [
           (prev.fetchpatch {
             name = "D10638.diff";
@@ -25,7 +25,7 @@
         ];
       });
 
-      SDL = with prev; prev.SDL.overrideAttrs(o: {
+      SDL = with prev; prev.SDL.overrideAttrs (o: {
         patches = [
           # "${prev.pkgs}/pkgs/development/libraries/SDL/find-headers.patch"
           "${builtins.head o.patches}"

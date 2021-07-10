@@ -5,7 +5,7 @@ let
   system = "x86_64-linux";
 
   args = {
-    stable = inputs.nixpkgs.legacyPackages.${system};
+    stable = inputs.nixpkgs-2105.legacyPackages.${system};
     unstable = inputs.unstable.legacyPackages.${system};
     self = inputs.self.packages.${system};
     inherit inputs;
