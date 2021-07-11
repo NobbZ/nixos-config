@@ -6,7 +6,7 @@ let
   imports = lib.mapAttrsToList toImport (lib.filterAttrs filterCaches (builtins.readDir folder));
 
   hostname = config.networking.hostName;
-  caEnabled = __elem hostname [ "delly-nixos" "tux-nixos" ];
+  caEnabled = __elem hostname [ ];
 in
 {
   inherit imports;
