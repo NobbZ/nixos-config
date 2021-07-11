@@ -2,7 +2,7 @@
 
 {
   config = {
-    nixpkgs.config.contentAddressedByDefault = true;
+    nixpkgs.config.contentAddressedByDefault = false;
 
     activeProfiles = [ "browsing" "development" "home-office" ];
 
