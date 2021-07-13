@@ -35,12 +35,13 @@ let
     });
 in
 rebar3Relx rec {
-  name = "erlang-ls";
+  pname = "erlang-ls";
   version = "${source.version}-${erlang.version}";
   releaseType = "escript";
 
   checkouts = fetchRebar3Deps {
-    inherit name version;
+    inherit version;
+    name = pname;
     src = "${src}/rebar.lock";
     sha256 = "sha256-nm3e5DfehSCjjTPADSzohilOBFW4QiXnokwVNrpDZ1E=";
   };
@@ -51,7 +52,7 @@ rebar3Relx rec {
   '';
 
   src = fetchFromGitHub {
-    name = "source-${name}-${version}";
+    name = "source-${pname}-${version}";
     inherit (source) owner repo rev sha256;
   };
 }
