@@ -1,0 +1,44 @@
+#+TITLE: README
+#+AUTHOR: Norbert Melzer
+
+
+* TODO Overhaul [0/34]
+** TODO Systemconfiguration [0/3]
+*** TODO =tux-nixos=
+*** TODO =delly-nixos=
+*** TODO =nixos=
+** TODO Homeconfiguration [0/3]
+*** TODO =tux-nixos=
+*** TODO =delly-nixos=
+*** TODO =nixos=
+** TODO Helper functions [0/3]
+*** TODO apply overlays
+*** TODO create home config
+*** TODO create system config
+** TODO Overlay [0/11]
+*** TODO re-expose ~emacs-overlay~
+*** TODO expose each package
+**** TODO ~advcp~
+**** TODO ~elixir-lsp~
+**** TODO ~erlang-ls~
+**** TODO ~keyleds~
+**** TODO ~rofi-unicode~
+**** TODO ~dracula-console~
+**** TODO ~gnucash-de~
+**** TODO ~kmymoney-de~
+**** TODO ~emacs~
+** TODO Packages [0/9]
+*** TODO ~advcp~
+*** TODO ~elixir-lsp~
+*** TODO ~erlang-ls~
+*** TODO ~keyleds~
+*** TODO ~rofi-unicode~
+*** TODO ~dracula-console~
+*** TODO ~gnucash-de~
+*** TODO ~kmymoney-de~
+*** TODO ~emacs~
+
+
+# Local Variables:
+# org-hierarchical-todo-statistics: nil
+# End:
