@@ -3,4 +3,4 @@ pre-commit:
   commands:
     formatting:
       glob: "*.nix"
-      run: nixpkgs-fmt --check {all_files}
+      run: nix shell --inputs-from . nixpkgs-2105#nixpkgs-fmt -c nixpkgs-fmt --check {all_files}
