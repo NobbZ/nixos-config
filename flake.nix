@@ -22,6 +22,8 @@
       homeModules = { };
       homeConfigurations = { };
 
+      packages = self.lib.nixosConfigurationsAsPackages;
+
       lib = import ./lib inputs;
 
       checks = { };
