@@ -4,7 +4,7 @@
 
 * TODO Overhaul [2/34]
 ** TODO Systemconfiguration [1/3]
-*** DONE =tux-nixos= => =mimas=
+*** DONE =tux-nixos= -> =mimas=
 *** TODO =delly-nixos=
 *** TODO =nixos=
 ** TODO Homeconfiguration [0/3]
