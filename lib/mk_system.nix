@@ -15,6 +15,6 @@ nixpkgs.lib.nixosSystem ({
       system.configurationRevision = self.rev or "dirty";
     }
     (./. + "/../nixos/configurations/${name}.nix")
-    (./. + "/../nixos/configurations/${name}-hardware.nix")
+    (./. + "/../nixos/configurations/hardware/${name}.nix")
   ] ++ __attrValues self.nixosModules;
 })
