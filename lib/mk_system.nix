@@ -12,6 +12,7 @@ nixpkgs.lib.nixosSystem ({
       _module.args = args;
       networking.hostName = name;
       nix.flakes.enable = true;
+      system.configurationRevision = self.rev or "dirty";
     }
     (./. + "/../nixos/configurations/${name}.nix")
     (./. + "/../nixos/configurations/${name}-hardware.nix")
