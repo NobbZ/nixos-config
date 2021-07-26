@@ -26,7 +26,6 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
   hardware.enableRedistributableFirmware = true;
   # networking.enableRalinkFirmware = true;
 
-  networking.hostName = "tux-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.

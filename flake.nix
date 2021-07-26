@@ -16,13 +16,13 @@
 
   outputs = { self, ... }@inputs:
     {
-      nixosModules = { };
-      nixosConfigurations = { };
+      nixosModules = import ./nixos/modules;
+      nixosConfigurations = import ./nixos/configurations inputs;
 
       homeModules = { };
       homeConfigurations = { };
 
-      lib = { };
+      lib = import ./lib inputs;
 
       checks = { };
 

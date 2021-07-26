@@ -1,0 +1,3 @@
+{
+  flake = import ./flake.nix;
+}
