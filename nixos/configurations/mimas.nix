@@ -74,8 +74,6 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  services.ipfs.enable = true;
-
   services.zerotierone.enable = true;
   services.zerotierone.joinNetworks = [ "8286ac0e4768c8ae" ];
 
