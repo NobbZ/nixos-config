@@ -21,7 +21,7 @@
       extraGroups = [ "wheel" "docker" ];
       uid = 1000;
       shell = pkgs.zsh;
-    } // (__trace config.system.stateVersion { });
+    };
 
   boot.kernel.sysctl = {
     "vm.max_map_count" = 262144;
