@@ -90,6 +90,13 @@
     size = 2048 * 4;
   }];
 
+  networking.firewall.allowedTCPPorts = [
+    # ports often used for development, that I want to expose for easier access from the host
+    3000
+    8080
+    8081
+  ];
+
   nix.distributedBuilds = false;
   nix.buildMachines = [
     {
