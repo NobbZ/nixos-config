@@ -5,10 +5,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [ ];
+
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.contentAddressedByDefault = false;
-
-  imports = [ ];
 
   # nix.useSandbox = false;
   nix.autoOptimiseStore = true;
