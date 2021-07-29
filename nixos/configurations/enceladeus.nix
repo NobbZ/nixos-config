@@ -198,9 +198,6 @@ ing-gamma.patch?id=04a3a7b1bd88c2d5502292fad27e0e02d084698d";
     # virtualbox.host.enable = true;
   };
 
-  programs.gc.enable = true;
-  programs.gc.maxAge = "30d";
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
     nmelzer = {
