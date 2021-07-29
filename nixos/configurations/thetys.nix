@@ -88,4 +88,16 @@
       mandatoryFeatures = [ ];
     }
   ];
+
+  security.sudo.extraRules = [
+    {
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/nixos-rebuild";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+      groups = [ "wheel" ];
+    }
+  ];
 }

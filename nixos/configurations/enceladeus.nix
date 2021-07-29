@@ -156,4 +156,15 @@
   # should.
   system.stateVersion = "19.09"; # Did you read the comment?
 
+  security.sudo.extraRules = [
+    {
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/nixos-rebuild";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+      groups = [ "wheel" ];
+    }
+  ];
 }
