@@ -107,7 +107,6 @@ ing-gamma.patch?id=04a3a7b1bd88c2d5502292fad27e0e02d084698d";
     "vm.swappiness" = 75;
   };
 
-  networking.hostName = "delly-nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
