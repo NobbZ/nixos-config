@@ -4,8 +4,6 @@
   # TODO: 👇 move import of `virtualbox-demo.nix` into extra module 👇
   imports = [ (modulesPath + "/installer/virtualbox-demo.nix") ];
 
-  nixpkgs.config.allowUnfree = true;
-
   programs.gnupg = {
     agent = {
       enable = true;
