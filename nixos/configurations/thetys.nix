@@ -6,13 +6,6 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  #   environment.extraSetup = ''
-  #   ln -s ${pkgs.pinentry-gtk2}/bin/pinentry $out/bin/pinentry-gtk-2
-  #   ln -s ${pkgs.pinentry-curses}/bin/pinentry $out/bin/pinentry-curses
-  #   ln -s ${pkgs.pinentry}/bin/pinentry $out/bin/pinentry-tty
-  #   ln -s $out/bin/pinentry-tty $out/bin/pinentry
-  # '';
-
   programs.gnupg = {
     agent = {
       enable = true;
@@ -20,8 +13,6 @@
       pinentryFlavor = "tty";
     };
   };
-
-  # security.pam.services.login.gnupg.enable = true;
 
   users.users.demo =
     {
@@ -66,22 +57,11 @@
     serviceConfig.ExecStart = "@${config.boot.kernelPackages.virtualboxGuestAdditions}/bin/VBoxClient -fv --vmsvga";
   };
 
-  # environment.systemPackages = [ pkgs.pinentry.gnome3 ];
-
   services.zerotierone.enable = true;
   services.zerotierone.joinNetworks = [ "8286ac0e4768c8ae" ];
   services.zerotierone.package = (import nixpkgs-2105 { config.allowUnfree = true; system = pkgs.system; }).zerotierone;
 
   services.ipfs.enable = true;
-
-  # Mount a VirtualBox shared folder.
-  # This is configurable in the VirtualBox menu at
-  # Machine / Settings / Shared Folders.
-  # fileSystems."/mnt" = {
-  #   fsType = "vboxsf";
-  #   device = "nameofdevicetomount";
-  #   options = [ "rw" ];
-  # };
 
   services.openssh.enable = true;
 
