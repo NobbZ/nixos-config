@@ -7,10 +7,7 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
 {
   imports = [ ];
 
-  nixpkgs.config.allowUnfreePredicate = (pkg: builtins.elem (lib.getName pkg) [
-    "hplip"
-    "zerotierone"
-  ]);
+  nix.allowedUnfree = [ "hplip" "zerotierone" ];
   nix.autoOptimiseStore = true;
   nix.gc.automatic = true;
   nix.gc.options = "--delete-older-than 10d";

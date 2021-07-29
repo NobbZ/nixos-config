@@ -7,11 +7,7 @@
 {
   imports = [ ];
 
-  nixpkgs.config.allowUnfreePredicate = (pkg: builtins.elem (lib.getName pkg) [
-    "b43-firmware"
-    "broadcom-sta"
-    "zerotierone"
-  ]);
+  nix.allowedUnfree = [ "b43-firmware" "broadcom-sta" "zerotierone" ];
   nixpkgs.config.contentAddressedByDefault = false;
 
   # nix.useSandbox = false;
