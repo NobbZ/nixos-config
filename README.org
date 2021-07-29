@@ -2,11 +2,11 @@
 #+AUTHOR: Norbert Melzer
 
 
-* TODO Overhaul [3/34]
-** TODO Systemconfiguration [2/3]
+* TODO Overhaul [4/34]
+** TODO Systemconfiguration [3/3]
 *** DONE =tux-nixos= -> =mimas=
 *** DONE =delly-nixos= -> =enceladeus=
-*** TODO =nixos=
+*** DONE =nixos= -> =thetys=
 ** TODO Homeconfiguration [0/3]
 *** TODO =tux-nixos=
 *** TODO =delly-nixos=

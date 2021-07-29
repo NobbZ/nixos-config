@@ -1,6 +1,9 @@
-{ self, config, pkgs, nixpkgs-2105, ... }:
+{ self, config, pkgs, nixpkgs-2105, modulesPath, ... }:
 
 {
+  # TODO: 👇 move import of `virtualbox-demo.nix` into extra module 👇
+  imports = [ (modulesPath + "/installer/virtualbox-demo.nix") ];
+
   nixpkgs.config.allowUnfree = true;
 
   #   environment.extraSetup = ''
@@ -81,8 +84,6 @@
   # };
 
   services.openssh.enable = true;
-
-  programs.gc.enable = true;
 
   swapDevices = [{
     device = "/var/swap-2";
