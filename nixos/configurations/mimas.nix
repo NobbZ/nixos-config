@@ -8,8 +8,6 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
   imports = [ ];
 
   nix.allowedUnfree = [ "hplip" "zerotierone" ];
-  nix.gc.automatic = true;
-  nix.gc.options = "--delete-older-than 10d";
 
   security.chromiumSuidSandbox.enable = true;
 

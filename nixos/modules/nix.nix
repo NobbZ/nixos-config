@@ -28,6 +28,9 @@ in
 
   config.nix.autoOptimiseStore = lib.mkDefault true;
 
+  config.nix.gc.automatic = lib.mkDefault true;
+  config.nix.gc.options = lib.mkDefault "--delete-older-than 10d";
+
   config.nixpkgs.config.allowUnfreePredicate =
     if (allowed == [ ])
     then (_: false)
