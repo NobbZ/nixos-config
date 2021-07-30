@@ -126,20 +126,6 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
   services.transmission.enable = true;
   systemd.services.transmission.after = [ "var-lib-transmission.mount" ];
 
-  services.zfs = {
-    trim.enable = false;
-    autoScrub.enable = true;
-    autoSnapshot = {
-      enable = true;
-      flags = "-k -p -u";
-      frequent = 6 * 4; # 6 hours!
-      hourly = 12;
-      daily = 3;
-      weekly = 4;
-      monthly = 2;
-    };
-  };
-
   programs = {
     # steam.enable = true;
     zsh.enable = true;
