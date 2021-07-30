@@ -14,7 +14,7 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "zfs" "ntfs" "btrfs" "exfat" "avfs" ];
+  boot.supportedFilesystems = [ "ntfs" "exfat" "avfs" ];
   boot.cleanTmpDir = true;
 
   hardware.enableRedistributableFirmware = true;
