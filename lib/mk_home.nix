@@ -1,6 +1,6 @@
 { home-manager, self, ... }@inputs:
 
-username: host: system: nixpkgs:
+username: hostname: system: nixpkgs:
 let
   args = inputs;
   entrypoint = "${self}/home/configurations/${username}@${hostname}.nix";
@@ -16,6 +16,6 @@ home-manager.lib.homeManagerConfiguration {
     _module = { inherit args; };
     imports = [
       entrypoint
-    ];
+    ] ++ __attrValues self.homeModules;
   };
 }

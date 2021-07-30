@@ -19,10 +19,12 @@
       nixosModules = import ./nixos/modules;
       nixosConfigurations = import ./nixos/configurations inputs;
 
-      homeModules = { };
-      homeConfigurations = { };
+      homeModules = import ./home/modules;
+      homeConfigurations = import ./home/configurations inputs;
 
-      packages = self.lib.nixosConfigurationsAsPackages;
+      packages.x86_64-linux = (import ./packages inputs)
+        // self.lib.nixosConfigurationsAsPackages.x86_64-linux
+        // self.lib.homeConfigurationsAsPackages.x86_64-linux;
 
       lib = import ./lib inputs;
 

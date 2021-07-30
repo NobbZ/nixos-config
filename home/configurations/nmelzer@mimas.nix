@@ -5,6 +5,8 @@ let
 in
 {
   config = {
+    nixpkgs.allowedUnfree = [ "teamspeak-client" "google-chrome" "insync" "steam" "steam-original" "steam-runtime" ];
+
     activeProfiles = [ "browsing" "development" "home-office" ];
 
     dconf.enable = true;
@@ -30,7 +32,7 @@ in
     home.packages =
       let
         p = pkgs;
-        s = self;
+        s = self.packages.x86_64-linux;
       in
       [
         p.insync

@@ -1,6 +1,7 @@
 { config, lib, pkgs, self, ... }:
 let
   cfg = config.services.keyleds;
+  self' = self.packages.x86_64-linux;
 in
 {
   options.services.keyleds = {
@@ -9,7 +10,7 @@ in
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = self.keyleds;
+      default = self'.keyleds;
       defaultText = lib.literalExample "pkgs.keyleds";
       example = lib.literalExample "pkgs.keyleds";
       description = ''

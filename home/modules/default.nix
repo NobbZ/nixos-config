@@ -21,6 +21,7 @@
   "programs/emacs" = import ./programs/emacs;
   "programs/openshift" = import ./programs/openshift;
   "programs/zshell" = import ./programs/zshell;
+  "programs/nixpkgs" = import ./programs/nixpkgs;
 
   "services/keyleds" = import ./services/keyleds;
 
