@@ -11,7 +11,6 @@
   nixpkgs.config.contentAddressedByDefault = false;
 
   # nix.useSandbox = false;
-  nix.autoOptimiseStore = true;
   nix.buildCores = 1;
   nix.maxJobs = 2;
   nix.gc.automatic = true;

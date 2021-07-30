@@ -22,14 +22,14 @@ in
     };
   };
 
-  config = lib.mkIf (config.nix.experimentalFeatures != "") {
-    nix.extraOptions = ''
-      experimental-features = ${config.nix.experimentalFeatures}
-    '';
+  config.nix.extraOptions = lib.mkIf (config.nix.experimentalFeatures != "") ''
+    experimental-features = ${config.nix.experimentalFeatures}
+  '';
 
-    nixpkgs.config.allowUnfreePredicate =
-      if (allowed == [ ])
-      then (_: false)
-      else (pkg: __elem (lib.getName pkg) allowed);
-  };
+  config.nix.autoOptimiseStore = lib.mkDefault true;
+
+  config.nixpkgs.config.allowUnfreePredicate =
+    if (allowed == [ ])
+    then (_: false)
+    else (pkg: __elem (lib.getName pkg) allowed);
 }

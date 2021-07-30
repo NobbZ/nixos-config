@@ -29,7 +29,6 @@
   programs.zsh.enableCompletion = false;
 
   nix.useSandbox = true;
-  nix.autoOptimiseStore = true;
 
   virtualisation = {
     docker.enable = true;
