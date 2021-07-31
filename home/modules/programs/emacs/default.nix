@@ -12,7 +12,7 @@ let
           name = "${k}";
           value = {
             ep = v.packageRequires;
-            src = pkgs.nobbzLib.emacs.generatePackage k v.tag v.comments v.requires
+            src = config.lib.emacs.generatePackage k v.tag v.comments v.requires
               v.code;
           };
         })
@@ -43,6 +43,7 @@ in
     ./lsp.nix
     ./projectile.nix
     ./telephoneline.nix
+    ./lib.nix
     ./whichkey
   ];
 
@@ -167,7 +168,7 @@ in
 
     home.file = {
       ".emacs.d/init.el" = {
-        text = pkgs.nobbzLib.emacs.generatePackage "init"
+        text = config.lib.emacs.generatePackage "init"
           "Initialises emacs configuration" [ ] [ ]
           cfg.extraConfig;
       };

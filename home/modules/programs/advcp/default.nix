@@ -8,7 +8,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ self.advcp ];
+    home.packages = [ self.packages.x86_64-linux.advcp ];
 
     programs.zshell.aliases = {
       cp = "advcp -g";

@@ -6,6 +6,8 @@ let
     plugins = [ pkgs.rofi-emoji ];
   };
 
+  self' = self.packages.x86_64-linux;
+
   autostartScript =
     let
       entries = builtins.map (e: "\"${e}\",") cfg.autostart;
@@ -60,7 +62,7 @@ in
 
     launcher = lib.mkOption {
       type = lib.types.str;
-      default = "${rofi}/bin/rofi -modi drun#run#window#ssh#emoji#unicode:${self.rofi-unicode}/bin/rofiunicode.sh -show drun -show-icons";
+      default = "${rofi}/bin/rofi -modi drun#run#window#ssh#emoji#unicode:${self'."rofi/unicode"}/bin/rofiunicode.sh -show drun -show-icons";
     };
 
     autostart = lib.mkOption {

@@ -1,8 +1,8 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, self, ... }:
 let
   cfg = config.profiles.base;
 
-  inherit (inputs.self.packages.x86_64-linux) emacs;
+  inherit (self.packages.x86_64-linux) emacs;
 
   dag = lib.hm.dag;
 

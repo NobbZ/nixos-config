@@ -26,4 +26,5 @@
   "services/keyleds" = import ./services/keyleds;
 
   "misc/awesome" = import ./misc/awesome;
+  "misc/home" = import ./misc/home;
 }

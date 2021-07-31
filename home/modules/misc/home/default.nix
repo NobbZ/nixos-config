@@ -1,10 +1,6 @@
-{ config, pkgs, lib, nixpkgs-2105, unstable, self, inputs, ... }:
+{ config, pkgs, lib, nixpkgs-2105, unstable, self, ... }:
 let
-  # nixPath = builtins.concatStringsSep ":" [
-  #   "nixpkgs=${inputs.unstable}"
-  #   "nixos-config=/etc/nixos/configuration.nix"
-  #   "/nix/var/nix/profiles/per-user/root/channels"
-  # ];
+  self' = self.packages.x86_64-linux;
 in
 {
   profiles.base.enable = true;
@@ -22,7 +18,7 @@ in
     packages =
       let
         p = pkgs;
-        s = self;
+        s = self';
       in
       [
         p.cachix
@@ -32,7 +28,7 @@ in
         p.tmate
         p.element-desktop
         p.powershell
-        s.dracula-konsole
+        s."dracula/konsole"
 
         p.fira-code
         p.cascadia-code

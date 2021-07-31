@@ -2,7 +2,7 @@
 let
   cfg = config.languages.elixir;
 
-  inherit (self) elixir-lsp;
+  inherit (self.packages.x86_64-linux) elixir-lsp;
 in
 {
   options.languages.elixir = {

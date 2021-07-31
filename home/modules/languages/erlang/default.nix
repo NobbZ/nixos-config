@@ -2,7 +2,7 @@
 let
   cfg = config.languages.erlang;
 
-  inherit (self) erlang-ls;
+  inherit (self.packages.x86_64-linux) erlang-ls;
 in
 {
   options.languages.erlang = {

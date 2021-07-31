@@ -46,7 +46,7 @@ let
 
 in
 {
-  emacs.generatePackage = name: tagLine: commentLines: requireList: code:
+  config.lib.emacs.generatePackage = name: tagLine: commentLines: requireList: code:
     generatePackage {
       inherit name code tagLine commentLines requireList;
     };
