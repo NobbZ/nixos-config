@@ -18,10 +18,18 @@
   "languages/tex" = import ./languages/tex;
 
   "programs/advcp" = import ./programs/advcp;
-  "programs/emacs" = import ./programs/emacs;
   "programs/openshift" = import ./programs/openshift;
   "programs/zshell" = import ./programs/zshell;
   "programs/nixpkgs" = import ./programs/nixpkgs;
+  "programs/emacs" = import ./programs/emacs;
+  "programs/emacs/beacon" = import ./programs/emacs/beacon.nix;
+  "programs/emacs/company" = import ./programs/emacs/company.nix;
+  "programs/emacs/helm" = import ./programs/emacs/helm.nix;
+  "programs/emacs/lsp" = import ./programs/emacs/lsp.nix;
+  "programs/emacs/projectile" = import ./programs/emacs/projectile.nix;
+  "programs/emacs/telephoneline" = import ./programs/emacs/telephoneline.nix;
+  "programs/emacs/lib" = import ./programs/emacs/lib.nix;
+  "programs/emacs/whichkey" = import ./programs/emacs/whichkey;
 
   "services/keyleds" = import ./services/keyleds;
 

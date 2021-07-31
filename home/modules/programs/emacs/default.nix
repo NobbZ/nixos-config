@@ -36,17 +36,6 @@ let
 
 in
 {
-  imports = [
-    ./beacon.nix
-    ./company.nix
-    ./helm.nix
-    ./lsp.nix
-    ./projectile.nix
-    ./telephoneline.nix
-    ./lib.nix
-    ./whichkey
-  ];
-
   options.programs.emacs = {
     splashScreen = lib.mkOption {
       type = lib.types.bool;
