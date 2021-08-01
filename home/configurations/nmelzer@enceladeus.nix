@@ -2,12 +2,11 @@
 
 {
   config = {
+    nixpkgs.allowedUnfree = [ "google-chrome" ];
+
     nixpkgs.config.contentAddressedByDefault = false;
 
     activeProfiles = [ "browsing" "development" ]; # "home-office" ];
-
-    # xsession.windowManager.awesome.terminalEmulator =
-    #   "${pkgs.lxterminal}/bin/lxterminal";
 
     xsession.windowManager.awesome.autostart = [
       "${pkgs.blueman}/bin/blueman-applet"
