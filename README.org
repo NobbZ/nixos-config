@@ -2,18 +2,19 @@
 #+AUTHOR: Norbert Melzer
 
 
-* TODO Overhaul [4/34]
+* TODO Overhaul [16/35]
 ** TODO Systemconfiguration [3/3]
 *** DONE =tux-nixos= -> =mimas=
 *** DONE =delly-nixos= -> =enceladeus=
 *** DONE =nixos= -> =thetys=
-** TODO Homeconfiguration [0/3]
-*** TODO =tux-nixos=
-*** TODO =delly-nixos=
-*** TODO =nixos=
-** TODO Helper functions [1/3]
+** TODO Homeconfiguration [3/4]
+*** DONE =tux-nixos= -> =nmelzer@mimas=
+*** DONE =delly-nixos= -> =nmelzer@enceladeus=
+*** DONE =nixos= -> =demo@thetys=
+*** TODO =WS0005=
+** TODO Helper functions [2/3]
 *** TODO apply overlays
-*** TODO create home config
+*** DONE create home config
 *** DONE create system config
 ** TODO Overlay [0/11]
 *** TODO re-expose ~emacs-overlay~
@@ -27,16 +28,16 @@
 **** TODO ~gnucash-de~
 **** TODO ~kmymoney-de~
 **** TODO ~emacs~
-** TODO Packages [0/9]
-*** TODO ~advcp~
-*** TODO ~elixir-lsp~
-*** TODO ~erlang-ls~
-*** TODO ~keyleds~
-*** TODO ~rofi-unicode~
-*** TODO ~dracula-console~
-*** TODO ~gnucash-de~
+** TODO Packages [8/9]
+*** DONE ~advcp~
+*** DONE ~elixir-lsp~
+*** DONE ~erlang-ls~
+*** DONE ~keyleds~
+*** DONE ~rofi-unicode~
+*** DONE ~dracula-console~
+*** DONE ~gnucash-de~
 *** TODO ~kmymoney-de~
-*** TODO ~emacs~
+*** DONE ~emacs~
 
 
 # Local Variables:
