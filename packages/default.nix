@@ -6,6 +6,7 @@ let
   mpkgs = inputs.master.legacyPackages.x86_64-linux;
 
   epkgs = import inputs.unstable { system = "x86_64-linux"; overlays = [ emacs.overlay ]; };
+  nodePkgs = upkgs.callPackage ./nodePackages { };
 in
 {
   "advcp" = pkgs.callPackage ./advcp { };
@@ -16,4 +17,5 @@ in
   "elixir-lsp" = upkgs.beam.packages.erlang.callPackage ./elixir-lsp { };
   "erlang-ls" = upkgs.beam.packages.erlang.callPackage ./erlang-ls { };
   "rofi/unicode" = upkgs.callPackage ./rofi-unicode { };
+  "zx" = nodePkgs.zx;
 }
