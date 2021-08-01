@@ -30,6 +30,8 @@
 
       checks = { };
 
-      apps = { };
+      apps.x86_64-linux = {
+        update = import ./apps/update inputs;
+      };
     };
 }
