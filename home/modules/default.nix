@@ -21,6 +21,7 @@
   "programs/openshift" = import ./programs/openshift;
   "programs/zshell" = import ./programs/zshell;
   "programs/nixpkgs" = import ./programs/nixpkgs;
+  "programs/exa" = import ./programs/exa;
   "programs/emacs" = import ./programs/emacs;
   "programs/emacs/beacon" = import ./programs/emacs/beacon.nix;
   "programs/emacs/company" = import ./programs/emacs/company.nix;
