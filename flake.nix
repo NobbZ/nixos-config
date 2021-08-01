@@ -26,9 +26,9 @@
         // self.lib.nixosConfigurationsAsPackages.x86_64-linux
         // self.lib.homeConfigurationsAsPackages.x86_64-linux;
 
-      lib = import ./lib inputs;
+      checks = self.packages;
 
-      checks = { };
+      lib = import ./lib inputs;
 
       apps.x86_64-linux = {
         update = import ./apps/update inputs;
