@@ -16,6 +16,8 @@
   "languages/python" = import ./languages/python;
   "languages/rust" = import ./languages/rust;
   "languages/tex" = import ./languages/tex;
+  "languages/lua" = import ./languages/lua;
+  "languages/terraform" = import ./languages/terraform;
 
   "programs/advcp" = import ./programs/advcp;
   "programs/openshift" = import ./programs/openshift;

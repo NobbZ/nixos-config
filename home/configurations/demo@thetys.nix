@@ -1,7 +1,13 @@
-{ pkgs, stable, self, ... }:
+{ pkgs, nixpkgs-2105, self, ... }:
 
+let
+  stable = nixpkgs-2105.legacyPackages.x86_64-linux;
+  self' = self.packages.x86_64-linux;
+in
 {
   config = {
+    nixpkgs.allowedUnfree = [ "google-chrome" ];
+
     activeProfiles = [ "browsing" "development" ];
 
     enabledLanguages =
@@ -16,7 +22,7 @@
 
     home.packages = [
       stable.mysqlWorkbench
-      self.gnucash-de
+      self'.gnucash-de
     ];
 
     systemd.user.services = {
