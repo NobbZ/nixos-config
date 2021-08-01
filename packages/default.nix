@@ -10,7 +10,7 @@ let
 in
 {
   "advcp" = pkgs.callPackage ./advcp { };
-  "gnucash-de" = mpkgs.callPackage ./gnucash-de { };
+  "gnucash-de" = upkgs.callPackage ./gnucash-de { };
   "keyleds" = upkgs.callPackage ./keyleds { };
   "dracula/konsole" = upkgs.callPackage ./dracula/konsole { };
   "emacs" = epkgs.emacsGcc;
