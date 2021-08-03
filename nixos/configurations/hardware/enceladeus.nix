@@ -18,7 +18,7 @@
       fsType = "ext4";
     };
 
-  filesystems."/nix/store" =
+  fileSystems."/nix/store" =
     {
       device = "/dev/disk/by-uuid/1ee9d669-07e1-4f40-93af-71f9ad999f70";
       fsType = "ext4";
