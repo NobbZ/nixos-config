@@ -3,7 +3,7 @@
 let
   pkgs = import unstable { system = "x86_64-linux"; };
   type = "app";
-  program = "${update}/bin/update.mjs";
+  program = "${update}/bin/update";
 
   update = pkgs.stdenv.mkDerivation {
     pname = "nobbz-flake-updater";
@@ -14,10 +14,16 @@ let
     src = ./.;
 
     installPhase = ''
-      mkdir -p $out/bin
+      mkdir -p $out/{bin,lib}
 
-      install --mode=555 update.mjs $out/bin/update.mjs
-      ls -l $out/bin
+      cat <<EOF > $out/bin/update
+        #!${pkgs.bash}/bin/bash
+
+        exec $out/lib/update.mjs
+      EOF
+      chmod ugo=rx $out/bin/update
+
+      install --mode=555 update.mjs $out/lib/update.mjs
     '';
   };
 in
