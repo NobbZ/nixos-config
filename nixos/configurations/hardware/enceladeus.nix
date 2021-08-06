@@ -14,13 +14,25 @@
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/4a31eb44-990b-4fdd-a19b-6ede2b1ae58b";
+      device = "/dev/disk/by-uuid/1be71104-48ad-40c3-bf4c-086cd887969f";
       fsType = "ext4";
     };
 
   fileSystems."/nix/store" =
     {
       device = "/dev/disk/by-uuid/1ee9d669-07e1-4f40-93af-71f9ad999f70";
+      fsType = "ext4";
+    };
+
+  fileSystems."/home" =
+    {
+      device = "/dev/disk/by-uuid/53a36eeb-9f0e-4cb6-bdd9-53ae5a74c683";
+      fsType = "ext4";
+    };
+
+  fileSystems."/boot" =
+    {
+      device = "/dev/sda1";
       fsType = "ext4";
     };
 
