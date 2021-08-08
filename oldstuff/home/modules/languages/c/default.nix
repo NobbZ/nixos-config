@@ -19,7 +19,7 @@ in
       languages = [ "c" "c++" ];
     };
 
-    programs.emacs.extraConfig = ''
+    programs.emacs.extraInit = ''
       (setq lsp-clients-clangd-executable "${pkgs.clang-tools}/bin/clangd")
     '';
   };

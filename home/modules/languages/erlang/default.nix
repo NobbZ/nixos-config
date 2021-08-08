@@ -21,7 +21,7 @@ in
       languages = [ "erlang" ];
     };
 
-    programs.emacs.extraConfig = ''
+    programs.emacs.extraInit = ''
       ;; Configure erlang related stuff
       (setq lsp-erlang-server-path "${erlang-ls}/bin/erlang_ls")
 

@@ -11,7 +11,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.emacs = {
       extraPackages = ep: [ ep.magit ];
-      extraConfig = ''
+      extraInit = ''
         ;; prepare magit use from shell
         (require 'magit)
         (global-git-commit-mode)

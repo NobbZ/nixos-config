@@ -14,7 +14,7 @@ in
       enable = true;
     };
 
-    programs.emacs.extraConfig = ''
+    programs.emacs.extraInit = ''
       (add-to-list 'exec-path "${pkgs.texlab}/bin")
 
       (add-hook 'tex-mode-hook

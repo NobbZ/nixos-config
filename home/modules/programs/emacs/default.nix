@@ -61,7 +61,7 @@ in
       }));
     };
 
-    extraConfig = lib.mkOption {
+    extraInit = lib.mkOption {
       type = lib.types.lines;
       default = "";
       description = ''
@@ -76,7 +76,7 @@ in
   };
 
   config = lib.mkIf emacsEnabled {
-    programs.emacs.extraConfig = ''
+    programs.emacs.extraInit = ''
       ;; adjust the load-path to find further down required files
       (add-to-list 'load-path
       (expand-file-name "lisp" user-emacs-directory))

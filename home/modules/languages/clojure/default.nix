@@ -16,7 +16,7 @@ in
         languages = [ "clojure" ];
       };
 
-      extraConfig = ''
+      extraInit = ''
         (setenv "PATH"
                 (concat "${pkgs.leiningen}/bin:" (getenv "PATH")))
         (setq lsp-clojure-server-command '("${pkgs.bash}/bin/bash" "-c" "${pkgs.clojure-lsp}/bin/clojure-lsp"))

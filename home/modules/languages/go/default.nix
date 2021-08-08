@@ -17,7 +17,7 @@ in
 
     home.packages = [ pkgs.go ];
 
-    programs.emacs.extraConfig = ''
+    programs.emacs.extraInit = ''
       (add-to-list 'exec-path "${pkgs.gopls}/bin")
 
       (add-hook 'go-mode-hook

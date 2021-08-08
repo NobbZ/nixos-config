@@ -15,7 +15,7 @@ in
       languages = [ "rust" ];
     };
 
-    programs.emacs.extraConfig = ''
+    programs.emacs.extraInit = ''
       (setq lsp-rust-rls-server-command "rls")
 
       (add-hook 'rust-mode-hook

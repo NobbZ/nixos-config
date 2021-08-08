@@ -10,7 +10,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.emacs.extraPackages = ep: [ ep.lsp-mode ep.nix-mode ep.flycheck ];
 
-    programs.emacs.extraConfig = ''
+    programs.emacs.extraInit = ''
       (require 'lsp-mode)
 
       ;; make lsp-mode aware of nix
