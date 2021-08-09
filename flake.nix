@@ -32,6 +32,7 @@
 
       apps.x86_64-linux = {
         update = import ./apps/update inputs;
+        switch = import ./apps/switch inputs;
       };
     };
 }
