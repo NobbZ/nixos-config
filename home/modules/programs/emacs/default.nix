@@ -159,7 +159,7 @@ in
       ".emacs.d/init.el" = {
         text = config.lib.emacs.generatePackage "init"
           "Initialises emacs configuration" [ ] [ ]
-          cfg.extraConfig;
+          cfg.extraInit;
       };
     };
   };
