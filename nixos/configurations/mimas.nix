@@ -144,7 +144,7 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
       # storageDriver = "zfs";
       # extraOptions = "--storage-opt zfs.fsname=rpool/local/docker";
       package = upkgs.docker;
-      extraOptions = "--ipv6 --dns 1.1.1.1";
+      extraOptions = "--dns 1.1.1.1";
     };
 
     containers.enable = true;
