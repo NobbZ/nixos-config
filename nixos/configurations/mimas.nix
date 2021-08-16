@@ -138,6 +138,8 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
   hardware.opengl.enable = true;
   hardware.opengl.extraPackages = [ pkgs.vaapiIntel pkgs.beignet ];
 
+  services.gitea.enable = true;
+
   virtualisation = {
     docker = {
       enable = true;
