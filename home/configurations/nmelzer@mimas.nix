@@ -50,13 +50,15 @@ in
 
     programs.obs-studio.enable = true;
     programs.htop = {
-      detailedCpuTime = true;
-      meters.right = [
-        { kind = "Battery"; mode = 1; }
-        "Tasks"
-        "LoadAverage"
-        "Uptime"
-      ];
+      settings = {
+        detailed_cpu_time = true;
+      };
+      # meters.right = [
+      #   { kind = "Battery"; mode = 1; }
+      #   "Tasks"
+      #   "LoadAverage"
+      #   "Uptime"
+      # ];
     };
 
     xsession.windowManager.awesome.autostart = [
