@@ -33,4 +33,15 @@ const targets = [
 
 await $`nix build --keep-going -L ${targets}`
 
+await fs.readdir('.')
+    .then(dirs => Promise.all(dirs
+        .filter(name => name.startsWith('result'))
+        .map(link => {
+            const activate = `./${link}/bin/home-manager-generation`;
+
+            fs.stat(activate)
+                .then(() => $`${activate}`)
+                .catch(() => {})
+        })))
+
 await $`sudo nixos-rebuild switch --flake .#${hostName}`
