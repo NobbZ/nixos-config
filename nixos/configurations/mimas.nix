@@ -138,13 +138,15 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
   hardware.opengl.enable = true;
   hardware.opengl.extraPackages = [ pkgs.vaapiIntel pkgs.beignet ];
 
+  services.gitea.enable = true;
+
   virtualisation = {
     docker = {
       enable = true;
       # storageDriver = "zfs";
       # extraOptions = "--storage-opt zfs.fsname=rpool/local/docker";
       package = upkgs.docker;
-      extraOptions = "--ipv6 --dns 1.1.1.1";
+      extraOptions = "--dns 1.1.1.1";
     };
 
     containers.enable = true;

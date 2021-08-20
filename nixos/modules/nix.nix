@@ -22,17 +22,13 @@ in
     };
   };
 
-  config.nix.extraOptions = lib.mkIf (config.nix.experimentalFeatures != "") ''
-    experimental-features = ${config.nix.experimentalFeatures}
-  '';
-
-  config.nix.autoOptimiseStore = lib.mkDefault true;
-
-  config.nix.gc.automatic = lib.mkDefault true;
-  config.nix.gc.options = lib.mkDefault "--delete-older-than 10d";
-
-  config.nixpkgs.config.allowUnfreePredicate =
-    if (allowed == [ ])
-    then (_: false)
-    else (pkg: __elem (lib.getName pkg) allowed);
+  config = lib.mkMerge [
+    (lib.mkIf (config.nix.experimentalFeatures != "") { nix.extraOptions = "experimental-features = ${config.nix.experimentalFeatures}"; })
+    (lib.mkIf (allowed != [ ]) { nixpkgs.config.allowUnfreePredicate = (pkg: __elem (lib.getName pkg) allowed); })
+    { nix.autoOptimiseStore = lib.mkDefault true; }
+    {
+      nix.gc.automatic = lib.mkDefault true;
+      nix.gc.options = lib.mkDefault "--delete-older-than 10d";
+    }
+  ];
 }
