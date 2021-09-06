@@ -70,6 +70,7 @@
   networking.firewall.allowedTCPPorts = [
     # ports often used for development, that I want to expose for easier access from the host
     3000
+    3306
     8080
     8081
   ];
