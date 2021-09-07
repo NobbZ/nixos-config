@@ -27,7 +27,7 @@ in
         p.exercism
         p.tmate
         p.element-desktop
-        p.powershell
+        # p.powershell
         s."dracula/konsole"
 
         p.fira-code
