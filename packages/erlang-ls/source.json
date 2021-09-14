@@ -1,8 +1,8 @@
 {
-  "fetchSubmodules": true,
-  "owner": "erlang-ls",
-  "repo": "erlang_ls",
-  "rev": "0.18.0",
-  "sha256": "sha256-miCl04qqrirVPubOs558yWvXP3Sgs3bcDuGO9DZIsow=",
-  "version": "0.18.0"
+    "version": "0.19.0",
+    "owner": "erlang-ls",
+    "repo": "erlang_ls",
+    "rev": "3ccf5139823e9a3f0e23476b1de6ebb2d70b5201",
+    "sha256": "WesGgLoVR435lNXnsCFYcUoKXDMuL7hWImDluori+dc=",
+    "fetchSubmodules": true
 }
