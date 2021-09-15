@@ -5,6 +5,7 @@
   inputs.master.url = "github:nixos/nixpkgs/master";
 
   inputs.nix.url = "github:nixos/nix/master";
+  inputs.rnix-lsp.url = "github:nix-community/rnix-lsp/master";
 
   inputs.home-manager.url = "github:nix-community/home-manager";
   inputs.home-manager.inputs.nixpkgs.follows = "unstable";
