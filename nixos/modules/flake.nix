@@ -5,7 +5,7 @@
 
   config = lib.mkIf config.nix.flakes.enable {
     nix = {
-      package = lib.mkDefault nix.packages.x86_64-linux.nix; # pkgs.nixUnstable;
+      package = lib.mkDefault (nix.packages.x86_64-linux.nix.overrideAttrs (_: { patches = [ ./unset-is-macho.patch ]; })); # pkgs.nixUnstable;
       experimentalFeatures = "nix-command flakes";
 
       registry.nixpkgs.flake = nixpkgs-2105;
