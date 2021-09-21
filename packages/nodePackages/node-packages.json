@@ -1,3 +1,4 @@
 [
-    "zx"
+    "zx",
+    "@angular/cli"
 ]
