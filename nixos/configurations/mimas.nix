@@ -175,6 +175,14 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
       ];
     };
 
+    gamer = {
+      isNormalUser = true;
+      extraGroups = [
+        "audio"
+        "networkmanager"
+      ];
+    };
+
     aroemer = {
       isNormalUser = true;
       extraGroups = [ ];
