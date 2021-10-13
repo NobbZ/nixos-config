@@ -67,6 +67,7 @@
     size = 2048 * 4;
   }];
 
+  networking.hosts."127.0.0.1" = [ "ax69_mysql" ];
   networking.firewall.allowedTCPPorts = [
     # ports often used for development, that I want to expose for easier access from the host
     3000
