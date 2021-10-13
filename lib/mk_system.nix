@@ -13,6 +13,7 @@ nixpkgs.lib.nixosSystem ({
       networking.hostName = name;
       nix.flakes.enable = true;
       system.configurationRevision = self.rev or "dirty";
+      documentation.man = { enable = true; generateCaches = true; };
     }
     (./. + "/../nixos/configurations/${name}.nix")
     (./. + "/../nixos/configurations/hardware/${name}.nix")
