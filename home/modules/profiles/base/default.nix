@@ -135,6 +135,11 @@ in
             identityFile = "~/.ssh/actum-gitlab";
           };
 
+          "192.168.123.22" = {
+            user = "root";
+            identitfyFile = "~/.ssh/cloudseeds";
+          };
+
           "*.cloudseeds.de" = {
             user = "norbert.melzer";
             identityFile = "~/.ssh/cloudseeds";
