@@ -135,9 +135,9 @@ in
             identityFile = "~/.ssh/actum-gitlab";
           };
 
-          "192.168.123.22" = {
+          "com01.internal.cloudseeds.de" = dag.entryBefore [ "*.cloudseeds.de" ] {
+            hostname = "192.168.123.22";
             user = "root";
-            identityFile = "~/.ssh/cloudseeds";
           };
 
           "*.cloudseeds.de" = {
