@@ -1,8 +1,5 @@
-{ self, ... }@inputs:
+{ self, ... }@args:
 
-let
-  args = inputs;
-in
 name: nixpkgs:
 nixpkgs.lib.nixosSystem ({
   system = "x86_64-linux";
