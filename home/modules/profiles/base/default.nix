@@ -137,7 +137,7 @@ in
 
           "192.168.123.22" = {
             user = "root";
-            identitfyFile = "~/.ssh/cloudseeds";
+            identityFile = "~/.ssh/cloudseeds";
           };
 
           "*.cloudseeds.de" = {
