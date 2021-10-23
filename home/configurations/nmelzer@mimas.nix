@@ -40,6 +40,7 @@ in
         p.keybase-gui
         p.minikube
         p.gnome3.gnome-tweaks
+        p.freerdp
 
         s.gnucash-de
 
