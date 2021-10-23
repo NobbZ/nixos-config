@@ -3,11 +3,14 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, unstable, ... }:
-let upkgs = import unstable { system = "x86_64-linux"; }; in
+let
+  upkgs = import unstable { system = "x86_64-linux"; };
+  steamParts = [ "steam" "steam-original" "steam-runtime" ];
+in
 {
   imports = [ ];
 
-  nix.allowedUnfree = [ "hplip" "zerotierone" ];
+  nix.allowedUnfree = [ "hplip" "zerotierone" ] ++ steamParts;
 
   security.chromiumSuidSandbox.enable = true;
 
@@ -68,6 +71,11 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  # Add to XDG_DATA_DIRS:
+  # * /var/lib/flatpak/exports/share
+  # * $HOME/.local/share/flatpak/exports/share
+  services.flatpak.enable = true;
+
   services.zerotierone.enable = true;
   services.zerotierone.joinNetworks = [ "8286ac0e4768c8ae" ];
 
@@ -127,7 +135,7 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
   systemd.services.transmission.after = [ "var-lib-transmission.mount" ];
 
   programs = {
-    # steam.enable = true;
+    steam.enable = true;
     zsh.enable = true;
     zsh.enableCompletion = false;
   };
@@ -201,12 +209,12 @@ let upkgs = import unstable { system = "x86_64-linux"; }; in
     }
   ];
 
-  services.wakeonlan.interfaces = [
-    {
-      interface = "enp5s0f2";
-      method = "magicpacket";
-    }
-  ];
+  # services.wakeonlan.interfaces = [
+  #   {
+  #     interface = "enp5s0f2";
+  #     method = "magicpacket";
+  #   }
+  # ];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database

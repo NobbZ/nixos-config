@@ -5,7 +5,7 @@ let
 in
 {
   config = {
-    nixpkgs.allowedUnfree = [ "teamspeak-client" "google-chrome" "insync" "steam" "steam-original" "steam-runtime" ];
+    nixpkgs.allowedUnfree = [ "teamspeak-client" "google-chrome" "insync" ];
 
     activeProfiles = [ "browsing" "development" "home-office" ];
 
@@ -39,8 +39,6 @@ in
         p.handbrake
         p.keybase-gui
         p.minikube
-        p.lutris
-        p.steam
         p.gnome3.gnome-tweaks
 
         s.gnucash-de
