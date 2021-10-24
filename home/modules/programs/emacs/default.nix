@@ -140,7 +140,7 @@ in
         ep.adoc-mode
         ep.hledger-mode
         ep.typescript-mode
-
+        ep.earthfile-mode
         ep.ledger-mode
 
         # ep.bazel-mode
