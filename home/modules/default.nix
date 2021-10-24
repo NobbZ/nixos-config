@@ -35,6 +35,7 @@
   "programs/emacs/whichkey" = import ./programs/emacs/whichkey;
 
   "services/keyleds" = import ./services/keyleds;
+  "services/insync" = import ./services/insync;
 
   "misc/awesome" = import ./misc/awesome;
   "misc/home" = import ./misc/home;

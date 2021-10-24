@@ -5,7 +5,7 @@ let
 in
 {
   config = {
-    nixpkgs.allowedUnfree = [ "teamspeak-client" "google-chrome" "insync" ];
+    nixpkgs.allowedUnfree = [ "teamspeak-client" "google-chrome" ];
 
     activeProfiles = [ "browsing" "development" "home-office" ];
 
@@ -35,7 +35,6 @@ in
         s = self.packages.x86_64-linux;
       in
       [
-        p.insync
         p.handbrake
         p.keybase-gui
         p.minikube
@@ -69,6 +68,7 @@ in
       keyleds.enable = true;
       keybase.enable = true;
       kbfs.enable = true;
+      insync.enable = true;
     };
 
     systemd.user.services = {
