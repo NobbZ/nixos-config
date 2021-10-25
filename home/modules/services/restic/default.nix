@@ -32,6 +32,11 @@ in
       description = "If true, exclude other file systems, don't cross filesystem boundaries and subvolumes";
     };
 
+    repo = lib.mkOption {
+      type = lib.types.str;
+      description = "Location of the repository";
+    };
+
     # TODO: Add options for inlcude, password file, etc
   };
 
@@ -43,9 +48,11 @@ in
 
       Service = {
         Environment = [
+          "PATH=${lib.makeBinPath [ pkgs.openssh ]}"
           "RESTIC_PASSWORD_FILE=%h/.config/restic/password"
-          "RESTIC_REPOSITORY=/run/media/nmelzer/data/restic/repo"
+          "RESTIC_REPOSITORY=${cfg.repo}"
         ];
+        Type = "oneshot";
         ExecStart = command;
       };
     };

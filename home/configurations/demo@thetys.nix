@@ -18,7 +18,49 @@ in
     programs.emacs.splashScreen = false;
     programs.emacs.extraPackages = ep: [ ep.robot-mode ];
 
-    services.gnome-keyring.enable = true;
+    services = {
+      gnome-keyring.enable = true;
+
+      restic = {
+        enable = true;
+        exclude = (map
+          (e: "%h/${e}")
+          [
+            ".cache"
+            ".cabal"
+            ".cargo"
+            ".emacs.d/eln-cache"
+            ".emacs.d/.cache"
+            ".gem"
+            ".gradle"
+            ".hex"
+            ".kube"
+            ".local"
+            ".m2"
+            ".minikube"
+            ".minishift"
+            ".mix"
+            ".mozilla"
+            ".npm"
+            ".opam"
+            ".rancher"
+            ".vscode-oss"
+            "go/pkg"
+            "Videos"
+            "Downloads"
+            "VirtualBox VMs"
+          ]) ++ [
+          "_build"
+          "deps"
+          "result"
+          "target"
+          ".elixir_ls"
+          "ccls-cache"
+          ".direnv"
+        ];
+        repo = "sftp:tux-nixos.adoring_suess.zerotier:/var/run/media/nmelzer/data/restic/repo";
+      };
+    };
 
     home.packages = [
       stable.mysqlWorkbench
