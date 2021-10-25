@@ -36,6 +36,7 @@
 
   "services/keyleds" = import ./services/keyleds;
   "services/insync" = import ./services/insync;
+  "services/restic" = import ./services/restic;
 
   "misc/awesome" = import ./misc/awesome;
   "misc/home" = import ./misc/home;
