@@ -5,12 +5,13 @@
 { config, pkgs, lib, unstable, ... }:
 let
   upkgs = import unstable { system = "x86_64-linux"; };
-  steamParts = [ "steam" "steam-original" "steam-runtime" ];
+  steamPackages = [ "steam" "steam-original" "steam-runtime" ];
+  printerPackages = [ "hplip" "samsung-UnifiedLinuxDriver" ];
 in
 {
   imports = [ ];
 
-  nix.allowedUnfree = [ "hplip" "zerotierone" ] ++ steamParts;
+  nix.allowedUnfree = [ "zerotierone" ] ++ printerPackages ++ steamPackages;
 
   security.chromiumSuidSandbox.enable = true;
 
@@ -89,7 +90,7 @@ in
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = [ pkgs.hplipWithPlugin ];
+  services.printing.drivers = [ pkgs.hplipWithPlugin pkgs.samsungUnifiedLinuxDriver ];
 
   services.ratbagd.enable = true;
 
