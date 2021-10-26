@@ -140,6 +140,11 @@ in
             user = "root";
           };
 
+          "ironic.internal.cloudseeds.de" = dag.entryBefore [ "*.cloudseeds.de" ] {
+            hostname = "192.168.123.31";
+            user = "root";
+          };
+
           "*.cloudseeds.de" = {
             user = "norbert.melzer";
             identityFile = "~/.ssh/cloudseeds";
