@@ -44,7 +44,11 @@ in
     home.packages = [ cfg.package ];
 
     systemd.user.services.restic-backup = {
-      Unit.Description = "Restic Backup Tool";
+      Unit = {
+        Description = "Restic Backup Tool";
+        StartLimitIntervalSec = "25m";
+        StartLimitBurst = "4";
+      };
 
       Service = {
         Environment = [
@@ -54,6 +58,8 @@ in
         ];
         Type = "oneshot";
         ExecStart = command;
+        Restart = "on-failure";
+        RestartSec = "2m";
       };
     };
 
@@ -61,7 +67,7 @@ in
       Unit.Description = "Restic periodic backup";
       Timer = {
         Unit = "restic-backup.service";
-        OnCalendar = "1,3..23:0/15";
+        OnCalendar = "*:0/15";
       };
       Install.WantedBy = [ "timers.target" ];
     };
