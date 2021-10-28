@@ -13,6 +13,8 @@ in
 
   nix.allowedUnfree = [ "zerotierone" ] ++ printerPackages ++ steamPackages;
 
+  services.dns.enable = true;
+
   security.chromiumSuidSandbox.enable = true;
 
   # Use the systemd-boot EFI boot loader.
