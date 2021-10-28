@@ -13,10 +13,10 @@ let
   nobbzLanZone = pkgs.writeText "nobbz.lan.zone" ''
     ; BIND db file for nobbz.lan
 
-    $TTL 86400
+    $TTL 3600
 
     @       IN      SOA     dns.nobbz.lan. nmelzer.nobbz.dev (
-                            2021102701  ; serial number YYMMDDNN
+                            2021102801  ; serial number YYMMDDNN
                             28800       ; Refresh
                             7200        ; Retry
                             864000      ; Expire
@@ -87,6 +87,8 @@ in
         dnssec = "off";
         forward-zones = [
           "nobbz.lan=172.24.152.168:5353"
+          "fritz.box=192.168.179.1"
+          ".=1.1.1.1"
         ];
       };
     };
