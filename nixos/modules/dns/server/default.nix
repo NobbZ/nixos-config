@@ -88,7 +88,10 @@ in
         forward-zones = [
           "nobbz.lan=172.24.152.168:5353"
           "fritz.box=192.168.179.1"
-          ".=1.1.1.1"
+          "office.cloudseeds.de=185.41.104.226"
+        ];
+        forward-zones-recurse = [
+          ".=1.1.1.1;185.41.104.226"
         ];
       };
     };
