@@ -48,6 +48,8 @@ in
         Description = "Restic Backup Tool";
         StartLimitIntervalSec = "25m";
         StartLimitBurst = "4";
+        StandardOutput = "journal";
+        StandardError = "journal";
       };
 
       Service = {
