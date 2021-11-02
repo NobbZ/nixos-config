@@ -18,6 +18,7 @@ in
       "elixir"
       "erlang"
       "go"
+      "nim"
       "nix"
       # "ocaml"
       "python"

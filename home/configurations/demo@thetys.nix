@@ -11,7 +11,7 @@ in
     activeProfiles = [ "browsing" "development" ];
 
     enabledLanguages =
-      [ "elixir" "go" "lua" "nix" "python" "terraform" ];
+      [ "elixir" "go" "lua" "nix" "python" "terraform" "nim" ];
 
     languages.python.useMS = true;
 
