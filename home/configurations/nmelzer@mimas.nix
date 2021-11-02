@@ -5,7 +5,7 @@ let
 in
 {
   config = {
-    nixpkgs.allowedUnfree = [ "teamspeak-client" "google-chrome" ];
+    nixpkgs.allowedUnfree = [ "teamspeak-client" "google-chrome" "vscode" ];
 
     activeProfiles = [ "browsing" "development" "home-office" ];
 
@@ -40,6 +40,7 @@ in
         p.minikube
         p.gnome3.gnome-tweaks
         p.freerdp
+        p.vscode
 
         s.gnucash-de
 
