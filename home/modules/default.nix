@@ -12,6 +12,7 @@
   "languages/elixir" = import ./languages/elixir;
   "languages/erlang" = import ./languages/erlang;
   "languages/go" = import ./languages/go;
+  "languages/nim" = import ./languages/nim;
   "languages/nix" = import ./languages/nix;
   "languages/python" = import ./languages/python;
   "languages/rust" = import ./languages/rust;
