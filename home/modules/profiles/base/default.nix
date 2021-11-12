@@ -55,7 +55,6 @@ in
       bat.enable = true;
       direnv.enable = true;
       direnv.nix-direnv.enable = true;
-      direnv.nix-direnv.enableFlakes = true;
       exa.enable = true;
       home-manager.enable = true;
       htop.enable = true;
