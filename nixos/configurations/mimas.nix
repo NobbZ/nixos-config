@@ -249,7 +249,10 @@ in
       {
         job_name = "mimas";
         static_configs = [{
-          targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
+          targets = [
+            "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
+            "172.24.199.101:9002"
+          ];
         }];
       }
     ];
