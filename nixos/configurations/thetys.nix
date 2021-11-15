@@ -74,6 +74,7 @@
     3306
     8080
     8081
+    9002
   ];
 
   nix.distributedBuilds = false;
@@ -99,6 +100,16 @@
       groups = [ "wheel" ];
     }
   ];
+
+  services.prometheus = {
+    exporters = {
+      node = {
+        enable = true;
+        enabledCollectors = [ "systemd" ];
+        port = 9002;
+      };
+    };
+  };
 
   system.stateVersion = "19.09";
 }
