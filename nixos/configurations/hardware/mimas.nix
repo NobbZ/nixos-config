@@ -38,6 +38,16 @@
     fsType = "ext4";
   };
 
+  fileSystems."/var/lib/grafana" = {
+    device = "/dev/disk/by-uuid/c6294dc0-f2cb-432b-a993-02d21855732c";
+    fsType = "ext4";
+  };
+
+  fileSystems."/var/lib/prometheus" = {
+    device = "/dev/disk/by-uuid/3ec5c5b2-d7cd-4b59-bb6b-d1fc40100662";
+    fsType = "ext4";
+  };
+
   fileSystems."/boot" =
     {
       device = "/dev/disk/by-uuid/7000-3A85";

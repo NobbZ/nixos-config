@@ -21,6 +21,8 @@ in
   boot.supportedFilesystems = [ "ntfs" "exfat" "avfs" ];
   boot.cleanTmpDir = true;
 
+  services.lvm.boot.thin.enable = true;
+
   hardware.enableRedistributableFirmware = true;
   # networking.enableRalinkFirmware = true;
 
