@@ -81,12 +81,12 @@ in
   services.zerotierone.joinNetworks = [ "8286ac0e4768c8ae" ];
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 9002 2342 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  services.fwupd.enable = true;
+  # services.fwupd.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -247,11 +247,12 @@ in
 
     scrapeConfigs = [
       {
-        job_name = "mimas";
+        job_name = "node_import";
         static_configs = [{
           targets = [
             "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
             "172.24.199.101:9002"
+            "172.24.231.199:9002"
           ];
         }];
       }
