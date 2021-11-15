@@ -237,6 +237,16 @@ in
     enable = true;
     port = 9001;
 
+    rules = [
+      ''
+        groups:
+        - name: test
+          rules:
+          - record: nobbz:code_cpu_percent
+            expr: avg without (cpu) (irate(node_cpu_seconds_total[5m]))
+      ''
+    ];
+
     exporters = {
       node = {
         enable = true;
