@@ -89,10 +89,13 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 9002 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  networking.firewall.trustedInterfaces = [
+    "ztrta4jrxj"
+  ];
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
