@@ -43,7 +43,7 @@
     fsType = "ext4";
   };
 
-  fileSystems."/var/lib/prometheus" = {
+  fileSystems."/var/lib/prometheus2" = {
     device = "/dev/disk/by-uuid/3ec5c5b2-d7cd-4b59-bb6b-d1fc40100662";
     fsType = "ext4";
   };

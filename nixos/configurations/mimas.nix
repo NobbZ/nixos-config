@@ -259,6 +259,14 @@ in
 
     scrapeConfigs = [
       {
+        job_name = "grafana";
+        static_configs = [{ targets = [ "127.0.0.1:2342" ]; }];
+      }
+      {
+        job_name = "prometheus";
+        static_configs = [{ targets = [ "127.0.0.1:9001" ]; }];
+      }
+      {
         job_name = "node_import";
         static_configs = [{
           targets = [
