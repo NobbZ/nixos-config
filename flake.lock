@@ -84,7 +84,10 @@
     },
     "naersk": {
       "inputs": {
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "rnix-lsp",
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1629707199,
@@ -165,19 +168,6 @@
         "ref": "nixos-21.05",
         "repo": "nixpkgs",
         "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1636944046,
-        "narHash": "sha256-74KLDsiWSBsYXKj/ql9EGbw1TbIJRE7clFkhl30HV/c=",
-        "path": "/nix/store/ql6s3pl8gfv6v1n3ffsww0yspbji5lx3-source",
-        "rev": "46251a79f752ae1d46ef733e8e9760b6d3429da4",
-        "type": "path"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
       }
     },
     "rnix-lsp": {
