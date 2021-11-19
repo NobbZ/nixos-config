@@ -1,7 +1,8 @@
 { config, lib, ... }:
 
-with lib;
-let emacs = config.programs.emacs;
+with lib; # TODO: long term remove this `with`
+let
+  inherit (config.programs) emacs;
 in
 {
   config = lib.mkIf emacs.enable {

@@ -23,7 +23,7 @@
       enable = true;
       exclude = (map (e: "%h/${e}") [ ".cache" ".cabal" ".cargo" ".emacs.d/eln-cache" ".emacs.d/.cache" ".gem" ".gradle" ".hex" ".kube" ".local" ".m2" ".minikube" ".minishift" ".mix" ".mozilla" "npm" ".opam" ".rancher" ".vscode-oss" "go/pkg" ]) ++ [ "_build" "deps" "result" "target" ".elixir_ls" "ccls-cache" ".direnv" ];
       oneFileSystem = true;
-      repo = "sftp:nmelzer@tux-nixos.adoring_suess.zerotier:/run/media/nmelzer/data/restic/repo";
+      repo = "rest:http://172.24.152.168:9999/nobbz";
     };
 
     home.packages = [ ];

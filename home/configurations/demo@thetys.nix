@@ -58,7 +58,7 @@ in
           "ccls-cache"
           ".direnv"
         ];
-        repo = "sftp:tux-nixos.adoring_suess.zerotier:/var/run/media/nmelzer/data/restic/repo";
+        repo = "rest:http://172.24.152.168:9999/nobbz";
       };
     };
 

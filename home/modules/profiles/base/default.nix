@@ -3,8 +3,7 @@ let
   cfg = config.profiles.base;
 
   inherit (self.packages.x86_64-linux) emacs;
-
-  dag = lib.hm.dag;
+  inherit (lib.hm) dag;
 
   # TODO: make these a bit more nice, so that repeating the hosts and individual config isn't necessary.
   zerotierHosts = [ "delly-nixos.adoring_suess.zerotier" "tux-nixos.adoring_suess.zerotier" "nixos.adoring_suess.zerotier" ];
