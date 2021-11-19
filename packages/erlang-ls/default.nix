@@ -5,7 +5,7 @@ let
   fetchRebar3Deps =
     { name, version, sha256, src, meta ? { } }:
 
-    stdenv.mkDerivation ({
+    stdenv.mkDerivation {
       name = "rebar-deps-${name}-${version}";
 
       buildInputs = [ git cacert ];
@@ -32,7 +32,7 @@ let
 
       # impureEnvVars = lib.fetchers.proxyImpureEnvVars;
       inherit meta;
-    });
+    };
 in
 rebar3Relx rec {
   pname = "erlang-ls";
