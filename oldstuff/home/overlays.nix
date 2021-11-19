@@ -3,8 +3,7 @@ let
 
   self = (compat { src = ./.; }).defaultNix;
 
-  overlay = self.overlay;
-  overlays = self.overlays;
+  inherit (self) overlay overlays;
 in
 [
   overlay
