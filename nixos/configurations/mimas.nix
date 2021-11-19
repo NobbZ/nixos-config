@@ -37,7 +37,7 @@ in
   networking.hostId = "21025bb1";
   networking.networkmanager.enable = true;
   networking.networkmanager.unmanaged = [
-    "mac:80:fa:5b:09:15:6e"
+    # "mac:80:fa:5b:09:15:6e"
   ];
   networking.extraHosts = ''
     # 127.0.0.1 versions.teamspeak.com files.teamspeak-services.com
@@ -119,6 +119,12 @@ in
   services.xserver.enable = true;
   services.xserver.layout = "de";
   # services.xserver.xkbOptions = "eurosign:e";
+
+  services.restic.server.enable = true;
+  services.restic.server.prometheus = true;
+  services.restic.server.extraFlags = [ "--no-auth" ];
+  services.restic.server.listenAddress = "172.24.152.168:9999";
+  systemd.services.restic-rest-server.after = [ "var-lib-restic.mount" ];
 
   # Enable touchpad support.
   # services.xserver.libinput.enable = true;

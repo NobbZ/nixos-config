@@ -48,6 +48,11 @@
     fsType = "ext4";
   };
 
+  fileSystems."/var/lib/restic" = {
+    device = "/dev/disk/by-uuid/3eb6492a-b126-4ad5-b9df-4eb47df1135c";
+    fsType = "ext4";
+  };
+
   fileSystems."/boot" =
     {
       device = "/dev/disk/by-uuid/7000-3A85";
