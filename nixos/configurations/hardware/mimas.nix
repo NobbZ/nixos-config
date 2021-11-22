@@ -53,6 +53,12 @@
     fsType = "ext4";
   };
 
+  fileSystems."/var/lib/ums" = {
+    device = "/dev/disk/by-label/ums";
+    fsType = "ext4";
+  };
+
+
   fileSystems."/boot" =
     {
       device = "/dev/disk/by-uuid/7000-3A85";
