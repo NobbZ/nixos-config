@@ -83,7 +83,7 @@ in
   services.zerotierone.joinNetworks = [ "8286ac0e4768c8ae" ];
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 9002 2342 9999 ];
+  networking.firewall.allowedTCPPorts = [ 9002 9003 2342 9999 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
