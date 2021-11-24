@@ -98,6 +98,8 @@ in
 
       ;; require all those local packages
       ${lispRequires}
+      (require 'pest-mode)
+      (add-to-list #'auto-mode-alist '("\\.pest\\'" . pest-mode))
 
       (global-auto-revert-mode)
       (global-whitespace-mode)
@@ -142,6 +144,7 @@ in
         ep.typescript-mode
         ep.earthfile-mode
         ep.ledger-mode
+        ep.pest-mode
 
         # ep.bazel-mode
 

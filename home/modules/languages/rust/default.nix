@@ -8,7 +8,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.emacs.extraPackages = ep: [ ep.rust-mode ];
+    programs.emacs.extraPackages = ep: [ ep.rust-mode ep.pest-mode ];
 
     programs.emacs.lsp-mode = {
       enable = true;
@@ -17,6 +17,9 @@ in
 
     programs.emacs.extraInit = ''
       (setq lsp-rust-rls-server-command "rls")
+
+      (autoload 'pest-mode "pest-mode")
+      (add-to-list #'auto-mode-alist '("\\.pest\\'" .pest-mode))
 
       (add-hook 'rust-mode-hook
                 (lambda ()
