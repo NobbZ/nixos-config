@@ -12,7 +12,7 @@ in
     dconf.enable = true;
 
     enabledLanguages = [
-      "agda"
+      # "agda"  # Seems as if AGDA2-mode isn't on melpa anymore
       "clojure"
       "cpp"
       "elixir"
