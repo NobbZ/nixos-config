@@ -31,7 +31,7 @@ const targets = [
     `.#home/config/${user}@${hostName}`,
 ]
 
-await $`nix build --keep-going -L ${targets}`
+await $`nix build --keep-going --log-format bar-with-logs -v ${targets}`
 
 await fs.readdir('.')
     .then(dirs => Promise.all(dirs
