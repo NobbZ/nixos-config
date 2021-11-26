@@ -8,7 +8,7 @@ let
   xFlags = lib.optionalString cfg.oneFileSystem "-x";
   flags = "${xFlags} ${excludes}";
 
-  command = "${bin} -vv backup ${flags} %h";
+  command = "${bin} --tag home -vv backup ${flags} %h";
 in
 {
   options.services.restic = {
