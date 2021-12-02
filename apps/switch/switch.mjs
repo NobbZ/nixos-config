@@ -36,12 +36,13 @@ await $`nix build --keep-going --log-format bar-with-logs -v ${targets}`
 await fs.readdir('.')
     .then(dirs => Promise.all(dirs
         .filter(name => name.startsWith('result'))
-        .map(link => {
+        .map(async link => {
             const activate = `./${link}/bin/home-manager-generation`;
 
-            fs.stat(activate)
+            await fs.stat(activate)
                 .then(() => $`${activate}`)
                 .catch(() => {})
         })))
 
 await $`sudo nixos-rebuild switch --flake .#${hostName}`
+
