@@ -46,3 +46,7 @@ await fs.readdir('.')
 
 await $`sudo nixos-rebuild switch --flake .#${hostName}`
 
+await fs.readdir('.')
+    .then(dirs => Promise.all(dirs
+        .filter(name => name.startsWith('result'))
+        .map(async link => await $`rm ${link}`)))
