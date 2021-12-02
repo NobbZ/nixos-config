@@ -1,5 +1,8 @@
-{ config, pkgs, nixpkgs-2105, nix, lib, ... }:
+{ config, pkgs, unstable, nix, lib, ... }:
 
+let
+  nixpkgsPath = "/etc/nixpkgs/channels/nixpkgs";
+in
 {
   options.nix.flakes.enable = lib.mkEnableOption "nix flakes";
 
@@ -8,7 +11,15 @@
       package = lib.mkDefault (nix.packages.x86_64-linux.nix.overrideAttrs (_: { patches = [ ./unset-is-macho.patch ]; })); # pkgs.nixUnstable;
       experimentalFeatures = "nix-command flakes";
 
-      registry.nixpkgs.flake = nixpkgs-2105;
+      registry.nixpkgs.flake = unstable;
+
+      nixPath = [
+        "nixpkgs=${nixpkgsPath}"
+      ];
     };
+
+    systemd.tmpfiles.rules = [
+      "L+ ${nixpkgsPath} - - - - ${unstable}"
+    ];
   };
 }
