@@ -42,6 +42,14 @@ in
   networking.extraHosts = ''
     # 127.0.0.1 versions.teamspeak.com files.teamspeak-services.com
   '';
+  # networking.firewall.extraCommands = ''
+  #   iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 443 -s 10.42.0.0/16 -d 127.0.0.1/32 -j ACCEPT
+  #   iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 6445 -s 10.42.0.0/16 -d 127.0.0.1/32 -j ACCEPT
+  # '';
+
+  # services.k3s.enable = true;
+  # services.k3s.extraFlags = "--write-kubeconfig-mode 0644 --node-external-ip 192.168.178.54 --node-external-ip 172.24.152.168";
+  # systemd.services.k3s.after = [ "var-lib-rancher.mount" ];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -62,7 +70,7 @@ in
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ virt-manager ];
+  environment.systemPackages = with pkgs; [ virt-manager iptables ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -86,7 +94,7 @@ in
   networking.firewall.allowedTCPPorts = [ 9002 9003 2342 9999 3000 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # services.fwupd.enable = true;
 
