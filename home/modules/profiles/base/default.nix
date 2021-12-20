@@ -65,19 +65,15 @@ in
         compression = true;
 
         matchBlocks = {
-          "*.adoring_suess.zerotier" = dag.entryAfter zerotierHosts {
+          "*.internal.nobbz.dev" = dag.entryAfter zerotierHosts {
             identityFile = "~/.ssh/id_rsa";
             user = "nmelzer";
           };
 
-          "delly-nixos.adoring_suess.zerotier" = {
-            hostname = "172.24.199.101";
-          };
           "ryzen-ubuntu.adoring_suess.zerotier" = {
             hostname = "172.24.237.73";
           };
-          "tux-nixos.adoring_suess.zerotier" = {
-            hostname = "172.24.152.168";
+          "mimas.internal.nobbz.dev" = {
             localForwards = [
               {
                 bind.port = 60080;
@@ -86,8 +82,7 @@ in
               }
             ];
           };
-          "nixos.adoring_suess.zerotier" = {
-            hostname = "172.24.231.199";
+          "thetys.internal.nobbz.dev" = {
             user = "demo";
           };
 
