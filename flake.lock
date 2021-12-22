@@ -84,10 +84,7 @@
     },
     "naersk": {
       "inputs": {
-        "nixpkgs": [
-          "rnix-lsp",
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1629707199,
@@ -120,6 +117,25 @@
         "owner": "nixos",
         "ref": "master",
         "repo": "nix",
+        "type": "github"
+      }
+    },
+    "nixos-vscode-server": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1631782689,
+        "narHash": "sha256-/E2kuaU7IPtF2Wf1wWazjWmhmKyfpr/7h6gXZ1UCVY0=",
+        "owner": "mudrii",
+        "repo": "nixos-vscode-ssh-fix",
+        "rev": "b7886e9c046d52a1be8e907a8bdb182b60677acb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mudrii",
+        "ref": "main",
+        "repo": "nixos-vscode-ssh-fix",
         "type": "github"
       }
     },
@@ -170,6 +186,35 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1626395775,
+        "narHash": "sha256-7Uo+4PIQGirfd7WfFuRuspLCyDT7eUn6pnJx/CL9UC8=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "a165aeceda9f9741d15bc2488425daeb06c0707e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-21.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1639347265,
+        "narHash": "sha256-q5feWoC64+h6T6J89o2HJJ8DOnB/4vwMODBlZIgeIlA=",
+        "path": "/nix/store/swl04xiyn1a153n5lbaak903fysp6p0f-source",
+        "rev": "b0bf5f888d377dd2f36d90340df6dc9f035aaada",
+        "type": "path"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
     "rnix-lsp": {
       "inputs": {
         "naersk": "naersk",
@@ -200,6 +245,7 @@
         "home-manager": "home-manager",
         "master": "master",
         "nix": "nix",
+        "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs-2105": "nixpkgs-2105",
         "nixpkgs-2111": "nixpkgs-2111",
         "rnix-lsp": "rnix-lsp",

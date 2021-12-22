@@ -16,6 +16,8 @@
   inputs.emacs.url = "github:nix-community/emacs-overlay";
   inputs.emacs.inputs.nixpkgs.follows = "master";
 
+  inputs.nixos-vscode-server.url = "github:mudrii/nixos-vscode-ssh-fix/main";
+
   outputs = { self, ... }@inputs:
     {
       nixosModules = import ./nixos/modules;
