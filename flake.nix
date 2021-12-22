@@ -7,6 +7,7 @@
   inputs.nix.url = "github:nixos/nix/master";
   inputs.rnix-lsp.url = "github:nix-community/rnix-lsp/master";
   inputs.rnix-lsp.inputs.nixpkgs.follows = "unstable";
+  # inputs.rnix-lsp.inputs.naersk.inputs.nixpkgs.follows = "unstable";
 
   inputs.home-manager.url = "github:nix-community/home-manager";
   inputs.home-manager.inputs.nixpkgs.follows = "unstable";
