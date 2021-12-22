@@ -91,10 +91,10 @@ in
   services.zerotierone.joinNetworks = [ "8286ac0e4768c8ae" ];
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 9002 9003 2342 9999 3000 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 1111 8080 9002 9003 2342 9999 3000 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   # services.fwupd.enable = true;
 
@@ -246,6 +246,71 @@ in
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString config.services.grafana.port}";
       proxyWebsockets = true;
+    };
+  };
+
+  services.traefik.enable = true;
+  systemd.services.traefik.serviceConfig.EnvironmentFile = "/etc/traefik/env";
+  services.traefik.staticConfigOptions = {
+    log.level = "DEBUG";
+
+    api.dashboard = true;
+    api.insecure = true;
+    # experimental.http3 = true;
+
+    certificatesResolvers.mimasWildcard.acme = {
+      email = "acme@nobbz.dev";
+      storage = "/var/lib/traefik/mimas.json";
+      # caServer = "https://acme-staging-v02.api.letsencrypt.org/directory";
+      dnsChallenge.provider = "cloudflare";
+      dnsChallenge.resolvers = [ "1.1.1.1:53" "8.8.8.8:53" ];
+    };
+
+    entryPoints = {
+      http = {
+        address = ":80";
+        forwardedHeaders.insecure = true;
+        http.redirections.entryPoint = {
+          to = "https";
+          scheme = "https";
+        };
+      };
+
+      https = {
+        address = ":443";
+        # enableHTTP3 = true;
+        forwardedHeaders.insecure = true;
+      };
+
+      experimental = {
+        address = ":1111";
+        forwardedHeaders.insecure = true;
+      };
+    };
+  };
+  services.traefik.dynamicConfigOptions = {
+    http.routers = {
+      api = {
+        entrypoints = [ "traefik" ];
+        rule = "PathPrefix(`/api/`)";
+        service = "api@internal";
+      };
+      minio = {
+        entryPoints = [ "http" ];
+        rule = "Host(`minio.mimas.internal.nobbz.dev`) && PathPrefix(`/`)";
+        service = "minio";
+      };
+      minio-tls = {
+        entryPoints = [ "https" "experimental" ];
+        rule = "HostRegexp(`{subdomain:[a-z0-9]+}.mimas.internal.nobbz.dev`) && PathPrefix(`/`)";
+        service = "minio";
+        tls.domains = [{ main = "*.mimas.internal.nobbz.dev"; }];
+        tls.certresolver = "mimasWildcard";
+      };
+    };
+    http.services = {
+      minio.loadBalancer.passHostHeader = true;
+      minio.loadBalancer.servers = [{ url = "http://192.168.122.122/"; }];
     };
   };
 
