@@ -2,7 +2,8 @@
 let
   cfg = config.languages.nix;
 
-  rnixLsp = rnix-lsp.defaultPackage.x86_64-linux;
+  # rnixLsp = rnix-lsp.defaultPackage.x86_64-linux;
+  rnixLsp = pkgs.rnix-lsp;
 in
 {
   options.languages.nix = {
