@@ -2,7 +2,7 @@
 
 {
   config = {
-    nixpkgs.allowedUnfree = [ "google-chrome" ];
+    nixpkgs.allowedUnfree = [ "google-chrome" "vscode" ];
 
     nixpkgs.config.contentAddressedByDefault = false;
 
@@ -27,6 +27,6 @@
     };
     systemd.user.timers.restic-backup.Timer.OnCalendar = lib.mkForce "hourly";
 
-    home.packages = [ ];
+    home.packages = [ pkgs.vscode ];
   };
 }
