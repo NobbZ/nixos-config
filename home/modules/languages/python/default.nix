@@ -33,12 +33,12 @@ in
       tag = "Setup and prepare the python language modes";
       comments = [ ];
       requires = [ ];
-      packageRequires = (ep:
+      packageRequires = ep:
         [
           ep.lsp-pyright
           ep.python-docstring
           (config.programs.emacs.localPackages."init-lsp".packageRequires ep)
-        ] ++ (if cfg.useMS then [ ep.lsp-python-ms ] else [ ]));
+        ] ++ (if cfg.useMS then [ ep.lsp-python-ms ] else [ ]);
       code = ''
         ${lsHook}
 

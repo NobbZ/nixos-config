@@ -19,7 +19,8 @@ let
         cfg.localPackages;
       derivations = lib.attrsets.mapAttrs
         (k: v: {
-          ep = v.ep;
+          # ep = v.ep;
+          inherit (v) ep;
           src = pkgs.writeText "${k}.el" v.src;
         })
         fileContent;
@@ -47,7 +48,7 @@ in
     };
 
     localPackages = lib.mkOption {
-      type = lib.types.attrsOf (lib.types.submodule ({ ... }: {
+      type = lib.types.attrsOf (lib.types.submodule (_: {
         options = {
           tag = lib.mkOption { type = lib.types.str; };
           comments = lib.mkOption { type = lib.types.listOf lib.types.str; };
@@ -153,7 +154,8 @@ in
         (pname: v:
           ep.trivialBuild {
             inherit pname;
-            src = v.src;
+            inherit (v) src;
+            # src = v.src;
             packageRequires = v.ep ep;
           })
         confPackages;

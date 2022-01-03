@@ -5,7 +5,7 @@ let
   cfg = config.programs.emacs.whichkey;
   enabled = config.programs.emacs.enable;
 
-  keyReplacementType = types.listOf (types.submodule ({ ... }: {
+  keyReplacementType = types.listOf (types.submodule (_: {
     options = {
       keys = lib.mkOption {
         type = types.str;

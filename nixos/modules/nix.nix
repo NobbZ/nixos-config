@@ -24,7 +24,7 @@ in
 
   config = lib.mkMerge [
     (lib.mkIf (config.nix.experimentalFeatures != "") { nix.extraOptions = "experimental-features = ${config.nix.experimentalFeatures}"; })
-    (lib.mkIf (allowed != [ ]) { nixpkgs.config.allowUnfreePredicate = (pkg: __elem (lib.getName pkg) allowed); })
+    (lib.mkIf (allowed != [ ]) { nixpkgs.config.allowUnfreePredicate = pkg: __elem (lib.getName pkg) allowed; })
     { nix.autoOptimiseStore = lib.mkDefault true; }
     {
       nix.gc.automatic = lib.mkDefault true;

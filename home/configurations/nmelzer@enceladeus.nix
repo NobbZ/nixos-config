@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, statix, ... }:
 
 {
   config = {
@@ -27,6 +27,6 @@
     };
     systemd.user.timers.restic-backup.Timer.OnCalendar = lib.mkForce "hourly";
 
-    home.packages = [ pkgs.vscode ];
+    home.packages = [ pkgs.vscode statix.defaultPackage.x86_64-linux ];
   };
 }

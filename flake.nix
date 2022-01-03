@@ -19,6 +19,8 @@
 
   inputs.nixos-vscode-server.url = "github:mudrii/nixos-vscode-ssh-fix/main";
 
+  inputs.statix.url = "github:nerdypepper/statix";
+
   outputs = { self, ... }@inputs:
     {
       nixosModules = import ./nixos/modules;

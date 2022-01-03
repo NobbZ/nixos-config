@@ -1,7 +1,9 @@
 { config, lib, ... }:
 
 with lib;
-let emacs = config.programs.emacs;
+let
+  # emacs = config.programs.emacs;
+  inherit (config.programs) emacs;
 in
 {
   config = lib.mkIf emacs.enable {

@@ -21,5 +21,5 @@ rec {
   # keepass =
   #   final.callPackage "${keepasspkgs}/pkgs/applications/misc/keepass" { };
 
-  nobbzLib = (import ./lib);
+  nobbzLib = import ./lib;
 }

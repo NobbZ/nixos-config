@@ -4,3 +4,10 @@ pre-commit:
     formatting:
       glob: "*.nix"
       run: nix shell --inputs-from . nixpkgs-2105#nixpkgs-fmt -c nixpkgs-fmt --check {all_files}
+
+statix:
+  parallel: false
+  commands:
+    statix:
+      glob: "*.nix"
+      run: statix check -i packages/nodePackages/node-env.nix nixos/modules/grafana.nix

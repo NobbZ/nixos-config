@@ -56,7 +56,11 @@
 
   services.zerotierone.enable = true;
   services.zerotierone.joinNetworks = [ "8286ac0e4768c8ae" ];
-  services.zerotierone.package = (import nixpkgs-2105 { config.allowUnfree = true; system = pkgs.system; }).zerotierone;
+  services.zerotierone.package = (import nixpkgs-2105 {
+    config.allowUnfree = true;
+    # system = pkgs.system;
+    inherit (pkgs) system;
+  }).zerotierone;
 
   # services.ipfs.enable = true;
 
