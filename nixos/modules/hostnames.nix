@@ -15,13 +15,16 @@ let
   ];
 in
 {
-  lib.nobbz.hostnames = {
-    thetys = "172.24.231.199";
-    enceladeus = "172.24.199.101";
-  };
+  # lib.nobbz.hostnames = {
+  #   thetys = "172.24.231.199";
+  #   enceladeus = "172.24.199.101";
+  # };
 
-  networking.hosts = hosts // {
-    "192.168.122.122" = kubenames;
-    "172.24.152.168" = [ "mimas" "mimas.nobbz.lan" ];
-  };
+  # networking.hosts = hosts // {
+  #   "192.168.122.122" = kubenames;
+  #   "172.24.152.168" = [ "mimas" "mimas.nobbz.lan" ];
+  # };
+
+  networking.search = [ "internal.nobbz.dev" ];
+  networking.domain = "internal.nobbz.dev";
 }
