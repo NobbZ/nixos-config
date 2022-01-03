@@ -11,8 +11,7 @@
   nixpkgs.config.contentAddressedByDefault = false;
 
   # nix.useSandbox = false;
-  nix.buildCores = 1;
-  nix.maxJobs = 2;
+  nix.package = pkgs.nix_2_4;
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -30,7 +29,7 @@
   boot.extraModulePackages = with config.boot.kernelPackages; [
     rtl8192eu
   ];
-  boot.supportedFilesystems = [ "zfs" "ntfs-3g" ];
+  boot.supportedFilesystems = [ "ntfs-3g" ];
 
   # boot.kernelPackages = pkgs.linuxPackages_4_19;
   boot.kernel.sysctl = {
@@ -76,6 +75,7 @@
     wget
     rsync
     git
+    firefox
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

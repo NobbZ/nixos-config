@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   config = {
@@ -25,6 +25,7 @@
       oneFileSystem = true;
       repo = "rest:http://172.24.152.168:9999/nobbz";
     };
+    systemd.user.timers.restic-backup.Timer.OnCalendar = lib.mkForce "hourly";
 
     home.packages = [ ];
   };
