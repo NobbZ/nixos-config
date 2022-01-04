@@ -116,7 +116,7 @@
   # services.xserver.libinput.enable = true;
 
   # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.plasma5.enable = false;
   services.xserver.windowManager.awesome.enable = true;
 
