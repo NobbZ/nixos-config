@@ -35,11 +35,11 @@ in
     };
 
     gtk.enable = true;
-    gtk.theme.package = pkgs.gnome3.gnome_themes_standard;
+    gtk.theme.package = pkgs.gnome3.gnome-themes-extra;
     gtk.theme.name = "Adwaita-dark";
 
     home.keyboard.layout = "de";
-    home.packages = [ pkgs.hydra-check pkgs.gnome3.dconf ];
+    home.packages = [ pkgs.hydra-check pkgs.dconf ];
 
     xsession = {
       enable = true;
