@@ -6,7 +6,7 @@ let
 in
 {
   config = {
-    nixpkgs.allowedUnfree = [ "google-chrome" ];
+    nixpkgs.allowedUnfree = [ "google-chrome" "vscode" ];
 
     activeProfiles = [ "browsing" "development" ];
 
@@ -65,6 +65,7 @@ in
     home.packages = [
       stable.mysqlWorkbench
       self'.gnucash-de
+      pkgs.vscode
     ];
 
     systemd.user.services = {
