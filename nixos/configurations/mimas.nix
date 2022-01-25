@@ -297,8 +297,10 @@ in
       };
       minio = {
         entryPoints = [ "http" ];
-        rule = "Host(`minio.mimas.internal.nobbz.dev`) && PathPrefix(`/`)";
-        service = "minio";
+        rule = "Host(`fritz.mimas.internal.nobbz.dev`) && PathPrefix(`/`)";
+        service = "fritz";
+        tls.domains = [{ main = "*.mimas.internal.nobbz.dev"; }];
+        tls.certResolver = "mimasWildcard";
       };
       minio-tls = {
         entryPoints = [ "https" "experimental" ];
@@ -311,6 +313,9 @@ in
     http.services = {
       minio.loadBalancer.passHostHeader = true;
       minio.loadBalancer.servers = [{ url = "http://192.168.122.122/"; }];
+
+      fritz.loadBalancer.passHostHeader = false;
+      fritz.loadBalancer.servers = [{ url = "http://fritz.box"; }];
     };
   };
 
