@@ -28,8 +28,6 @@
   programs.zsh.enable = true;
   programs.zsh.enableCompletion = false;
 
-  nix.useSandbox = true;
-
   virtualisation = {
     docker.enable = true;
     docker.extraOptions = "--insecure-registry registry.cap01.cloudseeds.de";

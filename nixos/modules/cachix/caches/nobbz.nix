@@ -2,10 +2,10 @@
 
 {
   nix = lib.mkIf (config.networking.hostName != "delly-nixos") {
-    binaryCaches = [
+    settings.substituters = [
       "https://nobbz.cachix.org"
     ];
-    binaryCachePublicKeys = [
+    settings.trusted-public-keys = [
       "nobbz.cachix.org-1:fODxpqE4ni+pFDSuj2ybYZbMUjmxNTjA7rtUNHW61Ok="
     ];
   };
