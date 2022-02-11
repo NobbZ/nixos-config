@@ -4,6 +4,10 @@
   # TODO: 👇 move import of `virtualbox-demo.nix` into extra module 👇
   imports = [ (modulesPath + "/installer/virtualbox-demo.nix") ];
 
+  boot.initrd.supportedFilesystems = [ "zfs" ]; # boot from zfs
+  boot.supportedFilesystems = [ "zfs" ];
+  networking.hostId = "deadbeef";
+
   programs.gnupg = {
     agent = {
       enable = true;
