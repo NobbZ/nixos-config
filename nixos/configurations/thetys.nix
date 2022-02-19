@@ -35,7 +35,7 @@
   virtualisation = {
     docker.enable = true;
     docker.extraOptions = "--insecure-registry registry.cap01.cloudseeds.de";
-    docker.liveRestore = true;
+    docker.liveRestore = false;
     podman.enable = true;
   };
 
