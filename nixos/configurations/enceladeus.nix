@@ -163,6 +163,8 @@
   # should.
   system.stateVersion = "19.09"; # Did you read the comment?
 
+  hardware.keyboard.zsa.enable = true;
+
   security.sudo.extraRules = [
     {
       commands = [

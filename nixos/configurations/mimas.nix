@@ -253,6 +253,8 @@ in
     };
   };
 
+  hardware.keyboard.zsa.enable = true;
+
   services.traefik.enable = true;
   systemd.services.traefik.serviceConfig.EnvironmentFile = "/etc/traefik/env";
   services.traefik.staticConfigOptions = {
