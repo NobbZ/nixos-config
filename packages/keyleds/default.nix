@@ -13,5 +13,5 @@ stdenv.mkDerivation rec {
   };
 
   nativeBuildInputs = with pkgs; [ cmake pkgconfig ];
-  buildInputs = with pkgs; [ x11 xorg.libXi libuv systemd luajit libyaml ];
+  buildInputs = with pkgs; [ xlibsWrapper xorg.libXi libuv systemd luajit libyaml ];
 }

@@ -104,7 +104,7 @@ in
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = [ pkgs.hplipWithPlugin pkgs.samsungUnifiedLinuxDriver ];
+  services.printing.drivers = [ pkgs.hplipWithPlugin pkgs.samsung-unified-linux-driver ];
 
   services.ratbagd.enable = true;
 
