@@ -95,7 +95,7 @@ in
   services.zerotierone.joinNetworks = [ "8286ac0e4768c8ae" ];
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 80 443 1111 8080 9002 9003 2342 9999 3000 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 1111 8080 9002 9003 2342 9999 3000 58080 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
@@ -301,20 +301,27 @@ in
         rule = "PathPrefix(`/api/`)";
         service = "api@internal";
       };
-      minio = {
-        entryPoints = [ "http" ];
-        rule = "Host(`fritz.mimas.internal.nobbz.dev`) && PathPrefix(`/`)";
+      fritz = {
+        entryPoints = [ "https" "http" ];
+        rule = "Host(`fritz.mimas.internal.nobbz.dev`)";
         service = "fritz";
         tls.domains = [{ main = "*.mimas.internal.nobbz.dev"; }];
         tls.certResolver = "mimasWildcard";
       };
-      minio-tls = {
-        entryPoints = [ "https" "experimental" ];
-        rule = "HostRegexp(`{subdomain:[a-z0-9]+}.mimas.internal.nobbz.dev`) && PathPrefix(`/`)";
-        service = "minio";
+      paperless = {
+        entryPoints = [ "https" "http" ];
+        rule = "Host(`paperless.mimas.internal.nobbz.dev`)";
+        service = "paperless";
         tls.domains = [{ main = "*.mimas.internal.nobbz.dev"; }];
-        tls.certresolver = "mimasWildcard";
+        tls.certResolver = "mimasWildcard";
       };
+      # minio-tls = {
+      #   entryPoints = [ "https" "experimental" ];
+      #   rule = "HostRegexp(`{subdomain:[a-z0-9]+}.mimas.internal.nobbz.dev`) && PathPrefix(`/`)";
+      #   service = "minio";
+      #   tls.domains = [{ main = "*.mimas.internal.nobbz.dev"; }];
+      #   tls.certresolver = "mimasWildcard";
+      # };
     };
     http.services = {
       minio.loadBalancer.passHostHeader = true;
@@ -322,6 +329,9 @@ in
 
       fritz.loadBalancer.passHostHeader = false;
       fritz.loadBalancer.servers = [{ url = "http://fritz.box"; }];
+
+      paperless.loadBalancer.passHostHeader = true;
+      paperless.loadBalancer.servers = [{ url = "http://localhost:58080"; }];
     };
   };
 
@@ -368,6 +378,15 @@ in
       }
     ];
   };
+
+  services.paperless-ng = {
+    enable = true;
+    # address = "mimas.internal.nobbz.dev";
+    address = "0.0.0.0";
+    port = 58080;
+    extraConfig.PAPERLESS_OCR_LANGUAGE = "deu+eng";
+  };
+  systemd.services.paperless-ng-server.after = [ "var-lib-paperless.mount" ];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
