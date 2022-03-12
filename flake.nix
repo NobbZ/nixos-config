@@ -41,5 +41,13 @@
         update = import ./apps/update inputs;
         switch = import ./apps/switch inputs;
       };
+
+      devShell.x86_64-linux = let pkgs = inputs.unstable.legacyPackages.x86_64-linux; in
+        pkgs.mkShell {
+          packages = [
+            inputs.rnix-lsp.defaultPackage.x86_64-linux
+            inputs.statix.defaultPackage.x86_64-linux
+          ];
+        };
     };
 }
