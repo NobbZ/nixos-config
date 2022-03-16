@@ -4,7 +4,7 @@
   inputs.unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.master.url = "github:nixos/nixpkgs/master";
 
-  inputs.nix.url = "github:nixos/nix/caf51729450d4c57d48ddbef8e855e9bf65f8792";
+  inputs.nix.url = "github:nixos/nix"; #/caf51729450d4c57d48ddbef8e855e9bf65f8792";
   inputs.rnix-lsp.url = "github:nix-community/rnix-lsp/master";
   inputs.rnix-lsp.inputs.nixpkgs.follows = "unstable";
   # inputs.rnix-lsp.inputs.naersk.inputs.nixpkgs.follows = "unstable";
