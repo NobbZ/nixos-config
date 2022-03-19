@@ -1,10 +1,12 @@
 {
-  config,
-  pkgs,
-  lib,
   nixpkgs-2105,
   unstable,
   self,
+  ...
+}: {
+  config,
+  pkgs,
+  lib,
   ...
 }: let
   self' = self.packages.x86_64-linux;

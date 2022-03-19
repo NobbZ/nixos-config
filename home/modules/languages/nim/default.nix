@@ -1,8 +1,7 @@
-{
+{unstable, ...}: {
   config,
   lib,
   pkgs,
-  unstable,
   ...
 }: let
   cfg = config.languages.nim;

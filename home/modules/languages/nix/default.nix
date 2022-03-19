@@ -1,4 +1,4 @@
-{
+{rnix-lsp, ...}: {
   config,
   lib,
   pkgs,

@@ -1,8 +1,7 @@
-{
+{self, ...}: {
   config,
   lib,
   pkgs,
-  self,
   ...
 }: let
   cfg = config.xsession.windowManager.awesome;

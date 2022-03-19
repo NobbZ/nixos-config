@@ -1,44 +1,44 @@
-{
-  "profiles" = import ./profiles;
-  "profiles/base" = import ./profiles/base;
-  "profiles/browsing" = import ./profiles/browsing;
-  "profiles/development" = import ./profiles/development;
-  "profiles/home-office" = import ./profiles/home-office;
+inputs: {
+  "profiles" = import ./profiles inputs;
+  "profiles/base" = import ./profiles/base inputs;
+  "profiles/browsing" = import ./profiles/browsing inputs;
+  "profiles/development" = import ./profiles/development inputs;
+  "profiles/home-office" = import ./profiles/home-office inputs;
 
-  "languages" = import ./languages;
-  "languages/agda" = import ./languages/agda;
-  "languages/c++" = import ./languages/c++;
-  "languages/clojure" = import ./languages/clojure;
-  "languages/elixir" = import ./languages/elixir;
-  "languages/erlang" = import ./languages/erlang;
-  "languages/go" = import ./languages/go;
-  "languages/nim" = import ./languages/nim;
-  "languages/nix" = import ./languages/nix;
-  "languages/python" = import ./languages/python;
-  "languages/rust" = import ./languages/rust;
-  "languages/tex" = import ./languages/tex;
-  "languages/lua" = import ./languages/lua;
-  "languages/terraform" = import ./languages/terraform;
+  "languages" = import ./languages inputs;
+  "languages/agda" = import ./languages/agda inputs;
+  "languages/c++" = import ./languages/c++ inputs;
+  "languages/clojure" = import ./languages/clojure inputs;
+  "languages/elixir" = import ./languages/elixir inputs;
+  "languages/erlang" = import ./languages/erlang inputs;
+  "languages/go" = import ./languages/go inputs;
+  "languages/nim" = import ./languages/nim inputs;
+  "languages/nix" = import ./languages/nix inputs;
+  "languages/python" = import ./languages/python inputs;
+  "languages/rust" = import ./languages/rust inputs;
+  "languages/tex" = import ./languages/tex inputs;
+  "languages/lua" = import ./languages/lua inputs;
+  "languages/terraform" = import ./languages/terraform inputs;
 
-  "programs/advcp" = import ./programs/advcp;
-  "programs/openshift" = import ./programs/openshift;
-  "programs/zshell" = import ./programs/zshell;
-  "programs/nixpkgs" = import ./programs/nixpkgs;
-  "programs/exa" = import ./programs/exa;
-  "programs/emacs" = import ./programs/emacs;
-  "programs/emacs/beacon" = import ./programs/emacs/beacon.nix;
-  "programs/emacs/company" = import ./programs/emacs/company.nix;
-  "programs/emacs/helm" = import ./programs/emacs/helm.nix;
-  "programs/emacs/lsp" = import ./programs/emacs/lsp.nix;
-  "programs/emacs/projectile" = import ./programs/emacs/projectile.nix;
-  "programs/emacs/telephoneline" = import ./programs/emacs/telephoneline.nix;
-  "programs/emacs/lib" = import ./programs/emacs/lib.nix;
-  "programs/emacs/whichkey" = import ./programs/emacs/whichkey;
+  "programs/advcp" = import ./programs/advcp inputs;
+  "programs/openshift" = import ./programs/openshift inputs;
+  "programs/zshell" = import ./programs/zshell inputs;
+  "programs/nixpkgs" = import ./programs/nixpkgs inputs;
+  "programs/exa" = import ./programs/exa inputs;
+  "programs/emacs" = import ./programs/emacs inputs;
+  "programs/emacs/beacon" = import ./programs/emacs/beacon.nix inputs;
+  "programs/emacs/company" = import ./programs/emacs/company.nix inputs;
+  "programs/emacs/helm" = import ./programs/emacs/helm.nix inputs;
+  "programs/emacs/lsp" = import ./programs/emacs/lsp.nix inputs;
+  "programs/emacs/projectile" = import ./programs/emacs/projectile.nix inputs;
+  "programs/emacs/telephoneline" = import ./programs/emacs/telephoneline.nix inputs;
+  "programs/emacs/lib" = import ./programs/emacs/lib.nix inputs;
+  "programs/emacs/whichkey" = import ./programs/emacs/whichkey inputs;
 
-  "services/keyleds" = import ./services/keyleds;
-  "services/insync" = import ./services/insync;
-  "services/restic" = import ./services/restic;
+  "services/keyleds" = import ./services/keyleds inputs;
+  "services/insync" = import ./services/insync inputs;
+  "services/restic" = import ./services/restic inputs;
 
-  "misc/awesome" = import ./misc/awesome;
-  "misc/home" = import ./misc/home;
+  "misc/awesome" = import ./misc/awesome inputs;
+  "misc/home" = import ./misc/home inputs;
 }

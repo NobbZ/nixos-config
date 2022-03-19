@@ -26,7 +26,7 @@
     nixosModules = import ./nixos/modules inputs;
     nixosConfigurations = import ./nixos/configurations inputs;
 
-    homeModules = import ./home/modules;
+    homeModules = import ./home/modules inputs;
     homeConfigurations = import ./home/configurations inputs;
 
     packages.x86_64-linux =
