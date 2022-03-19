@@ -1,7 +1,6 @@
-{
+{statix, ...}: {
   pkgs,
   lib,
-  statix,
   ...
 }: {
   config = {

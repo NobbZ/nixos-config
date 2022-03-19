@@ -1,9 +1,8 @@
 {
-  pkgs,
   unstable,
   self,
   ...
-}: let
+}: {pkgs, ...}: let
   keepassWithPlugins =
     pkgs.keepass.override {plugins = [pkgs.keepass-keepasshttp];};
 in {

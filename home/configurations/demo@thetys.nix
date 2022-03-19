@@ -1,9 +1,8 @@
 {
-  pkgs,
-  nixpkgs-2105,
   self,
+  nixpkgs-2105,
   ...
-}: let
+}: {pkgs, ...}: let
   stable = nixpkgs-2105.legacyPackages.x86_64-linux;
   self' = self.packages.x86_64-linux;
 in {

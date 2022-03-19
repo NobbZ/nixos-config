@@ -4,7 +4,7 @@
   ...
 } @ inputs: username: hostname: system: nixpkgs: let
   args = inputs;
-  entrypoint = "${self}/home/configurations/${username}@${hostname}.nix";
+  entrypoint = import "${self}/home/configurations/${username}@${hostname}.nix" inputs;
 in
   home-manager.lib.homeManagerConfiguration {
     inherit username system;
@@ -13,7 +13,6 @@ in
     pkgs = nixpkgs.legacyPackages.${system};
 
     configuration = {lib, ...}: {
-      _module = {inherit args;};
       imports =
         [
           entrypoint
