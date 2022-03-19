@@ -1,7 +1,9 @@
-{ config, lib, ... }:
-
-with lib;
-let
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.programs.emacs.whichkey;
   enabled = config.programs.emacs.enable;
 
@@ -22,13 +24,17 @@ let
     };
   }));
 
-  replacements = lib.concatStringsSep "\n  "
-    (builtins.map ({ keys, replace, ... }: ''"${keys}" "${replace}"'')
-      cfg.replacement);
-in
-{
+  replacements =
+    lib.concatStringsSep "\n  "
+    (builtins.map ({
+      keys,
+      replace,
+      ...
+    }: ''"${keys}" "${replace}"'')
+    cfg.replacement);
+in {
   options.programs.emacs.whichkey = {
-    replacement = lib.mkOption { type = keyReplacementType; };
+    replacement = lib.mkOption {type = keyReplacementType;};
   };
 
   config = lib.mkIf enabled {
@@ -47,11 +53,11 @@ in
           replace = "leave emacs";
         }
       ];
-      extraPackages = ep: [ ep.which-key ];
+      extraPackages = ep: [ep.which-key];
       localPackages."init-whichkey" = {
         tag = "Setup and initialise whichkey";
-        comments = [ ];
-        requires = [ ];
+        comments = [];
+        requires = [];
         code = ''
           ;; which-key
           (which-key-mode t)

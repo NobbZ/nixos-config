@@ -1,12 +1,17 @@
-{ config, lib, pkgs, self, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  self,
+  ...
+}: let
   cfg = config.profiles.base;
 
   inherit (self.packages.x86_64-linux) emacs;
   inherit (lib.hm) dag;
 
   # TODO: make these a bit more nice, so that repeating the hosts and individual config isn't necessary.
-  zerotierHosts = [ "delly-nixos.adoring_suess.zerotier" "tux-nixos.adoring_suess.zerotier" "nixos.adoring_suess.zerotier" ];
+  zerotierHosts = ["delly-nixos.adoring_suess.zerotier" "tux-nixos.adoring_suess.zerotier" "nixos.adoring_suess.zerotier"];
 
   zsh-complete = pkgs.stdenv.mkDerivation {
     pname = "nix-zsh-completion-with-flakes";
@@ -14,15 +19,14 @@ let
 
     src = ./nix-completions.sh;
 
-    phases = [ "installPhase" ];
+    phases = ["installPhase"];
 
     installPhase = ''
       mkdir -p $out
       cp $src $out/_nix
     '';
   };
-in
-{
+in {
   options.profiles.base = {
     enable = lib.mkEnableOption "The base profile, should be always enabled";
   };
@@ -39,7 +43,7 @@ in
     gtk.theme.name = "Adwaita-dark";
 
     home.keyboard.layout = "de";
-    home.packages = [ pkgs.hydra-check pkgs.dconf ];
+    home.packages = [pkgs.hydra-check pkgs.dconf];
 
     xsession = {
       enable = true;
@@ -110,30 +114,31 @@ in
             identityFile = "~/.ssh/vogel";
           };
 
-          "deploy-vogel.custpoc.cloudseeds.de" = dag.entryBefore [
-            "*.custpoc.cloudseeds.de"
-            "*.cloudseeds.de"
-          ]
+          "deploy-vogel.custpoc.cloudseeds.de" =
+            dag.entryBefore [
+              "*.custpoc.cloudseeds.de"
+              "*.cloudseeds.de"
+            ]
             {
               user = "cloudseeds";
               identityFile = "~/.ssh/vogel";
             };
 
-          "repo.cloudseeds.de" = dag.entryBefore [ "*.cloudseeds.de" ] {
+          "repo.cloudseeds.de" = dag.entryBefore ["*.cloudseeds.de"] {
             identityFile = "~/.ssh/id_rsa";
           };
 
-          "*.custpoc.cloudseeds.de" = dag.entryBefore [ "*.cloudseeds.de" ] {
+          "*.custpoc.cloudseeds.de" = dag.entryBefore ["*.cloudseeds.de"] {
             user = "norbert.melzer";
             identityFile = "~/.ssh/actum-gitlab";
           };
 
-          "com01.internal.cloudseeds.de" = dag.entryBefore [ "*.cloudseeds.de" ] {
+          "com01.internal.cloudseeds.de" = dag.entryBefore ["*.cloudseeds.de"] {
             hostname = "192.168.123.22";
             user = "root";
           };
 
-          "ironic.internal.cloudseeds.de" = dag.entryBefore [ "*.cloudseeds.de" ] {
+          "ironic.internal.cloudseeds.de" = dag.entryBefore ["*.cloudseeds.de"] {
             hostname = "192.168.123.31";
             user = "root";
           };
@@ -157,17 +162,18 @@ in
         historyLimit = 10000;
         terminal = "screen-256color";
 
-        plugins = let tp = pkgs.tmuxPlugins; in
-          [
-            # {
-            #   plugin = tp.dracula;
-            #   extraConfig = ''
-            #     set -g @dracula-show-battery true
-            #     set -g @dracula-show-powerline true
-            #     set -g @dracula-refresh-rate 10
-            #   '';
-            # }
-          ];
+        plugins = let
+          tp = pkgs.tmuxPlugins;
+        in [
+          # {
+          #   plugin = tp.dracula;
+          #   extraConfig = ''
+          #     set -g @dracula-show-battery true
+          #     set -g @dracula-show-powerline true
+          #     set -g @dracula-refresh-rate 10
+          #   '';
+          # }
+        ];
       };
 
       zsh = {

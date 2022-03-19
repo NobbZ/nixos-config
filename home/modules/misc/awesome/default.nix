@@ -1,28 +1,31 @@
-{ config, lib, pkgs, self, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  self,
+  ...
+}: let
   cfg = config.xsession.windowManager.awesome;
 
   rofi = pkgs.rofi.override {
-    plugins = [ pkgs.rofi-emoji ];
+    plugins = [pkgs.rofi-emoji];
   };
 
   self' = self.packages.x86_64-linux;
 
-  autostartScript =
-    let
-      entries = builtins.map (e: "\"${e}\",") cfg.autostart;
-    in
-    ''
-      -- Autorun programs
-      autorunApps = {
-        ${builtins.concatStringsSep "\n  " entries}
-      }
+  autostartScript = let
+    entries = builtins.map (e: "\"${e}\",") cfg.autostart;
+  in ''
+    -- Autorun programs
+    autorunApps = {
+      ${builtins.concatStringsSep "\n  " entries}
+    }
 
-      for app = 1, #autorunApps do
-        awful.util.spawn(autorunApps[app])
-      end
-      -- }}}
-    '';
+    for app = 1, #autorunApps do
+      awful.util.spawn(autorunApps[app])
+    end
+    -- }}}
+  '';
 
   errorHandling = ''
     -- {{{ Error handling
@@ -52,8 +55,7 @@ let
     end
     -- }}}
   '';
-in
-{
+in {
   options.xsession.windowManager.awesome = {
     terminalEmulator = lib.mkOption {
       type = lib.types.str;
@@ -67,7 +69,7 @@ in
 
     autostart = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [ ];
+      default = [];
     };
   };
 
@@ -646,7 +648,7 @@ in
       client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
       -- }}}
 
-      ${lib.optionalString (cfg.autostart != [ ]) autostartScript}
+      ${lib.optionalString (cfg.autostart != []) autostartScript}
     '';
   };
 }

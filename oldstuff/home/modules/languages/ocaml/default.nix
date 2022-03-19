@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.languages.ocaml;
-
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.languages.ocaml;
+in {
   options.languages.ocaml = {
     enable = lib.mkEnableOption "Enable support for ocaml language";
   };
@@ -10,15 +13,15 @@ in
   config = lib.mkIf cfg.enable {
     programs.emacs.lsp-mode = {
       enable = true;
-      languages = [ "caml" ];
+      languages = ["caml"];
     };
 
     programs.emacs = {
       localPackages."init-ocaml" = {
         tag = "Setup OCaml";
-        comments = [ ];
-        requires = [ "caml-font" ];
-        packageRequires = ep: [ ep.lsp-mode ep.caml ep.company ep.flycheck ];
+        comments = [];
+        requires = ["caml-font"];
+        packageRequires = ep: [ep.lsp-mode ep.caml ep.company ep.flycheck];
         code = ''
           (add-to-list 'exec-path "${pkgs.ocaml-lsp}/bin")
           (setq lsp-ocaml-lang-server-command '("ocamllsp"))

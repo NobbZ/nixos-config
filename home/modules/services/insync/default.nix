@@ -1,9 +1,12 @@
-{ config, lib, pkgs, self, ... }:
-
-let
-  cfg = config.services.insync;
-in
 {
+  config,
+  lib,
+  pkgs,
+  self,
+  ...
+}: let
+  cfg = config.services.insync;
+in {
   options.services.insync = {
     enable = lib.mkEnableOption "Insync cloud sync tool";
 
@@ -19,18 +22,18 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.allowedUnfree = [ "insync" ];
+    nixpkgs.allowedUnfree = ["insync"];
 
-    home.packages = [ cfg.package ];
+    home.packages = [cfg.package];
 
     systemd.user.services.insync = {
       Unit = {
         Description = "Insync - Google Drive, OneDrive, and Dropbox Syncing on Linux, Windows & Mac";
-        After = [ "graphical-session-pre.target" ];
-        PartOf = [ "graphical-session.target" ];
+        After = ["graphical-session-pre.target"];
+        PartOf = ["graphical-session.target"];
       };
 
-      Install = { WantedBy = [ "graphical-session.target" ]; };
+      Install = {WantedBy = ["graphical-session.target"];};
 
       Service = {
         Type = "simple";

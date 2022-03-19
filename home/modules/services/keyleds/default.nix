@@ -1,11 +1,16 @@
-{ config, lib, pkgs, self, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  self,
+  ...
+}: let
   cfg = config.services.keyleds;
   self' = self.packages.x86_64-linux;
-in
-{
+in {
   options.services.keyleds = {
-    enable = lib.mkEnableOption
+    enable =
+      lib.mkEnableOption
       "Logitech Keyboard animation for Linux — G410, G513, G610, G810, G910, GPro";
 
     package = lib.mkOption {
@@ -20,22 +25,20 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = [cfg.package];
 
     systemd.user.services.keyleds = {
       Unit = {
-        Description =
-          "Logitech Keyboard animation for Linux — G410, G513, G610, G810, G910, GPro";
-        After = [ "graphical-session-pre.target" ];
-        PartOf = [ "graphical-session.target" ];
+        Description = "Logitech Keyboard animation for Linux — G410, G513, G610, G810, G910, GPro";
+        After = ["graphical-session-pre.target"];
+        PartOf = ["graphical-session.target"];
       };
 
-      Install = { WantedBy = [ "graphical-session.target" ]; };
+      Install = {WantedBy = ["graphical-session.target"];};
 
       Service = {
         Environment = "XDG_DATA_DIRS=${cfg.package}/share";
-        ExecStart =
-          "${cfg.package}/bin/keyledsd --config ${cfg.package}/share/keyledsd/keyledsd.conf.sample";
+        ExecStart = "${cfg.package}/bin/keyledsd --config ${cfg.package}/share/keyledsd/keyledsd.conf.sample";
         Restart = "always";
         RestartSec = 3;
       };

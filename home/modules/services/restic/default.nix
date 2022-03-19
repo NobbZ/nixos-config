@@ -1,6 +1,10 @@
-{ config, lib, pkgs, self, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  self,
+  ...
+}: let
   cfg = config.services.restic;
 
   bin = "${cfg.package}/bin/restic";
@@ -9,8 +13,7 @@ let
   flags = "${xFlags} ${excludes}";
 
   command = "${bin} --tag home -vv backup ${flags} %h";
-in
-{
+in {
   options.services.restic = {
     enable = lib.mkEnableOption "Restic Backup Tool";
 
@@ -22,7 +25,7 @@ in
 
     exclude = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [ ];
+      default = [];
       description = "Corresponds to `--exclude`. Use `%h` instead of `~`";
     };
 
@@ -41,7 +44,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ cfg.package ];
+    home.packages = [cfg.package];
 
     systemd.user.services.restic-backup = {
       Unit = {
@@ -52,7 +55,7 @@ in
 
       Service = {
         Environment = [
-          "PATH=${lib.makeBinPath [ pkgs.openssh ]}"
+          "PATH=${lib.makeBinPath [pkgs.openssh]}"
           "RESTIC_PASSWORD_FILE=%h/.config/restic/password"
           "RESTIC_REPOSITORY=${cfg.repo}"
         ];
@@ -69,7 +72,7 @@ in
         Unit = "restic-backup.service";
         OnCalendar = "*:0/15";
       };
-      Install.WantedBy = [ "timers.target" ];
+      Install.WantedBy = ["timers.target"];
     };
   };
 }

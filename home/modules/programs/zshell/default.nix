@@ -1,16 +1,19 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.programs.zshell;
-  aliasesStr = lib.concatStringsSep "\n"
+  aliasesStr =
+    lib.concatStringsSep "\n"
     (lib.mapAttrsToList (k: v: "alias ${k}=${lib.escapeShellArg v}")
       cfg.aliases);
   sourcesStr =
     lib.concatStringsSep "\n" (builtins.map (s: ". ${s}") cfg.sources);
-in
-{
+in {
   options.programs.zshell = {
     aliases = lib.mkOption {
-      default = { };
+      default = {};
       example = {
         ll = "ls -l";
         ".." = "cd ..";
@@ -22,7 +25,7 @@ in
       type = lib.types.attrsOf lib.types.str;
     };
     sources = lib.mkOption {
-      default = [ ];
+      default = [];
       type = lib.types.listOf lib.types.str;
     };
   };

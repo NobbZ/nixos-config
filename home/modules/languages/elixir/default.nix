@@ -1,10 +1,14 @@
-{ config, lib, pkgs, self, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  self,
+  ...
+}: let
   cfg = config.languages.elixir;
 
   inherit (self.packages.x86_64-linux) elixir-lsp;
-in
-{
+in {
   options.languages.elixir = {
     enable = lib.mkEnableOption "Enable support for elixir language";
   };
@@ -19,13 +23,13 @@ in
     programs.emacs = {
       lsp-mode = {
         enable = true;
-        languages = [ "elixir" ];
+        languages = ["elixir"];
       };
 
       localPackages."init-elixir" = {
         tag = "Setup elixir";
-        comments = [ ];
-        requires = [ "company" "flycheck" ];
+        comments = [];
+        requires = ["company" "flycheck"];
         packageRequires = ep: [
           ep.company
           ep.elixir-mode

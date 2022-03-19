@@ -1,18 +1,19 @@
-{ config, lib, ... }:
-
-with lib;
-let
+{
+  config,
+  lib,
+  ...
+}:
+with lib; let
   # emacs = config.programs.emacs;
   inherit (config.programs) emacs;
-in
-{
+in {
   config = lib.mkIf emacs.enable {
-    programs.emacs.extraPackages = ep: [ ep.company ];
+    programs.emacs.extraPackages = ep: [ep.company];
 
     programs.emacs.localPackages."init-company" = {
       tag = "Setup and initialise company";
-      comments = [ ];
-      requires = [ ];
+      comments = [];
+      requires = [];
       code = ''
         ;; company
         (setq tab-always-indent 'complete)

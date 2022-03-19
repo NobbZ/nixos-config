@@ -1,13 +1,15 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, ... }:
-
 {
-  imports = [ ];
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  imports = [];
 
-  nix.allowedUnfree = [ "b43-firmware" "broadcom-sta" "zerotierone" ];
+  nix.allowedUnfree = ["b43-firmware" "broadcom-sta" "zerotierone"];
   nixpkgs.config.contentAddressedByDefault = false;
 
   # nix.useSandbox = false;
@@ -25,11 +27,11 @@
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.blacklistedKernelModules = [ "rtl8xxxu" ];
+  boot.blacklistedKernelModules = ["rtl8xxxu"];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     rtl8192eu
   ];
-  boot.supportedFilesystems = [ "ntfs-3g" ];
+  boot.supportedFilesystems = ["ntfs-3g"];
 
   # boot.kernelPackages = pkgs.linuxPackages_4_19;
   boot.kernel.sysctl = {
@@ -90,7 +92,7 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 9002 ];
+  networking.firewall.allowedTCPPorts = [9002];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -111,7 +113,7 @@
   # services.xserver.xkbOptions = "eurosign:e";
 
   services.zerotierone.enable = true;
-  services.zerotierone.joinNetworks = [ "8286ac0e4768c8ae" ];
+  services.zerotierone.joinNetworks = ["8286ac0e4768c8ae"];
 
   # Enable touchpad support.
   # services.xserver.libinput.enable = true;
@@ -137,7 +139,7 @@
     nmelzer = {
       isNormalUser = true;
       shell = pkgs.zsh;
-      extraGroups = [ "wheel" "networkmanager" "adbusers" ]; # Enable ‘sudo’ for the user.
+      extraGroups = ["wheel" "networkmanager" "adbusers"]; # Enable ‘sudo’ for the user.
     };
     aroemer = {
       isNormalUser = true;
@@ -151,7 +153,7 @@
     exporters = {
       node = {
         enable = true;
-        enabledCollectors = [ "systemd" ];
+        enabledCollectors = ["systemd"];
         port = 9002;
       };
     };
@@ -170,10 +172,10 @@
       commands = [
         {
           command = "/run/current-system/sw/bin/nixos-rebuild";
-          options = [ "NOPASSWD" ];
+          options = ["NOPASSWD"];
         }
       ];
-      groups = [ "wheel" ];
+      groups = ["wheel"];
     }
   ];
 }

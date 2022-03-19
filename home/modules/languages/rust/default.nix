@@ -1,18 +1,20 @@
-{ config, lib, ... }:
-let cfg = config.languages.rust;
-
-in
 {
+  config,
+  lib,
+  ...
+}: let
+  cfg = config.languages.rust;
+in {
   options.languages.rust = {
     enable = lib.mkEnableOption "Enable support for Rust language";
   };
 
   config = lib.mkIf cfg.enable {
-    programs.emacs.extraPackages = ep: [ ep.rust-mode ep.pest-mode ];
+    programs.emacs.extraPackages = ep: [ep.rust-mode ep.pest-mode];
 
     programs.emacs.lsp-mode = {
       enable = true;
-      languages = [ "rust" ];
+      languages = ["rust"];
     };
 
     programs.emacs.extraInit = ''

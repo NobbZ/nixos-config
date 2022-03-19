@@ -1,14 +1,17 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.languages.tex;
-
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.languages.tex;
+in {
   options.languages.tex = {
     enable = lib.mkEnableOption "LaTeX language support";
   };
 
   config = lib.mkIf cfg.enable {
-    programs.emacs.extraPackages = ep: [ ep.auctex ];
+    programs.emacs.extraPackages = ep: [ep.auctex];
 
     programs.emacs.lsp-mode = {
       enable = true;

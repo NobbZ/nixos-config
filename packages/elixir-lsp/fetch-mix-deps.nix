@@ -1,11 +1,27 @@
-{ stdenvNoCC, lib, elixir, rebar, rebar3, git, cacert }:
-
-{ name ? null, src, sha256 ? null, env ? "prod" }:
-
+{
+  stdenvNoCC,
+  lib,
+  elixir,
+  rebar,
+  rebar3,
+  git,
+  cacert,
+}: {
+  name ? null,
+  src,
+  sha256 ? null,
+  env ? "prod",
+}:
 stdenvNoCC.mkDerivation {
-  name = "mix-deps" + (if name != null then "-${name}" else "");
+  name =
+    "mix-deps"
+    + (
+      if name != null
+      then "-${name}"
+      else ""
+    );
 
-  nativeBuildInputs = [ elixir git cacert ];
+  nativeBuildInputs = [elixir git cacert];
 
   inherit src;
 

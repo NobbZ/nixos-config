@@ -1,15 +1,17 @@
-{ pkgs, lib, config, ... }:
-let cfg = config.programs.openshift;
-
-in
 {
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.programs.openshift;
+in {
   options.programs.openshift = {
     enable = lib.mkEnableOption "Tools to manage openshift instances";
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages =
-      [ pkgs.sops pkgs.openshift (lib.setPrio 0 pkgs.kubectl) pkgs.kubernetes-helm ];
+    home.packages = [pkgs.sops pkgs.openshift (lib.setPrio 0 pkgs.kubectl) pkgs.kubernetes-helm];
 
     programs.zsh.initExtra = ''
       # Enable autocomplete for oc, kubectl and helm

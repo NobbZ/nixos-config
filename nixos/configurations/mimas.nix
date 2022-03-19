@@ -1,24 +1,27 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, unstable, ... }:
-let
-  upkgs = import unstable { system = "x86_64-linux"; };
-  steamPackages = [ "steam" "steam-original" "steam-runtime" ];
-  printerPackages = [ "hplip" "samsung-UnifiedLinuxDriver" ];
-in
 {
-  imports = [ ];
+  config,
+  pkgs,
+  lib,
+  unstable,
+  ...
+}: let
+  upkgs = import unstable {system = "x86_64-linux";};
+  steamPackages = ["steam" "steam-original" "steam-runtime"];
+  printerPackages = ["hplip" "samsung-UnifiedLinuxDriver"];
+in {
+  imports = [];
 
-  nix.allowedUnfree = [ "zerotierone" ] ++ printerPackages ++ steamPackages;
+  nix.allowedUnfree = ["zerotierone"] ++ printerPackages ++ steamPackages;
 
   security.chromiumSuidSandbox.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "ntfs" "exfat" "avfs" ];
+  boot.supportedFilesystems = ["ntfs" "exfat" "avfs"];
   boot.cleanTmpDir = true;
   boot.kernelPackages = pkgs.zfs.latestCompatibleLinuxPackages;
 
@@ -92,10 +95,10 @@ in
   services.flatpak.enable = true;
 
   services.zerotierone.enable = true;
-  services.zerotierone.joinNetworks = [ "8286ac0e4768c8ae" ];
+  services.zerotierone.joinNetworks = ["8286ac0e4768c8ae"];
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 80 443 1111 8080 9002 9003 2342 9999 3000 58080 ];
+  networking.firewall.allowedTCPPorts = [80 443 1111 8080 9002 9003 2342 9999 3000 58080];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
@@ -104,7 +107,7 @@ in
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = [ pkgs.hplipWithPlugin pkgs.samsung-unified-linux-driver ];
+  services.printing.drivers = [pkgs.hplipWithPlugin pkgs.samsung-unified-linux-driver];
 
   services.ratbagd.enable = true;
 
@@ -134,9 +137,9 @@ in
 
   services.restic.server.enable = true;
   services.restic.server.prometheus = true;
-  services.restic.server.extraFlags = [ "--no-auth" ];
+  services.restic.server.extraFlags = ["--no-auth"];
   services.restic.server.listenAddress = "172.24.152.168:9999";
-  systemd.services.restic-rest-server.after = [ "var-lib-restic.mount" ];
+  systemd.services.restic-rest-server.after = ["var-lib-restic.mount"];
 
   # Enable touchpad support.
   # services.xserver.libinput.enable = true;
@@ -146,14 +149,14 @@ in
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.windowManager.awesome.enable = true;
 
-  services.dbus.packages = with pkgs; [ pkgs.dconf ];
+  services.dbus.packages = with pkgs; [pkgs.dconf];
 
   services.udev.extraRules = ''
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666"
   '';
 
   services.transmission.enable = true;
-  systemd.services.transmission.after = [ "var-lib-transmission.mount" ];
+  systemd.services.transmission.after = ["var-lib-transmission.mount"];
 
   programs = {
     steam.enable = true;
@@ -165,7 +168,7 @@ in
   hardware.pulseaudio.support32Bit = true;
 
   hardware.opengl.enable = true;
-  hardware.opengl.extraPackages = [ pkgs.vaapiIntel pkgs.beignet ];
+  hardware.opengl.extraPackages = [pkgs.vaapiIntel pkgs.beignet];
 
   services.gitea.enable = true;
 
@@ -214,7 +217,7 @@ in
 
     aroemer = {
       isNormalUser = true;
-      extraGroups = [ ];
+      extraGroups = [];
     };
   };
 
@@ -223,10 +226,10 @@ in
       commands = [
         {
           command = "/run/current-system/sw/bin/nixos-rebuild";
-          options = [ "NOPASSWD" ];
+          options = ["NOPASSWD"];
         }
       ];
-      groups = [ "wheel" ];
+      groups = ["wheel"];
     }
   ];
 
@@ -269,7 +272,7 @@ in
       storage = "/var/lib/traefik/mimas.json";
       # caServer = "https://acme-staging-v02.api.letsencrypt.org/directory";
       dnsChallenge.provider = "cloudflare";
-      dnsChallenge.resolvers = [ "1.1.1.1:53" "8.8.8.8:53" ];
+      dnsChallenge.resolvers = ["1.1.1.1:53" "8.8.8.8:53"];
     };
 
     entryPoints = {
@@ -297,22 +300,22 @@ in
   services.traefik.dynamicConfigOptions = {
     http.routers = {
       api = {
-        entrypoints = [ "traefik" ];
+        entrypoints = ["traefik"];
         rule = "PathPrefix(`/api/`)";
         service = "api@internal";
       };
       fritz = {
-        entryPoints = [ "https" "http" ];
+        entryPoints = ["https" "http"];
         rule = "Host(`fritz.mimas.internal.nobbz.dev`)";
         service = "fritz";
-        tls.domains = [{ main = "*.mimas.internal.nobbz.dev"; }];
+        tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
         tls.certResolver = "mimasWildcard";
       };
       paperless = {
-        entryPoints = [ "https" "http" ];
+        entryPoints = ["https" "http"];
         rule = "Host(`paperless.mimas.internal.nobbz.dev`)";
         service = "paperless";
-        tls.domains = [{ main = "*.mimas.internal.nobbz.dev"; }];
+        tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
         tls.certResolver = "mimasWildcard";
       };
       # minio-tls = {
@@ -325,13 +328,13 @@ in
     };
     http.services = {
       minio.loadBalancer.passHostHeader = true;
-      minio.loadBalancer.servers = [{ url = "http://192.168.122.122/"; }];
+      minio.loadBalancer.servers = [{url = "http://192.168.122.122/";}];
 
       fritz.loadBalancer.passHostHeader = false;
-      fritz.loadBalancer.servers = [{ url = "http://fritz.box"; }];
+      fritz.loadBalancer.servers = [{url = "http://fritz.box";}];
 
       paperless.loadBalancer.passHostHeader = true;
-      paperless.loadBalancer.servers = [{ url = "http://localhost:58080"; }];
+      paperless.loadBalancer.servers = [{url = "http://localhost:58080";}];
     };
   };
 
@@ -352,7 +355,7 @@ in
     exporters = {
       node = {
         enable = true;
-        enabledCollectors = [ "systemd" ];
+        enabledCollectors = ["systemd"];
         port = 9002;
       };
     };
@@ -360,21 +363,23 @@ in
     scrapeConfigs = [
       {
         job_name = "grafana";
-        static_configs = [{ targets = [ "127.0.0.1:2342" ]; }];
+        static_configs = [{targets = ["127.0.0.1:2342"];}];
       }
       {
         job_name = "prometheus";
-        static_configs = [{ targets = [ "127.0.0.1:9001" ]; }];
+        static_configs = [{targets = ["127.0.0.1:9001"];}];
       }
       {
         job_name = "node_import";
-        static_configs = [{
-          targets = [
-            "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
-            "172.24.199.101:9002"
-            "172.24.231.199:9002"
-          ];
-        }];
+        static_configs = [
+          {
+            targets = [
+              "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
+              "172.24.199.101:9002"
+              "172.24.231.199:9002"
+            ];
+          }
+        ];
       }
     ];
   };
@@ -386,7 +391,7 @@ in
     port = 58080;
     extraConfig.PAPERLESS_OCR_LANGUAGE = "deu+eng";
   };
-  systemd.services.paperless-ng-server.after = [ "var-lib-paperless.mount" ];
+  systemd.services.paperless-ng-server.after = ["var-lib-paperless.mount"];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database

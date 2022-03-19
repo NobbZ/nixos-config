@@ -1,16 +1,28 @@
-{ stdenv, erlang, rebar3, lib, rebar3Relx, fetchFromGitHub, git, cacert }:
-let
+{
+  stdenv,
+  erlang,
+  rebar3,
+  lib,
+  rebar3Relx,
+  fetchFromGitHub,
+  git,
+  cacert,
+}: let
   source = builtins.fromJSON (builtins.readFile ./source.json);
 
-  fetchRebar3Deps =
-    { name, version, sha256, src, meta ? { } }:
-
+  fetchRebar3Deps = {
+    name,
+    version,
+    sha256,
+    src,
+    meta ? {},
+  }:
     stdenv.mkDerivation {
       name = "rebar-deps-${name}-${version}";
 
-      buildInputs = [ git cacert ];
+      buildInputs = [git cacert];
 
-      phases = [ "downloadPhase" "installPhase" ];
+      phases = ["downloadPhase" "installPhase"];
 
       downloadPhase = ''
         cp ${src} .
@@ -34,25 +46,25 @@ let
       inherit meta;
     };
 in
-rebar3Relx rec {
-  pname = "erlang-ls";
-  version = "${source.version}-${erlang.version}";
-  releaseType = "escript";
+  rebar3Relx rec {
+    pname = "erlang-ls";
+    version = "${source.version}-${erlang.version}";
+    releaseType = "escript";
 
-  checkouts = fetchRebar3Deps {
-    inherit version;
-    name = pname;
-    src = "${src}/rebar.lock";
-    sha256 = "sha256-nm3e5DfehSCjjTPADSzohilOBFW4QiXnokwVNrpDZ1E=";
-  };
+    checkouts = fetchRebar3Deps {
+      inherit version;
+      name = pname;
+      src = "${src}/rebar.lock";
+      sha256 = "sha256-nm3e5DfehSCjjTPADSzohilOBFW4QiXnokwVNrpDZ1E=";
+    };
 
-  postPatch = ''
-    substituteInPlace apps/els_lsp/src/els_lsp.app.src \
-      --replace '{vsn, git}' '{vsn, "${version}"}'
-  '';
+    postPatch = ''
+      substituteInPlace apps/els_lsp/src/els_lsp.app.src \
+        --replace '{vsn, git}' '{vsn, "${version}"}'
+    '';
 
-  src = fetchFromGitHub {
-    name = "source-${pname}-${version}";
-    inherit (source) owner repo rev sha256;
-  };
-}
+    src = fetchFromGitHub {
+      name = "source-${pname}-${version}";
+      inherit (source) owner repo rev sha256;
+    };
+  }

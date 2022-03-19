@@ -1,51 +1,58 @@
 let
-  generatePackage = { name, tagLine, commentLines, requireList, code }:
-    let
-      prelude = generatePrelude { inherit name tagLine commentLines; };
-      requires = generateRequires requireList;
-      postlude = generatePostlude name;
-    in
-    ''
-      ${prelude}
+  generatePackage = {
+    name,
+    tagLine,
+    commentLines,
+    requireList,
+    code,
+  }: let
+    prelude = generatePrelude {inherit name tagLine commentLines;};
+    requires = generateRequires requireList;
+    postlude = generatePostlude name;
+  in ''
+    ${prelude}
 
-      ${requires}
+    ${requires}
 
-      ${code}
+    ${code}
 
-      ${postlude}
-    '';
+    ${postlude}
+  '';
 
-  generatePrelude = { name, tagLine, commentLines }:
-    let
-      generated = "This file is generated! DO NOT CHANGE!";
-      comments = builtins.concatStringsSep "\n"
-        (builtins.map (l: if l == "" then "" else ";; ${l}")
-          ([ generated ] ++ commentLines));
-    in
-    ''
-      ;;; ${name} --- ${tagLine}
+  generatePrelude = {
+    name,
+    tagLine,
+    commentLines,
+  }: let
+    generated = "This file is generated! DO NOT CHANGE!";
+    comments =
+      builtins.concatStringsSep "\n"
+      (builtins.map (l:
+        if l == ""
+        then ""
+        else ";; ${l}")
+      ([generated] ++ commentLines));
+  in ''
+    ;;; ${name} --- ${tagLine}
 
-      ;;; Commentary:
+    ;;; Commentary:
 
-      ${comments}
+    ${comments}
 
-      ;;; Code:
-    '';
+    ;;; Code:
+  '';
 
   generatePostlude = name: ''
     (provide '${name})
     ;;; ${name}.el ends here
   '';
 
-  generateRequires = list:
-    let
-      sorted = builtins.sort (l: r: l < r) list;
-      required = builtins.map (r: "(require '${r})") sorted;
-    in
+  generateRequires = list: let
+    sorted = builtins.sort (l: r: l < r) list;
+    required = builtins.map (r: "(require '${r})") sorted;
+  in
     builtins.concatStringsSep "\n" required;
-
-in
-{
+in {
   config.lib.emacs.generatePackage = name: tagLine: commentLines: requireList: code:
     generatePackage {
       inherit name code tagLine commentLines requireList;

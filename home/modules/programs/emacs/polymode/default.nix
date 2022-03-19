@@ -1,34 +1,37 @@
-{ config, lib, ... }:
-
-with lib; # TODO: long term remove this `with`
-let
-  inherit (config.programs) emacs;
-in
 {
-  config = lib.mkIf emacs.enable {
-    programs.emacs.extraPackages = ep: [ ep.polymode ];
+  config,
+  lib,
+  ...
+}:
+with lib; # TODO: long term remove this `with`
 
-    programs.emacs.localPackages."init-polymode" = {
-      tag = "Setup and initialise polymode";
-      comments = [ ];
-      requires = [ ];
-      code = ''
-        ;; polymode
-        (add-to-list 'auto-mode-alist '("\\.nix$" . poly-nix-mode))
+  let
+    inherit (config.programs) emacs;
+  in {
+    config = lib.mkIf emacs.enable {
+      programs.emacs.extraPackages = ep: [ep.polymode];
 
-        (define-hostmode poly-nix-hostmode :mode 'nix-mode)
+      programs.emacs.localPackages."init-polymode" = {
+        tag = "Setup and initialise polymode";
+        comments = [];
+        requires = [];
+        code = ''
+          ;; polymode
+          (add-to-list 'auto-mode-alist '("\\.nix$" . poly-nix-mode))
 
-        (define-innermode poly-elisp-expr-nix-innermode
-          :mode 'emacs-lisp-mode
-          :head-matcher (cons "'''\n\\( *;;.*\n\\)" 1)
-          :tail-matcher " *''';$"
-          :head-mode 'body
-          :tail-mode 'host)
+          (define-hostmode poly-nix-hostmode :mode 'nix-mode)
 
-        (define-polymode poly-nix-mode
-          :hostmode 'poly-nix-hostmode
-          :innermodes '(poly-elisp-expr-nix-innermode))
-      '';
+          (define-innermode poly-elisp-expr-nix-innermode
+            :mode 'emacs-lisp-mode
+            :head-matcher (cons "'''\n\\( *;;.*\n\\)" 1)
+            :tail-matcher " *''';$"
+            :head-mode 'body
+            :tail-mode 'host)
+
+          (define-polymode poly-nix-mode
+            :hostmode 'poly-nix-hostmode
+            :innermodes '(poly-elisp-expr-nix-innermode))
+        '';
+      };
     };
-  };
-}
+  }

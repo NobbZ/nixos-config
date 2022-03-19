@@ -1,19 +1,25 @@
-{ unstable, nixpkgs-2105, nixpkgs-2111, nix, ... }:
-
-{ config, pkgs, lib, ... }:
-
-let
+{
+  unstable,
+  nixpkgs-2105,
+  nixpkgs-2111,
+  nix,
+  ...
+}: {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   base = "/etc/nixpkgs/channels";
   nixpkgsPath = "${base}/nixpkgs";
   nixpkgs2105Path = "${base}/nixpkgs2105";
   nixpkgs2111Path = "${base}/nixpkgs2111";
-in
-{
+in {
   options.nix.flakes.enable = lib.mkEnableOption "nix flakes";
 
   config = lib.mkIf config.nix.flakes.enable {
     nix = {
-      package = lib.mkDefault (nix.packages.x86_64-linux.nix.overrideAttrs (_: { patches = [ ./unset-is-macho.patch ]; })); # pkgs.nixUnstable;
+      package = lib.mkDefault (nix.packages.x86_64-linux.nix.overrideAttrs (_: {patches = [./unset-is-macho.patch];})); # pkgs.nixUnstable;
       experimentalFeatures = "nix-command flakes";
 
       registry.nixpkgs.flake = unstable;

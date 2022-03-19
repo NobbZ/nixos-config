@@ -1,15 +1,16 @@
-_: { config, lib, pkgs, ... }:
-
-let
+_: {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   inherit (pkgs) wally-cli;
 
   cfg = config.hardware.keyboard.zsa;
-in
-
-{
+in {
   config = mkIf cfg.enable {
-    users.users.nmelzer.extraGroups = [ "plugdev" ];
-    environment.systemPackages = [ wally-cli ];
+    users.users.nmelzer.extraGroups = ["plugdev"];
+    environment.systemPackages = [wally-cli];
   };
 }

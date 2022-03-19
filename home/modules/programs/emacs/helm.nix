@@ -1,14 +1,17 @@
-{ config, lib, ... }:
-let emacsCfg = config.programs.emacs;
-in
 {
+  config,
+  lib,
+  ...
+}: let
+  emacsCfg = config.programs.emacs;
+in {
   config = lib.mkIf emacsCfg.enable {
     programs.emacs = {
       localPackages."init-helm" = {
         tag = "Setup helm";
-        comments = [ ];
-        requires = [ "helm" ];
-        packageRequires = ep: [ ep.helm ep.helm-rg ];
+        comments = [];
+        requires = ["helm"];
+        packageRequires = ep: [ep.helm ep.helm-rg];
         code = ''
           ;; enable and configure auto resize
           (helm-autoresize-mode t)

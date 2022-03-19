@@ -1,12 +1,15 @@
-{ config, lib, ... }:
-let ecfg = config.programs.emacs;
-in
 {
+  config,
+  lib,
+  ...
+}: let
+  ecfg = config.programs.emacs;
+in {
   config = lib.mkIf ecfg.enable {
     programs.emacs.localPackages."init-telephoneline" = {
       tag = "Setup telephone line";
-      comments = [ ];
-      requires = [ ];
+      comments = [];
+      requires = [];
       code = ''
         ;; set up telephone line
         (setq-default
@@ -23,6 +26,6 @@ in
       '';
     };
 
-    programs.emacs.extraPackages = ep: [ ep.telephone-line ];
+    programs.emacs.extraPackages = ep: [ep.telephone-line];
   };
 }

@@ -1,11 +1,16 @@
-{ self, config, pkgs, nixpkgs-2105, modulesPath, ... }:
-
 {
+  self,
+  config,
+  pkgs,
+  nixpkgs-2105,
+  modulesPath,
+  ...
+}: {
   # TODO: 👇 move import of `virtualbox-demo.nix` into extra module 👇
-  imports = [ (modulesPath + "/installer/virtualbox-demo.nix") ];
+  imports = [(modulesPath + "/installer/virtualbox-demo.nix")];
 
-  boot.initrd.supportedFilesystems = [ "zfs" ]; # boot from zfs
-  boot.supportedFilesystems = [ "zfs" ];
+  boot.initrd.supportedFilesystems = ["zfs"]; # boot from zfs
+  boot.supportedFilesystems = ["zfs"];
   networking.hostId = "deadbeef";
 
   programs.gnupg = {
@@ -16,14 +21,13 @@
     };
   };
 
-  users.users.demo =
-    {
-      isNormalUser = true;
-      description = "Demo user account";
-      extraGroups = [ "wheel" "docker" ];
-      uid = 1000;
-      shell = pkgs.zsh;
-    };
+  users.users.demo = {
+    isNormalUser = true;
+    description = "Demo user account";
+    extraGroups = ["wheel" "docker"];
+    uid = 1000;
+    shell = pkgs.zsh;
+  };
 
   boot.kernel.sysctl = {
     "vm.max_map_count" = 262144;
@@ -44,13 +48,13 @@
 
   services.xserver.layout = pkgs.lib.mkForce "de";
 
-  services.xserver.videoDrivers = [ "vmware" "virtualbox" "modesetting" ];
+  services.xserver.videoDrivers = ["vmware" "virtualbox" "modesetting"];
   systemd.services.virtualbox-resize = {
     description = "VirtualBox Guest Screen Resizing";
 
-    wantedBy = [ "multi-user.target" ];
-    requires = [ "dev-vboxguest.device" ];
-    after = [ "dev-vboxguest.device" ];
+    wantedBy = ["multi-user.target"];
+    requires = ["dev-vboxguest.device"];
+    after = ["dev-vboxguest.device"];
 
     unitConfig.ConditionVirtualization = "oracle";
 
@@ -58,23 +62,27 @@
   };
 
   services.zerotierone.enable = true;
-  services.zerotierone.joinNetworks = [ "8286ac0e4768c8ae" ];
-  services.zerotierone.package = (import nixpkgs-2105 {
-    config.allowUnfree = true;
-    # system = pkgs.system;
-    inherit (pkgs) system;
-  }).zerotierone;
+  services.zerotierone.joinNetworks = ["8286ac0e4768c8ae"];
+  services.zerotierone.package =
+    (import nixpkgs-2105 {
+      config.allowUnfree = true;
+      # system = pkgs.system;
+      inherit (pkgs) system;
+    })
+    .zerotierone;
 
   # services.ipfs.enable = true;
 
   services.openssh.enable = true;
 
-  swapDevices = [{
-    device = "/var/swap-2";
-    size = 2048 * 4;
-  }];
+  swapDevices = [
+    {
+      device = "/var/swap-2";
+      size = 2048 * 4;
+    }
+  ];
 
-  networking.hosts."127.0.0.1" = [ "ax69_mysql" ];
+  networking.hosts."127.0.0.1" = ["ax69_mysql"];
   networking.firewall.allowedTCPPorts = [
     # ports often used for development, that I want to expose for easier access from the host
     3000
@@ -91,8 +99,8 @@
       system = "x86_64-linux";
       maxJobs = 1;
       speedFactor = 1;
-      supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-      mandatoryFeatures = [ ];
+      supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+      mandatoryFeatures = [];
     }
   ];
 
@@ -101,10 +109,10 @@
       commands = [
         {
           command = "/run/current-system/sw/bin/nixos-rebuild";
-          options = [ "NOPASSWD" ];
+          options = ["NOPASSWD"];
         }
       ];
-      groups = [ "wheel" ];
+      groups = ["wheel"];
     }
   ];
 
@@ -112,7 +120,7 @@
     exporters = {
       node = {
         enable = true;
-        enabledCollectors = [ "systemd" ];
+        enabledCollectors = ["systemd"];
         port = 9002;
       };
     };

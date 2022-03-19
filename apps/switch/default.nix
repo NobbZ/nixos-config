@@ -1,7 +1,9 @@
-{ self, unstable, ... }:
-
-let
-  pkgs = import unstable { system = "x86_64-linux"; };
+{
+  self,
+  unstable,
+  ...
+}: let
+  pkgs = import unstable {system = "x86_64-linux";};
   type = "app";
   program = "${switch}/bin/switch";
 
@@ -17,7 +19,7 @@ let
     pname = "nobbz-flake-switcher";
     version = "0.0.1";
 
-    buildInputs = [ self.packages.x86_64-linux.zx ];
+    buildInputs = [self.packages.x86_64-linux.zx];
 
     src = ./.;
 
@@ -34,5 +36,4 @@ let
       install --mode=555 switch.mjs $out/lib/switch.mjs
     '';
   };
-in
-{ inherit type program; }
+in {inherit type program;}

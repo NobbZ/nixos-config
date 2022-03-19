@@ -20,34 +20,38 @@
   inputs.nixos-vscode-server.url = "github:mudrii/nixos-vscode-ssh-fix/main";
 
   inputs.statix.url = "github:nerdypepper/statix";
+  inputs.alejandra.url = "github:kamadorueda/alejandra/1.1.0";
 
-  outputs = { self, ... }@inputs:
-    {
-      nixosModules = import ./nixos/modules inputs;
-      nixosConfigurations = import ./nixos/configurations inputs;
+  outputs = {self, ...} @ inputs: {
+    nixosModules = import ./nixos/modules inputs;
+    nixosConfigurations = import ./nixos/configurations inputs;
 
-      homeModules = import ./home/modules;
-      homeConfigurations = import ./home/configurations inputs;
+    homeModules = import ./home/modules;
+    homeConfigurations = import ./home/configurations inputs;
 
-      packages.x86_64-linux = (import ./packages inputs)
-        // self.lib.nixosConfigurationsAsPackages.x86_64-linux
-        // self.lib.homeConfigurationsAsPackages.x86_64-linux;
+    packages.x86_64-linux =
+      (import ./packages inputs)
+      // self.lib.nixosConfigurationsAsPackages.x86_64-linux
+      // self.lib.homeConfigurationsAsPackages.x86_64-linux;
 
-      checks = self.packages;
+    checks = self.packages;
 
-      lib = import ./lib inputs;
+    lib = import ./lib inputs;
 
-      apps.x86_64-linux = {
-        update = import ./apps/update inputs;
-        switch = import ./apps/switch inputs;
-      };
-
-      devShell.x86_64-linux = let pkgs = inputs.unstable.legacyPackages.x86_64-linux; in
-        pkgs.mkShell {
-          packages = [
-            inputs.rnix-lsp.defaultPackage.x86_64-linux
-            inputs.statix.defaultPackage.x86_64-linux
-          ];
-        };
+    apps.x86_64-linux = {
+      update = import ./apps/update inputs;
+      switch = import ./apps/switch inputs;
     };
+
+    devShell.x86_64-linux = let
+      pkgs = inputs.unstable.legacyPackages.x86_64-linux;
+    in
+      pkgs.mkShell {
+        packages = [
+          inputs.rnix-lsp.defaultPackage.x86_64-linux
+          inputs.statix.defaultPackage.x86_64-linux
+          inputs.alejandra.defaultPackage.x86_64-linux
+        ];
+      };
+  };
 }

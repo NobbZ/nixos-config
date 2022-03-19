@@ -1,7 +1,9 @@
-{ self, unstable, ... }:
-
-let
-  pkgs = import unstable { system = "x86_64-linux"; };
+{
+  self,
+  unstable,
+  ...
+}: let
+  pkgs = import unstable {system = "x86_64-linux";};
   type = "app";
   program = "${update}/bin/update";
 
@@ -9,7 +11,7 @@ let
     pname = "nobbz-flake-updater";
     version = "0.0.1";
 
-    buildInputs = [ self.packages.x86_64-linux.zx ];
+    buildInputs = [self.packages.x86_64-linux.zx];
 
     src = ./.;
 
@@ -26,5 +28,4 @@ let
       install --mode=555 update.mjs $out/lib/update.mjs
     '';
   };
-in
-{ inherit type program; }
+in {inherit type program;}

@@ -1,17 +1,21 @@
-{ config, lib, pkgs, rnix-lsp, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  rnix-lsp,
+  ...
+}: let
   cfg = config.languages.nix;
 
   # rnixLsp = rnix-lsp.defaultPackage.x86_64-linux;
   rnixLsp = pkgs.rnix-lsp;
-in
-{
+in {
   options.languages.nix = {
     enable = lib.mkEnableOption "Enable support for the nix language";
   };
 
   config = lib.mkIf cfg.enable {
-    programs.emacs.extraPackages = ep: [ ep.lsp-mode ep.nix-mode ep.flycheck ];
+    programs.emacs.extraPackages = ep: [ep.lsp-mode ep.nix-mode ep.flycheck];
 
     programs.emacs.extraInit = ''
       (require 'lsp-mode)

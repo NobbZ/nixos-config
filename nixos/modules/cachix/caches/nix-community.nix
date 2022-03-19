@@ -1,6 +1,8 @@
-{ config, lib, ... }:
-
 {
+  config,
+  lib,
+  ...
+}: {
   nix = lib.mkIf (config.networking.hostName != "delly-nixos") {
     settings.substituters = [
       "https://nix-community.cachix.org"

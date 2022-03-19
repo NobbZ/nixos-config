@@ -1,5 +1,7 @@
-{ stdenv, fetchFromGitHub }:
-
+{
+  stdenv,
+  fetchFromGitHub,
+}:
 stdenv.mkDerivation rec {
   pname = "dracula-konsole-theme";
   version = "fa85573";
@@ -12,7 +14,7 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-375TOAOEx9FObS9F2tMYEyKboTYCZycawGoNEolZ0Ns=";
   };
 
-  phases = [ "unpackPhase" "installPhase" ];
+  phases = ["unpackPhase" "installPhase"];
 
   installPhase = ''
     mkdir -p $out/share/konsole

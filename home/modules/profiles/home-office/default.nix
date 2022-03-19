@@ -1,10 +1,14 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.profiles.home-office;
-
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.profiles.home-office;
+in {
   options.profiles.home-office = {
-    enable = lib.mkEnableOption
+    enable =
+      lib.mkEnableOption
       "A profile that enables remote desktop to the workingplace";
 
     user = lib.mkOption {

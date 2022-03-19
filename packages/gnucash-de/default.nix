@@ -1,8 +1,11 @@
-{ runCommand, makeWrapper, gnucash }:
-
+{
+  runCommand,
+  makeWrapper,
+  gnucash,
+}:
 runCommand "gnucash-de-${gnucash.version}"
 {
-  nativeBuildInputs = [ makeWrapper ];
+  nativeBuildInputs = [makeWrapper];
 } ''
   mkdir -p $out/{bin,share/applications}
   makeWrapper ${gnucash}/bin/gnucash $out/bin/gnucash \

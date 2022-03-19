@@ -1,13 +1,16 @@
-{ pkgs, unstable, self, ... }:
-let
-  keepassWithPlugins =
-    pkgs.keepass.override { plugins = [ pkgs.keepass-keepasshttp ]; };
-in
 {
+  pkgs,
+  unstable,
+  self,
+  ...
+}: let
+  keepassWithPlugins =
+    pkgs.keepass.override {plugins = [pkgs.keepass-keepasshttp];};
+in {
   config = {
-    nixpkgs.allowedUnfree = [ "teamspeak-client" "google-chrome" "vscode" ];
+    nixpkgs.allowedUnfree = ["teamspeak-client" "google-chrome" "vscode"];
 
-    activeProfiles = [ "browsing" "development" "home-office" ];
+    activeProfiles = ["browsing" "development" "home-office"];
 
     dconf.enable = true;
 
@@ -30,23 +33,21 @@ in
 
     programs.emacs.splashScreen = false;
 
-    home.packages =
-      let
-        p = pkgs;
-        s = self.packages.x86_64-linux;
-      in
-      [
-        p.handbrake
-        p.keybase-gui
-        p.minikube
-        p.gnome3.gnome-tweaks
-        p.freerdp
-        p.vscode
+    home.packages = let
+      p = pkgs;
+      s = self.packages.x86_64-linux;
+    in [
+      p.handbrake
+      p.keybase-gui
+      p.minikube
+      p.gnome3.gnome-tweaks
+      p.freerdp
+      p.vscode
 
-        s.gnucash-de
+      s.gnucash-de
 
-        keepassWithPlugins
-      ];
+      keepassWithPlugins
+    ];
 
     programs.obs-studio.enable = true;
     programs.htop = {
@@ -74,7 +75,7 @@ in
 
       restic = {
         enable = true;
-        exclude = (map (e: "%h/${e}") [ ".cache" ".cabal" ".cargo" ".emacs.d/eln-cache" ".emacs.d/.cache" ".gem" ".gradle" ".hex" ".kube" ".local" ".m2" ".minikube" ".minishift" ".mix" ".mozilla" "npm" ".opam" ".rancher" ".vscode-oss" "go/pkg" ]) ++ [ "_build" "deps" "result" "target" ".elixir_ls" "ccls-cache" ".direnv" ];
+        exclude = (map (e: "%h/${e}") [".cache" ".cabal" ".cargo" ".emacs.d/eln-cache" ".emacs.d/.cache" ".gem" ".gradle" ".hex" ".kube" ".local" ".m2" ".minikube" ".minishift" ".mix" ".mozilla" "npm" ".opam" ".rancher" ".vscode-oss" "go/pkg"]) ++ ["_build" "deps" "result" "target" ".elixir_ls" "ccls-cache" ".direnv"];
         oneFileSystem = true;
         repo = "rest:http://172.24.152.168:9999/nobbz";
       };
@@ -84,8 +85,8 @@ in
       keybase-gui = {
         Unit = {
           Description = "Keybase GUI";
-          Requires = [ "keybase.service" "kbfs.service" ];
-          After = [ "keybase.service" "kbfs.service" ];
+          Requires = ["keybase.service" "kbfs.service"];
+          After = ["keybase.service" "kbfs.service"];
         };
         Service = {
           ExecStart = "${pkgs.keybase-gui}/share/keybase/Keybase";
@@ -98,3 +99,4 @@ in
   # environment.pathsToLink = [ "/share/zsh" ];
 }
 # /nix/store/7skqa8vxfydq7w3cix55ffvkmjb3b5da-python-2.7.18
+

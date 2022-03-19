@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ... }:
-let enabled = config.languages.c.enable || config.languages.cpp.enable;
-
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  enabled = config.languages.c.enable || config.languages.cpp.enable;
+in {
   options.languages.c = {
     enable = lib.mkEnableOption "Enable support for C language";
   };
@@ -12,11 +15,11 @@ in
   # };
 
   config = lib.mkIf enabled {
-    programs.emacs.extraPackages = ep: [ ep.cmake-mode ];
+    programs.emacs.extraPackages = ep: [ep.cmake-mode];
 
     programs.emacs.lsp-mode = {
       enable = true;
-      languages = [ "c" "c++" ];
+      languages = ["c" "c++"];
     };
 
     programs.emacs.extraInit = ''

@@ -1,16 +1,20 @@
-{ config, pkgs, lib, ... }:
-let cfg = config.profiles.development;
-
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  cfg = config.profiles.development;
+in {
   options.profiles.development = {
-    enable = lib.mkEnableOption
+    enable =
+      lib.mkEnableOption
       "A profile that enables the system to be used for developing programs";
   };
 
   config = lib.mkIf cfg.enable {
     programs.emacs = {
-      extraPackages = ep: [ ep.magit ];
+      extraPackages = ep: [ep.magit];
       extraInit = ''
         ;; prepare magit use from shell
         (require 'magit)
@@ -29,8 +33,7 @@ in
       userEmail = "timmelzer@gmail.com";
 
       aliases = {
-        graph =
-          "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold cyan)%h%C(reset) - %C(green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all";
+        graph = "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold cyan)%h%C(reset) - %C(green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all";
         co = "checkout";
         br = "branch";
         st = "status";
@@ -67,15 +70,17 @@ in
         "flycheck_*.py"
       ];
 
-      includes = [{
-        condition = "gitdir:~/cloudseeds/**";
-        contents = {
-          init.defaultBranch = "master";
-          user.email = "norbert.melzer@cloudseeds.de";
-        };
-      }];
+      includes = [
+        {
+          condition = "gitdir:~/cloudseeds/**";
+          contents = {
+            init.defaultBranch = "master";
+            user.email = "norbert.melzer@cloudseeds.de";
+          };
+        }
+      ];
     };
 
-    home.packages = [ pkgs.ripgrep ];
+    home.packages = [pkgs.ripgrep];
   };
 }
