@@ -23,7 +23,7 @@
 
   outputs = { self, ... }@inputs:
     {
-      nixosModules = import ./nixos/modules;
+      nixosModules = import ./nixos/modules inputs;
       nixosConfigurations = import ./nixos/configurations inputs;
 
       homeModules = import ./home/modules;

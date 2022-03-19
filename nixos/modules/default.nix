@@ -1,7 +1,9 @@
+inputs:
+
 {
-  cachix = import ./cachix;
-  flake = import ./flake.nix;
-  hostnames = import ./hostnames.nix;
-  k3s = import ./k3s.nix;
-  nix = import ./nix.nix;
+  cachix = import ./cachix inputs;
+  flake = import ./flake.nix inputs;
+  hostnames = import ./hostnames.nix inputs;
+  nix = import ./nix.nix inputs;
+  moonlander = import ./moonlander.nix inputs;
 }

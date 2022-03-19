@@ -1,4 +1,6 @@
-{ config, pkgs, unstable, nixpkgs-2105, nixpkgs-2111, nix, lib, ... }:
+{ unstable, nixpkgs-2105, nixpkgs-2111, nix, ... }:
+
+{ config, pkgs, lib, ... }:
 
 let
   base = "/etc/nixpkgs/channels";

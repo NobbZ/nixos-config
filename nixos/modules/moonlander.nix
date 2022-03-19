@@ -1,10 +1,10 @@
-{ config, lib, pkgs, ... }:
+_: { config, lib, pkgs, ... }:
 
 let
   inherit (lib) mkIf;
   inherit (pkgs) wally-cli;
 
-  cfg = hardware.keyboard.zsa;
+  cfg = config.hardware.keyboard.zsa;
 in
 
 {

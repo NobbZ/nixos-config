@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+_: { config, lib, pkgs, ... }:
 
 {
   networking.search = [ "internal.nobbz.dev" ];

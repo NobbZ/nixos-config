@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+_: { config, lib, ... }:
 
 let
   allowed = config.nix.allowedUnfree;

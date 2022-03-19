@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+_: { config, pkgs, lib, ... }:
 let
   folder = ./caches;
   toImport = name: value: folder + ("/" + name);
