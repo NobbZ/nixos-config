@@ -1,8 +1,8 @@
-{self, ...} @ args: name: nixpkgs:
+{self, ...} @ inputs: name: nixpkgs:
 nixpkgs.lib.nixosSystem (
   let
     configFolder = "${self}/nixos/configurations";
-    entryPoint = "${configFolder}/${name}.nix";
+    entryPoint = import "${configFolder}/${name}.nix" inputs;
     hardware = "${configFolder}/hardware/${name}.nix";
   in {
     system = "x86_64-linux";
@@ -10,7 +10,7 @@ nixpkgs.lib.nixosSystem (
     modules =
       [
         {
-          _module.args = args;
+          # _module.args = args;
           networking.hostName = name;
           nix.flakes.enable = true;
           system.configurationRevision = self.rev or "dirty";
@@ -22,7 +22,7 @@ nixpkgs.lib.nixosSystem (
         }
         entryPoint
         hardware
-        args.nixos-vscode-server.nixosModules.system
+        inputs.nixos-vscode-server.nixosModules.system
       ]
       ++ __attrValues self.nixosModules;
   }

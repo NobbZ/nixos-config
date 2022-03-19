@@ -1,8 +1,11 @@
 {
   self,
+  nixpkgs-2105,
+  ...
+}: {
+  self,
   config,
   pkgs,
-  nixpkgs-2105,
   modulesPath,
   ...
 }: {
