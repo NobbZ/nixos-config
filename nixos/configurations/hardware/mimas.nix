@@ -16,7 +16,7 @@
   boot.extraModulePackages = [];
   boot.supportedFilesystems = ["ntfs" "exfat" "avfs"];
 
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = true;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/440c8ce1-1799-4239-936f-a54c879941a5";
