@@ -11,15 +11,10 @@
   steamPackages = ["steam" "steam-original" "steam-runtime"];
   printerPackages = ["hplip" "samsung-UnifiedLinuxDriver"];
 in {
-  imports = [];
-
   nix.allowedUnfree = ["zerotierone"] ++ printerPackages ++ steamPackages;
 
   security.chromiumSuidSandbox.enable = true;
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = ["ntfs" "exfat" "avfs"];
   boot.cleanTmpDir = true;
 

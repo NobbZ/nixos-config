@@ -3,6 +3,7 @@ nixpkgs.lib.nixosSystem (
   let
     configFolder = "${self}/nixos/configurations";
     entryPoint = import "${configFolder}/${name}.nix" inputs;
+    bootloader = "${configFolder}/bootloader/${name}.nix";
     hardware = "${configFolder}/hardware/${name}.nix";
   in {
     system = "x86_64-linux";
@@ -21,6 +22,7 @@ nixpkgs.lib.nixosSystem (
           services.nixos-vscode-server.enable = true;
         }
         entryPoint
+        bootloader
         hardware
         inputs.nixos-vscode-server.nixosModules.system
       ]
