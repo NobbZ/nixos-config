@@ -15,8 +15,6 @@ in {
 
   security.chromiumSuidSandbox.enable = true;
 
-  boot.cleanTmpDir = true;
-
   services.lvm.boot.thin.enable = true;
 
   hardware.enableRedistributableFirmware = true;

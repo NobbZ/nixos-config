@@ -11,7 +11,7 @@ nixpkgs.lib.nixosSystem (
     modules =
       [
         {
-          # _module.args = args;
+          boot.cleanTmpDir = true;
           networking.hostName = name;
           nix.flakes.enable = true;
           system.configurationRevision = self.rev or "dirty";
