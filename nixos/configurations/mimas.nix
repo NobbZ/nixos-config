@@ -22,7 +22,6 @@ in {
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = ["ntfs" "exfat" "avfs"];
   boot.cleanTmpDir = true;
-  boot.kernelPackages = pkgs.zfs.latestCompatibleLinuxPackages;
 
   services.lvm.boot.thin.enable = true;
 

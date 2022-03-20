@@ -26,7 +26,6 @@ _: {
   # Define on which hard drive you want to install Grub.
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.blacklistedKernelModules = ["rtl8xxxu"];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     rtl8192eu
