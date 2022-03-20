@@ -1,5 +1,5 @@
 {self, ...} @ inputs: let
-  pkgs = import inputs.nixpkgs-2105 {system = "x86_64-linux";};
+  pkgs = inputs.nixpkgs-2105.legacyPackages.x86_64-linux;
 
   inherit (pkgs.lib) genAttrs mapAttrs';
 

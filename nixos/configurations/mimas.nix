@@ -7,7 +7,7 @@
   lib,
   ...
 }: let
-  upkgs = import unstable {system = "x86_64-linux";};
+  upkgs = unstable.legacyPackages.x86_64-linux;
   steamPackages = ["steam" "steam-original" "steam-runtime"];
   printerPackages = ["hplip" "samsung-UnifiedLinuxDriver"];
 in {

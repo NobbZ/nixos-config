@@ -3,7 +3,7 @@
   unstable,
   ...
 }: let
-  pkgs = import unstable {system = "x86_64-linux";};
+  pkgs = unstable.legacyPackages.x86_64-linux;
   type = "app";
   program = "${switch}/bin/switch";
 
