@@ -11,7 +11,7 @@
     system = "x86_64-linux";
     overlays = [emacs.overlay];
   };
-  nodePkgs = upkgs.callPackage ./nodePackages/override.nix {};
+  nodePkgs = upkgs.callPackages ./nodePackages/override.nix {};
 in {
   "advcp" = pkgs.callPackage ./advcp {};
   "gnucash-de" = upkgs.callPackage ./gnucash-de {};
