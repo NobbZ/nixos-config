@@ -1,22 +1,29 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.languages.nix;
+{rnix-lsp, ...}: {
+  config,
+  lib,
+  pkgs,
+  rnix-lsp,
+  ...
+}: let
+  cfg = config.languages.nix;
 
-in
-{
+  # rnixLsp = rnix-lsp.defaultPackage.x86_64-linux;
+  rnixLsp = pkgs.rnix-lsp;
+in {
   options.languages.nix = {
     enable = lib.mkEnableOption "Enable support for the nix language";
   };
 
   config = lib.mkIf cfg.enable {
-    programs.emacs.extraPackages = ep: [ ep.lsp-mode ep.nix-mode ep.flycheck ];
+    programs.emacs.extraPackages = ep: [ep.lsp-mode ep.nix-mode ep.flycheck];
 
-    programs.emacs.extraConfig = ''
+    programs.emacs.extraInit = ''
       (require 'lsp-mode)
 
       ;; make lsp-mode aware of nix
       (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
       (lsp-register-client
-       (make-lsp-client :new-connection (lsp-stdio-connection '("${pkgs.rnix-lsp}/bin/rnix-lsp"))
+       (make-lsp-client :new-connection (lsp-stdio-connection '("${rnixLsp}/bin/rnix-lsp"))
                         :major-modes '(nix-mode)
                         :server-id 'nix))
 

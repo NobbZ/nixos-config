@@ -3,4 +3,11 @@ pre-commit:
   commands:
     formatting:
       glob: "*.nix"
-      run: nixpkgs-fmt --check {all_files}
+      run: nix shell --inputs-from . alejandra -c alejandra --check {all_files}
+
+statix:
+  parallel: false
+  commands:
+    statix:
+      glob: "*.nix"
+      run: statix check -i packages/nodePackages/node-env.nix nixos/modules/grafana.nix

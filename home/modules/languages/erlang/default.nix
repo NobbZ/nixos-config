@@ -1,10 +1,13 @@
-{ config, lib, pkgs, self, ... }:
-let
+{self, ...}: {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.languages.erlang;
 
-  inherit (self) erlang-ls;
-in
-{
+  inherit (self.packages.x86_64-linux) erlang-ls;
+in {
   options.languages.erlang = {
     enable = lib.mkEnableOption "Enable support for erlang language";
   };
@@ -12,16 +15,16 @@ in
   config = lib.mkIf cfg.enable {
     programs.emacs.extraPackages = ep: [
       (ep.erlang.overrideAttrs (oa: {
-        buildInputs = oa.buildInputs ++ [ pkgs.perl pkgs.ncurses ];
+        buildInputs = oa.buildInputs ++ [pkgs.perl pkgs.ncurses];
       }))
     ];
 
     programs.emacs.lsp-mode = {
       enable = true;
-      languages = [ "erlang" ];
+      languages = ["erlang"];
     };
 
-    programs.emacs.extraConfig = ''
+    programs.emacs.extraInit = ''
       ;; Configure erlang related stuff
       (setq lsp-erlang-server-path "${erlang-ls}/bin/erlang_ls")
 

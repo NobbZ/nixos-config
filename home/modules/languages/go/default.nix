@@ -1,23 +1,26 @@
-{ config, lib, pkgs, ... }:
-let cfg = config.languages.go;
-
-in
-{
+_: {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.languages.go;
+in {
   options.languages.go = {
     enable = lib.mkEnableOption "Enable support for the go language";
   };
 
   config = lib.mkIf cfg.enable {
-    programs.emacs.extraPackages = ep: [ ep.go-mode ];
+    programs.emacs.extraPackages = ep: [ep.go-mode];
 
     programs.emacs.lsp-mode = {
       enable = true;
-      languages = [ "go" ];
+      languages = ["go"];
     };
 
-    home.packages = [ pkgs.go ];
+    home.packages = [pkgs.go];
 
-    programs.emacs.extraConfig = ''
+    programs.emacs.extraInit = ''
       (add-to-list 'exec-path "${pkgs.gopls}/bin")
 
       (add-hook 'go-mode-hook

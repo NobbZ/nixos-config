@@ -1,10 +1,13 @@
 {
-  inputs.nixpkgs-2009.url = "github:nixos/nixpkgs/nixos-20.09";
   inputs.nixpkgs-2105.url = "github:nixos/nixpkgs/nixos-21.05";
+  inputs.nixpkgs-2111.url = "github:nixos/nixpkgs/nixos-21.11";
   inputs.unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.master.url = "github:nixos/nixpkgs/master";
 
-  inputs.nix.url = "github:nixos/nix/master";
+  inputs.nix.url = "github:nixos/nix"; #/caf51729450d4c57d48ddbef8e855e9bf65f8792";
+  inputs.rnix-lsp.url = "github:nix-community/rnix-lsp/master";
+  inputs.rnix-lsp.inputs.nixpkgs.follows = "unstable";
+  # inputs.rnix-lsp.inputs.naersk.inputs.nixpkgs.follows = "unstable";
 
   inputs.home-manager.url = "github:nix-community/home-manager";
   inputs.home-manager.inputs.nixpkgs.follows = "unstable";
@@ -14,76 +17,42 @@
   inputs.emacs.url = "github:nix-community/emacs-overlay";
   inputs.emacs.inputs.nixpkgs.follows = "master";
 
-  outputs = { self, nixpkgs-2009, nixpkgs-2105, unstable, flake-utils, emacs, ... }@inputs:
-    let
-      pkgs = nixpkgs-2009.legacyPackages.x86_64-linux;
-      upkgs = unstable.legacyPackages.x86_64-linux;
-      mpkgs = inputs.master.legacyPackages.x86_64-linux;
-      epkgs = import unstable { system = "x86_64-linux"; overlays = [ self.overlays.emacs ]; };
-      nixos = pkgs.lib.attrsets.mapAttrs'
-        (k: v: {
-          name = "nixos/configs/${k}";
-          value = v.config.system.build.toplevel;
-        })
-        self.nixosConfigurations;
-      home = pkgs.lib.attrsets.mapAttrs'
-        (k: v: {
-          name = "home/configs/${k}";
-          value = v.activationPackage;
-        })
-        self.homeConfigurations;
-    in
-    {
-      devShell.x86_64-linux =
-        nixpkgs-2105.legacyPackages.x86_64-linux.callPackage
-          ./packages/devShell.nix
-          { };
+  inputs.nixos-vscode-server.url = "github:mudrii/nixos-vscode-ssh-fix/main";
 
-      nixosModules = import ./nixos/modules;
-      nixosConfigurations = import ./nixos/hosts inputs;
+  inputs.statix.url = "github:nerdypepper/statix";
+  inputs.alejandra.url = "github:kamadorueda/alejandra/1.1.0";
 
-      homeModules = import ./home/modules pkgs.lib;
-      homeConfigurations = {
-        tux-nixos = self.lib.mkHomeConfig "nmelzer" ./home/hosts/tux-nixos.nix;
-        delly-nixos = self.lib.mkHomeConfig "nmelzer" ./home/hosts/delly-nixos.nix;
-        nixos = self.lib.mkHomeConfig "demo" ./home/hosts/nixos.nix;
-        WS0005 = self.lib.mkHomeConfig "WS0005" ./home/hosts/WS0005.nix;
-      };
+  outputs = {self, ...} @ inputs: {
+    nixosModules = import ./nixos/modules inputs;
+    nixosConfigurations = import ./nixos/configurations inputs;
 
-      overlay = import ./home/nix/myOverlay;
+    homeModules = import ./home/modules inputs;
+    homeConfigurations = import ./home/configurations inputs;
 
-      overlays = {
-        inputs = final: prev: { inherit inputs; };
-        emacs = emacs.overlay;
-        self = self.overlay;
-      };
+    packages.x86_64-linux =
+      (import ./packages inputs)
+      // self.lib.nixosConfigurationsAsPackages.x86_64-linux
+      // self.lib.homeConfigurationsAsPackages.x86_64-linux;
 
-      packages.x86_64-linux = {
-        advcp = upkgs.callPackage ./home/packages/advcp { };
-        elixir-lsp = upkgs.beam.packages.erlang.callPackage ./home/packages/elixir-lsp {
-          rebar3 = pkgs.beam.packages.erlang.rebar3;
-        };
-        erlang-ls = upkgs.beam.packages.erlang.callPackage ./home/packages/erlang-ls { };
-        keyleds = upkgs.callPackage ./home/packages/keyleds {
-          stdenv = upkgs.gcc8Stdenv;
-        };
-        rofi-unicode = upkgs.callPackage ./home/packages/rofi-unicode { };
-        dracula-konsole = upkgs.callPackage ./home/packages/dracula/konsole.nix { };
-        gnucash-de = mpkgs.callPackage ./home/packages/gnucash-de { };
-        kmymoney-de = upkgs.callPackage ./home/packages/kmymoney-de { };
-        emacs = epkgs.emacsGcc;
-      } // (import ./scripts inputs)
-      // home
-      // nixos;
+    checks = self.packages;
 
-      lib = import ./lib inputs;
+    lib = import ./lib inputs;
 
-      checks.x86_64-linux = self.packages.x86_64-linux;
-      # flake-utils.lib.flattenTree (pkgs.recurseIntoAttrs { inherit nixos; });
-
-      apps.x86_64-linux = {
-        build = { type = "app"; program = "${self.packages.x86_64-linux.build-config}/bin/build-config.sh"; };
-        switch = { type = "app"; program = "${self.packages.x86_64-linux.switch-config}/bin/switch-config.sh"; };
-      };
+    apps.x86_64-linux = {
+      update = import ./apps/update inputs;
+      switch = import ./apps/switch inputs;
     };
+
+    devShell.x86_64-linux = self.devShells.x86_64-linux.default;
+    devShells.x86_64-linux.default = let
+      pkgs = inputs.unstable.legacyPackages.x86_64-linux;
+    in
+      pkgs.mkShell {
+        packages = [
+          inputs.rnix-lsp.defaultPackage.x86_64-linux
+          inputs.statix.defaultPackage.x86_64-linux
+          inputs.alejandra.defaultPackage.x86_64-linux
+        ];
+      };
+  };
 }
