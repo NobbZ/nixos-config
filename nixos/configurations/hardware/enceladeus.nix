@@ -13,6 +13,7 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel" "wl"];
   boot.extraModulePackages = [config.boot.kernelPackages.broadcom_sta];
+  boot.supportedFilesystems = ["ntfs-3g"];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/1be71104-48ad-40c3-bf4c-086cd887969f";

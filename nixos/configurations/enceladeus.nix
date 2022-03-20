@@ -17,7 +17,6 @@ _: {
   boot.extraModulePackages = with config.boot.kernelPackages; [
     rtl8192eu
   ];
-  boot.supportedFilesystems = ["ntfs-3g"];
 
   # boot.kernelPackages = pkgs.linuxPackages_4_19;
   boot.kernel.sysctl = {

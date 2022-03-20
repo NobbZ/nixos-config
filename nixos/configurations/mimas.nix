@@ -15,7 +15,6 @@ in {
 
   security.chromiumSuidSandbox.enable = true;
 
-  boot.supportedFilesystems = ["ntfs" "exfat" "avfs"];
   boot.cleanTmpDir = true;
 
   services.lvm.boot.thin.enable = true;

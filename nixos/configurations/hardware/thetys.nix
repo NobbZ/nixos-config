@@ -13,6 +13,8 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = [];
   boot.extraModulePackages = [];
+  boot.initrd.supportedFilesystems = ["zfs"]; # boot from zfs
+  boot.supportedFilesystems = ["zfs"];
 
   fileSystems."/" =
     lib.mkForce
