@@ -17,6 +17,7 @@
   boot.supportedFilesystems = ["ntfs" "exfat" "avfs"];
 
   hardware.cpu.intel.updateMicrocode = true;
+  hardware.enableRedistributableFirmware = true;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/440c8ce1-1799-4239-936f-a54c879941a5";
