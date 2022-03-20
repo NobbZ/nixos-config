@@ -97,9 +97,6 @@ _: {
   services.xserver.layout = "de";
   # services.xserver.xkbOptions = "eurosign:e";
 
-  services.zerotierone.enable = true;
-  services.zerotierone.joinNetworks = ["8286ac0e4768c8ae"];
-
   # Enable touchpad support.
   # services.xserver.libinput.enable = true;
 

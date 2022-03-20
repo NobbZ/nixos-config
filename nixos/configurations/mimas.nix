@@ -79,9 +79,6 @@ in {
   # * $HOME/.local/share/flatpak/exports/share
   services.flatpak.enable = true;
 
-  services.zerotierone.enable = true;
-  services.zerotierone.joinNetworks = ["8286ac0e4768c8ae"];
-
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [80 443 1111 8080 9002 9003 2342 9999 3000 58080];
   # networking.firewall.allowedUDPPorts = [ ... ];

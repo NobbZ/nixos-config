@@ -12,6 +12,8 @@
   # TODO: 👇 move import of `virtualbox-demo.nix` into extra module 👇
   imports = [(modulesPath + "/installer/virtualbox-demo.nix")];
 
+  nix.allowedUnfree = ["zerotierone"];
+
   networking.hostId = "deadbeef";
 
   programs.gnupg = {
@@ -62,15 +64,7 @@
     serviceConfig.ExecStart = "@${config.boot.kernelPackages.virtualboxGuestAdditions}/bin/VBoxClient -fv --vmsvga";
   };
 
-  services.zerotierone.enable = true;
-  services.zerotierone.joinNetworks = ["8286ac0e4768c8ae"];
-  services.zerotierone.package =
-    (import nixpkgs-2105 {
-      config.allowUnfree = true;
-      # system = pkgs.system;
-      inherit (pkgs) system;
-    })
-    .zerotierone;
+  # services.zerotierone.package = nixpkgs-2105.legacyPackages.${pkgs.system}.zerotierone;
 
   # services.ipfs.enable = true;
 
