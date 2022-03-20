@@ -43,7 +43,8 @@
       switch = import ./apps/switch inputs;
     };
 
-    devShell.x86_64-linux = let
+    devShell.x86_64-linux = self.devShells.x86_64-linux.default;
+    devShells.x86_64-linux.default = let
       pkgs = inputs.unstable.legacyPackages.x86_64-linux;
     in
       pkgs.mkShell {
