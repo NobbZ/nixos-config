@@ -112,8 +112,7 @@
         mkdir -p node_modules
         cd node_modules
       ''
-      + (lib.concatMapStrings
-        (
+      + (lib.concatMapStrings (
           dependency: ''
             if [ ! -e "${dependency.name}" ]; then
                 ${composePackage dependency}

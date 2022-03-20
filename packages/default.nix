@@ -22,6 +22,6 @@ in {
   "elixir-lsp" = upkgs.beam.packages.erlang.callPackage ./elixir-lsp {};
   "erlang-ls" = upkgs.beam.packages.erlang.callPackage ./erlang-ls {};
   "rofi/unicode" = upkgs.callPackage ./rofi-unicode {};
-  "zx" = nodePkgs.zx;
+  "zx" = upkgs.nodePackages.zx;
   "angular" = nodePkgs."@angular/cli";
 }
