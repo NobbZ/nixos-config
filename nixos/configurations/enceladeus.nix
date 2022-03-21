@@ -63,6 +63,7 @@ _: {
     rsync
     git
     firefox
+    unison
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
