@@ -49,7 +49,7 @@
   console.font = "Lat2-Terminus16";
   console.keyMap = "de";
 
-  environment.systemPackages = [ pkgs.unison ];
+  environment.systemPackages = [pkgs.unison];
 
   services.xserver.layout = pkgs.lib.mkForce "de";
 
