@@ -10,4 +10,4 @@ statix:
   commands:
     statix:
       glob: "*.nix"
-      run: statix check -i packages/nodePackages/node-env.nix nixos/modules/grafana.nix
+      run: statix check -i packages/nodePackages/node-env.nix
