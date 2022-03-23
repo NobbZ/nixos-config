@@ -4,6 +4,9 @@
   inputs.unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.master.url = "github:nixos/nixpkgs/master";
 
+  # See https://github.com/NixOS/nixpkgs/pull/165382
+  inputs.pdfminer-fix.url = "github:austinbutler/nixpkgs/ocrmypdf-pdfminer-fix";
+
   inputs.nix.url = "github:nixos/nix"; #/caf51729450d4c57d48ddbef8e855e9bf65f8792";
   inputs.rnix-lsp.url = "github:nix-community/rnix-lsp/master";
   inputs.rnix-lsp.inputs.nixpkgs.follows = "unstable";
