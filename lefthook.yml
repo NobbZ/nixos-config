@@ -3,7 +3,7 @@ pre-commit:
   commands:
     formatting:
       glob: "*.nix"
-      run: nix shell --inputs-from . alejandra -c alejandra --check {all_files}
+      run: nix shell --inputs-from . alejandra -c alejandra --check {all_files} < /dev/null
 
 statix:
   parallel: false
