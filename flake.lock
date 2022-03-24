@@ -333,16 +333,16 @@
     },
     "pdfminer-fix": {
       "locked": {
-        "lastModified": 1648016951,
-        "narHash": "sha256-iCCD4cvm+DHs/86iuJA9KboGEWi8bthvs8hYBB3qqfs=",
-        "owner": "austinbutler",
+        "lastModified": 1648056130,
+        "narHash": "sha256-FPh2agFhdE19llpC3uOXr4s+i5U1ByrEzq2OuiTGqds=",
+        "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "8bfdf5c4f4729fe5844418345f78f6779ea65d1e",
+        "rev": "e204e5c5761d3cfe846aa26a25853c0b55f1abb1",
         "type": "github"
       },
       "original": {
-        "owner": "austinbutler",
-        "ref": "ocrmypdf-pdfminer-fix",
+        "owner": "nixos",
+        "ref": "pull/165382/head",
         "repo": "nixpkgs",
         "type": "github"
       }

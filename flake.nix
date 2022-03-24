@@ -5,7 +5,7 @@
   inputs.master.url = "github:nixos/nixpkgs/master";
 
   # See https://github.com/NixOS/nixpkgs/pull/165382
-  inputs.pdfminer-fix.url = "github:austinbutler/nixpkgs/ocrmypdf-pdfminer-fix";
+  inputs.pdfminer-fix.url = "github:nixos/nixpkgs/pull/165382/head";
 
   inputs.nix.url = "github:nixos/nix"; #/caf51729450d4c57d48ddbef8e855e9bf65f8792";
   inputs.rnix-lsp.url = "github:nix-community/rnix-lsp/master";
