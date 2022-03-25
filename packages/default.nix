@@ -18,7 +18,6 @@ in {
   "keyleds" = upkgs.callPackage ./keyleds {};
   "dracula/konsole" = upkgs.callPackage ./dracula/konsole {};
   "emacs" = epkgs.emacsGcc;
-  "emacsPgtkGcc" = epkgs.emacsPgtkGcc;
   "elixir-lsp" = upkgs.beam.packages.erlang.callPackage ./elixir-lsp {};
   "erlang-ls" = upkgs.beam.packages.erlang.callPackage ./erlang-ls {};
   "rofi/unicode" = upkgs.callPackage ./rofi-unicode {};
