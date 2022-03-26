@@ -12,7 +12,7 @@
   boot.initrd.availableKernelModules = ["uhci_hcd" "ehci_pci" "ahci" "firewire_ohci" "usbhid" "usb_storage" "sd_mod" "sr_mod" "sdhci_pci"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel" "wl"];
-  boot.extraModulePackages = [config.boot.kernelPackages.broadcom_sta];
+  boot.extraModulePackages = [];
   boot.supportedFilesystems = ["ntfs-3g"];
 
   fileSystems."/" = {
