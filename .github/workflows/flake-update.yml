@@ -2,7 +2,7 @@ name: Updater
 
 on:
   schedule:
-  - cron: '08 * * * *'
+  - cron: '18 * * * *'
 
 jobs:
   update_flake:
@@ -36,6 +36,7 @@ jobs:
     - run: git switch -C updates
     - run: nix flake update --commit-lock-file
     - run: nix flake check -L
+    - run: git push -u origin updates
     - run: |
         PR=$(gh pr create \
           --assignee @me \
