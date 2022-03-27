@@ -2,7 +2,7 @@ name: Updater
 
 on:
   schedule:
-  - cron: '*/5 * * * *'
+  - cron: '30 * * * *'
 
 jobs:
   update_flake:
@@ -16,6 +16,8 @@ jobs:
         extra_nix_config: |
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
           experimental-features = nix-command flakes
+          substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+          trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
         install_url: https://releases.nixos.org/nix/nix-2.7.0/install
     - run: git config user.email gitbot@nobbz.dev
     - run: git config user.name "Git Bot"
