@@ -1,0 +1,34 @@
+name: foo
+
+on:
+  schedule:
+  - cron: '0 2 * * * *'
+
+jobs:
+  update_flake:
+    runs-on: ubuntu-20.04
+    permissions:
+     pull-requests:
+     - read
+     - write
+    steps:
+    - uses: actions/checkout@v2.4.0
+    - uses: cachix/install-nix-action@v15
+      with:
+        extra_nix_config: |
+          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+          experimental-features = nix-command flakes
+        install_url: https://releases.nixos.org/nix/nix-2.7.0/install
+    - run: git switch -C updates
+    - run: nix flake update --commit-lock-file
+    - run: nix flake check -L
+    - run: |
+      PR=gh pr create \
+        --assignee @me \
+        --base master \
+        --body auto-update \
+        --fill \
+        --label bot \
+        --title "Auto update $(date -I)" \
+        --json url --jq '.url'
+      gh pr merge $PR
