@@ -38,7 +38,7 @@ jobs:
     - run: nix flake check -L
     - run: |
         PR=$(gh pr create \
-          --assignee @me
+          --assignee @me \
           --base master \
           --body auto-update \
           --fill \
