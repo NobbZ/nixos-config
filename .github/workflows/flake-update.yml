@@ -2,7 +2,7 @@ name: Updater
 
 on:
   schedule:
-  - cron: '5 * * * *'
+  - cron: '55 * * * *'
 
 jobs:
   update_flake:
@@ -42,3 +42,5 @@ jobs:
           --title "Auto update $(date -I)" \
           --json url --jq '.url'
         gh pr merge $PR
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
