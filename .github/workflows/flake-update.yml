@@ -33,14 +33,14 @@ jobs:
     - run: nix flake update --commit-lock-file
     - run: nix flake check -L
     - run: |
-        PR=gh pr create \
-          --assignee @me \
+        PR=$(gh pr create \
+          --assignee @me
           --base master \
           --body auto-update \
           --fill \
           --label bot \
           --title "Auto update $(date -I)" \
-          --json url --jq '.url'
+          --json url --jq '.url')
         gh pr merge $PR
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
