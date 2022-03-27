@@ -10,6 +10,12 @@ jobs:
     permissions:
       pull-requests: write
     steps:
+    - uses: easimon/maximize-build-space@master
+      with:
+        build-mount-path: /nix
+        remove-dotnet: true
+        remove-android: true
+        remove-haskell: true
     - uses: actions/checkout@v2.4.0
     - uses: cachix/install-nix-action@v15
       with:
