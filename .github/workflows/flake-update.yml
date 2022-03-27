@@ -17,6 +17,8 @@ jobs:
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
           experimental-features = nix-command flakes
         install_url: https://releases.nixos.org/nix/nix-2.7.0/install
+    - run: git config user.email gitbot@nobbz.dev
+    - run: git config user.name "Git Bot"
     - run: git switch -C updates
     - run: nix flake update --commit-lock-file
     - run: nix flake check -L
