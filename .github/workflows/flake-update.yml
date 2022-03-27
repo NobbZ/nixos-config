@@ -8,7 +8,7 @@ jobs:
   update_flake:
     runs-on: ubuntu-20.04
     permissions:
-      pull-requests: read,write
+      pull-requests: write
     steps:
     - uses: actions/checkout@v2.4.0
     - uses: cachix/install-nix-action@v15
