@@ -2,7 +2,7 @@ name: Updater
 
 on:
   schedule:
-  - cron: '0 * * * *'
+  - cron: '* 2 * * *'
 
 jobs:
   update_flake:
