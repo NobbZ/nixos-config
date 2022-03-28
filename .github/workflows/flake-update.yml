@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-20.04
     permissions:
       pull-requests: write
+      contents: write
     steps:
     - run: sudo mkdir -p /nix
     - uses: easimon/maximize-build-space@master
