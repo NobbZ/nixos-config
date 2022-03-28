@@ -41,6 +41,7 @@ jobs:
     - run: nix flake check -L
     - run: git push -u origin updates
     - run: |
+        set -x
         PR=$(gh pr create \
           --assignee @me \
           --base master \
