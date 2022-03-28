@@ -1,0 +1,52 @@
+name: Updater
+
+on:
+  schedule:
+  - cron: '33 * * * *'
+
+jobs:
+  update_flake:
+    runs-on: ubuntu-20.04
+    permissions: write-all
+    steps:
+    - run: sudo mkdir -p /nix
+    - uses: easimon/maximize-build-space@master
+      with:
+        build-mount-path: /nix
+        remove-dotnet: true
+        remove-android: true
+        remove-haskell: true
+    - run: df -h
+    - uses: actions/checkout@v2.4.0
+      with:
+        token: '${{ secrets.GITHUB_TOKEN }}'
+    - uses: cachix/install-nix-action@v15
+      with:
+        extra_nix_config: |
+          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+          experimental-features = nix-command flakes
+          substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+          trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+        install_url: https://releases.nixos.org/nix/nix-2.7.0/install
+    - uses: cachix/cachix-action@v10
+      with:
+        name: nobbz
+        signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+    - run: git config user.email gitbot@nobbz.dev
+    - run: git config user.name "Git Bot"
+    - run: git switch -C updates
+    - run: nix flake update --commit-lock-file
+    - run: nix flake check -L
+    - run: git push -u origin updates
+    - run: |
+        set -x
+        PR=$(gh pr create \
+          --assignee @me \
+          --base master \
+          --body auto-update \
+          --fill \
+          --label bot \
+          --title "Auto update $(date -I)")
+        gh pr merge $PR
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
