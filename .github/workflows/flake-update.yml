@@ -2,11 +2,7 @@ name: Updater
 
 on:
   schedule:
-<<<<<<< HEAD
   - cron: '0 2 * * *'
-=======
-  - cron: '18 * * * *'
->>>>>>> ce1a725f2dffbdb1ae648cfe211ff37f123beea1
 
 jobs:
   update_flake:
@@ -48,8 +44,7 @@ jobs:
           --body auto-update \
           --fill \
           --label bot \
-          --title "Auto update $(date -I)" \
-          --json url --jq '.url')
+          --title "Auto update $(date -I)")
         gh pr merge $PR
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
