@@ -14,7 +14,7 @@
 
   nix.allowedUnfree = ["zerotierone"];
 
-  boot.kernelPackages = pkgs.zfs.latestCompatibleLinuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_5_16;
 
   networking.hostId = "deadbeef";
 
