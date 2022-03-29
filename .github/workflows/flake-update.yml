@@ -2,7 +2,8 @@ name: Updater
 
 on:
   schedule:
-  - cron: '40 * * * *'
+  - cron: '* 2 * * *'
+  workflow_dispatch: {}
 
 jobs:
   update_flake:
