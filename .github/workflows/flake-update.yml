@@ -2,7 +2,7 @@ name: Updater
 
 on:
   schedule:
-  - cron: '50 * * * *'
+  - cron: '40 * * * *'
 
 jobs:
   update_flake:
@@ -34,7 +34,7 @@ jobs:
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
     - run: git config user.email gitbot@nobbz.dev
     - run: git config user.name "Git Bot"
-    - run: git switch -C updates
+    - run: git switch -c updates-$(date -I)
     - run: nix flake update --commit-lock-file
     - run: nix flake check -L
     - run: git push -u origin updates-$(date -I)
