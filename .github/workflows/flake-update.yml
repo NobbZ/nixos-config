@@ -43,7 +43,7 @@ jobs:
     - run: |
         set -x
         PR=$(gh pr create \
-          --assignee @NobbZ \
+          --assignee NobbZ \
           --base master \
           --body auto-update \
           --fill \
