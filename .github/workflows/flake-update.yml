@@ -36,10 +36,10 @@ jobs:
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
     - run: git config user.email gitbot@nobbz.dev
     - run: git config user.name "Git Bot"
-    - run: git switch -c updates-$(date -I)
+    - run: git switch -c updates-${{ github.run_id }}
     - run: nix flake update --commit-lock-file
     - run: nix flake check -L
-    - run: git push -u origin updates-$(date -I)
+    - run: git push -u origin updates-${{ github.run_id }}
     - run: |
         set -x
         PR=$(gh pr create \
