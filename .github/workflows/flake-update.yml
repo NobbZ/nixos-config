@@ -49,6 +49,6 @@ jobs:
           --fill \
           --label bot \
           --title "Auto update $(date -I)")
-        gh pr merge $PR
+        gh pr merge $PR --merge
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
