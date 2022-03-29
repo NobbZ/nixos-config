@@ -2,7 +2,7 @@ name: Updater
 
 on:
   schedule:
-  - cron: '0 2 * * *'
+  - cron: '50 * * * *'
 
 jobs:
   update_flake:
@@ -37,7 +37,7 @@ jobs:
     - run: git switch -C updates
     - run: nix flake update --commit-lock-file
     - run: nix flake check -L
-    - run: git push -u origin updates
+    - run: git push -u origin updates-$(date -I)
     - run: |
         set -x
         PR=$(gh pr create \
