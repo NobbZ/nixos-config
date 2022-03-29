@@ -17,7 +17,7 @@ jobs:
         remove-android: true
         remove-haskell: true
     - run: df -h
-    - uses: actions/checkout@v2.4.0
+    - uses: actions/checkout@v3
       with:
         token: '${{ secrets.GITHUB_TOKEN }}'
     - uses: cachix/install-nix-action@v15
