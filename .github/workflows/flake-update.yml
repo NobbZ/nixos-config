@@ -111,8 +111,8 @@ jobs:
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
     - name: Restore flake.lock
       uses: actions/download-artifact@v3
-        with:
-          name: flake_lock
+      with:
+        name: flake_lock
     - name: Build everything
       run: nix build .#${{ matrix.package }}
 
