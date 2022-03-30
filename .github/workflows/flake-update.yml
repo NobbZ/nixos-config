@@ -10,18 +10,21 @@ jobs:
     runs-on: ubuntu-20.04
     permissions: write-all
     steps:
-    - run: sudo mkdir -p /nix
-    - uses: easimon/maximize-build-space@master
+    - name: Prepare store folder
+      run: sudo mkdir -p /nix
+    - name: Free diskspace
+      uses: easimon/maximize-build-space@master
       with:
         build-mount-path: /nix
         remove-dotnet: true
         remove-android: true
         remove-haskell: true
-    - run: df -h
-    - uses: actions/checkout@v3
+    - name: Clone repository
+      uses: actions/checkout@v3
       with:
         token: '${{ secrets.GITHUB_TOKEN }}'
-    - uses: cachix/install-nix-action@v16
+    - name: Install nix
+      uses: cachix/install-nix-action@v16
       with:
         extra_nix_config: |
           auto-optimise-store = true
@@ -30,22 +33,27 @@ jobs:
           substituters = https://cache.nixos.org/ https://nix-community.cachix.org
           trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
         install_url: https://releases.nixos.org/nix/nix-2.7.0/install
-    - uses: cachix/cachix-action@v10
+    - name: Set up cachix
+      uses: cachix/cachix-action@v10
       with:
         name: nobbz
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
-    - run: git config user.email gitbot@nobbz.dev
-    - run: git config user.name "Git Bot"
-    - run: git switch -c updates-${{ github.run_id }}
-    - run: nix flake update --commit-lock-file
-    - run: nix flake check -L
-    - run: git push -u origin updates-${{ github.run_id }}
-    - run: |
-        set -x
+    - name: Set up git
+      run: |
+        git config user.email gitbot@nobbz.dev
+        git config user.name "Git Bot"
+        git switch -c updates-${{ github.run_id }}
+    - name: Update the flake
+      run: nix flake update --commit-lock-file
+    - name: Build everything
+      run: nix flake check -L
+    - name: Create and merge PR
+      run: |
+        git push -u origin updates-${{ github.run_id }}
         PR=$(gh pr create \
           --assignee NobbZ \
           --base master \
-          --body auto-update \
+          --body "Automatic flake update on $(date -I)" \
           --fill \
           --label bot \
           --title "Auto update $(date -I)")
