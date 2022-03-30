@@ -88,7 +88,7 @@ jobs:
     - name: Update the flake
       run: nix flake update --commit-lock-file
     - name: Build everything
-      run: nix build .#checks.${{ matrix.check }}
+      run: nix build .#checks.x86_64-linux.${{ matrix.check }}
     - name: Create and merge PR
       run: |
         git push -u origin updates-${{ github.run_id }}
