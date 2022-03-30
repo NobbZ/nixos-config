@@ -6,6 +6,43 @@ on:
   workflow_dispatch: {}
 
 jobs:
+  generate_matrix:
+    runs-on: ubuntu-20.04
+    outputs:
+      matrix: ${{ steps.gen_matrix.outputs.matrix }}
+    steps:
+    - name: Clone repository
+      uses: actions/checkout@v3
+      with:
+        token: '${{ secrets.GITHUB_TOKEN }}'
+    - name: Install nix
+      uses: cachix/install-nix-action@v16
+      with:
+        extra_nix_config: |
+          auto-optimise-store = true
+          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+          experimental-features = nix-command flakes
+          substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+          trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+        install_url: https://releases.nixos.org/nix/nix-2.7.0/install
+    - id: gen_matrix
+      run: |
+        matrix=$(nix flake show --json | jq -c '.checks."x86_64-linux" | keys')
+        printf "%s" "$matrix" | jq
+        printf "::set-output name=matrix::%s" "$matrix"
+
+  verify_matrix:
+    runs-on: ubuntu-20.04
+    needs: generate_matrix
+    steps:
+    - name: Install json2yaml
+      run: sudo npm install -g json2yaml
+    - name: Print matrix definition
+      run: |
+        matrix='${{ needs.generate_matrix.outputs.matrix }}'
+        printf "%s" "$matrix" | jq
+        printf "%s" "$matrix" | json2yaml
+    
   update_flake:
     runs-on: ubuntu-20.04
     permissions: write-all
