@@ -45,7 +45,12 @@ jobs:
     
   update_flake:
     runs-on: ubuntu-20.04
+    needs: generate_matrix
     permissions: write-all
+    strategy:
+      fail-fast: false
+      matrix:
+        check: ${{fromJson(needs.generate_matrix.outputs.matrix)}}
     steps:
     - name: Prepare store folder
       run: sudo mkdir -p /nix
@@ -83,7 +88,7 @@ jobs:
     - name: Update the flake
       run: nix flake update --commit-lock-file
     - name: Build everything
-      run: nix flake check -L
+      run: nix build .#checks.${{ matrix.check }}
     - name: Create and merge PR
       run: |
         git push -u origin updates-${{ github.run_id }}
