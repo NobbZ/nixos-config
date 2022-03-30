@@ -126,8 +126,8 @@ jobs:
         token: '${{ secrets.GITHUB_TOKEN }}'
     - name: Restore flake.lock
       uses: actions/download-artifact@v3
-        with:
-          name: flake_lock
+      with:
+        name: flake_lock
     - name: Set up git
       run: |
         git config user.email gitbot@nobbz.dev
