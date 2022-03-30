@@ -134,6 +134,7 @@ jobs:
         git config user.name "Git Bot"
     - name: Create and merge PR
       run: |
+        git switch -c updates-${{ github.run_id }}
         git commit -am "flake.lock: Update"
         git push -u origin updates-${{ github.run_id }}
         PR=$(gh pr create \
