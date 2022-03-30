@@ -75,7 +75,6 @@ jobs:
   build_flake:
     runs-on: ubuntu-20.04
     needs: [generate_matrix, update_flake]
-    permissions: write-all
     strategy:
       fail-fast: false
       max-parallel: 5
@@ -119,6 +118,7 @@ jobs:
 
   push_update:
     runs-on: ubuntu-20.04
+    permissions: write-all
     needs: [update_flake, build_flake]
     steps:
     - name: Clone repository
