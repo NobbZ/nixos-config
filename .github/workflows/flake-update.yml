@@ -78,6 +78,7 @@ jobs:
     permissions: write-all
     strategy:
       fail-fast: false
+      max-parallel: 2
       matrix:
         package: ${{fromJson(needs.generate_matrix.outputs.matrix)}}
     steps:
