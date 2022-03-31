@@ -30,18 +30,6 @@ jobs:
         matrix=$(nix flake show --json | jq -c '.packages."x86_64-linux" | keys')
         printf "%s" "$matrix" | jq
         printf "::set-output name=matrix::%s" "$matrix"
-
-  verify_matrix:
-    runs-on: ubuntu-20.04
-    needs: generate_matrix
-    steps:
-    - name: Install json2yaml
-      run: sudo npm install -g json2yaml
-    - name: Print matrix definition
-      run: |
-        matrix='${{ needs.generate_matrix.outputs.matrix }}'
-        printf "%s" "$matrix" | jq
-        printf "%s" "$matrix" | json2yaml
     
   update_flake:
     runs-on: ubuntu-20.04
