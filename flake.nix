@@ -52,9 +52,9 @@
     in
       pkgs.mkShell {
         packages = [
-          inputs.rnix-lsp.defaultPackage.x86_64-linux
-          inputs.statix.defaultPackage.x86_64-linux
-          inputs.alejandra.defaultPackage.x86_64-linux
+          self.packages.x86_64-linux.rnix-lsp
+          self.packages.x86_64-linux.statix
+          self.packages.x86_64-linux.alejandra
         ];
       };
   };

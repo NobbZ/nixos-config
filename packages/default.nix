@@ -23,4 +23,8 @@ in {
   "rofi/unicode" = upkgs.callPackage ./rofi-unicode {};
   "zx" = upkgs.nodePackages.zx;
   "angular" = nodePkgs."@angular/cli";
+
+  "rnix-lsp" = inputs.rnix-lsp.defaultPackage.x86_64-linux;
+  "statix" = inputs.statix.defaultPackage.x86_64-linux;
+  "alejandra" = inputs.alejandra.defaultPackage.x86_64-linux;
 }
