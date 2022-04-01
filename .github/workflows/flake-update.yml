@@ -93,7 +93,7 @@ jobs:
           trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
         install_url: https://releases.nixos.org/nix/nix-2.7.0/install
     - name: Set up cachix
-      uses: cachix/cachix-action@v10
+      uses: cachix/cachix-action@5c2eb07eba6db64887d86016a1d6542807d574a9 # pathsToPush, please update once we have v11!
       with:
         name: nobbz
         signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
