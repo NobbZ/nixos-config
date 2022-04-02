@@ -129,7 +129,7 @@ jobs:
         git push -u origin updates-${{ github.run_id }}
         PR=$(gh pr create \
           --assignee NobbZ \
-          --base master \
+          --base main \
           --body "Automatic flake update on $(date -I)" \
           --fill \
           --label bot \
