@@ -7,7 +7,7 @@
     pkgs.keepass.override {plugins = [pkgs.keepass-keepasshttp];};
 in {
   config = {
-    nixpkgs.allowedUnfree = ["teamspeak-client" "google-chrome" "vscode"];
+    nixpkgs.allowedUnfree = ["teamspeak-client" "google-chrome" "vscode" "teams"];
 
     activeProfiles = ["browsing" "development" "home-office"];
 
@@ -42,6 +42,7 @@ in {
       p.gnome3.gnome-tweaks
       p.freerdp
       p.vscode
+      p.teams
 
       s.gnucash-de
 
