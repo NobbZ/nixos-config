@@ -9,8 +9,8 @@ jobs:
   generate_matrix:
     runs-on: ubuntu-20.04
     outputs:
-      packages: ${{ steps.gen_matrix.outputs.packages }}
-      checks: ${{ steps.gen_matrix.outputs.checks }}
+      packages: ${{ steps.gen_packages.outputs.packages }}
+      checks: ${{ steps.gen_checks.outputs.checks }}
     steps:
     - name: Clone repository
       uses: actions/checkout@v3
@@ -26,15 +26,17 @@ jobs:
           substituters = https://cache.nixos.org/ https://nix-community.cachix.org
           trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
         install_url: https://releases.nixos.org/nix/nix-2.7.0/install
-    - id: gen_matrix
+    - name: Generate flake.json
       run: |
-        flake="$(nix flake show --json)"
-        packages=$(jq -c '.packages."x86_64-linux" | keys' <<< "$flake")
-        checks=$(jq -c '.checks."x86_64-linux" | keys' <<< "$flake")
-        jq <<< "$packages"
-        jq <<< "$checks"
-        printf "::set-output name=checks::%s"  "$checks"
+        nix flake show --json > flake.json
+    - id: gen_packages
+      run: |
+        packages=$(jq -c '.packages."x86_64-linux" | keys' < flake.json)
         printf "::set-output name=packages::%s" "$packages"
+    - id: gen_checks
+      run: |
+        checks=$(jq -c '.checks."x86_64-linux" | keys' < flake.json)
+        printf "::set-output name=checks::%s" "$checks"
     
   update_flake:
     runs-on: ubuntu-20.04
