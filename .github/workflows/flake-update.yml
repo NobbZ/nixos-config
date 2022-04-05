@@ -147,6 +147,7 @@ jobs:
   check_flake:
     runs-on: ubuntu-20.04
     needs: [update_flake]
+    continue-on-error: true
     steps:
     - name: Clone repository
       uses: actions/checkout@v3
