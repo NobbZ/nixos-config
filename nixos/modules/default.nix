@@ -5,5 +5,6 @@ inputs: {
   kernel = import ./kernel.nix inputs;
   moonlander = import ./moonlander.nix inputs;
   nix = import ./nix.nix inputs;
+  switcher = import ./switcher.nix inputs;
   zerotier = import ./zerotier.nix inputs;
 }
