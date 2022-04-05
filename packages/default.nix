@@ -24,6 +24,11 @@ in {
   "zx" = upkgs.nodePackages.zx;
   "angular" = nodePkgs."@angular/cli";
 
+  "switcher" = upkgs.callPackage ./switcher {
+    nix = inputs.nix.packages.x86_64-linux.nix;
+    home-manager = inputs.home-manager.packages.x86_64-linux.home-manager;
+  };
+
   "rnix-lsp" = inputs.rnix-lsp.defaultPackage.x86_64-linux;
   "statix" = inputs.statix.defaultPackage.x86_64-linux;
   "alejandra" = inputs.alejandra.defaultPackage.x86_64-linux;
