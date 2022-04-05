@@ -37,7 +37,7 @@
       // self.lib.nixosConfigurationsAsPackages.x86_64-linux
       // self.lib.homeConfigurationsAsPackages.x86_64-linux;
 
-    checks = self.packages;
+    checks.x86_64-linux = import ./checks inputs;
 
     lib = import ./lib inputs;
 
