@@ -168,7 +168,8 @@ jobs:
       with:
         name: flake_lock
     - name: Build everything
-      run: nix flake check --no-build --keep-going
+      run: |
+        nix flake check --keep-going
 
   push_update:
     runs-on: ubuntu-20.04
