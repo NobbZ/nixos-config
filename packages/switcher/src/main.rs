@@ -8,7 +8,6 @@ use std::{
     str,
 };
 use tokio::{self, process::Command};
-use tracing::field;
 use tracing::{instrument, Level};
 use tracing_futures::Instrument;
 use tracing_subscriber::FmtSubscriber;
@@ -54,7 +53,7 @@ async fn get_username() -> String {
 
 #[instrument]
 async fn get_tempfldr() -> String {
-    get_command_out(&mut Command::new("mktemp").arg("-d")).await
+    get_command_out(Command::new("mktemp").arg("-d")).await
 }
 
 #[tokio::main]
@@ -91,7 +90,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         "--keep-going",
         "-L",
         "--out-link",
-        &out_link.as_os_str().to_str().unwrap(),
+        out_link.as_os_str().to_str().unwrap(),
         &nixos_config,
         &home_config,
     ]))
