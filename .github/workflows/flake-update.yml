@@ -32,7 +32,7 @@ jobs:
         packages=$(jq -c '.packages."x86_64-linux" | keys' <<< "$flake")
         checks=$(jq -c '.checks."x86_64-linux" | keys' <<< "$flake")
         printf "::set-output name=packages::%s" "$packages"
-        printf "::set-output name=chekcks::%s"  "$checks"
+        printf "::set-output name=checks::%s"  "$checks"
     
   update_flake:
     runs-on: ubuntu-20.04
