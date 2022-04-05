@@ -6,4 +6,5 @@ inputs: let
   callPackage = pkgs.lib.callPackageWith (pkgs // apkgs // spkgs // {inherit (inputs) self;});
 in {
   alejandra = callPackage ./alejandra.nix {};
+  statix = callPackage ./statix.nix {};
 }
