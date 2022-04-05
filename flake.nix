@@ -41,11 +41,6 @@
 
     lib = import ./lib inputs;
 
-    apps.x86_64-linux = {
-      update = import ./apps/update inputs;
-      switch = import ./apps/switch inputs;
-    };
-
     devShell.x86_64-linux = self.devShells.x86_64-linux.default;
     devShells.x86_64-linux.default = let
       pkgs = inputs.unstable.legacyPackages.x86_64-linux;
