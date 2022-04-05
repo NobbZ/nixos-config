@@ -31,6 +31,8 @@ jobs:
         flake="$(nix flake show --json)"
         packages=$(jq -c '.packages."x86_64-linux" | keys' <<< "$flake")
         checks=$(jq -c '.checks."x86_64-linux" | keys' <<< "$flake")
+        jq <<< "$packages"
+        jq <<< "$checks"
         printf "::set-output name=packages::%s" "$packages"
         printf "::set-output name=checks::%s"  "$checks"
     
