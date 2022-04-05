@@ -25,8 +25,8 @@ in {
   "angular" = nodePkgs."@angular/cli";
 
   "switcher" = upkgs.callPackage ./switcher {
-    nix = inputs.nix.packages.x86_64-linux.nix;
-    home-manager = inputs.home-manager.packages.x86_64-linux.home-manager;
+    inherit (inputs.nix.packages.x86_64-linux) nix;
+    inherit (inputs.home-manager.packages.x86_64-linux) home-manager;
   };
 
   "rnix-lsp" = inputs.rnix-lsp.defaultPackage.x86_64-linux;
