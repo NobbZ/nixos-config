@@ -21,9 +21,13 @@ in {
   "elixir-lsp" = upkgs.beam.packages.erlang.callPackage ./elixir-lsp {};
   "erlang-ls" = upkgs.beam.packages.erlang.callPackage ./erlang-ls {};
   "rofi/unicode" = upkgs.callPackage ./rofi-unicode {};
-  "switcher" = upkgs.callPackage ./switcher {};
   "zx" = upkgs.nodePackages.zx;
   "angular" = nodePkgs."@angular/cli";
+
+  "switcher" = upkgs.callPackage ./switcher {
+    nix = inputs.nix.packages.x86_64-linux.nix;
+    home-manager = inputs.home-manager.packages.x86_64-linux.home-manager;
+  };
 
   "rnix-lsp" = inputs.rnix-lsp.defaultPackage.x86_64-linux;
   "statix" = inputs.statix.defaultPackage.x86_64-linux;
