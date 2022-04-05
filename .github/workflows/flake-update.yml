@@ -146,7 +146,7 @@ jobs:
       with:
         name: flake_lock
     - name: Build everything
-      run: nix build .#checks.${{ matrix.check }} --no-link
+      run: nix build .#checks.x86_64-linux.${{ matrix.check }} --no-link
 
   check_flake:
     runs-on: ubuntu-20.04
