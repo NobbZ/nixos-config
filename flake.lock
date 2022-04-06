@@ -331,22 +331,6 @@
         "type": "github"
       }
     },
-    "pdfminer-fix": {
-      "locked": {
-        "lastModified": 1648056130,
-        "narHash": "sha256-FPh2agFhdE19llpC3uOXr4s+i5U1ByrEzq2OuiTGqds=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "e204e5c5761d3cfe846aa26a25853c0b55f1abb1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "pull/165382/head",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "rnix-lsp": {
       "inputs": {
         "naersk": "naersk",
@@ -381,7 +365,6 @@
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs-2105": "nixpkgs-2105",
         "nixpkgs-2111": "nixpkgs-2111",
-        "pdfminer-fix": "pdfminer-fix",
         "rnix-lsp": "rnix-lsp",
         "statix": "statix",
         "unstable": "unstable"
