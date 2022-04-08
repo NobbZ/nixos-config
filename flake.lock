@@ -331,6 +331,22 @@
         "type": "github"
       }
     },
+    "pycurl-fix": {
+      "locked": {
+        "lastModified": 1648595941,
+        "narHash": "sha256-9MNVbCiD6JbLnWZWNekscqW0j2enhAOu5kdBMXOuLl4=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "c270defab79e46b4c98039b09ab6209d1a69ffb3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "pull/166335/head",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "rnix-lsp": {
       "inputs": {
         "naersk": "naersk",
@@ -365,6 +381,7 @@
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs-2105": "nixpkgs-2105",
         "nixpkgs-2111": "nixpkgs-2111",
+        "pycurl-fix": "pycurl-fix",
         "rnix-lsp": "rnix-lsp",
         "statix": "statix",
         "unstable": "unstable"
