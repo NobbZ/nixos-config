@@ -1,7 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{unstable, ...}: {
+{
+  unstable,
+  pycurl-fix,
+  ...
+}: {
   config,
   pkgs,
   lib,
@@ -12,6 +16,9 @@
   printerPackages = ["hplip" "samsung-UnifiedLinuxDriver"];
 in {
   nix.allowedUnfree = ["zerotierone"] ++ printerPackages ++ steamPackages;
+
+  # See https://github.com/NixOS/nixpkgs/pull/166335
+  nixpkgs.overlays = [(_: _: {inherit (pycurl-fix.legacyPackages.x86_64-linux) system-config-printer;})];
 
   security.chromiumSuidSandbox.enable = true;
 
