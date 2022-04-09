@@ -79,8 +79,8 @@ in {
       src = pkgs.fetchFromGitHub {
         owner = "awesomewm";
         repo = "awesome";
-        rev = "22dedf7";
-        sha256 = "sha256-GD0MxMU4tz5SbahL0+ADUQXNoq1fIxOSXiEwoObC0ng=";
+        rev = "c539e0e4350a42f813952fc28dd8490f42d934b3"; # master
+        sha256 = "111sgx9sx4wira7k0fqpdh76s9la3i8h40wgaii605ybv7n0nc0h";
       };
     });
 
