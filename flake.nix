@@ -42,17 +42,20 @@
     devShell.x86_64-linux = self.devShells.x86_64-linux.default;
     devShells.x86_64-linux.default = let
       pkgs = inputs.unstable.legacyPackages.x86_64-linux;
+      mpkgs = inputs.master.legacyPackages.x86_64-linux;
     in
       pkgs.mkShell {
         packages = [
           self.packages.x86_64-linux.rnix-lsp
           self.packages.x86_64-linux.statix
           self.packages.x86_64-linux.alejandra
-          pkgs.rust-analyzer
+          mpkgs.rust-analyzer
           pkgs.rustc
           pkgs.cargo
           pkgs.rustfmt
           pkgs.clippy
+          pkgs.openssl
+          pkgs.pkg-config
         ];
       };
   };
