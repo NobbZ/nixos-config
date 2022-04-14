@@ -60,13 +60,13 @@ where
     let target = post_graphql::<LatestCommit, _>(&client, ENDPOINT, variables)
         .await?
         .data
-        .ok_or(anyhow!("missing in response: data"))?
+        .ok_or_else(|| anyhow!("missing in response: data"))?
         .repository
-        .ok_or(anyhow!("missing in response: repository"))?
+        .ok_or_else(|| anyhow!("missing in response: repository"))?
         .ref_
-        .ok_or(anyhow!("missing in response: ref"))?
+        .ok_or_else(|| anyhow!("missing in response: ref"))?
         .target
-        .ok_or(anyhow!("missing in response: target"))?;
+        .ok_or_else(|| anyhow!("missing in response: target"))?;
 
     if let Commit(LatestCommitRepositoryRefTargetOnCommit { oid }) = target {
         Ok(oid)
