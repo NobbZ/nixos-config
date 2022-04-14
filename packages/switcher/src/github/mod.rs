@@ -29,12 +29,7 @@ struct GhHost {
 }
 
 #[instrument]
-pub(crate) async fn get_latest_commit<S1, S2, S3>(owner: S1, repo: S2, branch: S3) -> Result<String>
-where
-    S1: Into<String> + Debug,
-    S2: Into<String> + Debug,
-    S3: Into<String> + Debug,
-{
+pub(crate) async fn get_latest_commit(owner: &str, repo: &str, branch: &str) -> Result<String> {
     use latest_commit::LatestCommitRepositoryRefTarget::*;
     use latest_commit::LatestCommitRepositoryRefTargetOnCommit;
 

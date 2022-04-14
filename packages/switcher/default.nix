@@ -10,7 +10,7 @@
   home-manager,
   ncurses6,
   pkg-config,
-  openssl
+  openssl,
 }: let
   runtimeDeps = [gh hostname coreutils nix nixos-rebuild home-manager ncurses6];
 in
@@ -23,7 +23,7 @@ in
 
     src = ./.;
 
-    cargoSha256 = "sha256-m8IlajRMidedjm+eyKJdasAOtrgZ6dTtaqYl1nJxLE8=";
+    cargoSha256 = "sha256-1sWA3Au/OjWeBR8dU+PT4TBGZ0Bs+Wpqgrq+8UpL+wo=";
 
     postInstall = ''
       wrapProgram $out/bin/switcher \

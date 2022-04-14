@@ -1,5 +1,5 @@
 use futures::future;
-use std::{error::Error, fmt::Debug, io::Error as IoError, path::Path, process::ExitStatus, str};
+use std::{error::Error, io::Error as IoError, path::Path, process::ExitStatus, str};
 use tokio::{self, process::Command};
 use tracing::{instrument, Level};
 use tracing_futures::Instrument;
@@ -25,12 +25,7 @@ async fn spawn_command(cmd: &mut Command) -> Result<ExitStatus, IoError> {
 }
 
 #[instrument]
-async fn retrieve_sha<S1, S2, S3>(owner: S1, repo: S2, branch: S3) -> String
-where
-    S1: Into<String> + Debug,
-    S2: Into<String> + Debug,
-    S3: Into<String> + Debug,
-{
+async fn retrieve_sha(owner: &str, repo: &str, branch: &str) -> String {
     github::get_latest_commit(owner, repo, branch)
         .await
         .unwrap()
