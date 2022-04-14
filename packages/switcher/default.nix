@@ -20,7 +20,7 @@ in
 
     src = ./.;
 
-    cargoSha256 = "sha256-4HslCd3AMGZGFfADbQ/sdL9bj+R8woS8i0A9vKF1FgU=";
+    cargoSha256 = "sha256-KROqjfumSwyj1MSeq8fvc3k4twIKor8XSPhg3o5MjS8=";
 
     postInstall = ''
       wrapProgram $out/bin/switcher \

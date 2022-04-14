@@ -12,6 +12,8 @@ use tracing::{instrument, Level};
 use tracing_futures::Instrument;
 use tracing_subscriber::FmtSubscriber;
 
+mod github;
+
 const OWNER: &str = "nobbz";
 const REPO: &str = "nixos-config";
 
@@ -32,13 +34,13 @@ async fn spawn_command(cmd: &mut Command) -> Result<ExitStatus, IoError> {
 #[instrument]
 async fn retrieve_sha<S1, S2, S3>(owner: S1, repo: S2, branch: S3) -> String
 where
-    S1: Display + Debug,
-    S2: Display + Debug,
-    S3: Display + Debug,
+    S1: Into<String> + Debug,
+    S2: Into<String> + Debug,
+    S3: Into<String> + Debug,
 {
-    let endpoint = format!("/repos/{}/{}/commits/{}", owner, repo, branch);
-
-    get_command_out(Command::new("gh").args(["api", &endpoint, "--jq", ".sha"])).await
+    github::get_latest_commit(owner, repo, branch)
+        .await
+        .unwrap()
 }
 
 #[instrument]
@@ -58,7 +60,7 @@ async fn get_tempfldr() -> String {
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    let _subscriber = FmtSubscriber::builder().with_max_level(Level::INFO).init();
+    FmtSubscriber::builder().with_max_level(Level::DEBUG).init();
 
     tracing::info!("Gathering info");
 
