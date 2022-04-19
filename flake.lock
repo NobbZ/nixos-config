@@ -22,11 +22,11 @@
     },
     "emacs": {
       "locked": {
-        "lastModified": 1650221196,
-        "narHash": "sha256-U+kXNl86/2DGsiQo7nj0akQbbekRnmJtpdQWfKN3s3Y=",
+        "lastModified": 1650307016,
+        "narHash": "sha256-9udv0iqjnJhJtJO3GOQMJXtwpu8g0nh14OiPWwD1bGE=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "759b1eb18a5b4afd9b286305032ba73b5bbc8103",
+        "rev": "2bbbf439199d5a3f5aa24bd77ea0c85f3bcc771f",
         "type": "github"
       },
       "original": {
@@ -116,11 +116,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1650234580,
-        "narHash": "sha256-wTmlRedCrDl+XYJom65GMfI3RgA3eZE/w03lD28Txoc=",
+        "lastModified": 1650301786,
+        "narHash": "sha256-9rz9NqL+mC+BIggn2emuzZ+3MYogxVBTdsFK7E3Vv1k=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "742c6cb3e9d866e095c629162fe5faf519adeb26",
+        "rev": "8d38ca886880265d523a66fe3da4d42e92ab0748",
         "type": "github"
       },
       "original": {
@@ -147,11 +147,11 @@
     },
     "master": {
       "locked": {
-        "lastModified": 1650249653,
-        "narHash": "sha256-PTJVSzXdAhIebtYFpwXUJqWPGjVfjZFRE6IHjebuNEw=",
+        "lastModified": 1650335291,
+        "narHash": "sha256-KG6gN0nfrTsb+J+hLhbdlxRcObA/EFAA0Frpm5flfQE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "b6f5bf2cf0393193529b717772684216407b9896",
+        "rev": "8c8d328086d654eb5899c03dc558ba33d3369a4c",
         "type": "github"
       },
       "original": {
@@ -255,11 +255,11 @@
     },
     "nixpkgs-2111": {
       "locked": {
-        "lastModified": 1650143261,
-        "narHash": "sha256-KI3IDHAtXG/7Uu1gNuuy6ovKqP/d6OhV0HwCWIKx0Aw=",
+        "lastModified": 1650244918,
+        "narHash": "sha256-DsS5nxjTpnoUC4pNXJI1rit7TnDTij8vQDa5PtcDCD0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "0a862f558d4001c62f15f652b1b907002dc1e9b9",
+        "rev": "7b38b03d76ab71bdc8dc325e3f6338d984cc35ca",
         "type": "github"
       },
       "original": {
