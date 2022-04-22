@@ -12,6 +12,8 @@
   # TODO: 👇 move import of `virtualbox-demo.nix` into extra module 👇
   imports = [(modulesPath + "/installer/virtualbox-demo.nix")];
 
+  services.pdns-recursor.enable = true;
+
   nix.allowedUnfree = ["zerotierone"];
 
   boot.kernelPackages = pkgs.linuxPackages_5_16;
