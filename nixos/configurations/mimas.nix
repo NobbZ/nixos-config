@@ -186,6 +186,8 @@ in {
         "libvirtd"
         "docker"
         "transmission"
+        "scanner"
+        "lp"
       ];
     };
 
@@ -239,6 +241,8 @@ in {
   };
 
   hardware.keyboard.zsa.enable = true;
+  hardware.sane.enable = true;
+  hardware.sane.extraBackends = [pkgs.hplipWithPlugin];
 
   services.traefik.enable = true;
   systemd.services.traefik.serviceConfig.EnvironmentFile = "/etc/traefik/env";
