@@ -12,6 +12,14 @@
   # TODO: 👇 move import of `virtualbox-demo.nix` into extra module 👇
   imports = [(modulesPath + "/installer/virtualbox-demo.nix")];
 
+  services.pdns-recursor.enable = true;
+  services.pdns-recursor.dns.allowFrom = [
+    "10.0.0.0/8"
+    "172.16.0.0/12"
+    "192.168.0.0/16"
+    "127.0.0.0/8"
+  ];
+
   nix.allowedUnfree = ["zerotierone"];
 
   boot.kernelPackages = pkgs.linuxPackages_5_16;
