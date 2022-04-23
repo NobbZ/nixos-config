@@ -2,7 +2,6 @@
   lib,
   rustPlatform,
   makeWrapper,
-  gh,
   hostname,
   coreutils,
   nix,
@@ -12,11 +11,11 @@
   pkg-config,
   openssl,
 }: let
-  runtimeDeps = [hostname coreutils nix home-manager ncurses6];
+  runtimeDeps = [hostname coreutils nix home-manager nixos-rebuild ncurses6];
 in
   rustPlatform.buildRustPackage {
     pname = "nobbz-switcher";
-    version = "0.2.0";
+    version = "0.2.1";
 
     nativeBuildInputs = [makeWrapper pkg-config];
     buildInputs = [openssl];
@@ -27,6 +26,6 @@ in
 
     postInstall = ''
       wrapProgram $out/bin/switcher \
-        --set PATH "${lib.makeBinPath runtimeDeps}:/run/wrappers/bin"
+        --suffix PATH : "${lib.makeBinPath runtimeDeps}"
     '';
   }
