@@ -146,6 +146,11 @@ in {
             user = "norbert.melzer";
             identityFile = "~/.ssh/cloudseeds";
           };
+
+          "ironic" = {
+            user = "root";
+            identityFile = "~/.ssh/cloudseeds";
+          };
         };
       };
 
