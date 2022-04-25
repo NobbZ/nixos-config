@@ -148,6 +148,7 @@ in {
           };
 
           "ironic" = {
+            hostname = "192.168.123.31";
             user = "root";
             identityFile = "~/.ssh/cloudseeds";
           };
