@@ -1,4 +1,4 @@
-_: {
+{self, ...}: {
   config,
   lib,
   pkgs,
@@ -14,6 +14,6 @@ in {
 
   config = lib.mkIf cfg.enable {
     nixpkgs.config = {google-chrome = {enableWideVine = true;};};
-    home.packages = with pkgs; [google-chrome lynx];
+    home.packages = with pkgs; [self.packages.x86_64-linux.google-chrome lynx];
   };
 }
