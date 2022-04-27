@@ -17,7 +17,7 @@ in {
   "gnucash-de" = upkgs.callPackage ./gnucash-de {};
   "keyleds" = upkgs.callPackage ./keyleds {};
   "dracula/konsole" = upkgs.callPackage ./dracula/konsole {};
-  "emacs" = epkgs.emacsGcc;
+  "emacs" = epkgs.emacsNativeComp;
   "elixir-lsp" = upkgs.beam.packages.erlang.callPackage ./elixir-lsp {};
   "erlang-ls" = upkgs.beam.packages.erlang.callPackage ./erlang-ls {};
   "rofi/unicode" = upkgs.callPackage ./rofi-unicode {};
