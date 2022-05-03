@@ -12,6 +12,19 @@
 
   self' = self.packages.x86_64-linux;
 
+  mediaKeys = let
+    keyMap = {
+      "XF86AudioMute" = "amixer set Master 1+ toggle";
+      "XF86AudioLowerVolume" = "amixer set Master 4%-";
+      "XF86AudioRaiseVolume" = "amixer set Master 4%+";
+      "XF86AudioPlay" = "${pkgs.playerctl}/bin/playerctl play-pause";
+      "XF86AudioPrev" = "${pkgs.playerctl}/bin/playerctl previous";
+      "XF86AudioNext" = "${pkgs.playerctl}/bin/playerctl next";
+    };
+    keyList = lib.attrsets.mapAttrsToList (key: command: ''awful.key({ }, "${key}", function () awful.util.spawn("${command}") end)'') keyMap;
+  in
+    lib.strings.concatStringsSep ",\n  " keyList;
+
   autostartScript = let
     entries = builtins.map (e: "\"${e}\",") cfg.autostart;
   in ''
@@ -413,6 +426,8 @@ in {
          -- Menubar
          awful.key({ modkey }, "p", function() menubar.show() end,
             {description = "show the menubar", group = "launcher"})
+
+         ${lib.optionalString config.services.playerctld.enable ",${mediaKeys}"}
       )
 
       clientkeys = gears.table.join(

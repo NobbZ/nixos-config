@@ -72,6 +72,7 @@ in {
       keybase.enable = true;
       kbfs.enable = true;
       insync.enable = true;
+      playerctld.enable = true;
 
       restic = {
         enable = true;
