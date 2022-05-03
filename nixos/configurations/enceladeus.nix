@@ -10,6 +10,20 @@ _: {
   nix.allowedUnfree = ["b43-firmware" "zerotierone"];
   nixpkgs.config.contentAddressedByDefault = false;
 
+  nixpkgs.overlays = [
+    # (final: prev: {
+    #   stdenv =
+    #     prev.stdenv
+    #     // {
+    #       mkDerivation = args:
+    #         prev.stdenv.mkDerivation (args
+    #           // {
+    #             NIX_CFLAGS_COMPILE = toString (args.NIX_CFLAGS_COMPILE or " -pipe -march=core2 -O3");
+    #           });
+    #     };
+    # })
+  ];
+
   # nix.useSandbox = false;
   nix.package = pkgs.nix_2_4;
 
