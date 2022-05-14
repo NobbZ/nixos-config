@@ -10,7 +10,7 @@
   imports = [];
 
   boot.initrd.availableKernelModules = ["uhci_hcd" "ehci_pci" "ahci" "firewire_ohci" "usbhid" "usb_storage" "sd_mod" "sr_mod" "sdhci_pci"];
-  boot.initrd.kernelModules = [];
+  boot.initrd.kernelModules = ["dm-snapshot"];
   boot.kernelModules = ["kvm-intel" "wl"];
   boot.extraModulePackages = [];
   boot.supportedFilesystems = ["ntfs-3g"];

@@ -27,6 +27,8 @@ _: {
   # nix.useSandbox = false;
   # nix.package = pkgs.nix_2_4;
 
+  services.lvm.boot.vdo.enable = true;
+  services.lvm.dmeventd.enable = true;
   boot.blacklistedKernelModules = ["rtl8xxxu"];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     rtl8192eu
