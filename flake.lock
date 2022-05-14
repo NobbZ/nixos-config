@@ -338,6 +338,22 @@
     },
     "nixpkgs_4": {
       "locked": {
+        "lastModified": 1652378906,
+        "narHash": "sha256-DeV2myAMArPvyqxp0M6z30kuXb2L9SO2QXjxbbsZQyY=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d89d7af1ba23bd8a5341d00bdd862e8e9a808f56",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
         "lastModified": 1645013224,
         "narHash": "sha256-b7OEC8vwzJv3rsz9pwnTX2LQDkeOWz2DbKypkVvNHXc=",
         "owner": "nixos",
@@ -384,6 +400,7 @@
         "master": "master",
         "nix": "nix",
         "nixos-vscode-server": "nixos-vscode-server",
+        "nixpkgs": "nixpkgs_4",
         "nixpkgs-2105": "nixpkgs-2105",
         "nixpkgs-2111": "nixpkgs-2111",
         "rnix-lsp": "rnix-lsp",
@@ -412,7 +429,7 @@
       "inputs": {
         "fenix": "fenix",
         "gitignore": "gitignore",
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
         "lastModified": 1651418255,
