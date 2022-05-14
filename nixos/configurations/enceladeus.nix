@@ -25,7 +25,7 @@ _: {
   ];
 
   # nix.useSandbox = false;
-  nix.package = pkgs.nix_2_4;
+  # nix.package = pkgs.nix_2_4;
 
   boot.blacklistedKernelModules = ["rtl8xxxu"];
   boot.extraModulePackages = with config.boot.kernelPackages; [
