@@ -28,7 +28,7 @@ _: {
   # nix.package = pkgs.nix_2_4;
 
   services.lvm.boot.vdo.enable = true;
-  services.lmv.boot.thin.enable = true;
+  services.lvm.boot.thin.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_5_15;
   services.lvm.dmeventd.enable = true;
   boot.blacklistedKernelModules = ["rtl8xxxu"];
