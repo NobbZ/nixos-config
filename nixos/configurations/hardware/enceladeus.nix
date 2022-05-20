@@ -26,7 +26,7 @@
   # };
 
   fileSystems."/nix/store" = {
-    device = "/dev/disk/by-label/store";
+    device = "/dev/mapper/pool-store--old";
     fsType = "ext4";
   };
 
