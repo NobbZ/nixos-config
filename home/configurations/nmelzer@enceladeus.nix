@@ -8,7 +8,7 @@
 
     nixpkgs.config.contentAddressedByDefault = false;
 
-    activeProfiles = ["browsing" "development"]; # "home-office" ];
+    activeProfiles = ["browsing" "development"];
 
     xsession.windowManager.awesome.autostart = [
       "${pkgs.blueman}/bin/blueman-applet"

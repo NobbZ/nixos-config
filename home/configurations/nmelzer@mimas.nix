@@ -9,7 +9,7 @@ in {
   config = {
     nixpkgs.allowedUnfree = ["teamspeak-client" "google-chrome" "vscode" "teams"];
 
-    activeProfiles = ["browsing" "development" "home-office"];
+    activeProfiles = ["browsing" "development"];
 
     dconf.enable = true;
 
