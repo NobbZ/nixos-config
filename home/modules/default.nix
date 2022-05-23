@@ -3,7 +3,6 @@ inputs: {
   "profiles/base" = import ./profiles/base inputs;
   "profiles/browsing" = import ./profiles/browsing inputs;
   "profiles/development" = import ./profiles/development inputs;
-  "profiles/home-office" = import ./profiles/home-office inputs;
 
   "languages" = import ./languages inputs;
   "languages/agda" = import ./languages/agda inputs;
