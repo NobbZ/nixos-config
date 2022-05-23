@@ -370,14 +370,16 @@ in {
     ];
   };
 
-  services.paperless-ng = {
+  services.paperless = {
     enable = true;
     # address = "mimas.internal.nobbz.dev";
     address = "0.0.0.0";
     port = 58080;
     extraConfig.PAPERLESS_OCR_LANGUAGE = "deu+eng";
   };
-  systemd.services.paperless-ng-server.after = ["var-lib-paperless.mount"];
+  systemd.services.paperless-scheduler.after = ["var-lib-paperless.mount"];
+  systemd.services.paperless-consumer.after = ["var-lib-paperless.mount"];
+  systemd.services.paperless-web.after = ["var-lib-paperless.mount"];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
