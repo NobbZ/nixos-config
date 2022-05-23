@@ -1,9 +1,7 @@
 {
   inputs.nixpkgs-2105.url = "github:nixos/nixpkgs/nixos-21.05";
   inputs.nixpkgs-2111.url = "github:nixos/nixpkgs/nixos-21.11";
-  # Temporary pin, as there are problems using OpenVPN to connect to the Company VPN
-  inputs.unstable.url = "github:nixos/nixpkgs/bc4b9eef3ce3d5a90d8693e8367c9cbfc9fc1e13"; # nixos-unstable";
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+  inputs.unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.master.url = "github:nixos/nixpkgs/master";
 
   inputs.nix.url = "github:nixos/nix"; #/caf51729450d4c57d48ddbef8e855e9bf65f8792";
