@@ -17,6 +17,7 @@ in
         [
           entrypoint
         ]
-        ++ __attrValues self.homeModules;
+        ++ __attrValues self.homeModules
+        ++ __attrValues self.mixedModules;
     };
   }
