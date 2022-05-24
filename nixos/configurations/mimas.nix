@@ -305,6 +305,20 @@ in {
         tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
         tls.certResolver = "mimasWildcard";
       };
+      gitea = {
+        entryPoints = ["https" "http"];
+        rule = "Host(`gitea.mimas.internal.nobbz.dev`)";
+        service = "gitea";
+        tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
+        tls.certResolver = "mimasWildcard";
+      };
+      grafana = {
+        entryPoints = ["https" "http"];
+        rule = "Host(`grafana.mimas.internal.nobbz.dev`)";
+        service = "grafana";
+        tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
+        tls.certResolver = "mimasWildcard";
+      };
       # minio-tls = {
       #   entryPoints = [ "https" "experimental" ];
       #   rule = "HostRegexp(`{subdomain:[a-z0-9]+}.mimas.internal.nobbz.dev`) && PathPrefix(`/`)";
