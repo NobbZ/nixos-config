@@ -78,7 +78,7 @@ in {
         enable = true;
         exclude = (map (e: "%h/${e}") [".cache" ".cabal" ".cargo" ".emacs.d/eln-cache" ".emacs.d/.cache" ".gem" ".gradle" ".hex" ".kube" ".local" ".m2" ".minikube" ".minishift" ".mix" ".mozilla" "npm" ".opam" ".rancher" ".vscode-oss" "go/pkg"]) ++ ["_build" "deps" "result" "target" ".elixir_ls" "ccls-cache" ".direnv"];
         oneFileSystem = true;
-        repo = "rest:http://172.24.152.168:9999/nobbz";
+        repo = "rest:https://restic.mimas.internal.nobbz.dev/nobbz";
       };
     };
 

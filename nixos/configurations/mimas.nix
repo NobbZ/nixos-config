@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{unstable, ...}: {
+{unstable, ...} @ inputs: {
   config,
   pkgs,
   lib,
@@ -11,6 +11,10 @@
   steamPackages = ["steam" "steam-original" "steam-runtime"];
   printerPackages = ["hplip" "samsung-UnifiedLinuxDriver"];
 in {
+  imports = [
+    (import ./mimas/restic.nix inputs)
+  ];
+
   nix.allowedUnfree = ["zerotierone"] ++ printerPackages ++ steamPackages;
 
   security.chromiumSuidSandbox.enable = true;
@@ -116,12 +120,6 @@ in {
   services.xserver.enable = true;
   services.xserver.layout = "de";
   # services.xserver.xkbOptions = "eurosign:e";
-
-  services.restic.server.enable = true;
-  services.restic.server.prometheus = true;
-  services.restic.server.extraFlags = ["--no-auth"];
-  services.restic.server.listenAddress = "${config.lib.nobbz.mimas.v4}:9999";
-  systemd.services.restic-rest-server.after = ["var-lib-restic.mount"];
 
   # Enable touchpad support.
   # services.xserver.libinput.enable = true;
