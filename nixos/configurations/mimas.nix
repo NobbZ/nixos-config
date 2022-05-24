@@ -228,9 +228,9 @@ in {
   # grafana configuration
   services.grafana = {
     enable = true;
-    domain = "grafana.nobbz.lan";
+    domain = "grafana.mimas.internal.nobbz.lan";
     port = 2342;
-    addr = "0.0.0.0";
+    addr = "127.0.0.1";
   };
 
   # nginx reverse proxy
@@ -325,6 +325,9 @@ in {
 
       gitea.loadBalancer.passHostHeader = true;
       gitea.loadBalancer.servers = [{url = "http://localhost:${toString config.services.gitea.httpPort}";}];
+
+      grafana.loadBalancer.passHostHeader = true;
+      grafana.loadBalancer.servers = [{url = "http://localhost:${toString config.services.grafana.httpPort}";}];
     };
   };
 
