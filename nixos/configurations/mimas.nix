@@ -153,6 +153,7 @@ in {
   hardware.opengl.extraPackages = [pkgs.vaapiIntel pkgs.beignet];
 
   services.gitea.enable = true;
+  services.gitea.httpAddress = "127.0.0.1";
 
   virtualisation = {
     docker = {
@@ -321,6 +322,9 @@ in {
 
       paperless.loadBalancer.passHostHeader = true;
       paperless.loadBalancer.servers = [{url = "http://localhost:${toString config.services.paperless.port}";}];
+
+      gitea.loadBalancer.passHostHeader = true;
+      gitea.loadBalancer.servers = [{url = "http://localhost:${toString config.services.gitea.httpPort}";}];
     };
   };
 
