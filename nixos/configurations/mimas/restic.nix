@@ -16,7 +16,7 @@ in {
   services.traefik.dynamicConfigOptions.http.routers.restic = {
     entryPoints = ["https" "http"];
     rule = "Host(`restic.mimas.internal.nobbz.dev`)";
-    service = "grafana";
+    service = "restic";
     tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
     tls.certResolver = "mimasWildcard";
   };
@@ -24,6 +24,6 @@ in {
   # And the service configuration
   services.traefik.dynamicConfigOptions.http.services.restic.loadBalancer = {
     passHostHeader = false;
-    servers = [{url = "http://localhost:${toString resticPort}";}];
+    servers = [{url = "http://127.0.0.1:${toString resticPort}";}];
   };
 }
