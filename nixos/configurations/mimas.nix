@@ -120,7 +120,7 @@ in {
   services.restic.server.enable = true;
   services.restic.server.prometheus = true;
   services.restic.server.extraFlags = ["--no-auth"];
-  services.restic.server.listenAddress = "172.24.152.168:9999";
+  services.restic.server.listenAddress = "${config.lib.nobbz.mimas.v4}:9999";
   systemd.services.restic-rest-server.after = ["var-lib-restic.mount"];
 
   # Enable touchpad support.
@@ -361,8 +361,7 @@ in {
           {
             targets = [
               "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
-              "172.24.199.101:9002"
-              "172.24.231.199:9002"
+              "${config.lib.nobbz.enceladeus.v4}:9002"
             ];
           }
         ];
