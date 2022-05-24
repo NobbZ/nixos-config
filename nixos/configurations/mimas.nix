@@ -10,6 +10,8 @@
   upkgs = unstable.legacyPackages.x86_64-linux;
   steamPackages = ["steam" "steam-original" "steam-runtime"];
   printerPackages = ["hplip" "samsung-UnifiedLinuxDriver"];
+
+  resticPort = 9999;
 in {
   nix.allowedUnfree = ["zerotierone"] ++ printerPackages ++ steamPackages;
 
@@ -120,7 +122,7 @@ in {
   services.restic.server.enable = true;
   services.restic.server.prometheus = true;
   services.restic.server.extraFlags = ["--no-auth"];
-  services.restic.server.listenAddress = "${config.lib.nobbz.mimas.v4}:9999";
+  services.restic.server.listenAddress = "127.0.0.1:${toString resticPort}";
   systemd.services.restic-rest-server.after = ["var-lib-restic.mount"];
 
   # Enable touchpad support.
@@ -319,6 +321,13 @@ in {
         tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
         tls.certResolver = "mimasWildcard";
       };
+      restic = {
+        entryPoints = ["https" "http"];
+        rule = "Host(`grafana.mimas.internal.nobbz.dev`)";
+        service = "grafana";
+        tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
+        tls.certResolver = "mimasWildcard";
+      };
       # minio-tls = {
       #   entryPoints = [ "https" "experimental" ];
       #   rule = "HostRegexp(`{subdomain:[a-z0-9]+}.mimas.internal.nobbz.dev`) && PathPrefix(`/`)";
@@ -342,6 +351,9 @@ in {
 
       grafana.loadBalancer.passHostHeader = true;
       grafana.loadBalancer.servers = [{url = "http://localhost:${toString config.services.grafana.port}";}];
+
+      restic.loadBalancer.passHostHeader = false;
+      restic.loadBalancer.servers = [{url = "http://localhost:${toString resticPort}";}];
     };
   };
 
