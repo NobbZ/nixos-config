@@ -15,7 +15,7 @@ in {
   # Add an appropriate router for traefik
   services.traefik.dynamicConfigOptions.http.routers.restic = {
     entryPoints = ["https" "http"];
-    rule = "Host(`grafana.mimas.internal.nobbz.dev`)";
+    rule = "Host(`restic.mimas.internal.nobbz.dev`)";
     service = "grafana";
     tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
     tls.certResolver = "mimasWildcard";
