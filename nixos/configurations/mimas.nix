@@ -320,7 +320,7 @@ in {
       fritz.loadBalancer.servers = [{url = "http://fritz.box";}];
 
       paperless.loadBalancer.passHostHeader = true;
-      paperless.loadBalancer.servers = [{url = "http://localhost:58080";}];
+      paperless.loadBalancer.servers = [{url = "http://localhost:${toString config.services.paperless.port}";}];
     };
   };
 
@@ -372,7 +372,6 @@ in {
 
   services.paperless = {
     enable = true;
-    # address = "mimas.internal.nobbz.dev";
     address = "0.0.0.0";
     port = 58080;
     extraConfig.PAPERLESS_OCR_LANGUAGE = "deu+eng";
