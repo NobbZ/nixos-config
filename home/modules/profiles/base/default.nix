@@ -85,9 +85,6 @@ in {
               }
             ];
           };
-          "thetys.internal.nobbz.dev" = {
-            user = "demo";
-          };
 
           "*.nobbz.dev" = {
             identityFile = "~/.ssh/nobbz_dev";

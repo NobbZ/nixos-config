@@ -29,6 +29,8 @@
     homeModules = import ./home/modules inputs;
     homeConfigurations = import ./home/configurations inputs;
 
+    mixedModules = import ./mixed inputs;
+
     packages.x86_64-linux =
       (import ./packages inputs)
       // self.lib.nixosConfigurationsAsPackages.x86_64-linux

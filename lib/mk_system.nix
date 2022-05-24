@@ -26,6 +26,7 @@ nixpkgs.lib.nixosSystem (
         hardware
         inputs.nixos-vscode-server.nixosModules.system
       ]
-      ++ __attrValues self.nixosModules;
+      ++ __attrValues self.nixosModules
+      ++ __attrValues self.mixedModules;
   }
 )

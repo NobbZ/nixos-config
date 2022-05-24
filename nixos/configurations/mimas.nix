@@ -120,7 +120,7 @@ in {
   services.restic.server.enable = true;
   services.restic.server.prometheus = true;
   services.restic.server.extraFlags = ["--no-auth"];
-  services.restic.server.listenAddress = "172.24.152.168:9999";
+  services.restic.server.listenAddress = "${config.lib.nobbz.mimas.v4}:9999";
   systemd.services.restic-rest-server.after = ["var-lib-restic.mount"];
 
   # Enable touchpad support.
@@ -153,6 +153,7 @@ in {
   hardware.opengl.extraPackages = [pkgs.vaapiIntel pkgs.beignet];
 
   services.gitea.enable = true;
+  services.gitea.httpAddress = "127.0.0.1";
 
   virtualisation = {
     docker = {
@@ -227,9 +228,9 @@ in {
   # grafana configuration
   services.grafana = {
     enable = true;
-    domain = "grafana.nobbz.lan";
+    domain = "grafana.mimas.internal.nobbz.lan";
     port = 2342;
-    addr = "0.0.0.0";
+    addr = "127.0.0.1";
   };
 
   # nginx reverse proxy
@@ -304,6 +305,20 @@ in {
         tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
         tls.certResolver = "mimasWildcard";
       };
+      gitea = {
+        entryPoints = ["https" "http"];
+        rule = "Host(`gitea.mimas.internal.nobbz.dev`)";
+        service = "gitea";
+        tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
+        tls.certResolver = "mimasWildcard";
+      };
+      grafana = {
+        entryPoints = ["https" "http"];
+        rule = "Host(`grafana.mimas.internal.nobbz.dev`)";
+        service = "grafana";
+        tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
+        tls.certResolver = "mimasWildcard";
+      };
       # minio-tls = {
       #   entryPoints = [ "https" "experimental" ];
       #   rule = "HostRegexp(`{subdomain:[a-z0-9]+}.mimas.internal.nobbz.dev`) && PathPrefix(`/`)";
@@ -320,7 +335,13 @@ in {
       fritz.loadBalancer.servers = [{url = "http://fritz.box";}];
 
       paperless.loadBalancer.passHostHeader = true;
-      paperless.loadBalancer.servers = [{url = "http://localhost:58080";}];
+      paperless.loadBalancer.servers = [{url = "http://localhost:${toString config.services.paperless.port}";}];
+
+      gitea.loadBalancer.passHostHeader = true;
+      gitea.loadBalancer.servers = [{url = "http://localhost:${toString config.services.gitea.httpPort}";}];
+
+      grafana.loadBalancer.passHostHeader = true;
+      grafana.loadBalancer.servers = [{url = "http://localhost:${toString config.services.grafana.port}";}];
     };
   };
 
@@ -361,8 +382,7 @@ in {
           {
             targets = [
               "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
-              "172.24.199.101:9002"
-              "172.24.231.199:9002"
+              "${config.lib.nobbz.enceladeus.v4}:9002"
             ];
           }
         ];
@@ -372,7 +392,6 @@ in {
 
   services.paperless = {
     enable = true;
-    # address = "mimas.internal.nobbz.dev";
     address = "0.0.0.0";
     port = 58080;
     extraConfig.PAPERLESS_OCR_LANGUAGE = "deu+eng";
