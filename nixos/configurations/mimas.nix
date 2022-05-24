@@ -32,21 +32,6 @@ in {
   networking.networkmanager.unmanaged = [
     # "mac:80:fa:5b:09:15:6e"
   ];
-  networking.extraHosts = ''
-    # 127.0.0.1 versions.teamspeak.com files.teamspeak-services.com
-  '';
-  # networking.firewall.extraCommands = ''
-  #   iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 443 -s 10.42.0.0/16 -d 127.0.0.1/32 -j ACCEPT
-  #   iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 6445 -s 10.42.0.0/16 -d 127.0.0.1/32 -j ACCEPT
-  # '';
-
-  # services.k3s.enable = true;
-  # services.k3s.extraFlags = "--write-kubeconfig-mode 0644 --node-external-ip 192.168.178.54 --node-external-ip 172.24.152.168";
-  # systemd.services.k3s.after = [ "var-lib-rancher.mount" ];
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
   i18n = {
@@ -84,7 +69,7 @@ in {
   services.flatpak.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [80 443 1111 8080 9002 9003 2342 9999 3000 58080];
+  networking.firewall.allowedTCPPorts = [80 443 1111 8080 9002 9003 58080];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
