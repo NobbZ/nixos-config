@@ -37,31 +37,37 @@
   fileSystems."/var/lib/docker" = {
     device = "/dev/disk/by-uuid/5da6b8c1-2598-48f1-9541-49c50e95aac9";
     fsType = "ext4";
+    options = ["nofail"];
   };
 
   fileSystems."/var/lib/grafana" = {
     device = "/dev/disk/by-uuid/c6294dc0-f2cb-432b-a993-02d21855732c";
     fsType = "ext4";
+    options = ["nofail"];
   };
 
   fileSystems."/var/lib/prometheus2" = {
     device = "/dev/disk/by-uuid/3ec5c5b2-d7cd-4b59-bb6b-d1fc40100662";
     fsType = "ext4";
+    options = ["nofail"];
   };
 
   fileSystems."/var/lib/paperless" = {
     device = "/dev/disk/by-label/paperless";
     fsType = "ext4";
+    options = ["nofail"];
   };
 
   fileSystems."/var/lib/restic" = {
     device = "/dev/disk/by-uuid/3eb6492a-b126-4ad5-b9df-4eb47df1135c";
     fsType = "ext4";
+    options = ["nofail"];
   };
 
   fileSystems."/var/lib/ums" = {
     device = "/dev/disk/by-label/ums";
     fsType = "ext4";
+    options = ["nofail"];
   };
 
   fileSystems."/boot" = {
