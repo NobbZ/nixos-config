@@ -1,4 +1,4 @@
-_: {...}: let
+_: _: let
   resticPort = 9999;
 in {
   services.restic.server = {
