@@ -70,7 +70,7 @@ in {
       Unit.Description = "Restic periodic backup";
       Timer = {
         Unit = "restic-backup.service";
-        OnCalendar = "*:0/15";
+        OnCalendar = "hourly";
       };
       Install.WantedBy = ["timers.target"];
     };
