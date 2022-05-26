@@ -9,6 +9,7 @@ _: {
   inherit (pkgs) writeShellScript proot restic mount umount;
 
   pools = {
+    docker = "/var/lib/docker";
     grafana = "/var/lib/grafana";
     paperless = "/var/lib/paperless";
     prometheus = "/var/lib/prometheus2";
