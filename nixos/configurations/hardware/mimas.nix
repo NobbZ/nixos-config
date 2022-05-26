@@ -40,6 +40,12 @@
     options = ["nofail"];
   };
 
+  fileSystems."/var/lib/gitea" = {
+    device = "/dev/pool/gitea";
+    fsType = "ext4";
+    options = ["nofail"];
+  };
+
   fileSystems."/var/lib/grafana" = {
     device = "/dev/pool/grafana";
     fsType = "ext4";
