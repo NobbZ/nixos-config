@@ -101,7 +101,12 @@ in {
   systemd.services.restic-system-snapshot-sync-and-prune = {
     path = [restic];
     serviceConfig.Type = "oneshot";
+    serviceConfig.LoadCredential = [
+      "b2:/home/nmelzer/.config/restic/b2"
+    ];
     script = ''
+      eval $(cat "$CREDENTIALS_DIRECTORY/b2")
+
       restic copy --repo rest:https://restic.mimas.internal.nobbz.dev/mimas --repo2 /home/nmelzer/timmelzer@gmail.com/restic_repos/mimas -vvv
       restic copy --repo rest:https://restic.mimas.internal.nobbz.dev/mimas --repo2 b2:nobbz-restic-services -vvv
 
@@ -116,6 +121,7 @@ in {
     environment = {
       RESTIC_PASSWORD_FILE = "/home/nmelzer/.config/restic/password";
       RESTIC_PASSWORD_FILE2 = "/home/nmelzer/.config/restic/password";
+      XDG_CACHE_HOME = "%C";
     };
   };
 }
