@@ -35,37 +35,37 @@
   };
 
   fileSystems."/var/lib/docker" = {
-    device = "/dev/disk/by-uuid/5da6b8c1-2598-48f1-9541-49c50e95aac9";
+    device = "/dev/pool/docker";
     fsType = "ext4";
     options = ["nofail"];
   };
 
   fileSystems."/var/lib/grafana" = {
-    device = "/dev/disk/by-uuid/c6294dc0-f2cb-432b-a993-02d21855732c";
+    device = "/dev/pool/grafana";
     fsType = "ext4";
     options = ["nofail"];
   };
 
   fileSystems."/var/lib/prometheus2" = {
-    device = "/dev/disk/by-uuid/3ec5c5b2-d7cd-4b59-bb6b-d1fc40100662";
+    device = "/dev/pool/prometheus";
     fsType = "ext4";
     options = ["nofail"];
   };
 
   fileSystems."/var/lib/paperless" = {
-    device = "/dev/disk/by-label/paperless";
+    device = "/dev/pool/paperless";
     fsType = "ext4";
     options = ["nofail"];
   };
 
   fileSystems."/var/lib/restic" = {
-    device = "/dev/disk/by-uuid/3eb6492a-b126-4ad5-b9df-4eb47df1135c";
+    device = "/dev/usbpool/restic";
     fsType = "ext4";
     options = ["nofail"];
   };
 
   fileSystems."/var/lib/ums" = {
-    device = "/dev/disk/by-label/ums";
+    device = "/dev/usbpool/ums";
     fsType = "ext4";
     options = ["nofail"];
   };
