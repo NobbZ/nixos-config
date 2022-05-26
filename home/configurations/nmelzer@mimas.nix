@@ -2,10 +2,7 @@
   unstable,
   self,
   ...
-}: {pkgs, ...}: let
-  keepassWithPlugins =
-    pkgs.keepass.override {plugins = [pkgs.keepass-keepasshttp];};
-in {
+}: {pkgs, ...}: {
   config = {
     nixpkgs.allowedUnfree = ["teamspeak-client" "google-chrome" "vscode" "teams"];
 
@@ -43,10 +40,9 @@ in {
       p.freerdp
       p.vscode
       p.teams
+      p.keepassxc
 
       s.gnucash-de
-
-      keepassWithPlugins
     ];
 
     programs.obs-studio.enable = true;
