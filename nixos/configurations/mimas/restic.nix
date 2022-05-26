@@ -10,6 +10,7 @@ _: {
 
   pools = {
     docker = "/var/lib/docker";
+    gitea = "/var/lib/gitea";
     grafana = "/var/lib/grafana";
     paperless = "/var/lib/paperless";
     prometheus = "/var/lib/prometheus2";
@@ -42,7 +43,7 @@ _: {
     ${mountCmds}
 
     # TODO: Make the latter from snapshots as well!
-    proot ${lib.escapeShellArgs mounts} restic --tag services -vv backup ${lib.escapeShellArgs pathes} /var/lib/gitea
+    proot ${lib.escapeShellArgs mounts} restic --tag services -vv backup ${lib.escapeShellArgs pathes}
 
     ${unmountCmds}
     ${lvunchanges}
