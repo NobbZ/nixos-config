@@ -92,4 +92,30 @@ in {
       Type = "oneshot";
     };
   };
+
+  systemd.timers.restic-system-snapshot-sync-and-prune = {
+    wantedBy = ["timers.target"];
+    timerConfig.OnCalendar = "daily";
+  };
+
+  systemd.services.restic-system-snapshot-sync-and-prune = {
+    path = [restic];
+    serviceConfig.Type = "oneshot";
+    script = ''
+      restic copy --repo rest:https://restic.mimas.internal.nobbz.dev/mimas --repo2 /home/nmelzer/timmelzer@gmail.com/restic_repos/mimas -vvv
+      restic copy --repo rest:https://restic.mimas.internal.nobbz.dev/mimas --repo2 b2:nobbz-restic-services -vvv
+
+      restic forget --repo rest:https://restic.mimas.internal.nobbz.dev/mimas --keep-hourly 12 --keep-daily 4 --keep-weekly 3 --keep-monthly 7 --keep-yearly 10
+      restic forget --repo /home/nmelzer/timmelzer@gmail.com/restic_repos/mimas --keep-daily 30 --keep-weekly 4 --keep-monthly 12 --keep-yearly 20
+      restic forget --repo b2:nobbz-restic-services --keep-daily 30 --keep-weekly 4 --keep-monthly 12 --keep-yearly 20
+
+      restic prune --repo rest:https://restic.mimas.internal.nobbz.dev/mimas --max-unused 0
+      restic prune --repo /home/nmelzer/timmelzer@gmail.com/restic_repos/mimas --max-unused 0
+      restic prune --repo b2:nobbz-restic-services
+    '';
+    environment = {
+      RESTIC_PASSWORD_FILE = "/home/nmelzer/.config/restic/password";
+      RESTIC_PASSWORD_FILE2 = "/home/nmelzer/.config/restic/password";
+    };
+  };
 }
