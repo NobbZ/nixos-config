@@ -111,6 +111,7 @@ in {
 
       restic copy --repo rest:https://restic.mimas.internal.nobbz.dev/mimas --repo2 /home/nmelzer/timmelzer@gmail.com/restic_repos/mimas -vvv
       restic copy --repo rest:https://restic.mimas.internal.nobbz.dev/mimas --repo2 b2:nobbz-restic-services -vvv
+      chown -Rv nmelzer:users /home/nmelzer/timmelzer@gmail.com/restic_repos
 
       restic forget --repo rest:https://restic.mimas.internal.nobbz.dev/mimas --keep-hourly 12 --keep-daily 4 --keep-weekly 3 --keep-monthly 7 --keep-yearly 10
       restic forget --repo /home/nmelzer/timmelzer@gmail.com/restic_repos/mimas --keep-daily 30 --keep-weekly 4 --keep-monthly 12 --keep-yearly 20
