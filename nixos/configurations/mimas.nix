@@ -151,7 +151,6 @@ in {
     containers.enable = true;
 
     libvirtd.enable = true;
-    virtualbox.host.enable = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
