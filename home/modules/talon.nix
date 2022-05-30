@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: let
-  cfg = config.programs.talon.enable;
+  cfg = config.programs.talon;
 in {
   options.programs.talon.enable = lib.mkEnableOption "talon";
 
