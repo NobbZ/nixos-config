@@ -24,6 +24,8 @@ in {
   "zx" = upkgs.nodePackages.zx;
   "angular" = nodePkgs."@angular/cli";
 
+  "talon" = upkgs.callPackage ./talon {};
+
   "google-chrome" =
     (import inputs.master {
       system = "x86_64-linux";
