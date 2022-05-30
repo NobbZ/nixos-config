@@ -10,6 +10,8 @@
 
     dconf.enable = true;
 
+    programs.talon.enable = true;
+
     enabledLanguages = [
       # "agda"  # Seems as if AGDA2-mode isn't on melpa anymore
       "clojure"
