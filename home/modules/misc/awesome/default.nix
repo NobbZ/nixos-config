@@ -88,15 +88,6 @@ in {
   config = lib.mkIf cfg.enable {
     xsession.enable = true;
 
-    xsession.windowManager.awesome.package = pkgs.awesome.overrideAttrs (oa: {
-      src = pkgs.fetchFromGitHub {
-        owner = "awesomewm";
-        repo = "awesome";
-        rev = "c539e0e4350a42f813952fc28dd8490f42d934b3"; # master
-        sha256 = "111sgx9sx4wira7k0fqpdh76s9la3i8h40wgaii605ybv7n0nc0h";
-      };
-    });
-
     home.file.".config/awesome/rc.lua".text = ''
       --[[
          Awesome WM configuration
