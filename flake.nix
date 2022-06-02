@@ -50,7 +50,7 @@
           self.packages.x86_64-linux.rnix-lsp
           self.packages.x86_64-linux.statix
           self.packages.x86_64-linux.alejandra
-          mpkgs.rust-analyzer
+          pkgs.rust-analyzer
           pkgs.rustc
           pkgs.cargo
           pkgs.rustfmt
