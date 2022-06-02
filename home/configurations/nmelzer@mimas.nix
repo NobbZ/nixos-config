@@ -43,6 +43,7 @@
       p.vscode
       p.teams
       p.keepassxc
+      p.ipfs
 
       s.gnucash-de
     ];
