@@ -71,7 +71,7 @@ in {
   services.flatpak.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [80 443 1111 8080 9002 9003 58080];
+  networking.firewall.allowedTCPPorts = [80 443 1111 8080 9002 9003 58080 4001];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
