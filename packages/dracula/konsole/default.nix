@@ -2,15 +2,15 @@
   stdenv,
   fetchFromGitHub,
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (self: {
   pname = "dracula-konsole-theme";
   version = "fa85573";
 
   src = fetchFromGitHub {
-    name = "${pname}-${version}-source";
+    name = "${self.pname}-${self.version}-source";
     owner = "dracula";
     repo = "konsole";
-    rev = version;
+    rev = self.version;
     sha256 = "sha256-375TOAOEx9FObS9F2tMYEyKboTYCZycawGoNEolZ0Ns=";
   };
 
@@ -20,4 +20,4 @@ stdenv.mkDerivation rec {
     mkdir -p $out/share/konsole
     cp Dracula.colorscheme $out/share/konsole
   '';
-}
+})
