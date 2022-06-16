@@ -13,7 +13,7 @@
   };
   nodePkgs = upkgs.callPackages ./nodePackages/override.nix {};
 in {
-  "advcp" = pkgs.callPackage ./advcp {};
+  "advcp" = upkgs.callPackage ./advcp {};
   "gnucash-de" = upkgs.callPackage ./gnucash-de {};
   "keyleds" = upkgs.callPackage ./keyleds {};
   "dracula/konsole" = upkgs.callPackage ./dracula/konsole {};
