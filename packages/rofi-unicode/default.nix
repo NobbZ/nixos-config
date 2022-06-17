@@ -5,7 +5,7 @@
 }: let
   source = builtins.fromJSON (builtins.readFile ./rofi-unicode.json);
 in
-  stdenvNoCC.mkDerivation rec {
+  stdenvNoCC.mkDerivation (self: {
     pname = "rofiemoji-rofiunicode";
     version = "${source.rev}";
 
@@ -28,4 +28,4 @@ in
           --replace 'xsel' '${xsel}/bin/xsel'
       done;
     '';
-  }
+  })
