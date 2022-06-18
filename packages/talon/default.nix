@@ -39,7 +39,7 @@
   libinput,
   libxml2,
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (self: {
   pname = "talon";
   version = "latest";
   src = fetchTarball {
@@ -94,7 +94,7 @@ stdenv.mkDerivation rec {
   phases = ["unpackPhase" "installPhase"];
 
   installPhase = let
-    libPath = lib.makeLibraryPath buildInputs;
+    libPath = lib.makeLibraryPath self.buildInputs;
   in ''
     runHook preInstall
     # Copy Talon to the Nix store
@@ -143,4 +143,4 @@ stdenv.mkDerivation rec {
     )
     runHook postInstall
   '';
-}
+})
