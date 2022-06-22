@@ -32,7 +32,8 @@
     mixedModules = import ./mixed inputs;
 
     packages.x86_64-linux =
-      (import ./packages inputs)
+      (import ./packages inputs "x86_64-linux")
+      // (import ./packages inputs "aarch64-darwin")
       // self.lib.nixosConfigurationsAsPackages.x86_64-linux
       // self.lib.homeConfigurationsAsPackages.x86_64-linux;
 
