@@ -48,7 +48,7 @@
       pkgs.mkShell {
         packages = [
           self.packages.x86_64-linux.rnix-lsp
-          self.packages.x86_64-linux.statix
+          # self.packages.x86_64-linux.statix
           self.packages.x86_64-linux.alejandra
           pkgs.rust-analyzer
           pkgs.rustc
