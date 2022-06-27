@@ -3,7 +3,7 @@
 {
   nixpkgs.allowedUnfree = [];
 
-  activeProfiles = [];
+  activeProfiles = ["base" "development"];
   enabledLanguages = [];
 
   xsession.enable = lib.mkForce false;
