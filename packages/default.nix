@@ -28,6 +28,9 @@ in {
   };
 
   "alejandra" = inputs.alejandra.defaultPackage."${system}";
+  "nil" = upkgs.writeShellScriptBin "rnix-lsp" ''
+    exec ${inputs.nil.packages.${system}.nil}/bin/nil "$@"
+  '';
 } // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
   "google-chrome" =
     (import inputs.master {

@@ -54,5 +54,22 @@
         inherit (inputs.unstable.legacyPackages.x86_64-linux) rust-analyzer rustc cargo rustfmt clippy openssl pkg-config;
       };
     };
-  };
+
+    devShells.aarch64-darwin.default = let
+      pkgs = inputs.unstable.legacyPackages.aarch64-darwin;
+      mpkgs = inputs.master.legacyPackages.aarch64-darwin;
+    in pkgs.mkShell {
+      packages = [
+          self.packages.aarch64-darwin.nil
+          self.packages.aarch64-darwin.alejandra
+          pkgs.rust-analyzer
+          pkgs.rustc
+          pkgs.cargo
+          pkgs.rustfmt
+          pkgs.clippy
+          pkgs.openssl
+          pkgs.pkg-config
+        ];
+      };
+    };
 }
