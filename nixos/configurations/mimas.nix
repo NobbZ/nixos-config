@@ -139,6 +139,8 @@ in {
 
   services.gitea.enable = true;
   services.gitea.httpAddress = "127.0.0.1";
+  services.gitea.domain = "gitea.mimas.internal.nobbz.dev";
+  services.gitea.settings.server.ROOT_URL = lib.mkForce "https://gitea.mimas.internal.nobbz.dev/";
   systemd.services.gitea.after = ["var-lib-gitea.mount"];
 
   virtualisation = {
