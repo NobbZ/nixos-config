@@ -81,6 +81,11 @@
     fsType = "vfat";
   };
 
+  fileSystems."/tmp" = {
+    device = "/dev/pool/lvm-tmp";
+    fsType = "ext4";
+  };
+
   swapDevices = [];
 
   nix.settings.max-jobs = lib.mkDefault 4;
