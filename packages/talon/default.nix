@@ -44,7 +44,7 @@ stdenv.mkDerivation (self: {
   version = "latest";
   src = fetchTarball {
     url = "https://talonvoice.com/dl/latest/talon-linux.tar.xz";
-    sha256 = "sha256:0kpfyk1i68cs9y0jbry2mn1299l8zzgmfq0nn40c9vyxn2lmnycl";
+    sha256 = "06qy3bwd4zhcg1k8ggx73kv4wm5vwlb685bzzfpj9lxjrkwnlxj0";
   };
   preferLocalBuild = true;
 
@@ -115,7 +115,7 @@ stdenv.mkDerivation (self: {
     cp talon $out/bin
     cp -r resources $out/bin/resources
     # Delete because messes up ldd missing deps detection
-    rm $out/bin/resources/python/lib/python3.9/site-packages/torch/bin/test_tensorexpr
+    # rm $out/bin/resources/python/lib/python3.9/site-packages/torch/bin/test_tensorexpr
     # Tell talon where to find glibc
     patchelf \
       --interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
