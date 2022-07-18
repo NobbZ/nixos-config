@@ -1,8 +1,7 @@
-{rnix-lsp, ...}: {
+_: {
   config,
   lib,
   pkgs,
-  rnix-lsp,
   ...
 }: let
   cfg = config.languages.nix;

@@ -5,8 +5,8 @@
   inputs.master.url = "github:nixos/nixpkgs/master";
 
   inputs.nix.url = "github:nixos/nix"; #/caf51729450d4c57d48ddbef8e855e9bf65f8792";
-  inputs.rnix-lsp.url = "github:nix-community/rnix-lsp/master";
-  inputs.rnix-lsp.inputs.nixpkgs.follows = "nixpkgs-2111";
+  # inputs.rnix-lsp.url = "github:nix-community/rnix-lsp/master";
+  # inputs.rnix-lsp.inputs.nixpkgs.follows = "nixpkgs-2111";
   # inputs.rnix-lsp.inputs.naersk.inputs.nixpkgs.follows = "unstable";
 
   inputs.home-manager.url = "github:nix-community/home-manager";
@@ -47,7 +47,7 @@
     in
       pkgs.mkShell {
         packages = [
-          self.packages.x86_64-linux.rnix-lsp
+          # self.packages.x86_64-linux.rnix-lsp
           # self.packages.x86_64-linux.statix
           self.packages.x86_64-linux.alejandra
           pkgs.rust-analyzer
