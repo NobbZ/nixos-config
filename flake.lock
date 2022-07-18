@@ -359,7 +359,7 @@
       "inputs": {
         "naersk": "naersk",
         "nixpkgs": [
-          "unstable"
+          "nixpkgs-2111"
         ],
         "utils": "utils_2"
       },
