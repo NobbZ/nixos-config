@@ -4,6 +4,7 @@
   ...
 } @ inputs: let
   pkgs = inputs.nixpkgs-2105.legacyPackages.x86_64-linux;
+  pkgs2205 = inputs.nixpkgs-2205.legacyPackages.x86_64-linux;
   upkgs = inputs.unstable.legacyPackages.x86_64-linux;
   mpkgs = inputs.master.legacyPackages.x86_64-linux;
 
@@ -13,7 +14,7 @@
   };
   nodePkgs = upkgs.callPackages ./nodePackages/override.nix {};
 in {
-  "advcp" = upkgs.callPackage ./advcp {};
+  "advcp" = pkgs2205.callPackage ./advcp {};
   "gnucash-de" = upkgs.callPackage ./gnucash-de {};
   "keyleds" = upkgs.callPackage ./keyleds {};
   "dracula/konsole" = upkgs.callPackage ./dracula/konsole {};

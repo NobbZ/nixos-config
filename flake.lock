@@ -270,6 +270,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-2205": {
+      "locked": {
+        "lastModified": 1660120254,
+        "narHash": "sha256-EMBa86JQ6W0och5Kxb1XmprgN/HFsSuJ9fRa2PtV3uk=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "e4c9d950a3c54a0760b127d406f6528eb625eed8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-22.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-regression": {
       "locked": {
         "lastModified": 1643052045,
@@ -345,6 +361,7 @@
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs-2105": "nixpkgs-2105",
         "nixpkgs-2111": "nixpkgs-2111",
+        "nixpkgs-2205": "nixpkgs-2205",
         "statix": "statix",
         "unstable": "unstable"
       }
