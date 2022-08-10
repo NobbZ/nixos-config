@@ -5,7 +5,7 @@ _: {
   ...
 }: let
   cfg = config.languages.python;
-  pyls = "${pkgs.python37Packages.python-language-server}/bin/pyls";
+  pyls = "${pkgs.python310Packages.python-lsp-server}/bin/pylsp";
   mspyls = "${pkgs.python-language-server}/bin/python-language-server";
 
   lsBin =
