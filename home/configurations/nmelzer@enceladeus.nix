@@ -17,8 +17,6 @@
 
     enabledLanguages = ["cpp" "nix" "elixir" "erlang" "python"];
 
-    languages.python.useMS = true;
-
     programs.emacs.splashScreen = false;
 
     services.restic = {

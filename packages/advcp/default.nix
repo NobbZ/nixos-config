@@ -4,13 +4,13 @@
   fetchpatch,
   upstream ? "coreutils",
 }:
-stdenv.mkDerivation (self: {
+stdenv.mkDerivation rec {
   name = "advcp";
   version = "8.30";
 
   src = fetchurl {
-    name = "source-${self.name}-${self.version}.tar.xz";
-    url = "ftp://ftp.gnu.org/gnu/${upstream}/${upstream}-${self.version}.tar.xz";
+    name = "source-${name}-${version}.tar.xz";
+    url = "ftp://ftp.gnu.org/gnu/${upstream}/${upstream}-${version}.tar.xz";
     sha256 = "0mxhw43d4wpqmvg0l4znk1vm10fy92biyh90lzdnqjcic2lb6cg8";
   };
 
@@ -25,4 +25,4 @@ stdenv.mkDerivation (self: {
     install -D src/cp $out/bin/advcp
     install -D src/mv $out/bin/advmv
   '';
-})
+}
