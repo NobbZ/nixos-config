@@ -44,7 +44,7 @@ stdenv.mkDerivation (self: {
   version = "latest";
   src = fetchTarball {
     url = "https://talonvoice.com/dl/latest/talon-linux.tar.xz";
-    sha256 = "06qy3bwd4zhcg1k8ggx73kv4wm5vwlb685bzzfpj9lxjrkwnlxj0";
+    sha256 = "sha256:06qy3bwd4zhcg1k8ggx73kv4wm5vwlb685bzzfpj9lxjrkwnlxj0";
   };
   preferLocalBuild = true;
 
