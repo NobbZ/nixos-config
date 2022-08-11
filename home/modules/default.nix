@@ -41,5 +41,5 @@ inputs: {
   "misc/awesome" = import ./misc/awesome inputs;
   "misc/home" = import ./misc/home inputs;
 
-  "talon" = import ./talon.nix inputs;
+  # "talon" = import ./talon.nix inputs;
 }
