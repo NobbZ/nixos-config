@@ -10,6 +10,8 @@
   # inputs.rnix-lsp.inputs.nixpkgs.follows = "nixpkgs-2111";
   # inputs.rnix-lsp.inputs.naersk.inputs.nixpkgs.follows = "unstable";
 
+  inputs.nil.url = "github:oxalica/nil";
+
   inputs.home-manager.url = "github:nix-community/home-manager";
   inputs.home-manager.inputs.nixpkgs.follows = "unstable";
 
@@ -50,6 +52,7 @@
         packages = [
           # self.packages.x86_64-linux.rnix-lsp
           # self.packages.x86_64-linux.statix
+          self.packages.x86_64-linux.nil
           self.packages.x86_64-linux.alejandra
           pkgs.rust-analyzer
           pkgs.rustc

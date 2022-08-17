@@ -43,4 +43,7 @@ in {
   # "rnix-lsp" = inputs.rnix-lsp.defaultPackage.x86_64-linux;
   # "statix" = inputs.statix.defaultPackage.x86_64-linux;
   "alejandra" = inputs.alejandra.defaultPackage.x86_64-linux;
+  "nil" = upkgs.writeShellScriptBin "rnix-lsp" ''
+    exec ${inputs.nil.packages.x86_64-linux.nil}/bin/nil
+  '';
 }
