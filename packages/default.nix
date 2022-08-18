@@ -3,10 +3,8 @@
   emacs,
   ...
 } @ inputs: let
-  pkgs = inputs.nixpkgs-2105.legacyPackages.x86_64-linux;
   pkgs2205 = inputs.nixpkgs-2205.legacyPackages.x86_64-linux;
   upkgs = inputs.unstable.legacyPackages.x86_64-linux;
-  mpkgs = inputs.master.legacyPackages.x86_64-linux;
 
   epkgs = import inputs.unstable {
     system = "x86_64-linux";
