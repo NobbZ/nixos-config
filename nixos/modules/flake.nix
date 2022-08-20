@@ -20,7 +20,7 @@ in {
   config = lib.mkIf config.nix.flakes.enable {
     nix = {
       package = lib.mkDefault nix.packages.x86_64-linux.nix; # pkgs.nixUnstable;
-      experimentalFeatures = "nix-command flakes";
+      settings.experimental-features = "nix-command flakes";
 
       registry.nixpkgs.flake = unstable;
       registry.nixpkgs2105.flake = nixpkgs-2105;
