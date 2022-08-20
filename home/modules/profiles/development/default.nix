@@ -33,13 +33,14 @@ in {
       userEmail = "timmelzer@gmail.com";
 
       aliases = {
-        graph = "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold cyan)%h%C(reset) - %C(green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all";
-        co = "checkout";
         br = "branch";
-        st = "status";
-        ps = "push";
+        co = "checkout";
+        graph = "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold cyan)%h%C(reset) - %C(green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all";
         pl = "pull";
+        ps = "push";
         root = "rev-parse --show-toplevel";
+        st = "status";
+        sw = "switch";
       };
 
       extraConfig = {
