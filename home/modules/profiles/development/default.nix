@@ -40,6 +40,7 @@ in {
         ps = "push";
         pl = "pull";
         root = "rev-parse --show-toplevel";
+        sw = "switch";
       };
 
       extraConfig = {
