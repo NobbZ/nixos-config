@@ -30,6 +30,7 @@ in {
     {
       nix.gc.automatic = lib.mkDefault true;
       nix.gc.options = lib.mkDefault "--delete-older-than 10d";
+      nix.settings.allow-import-from-derivation = lib.mkDefault false;
     }
   ];
 }
