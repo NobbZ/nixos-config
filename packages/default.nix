@@ -3,7 +3,6 @@
   emacs,
   ...
 } @ inputs: let
-  pkgs2205 = inputs.nixpkgs-2205.legacyPackages.x86_64-linux;
   upkgs = inputs.unstable.legacyPackages.x86_64-linux;
 
   epkgs = import inputs.unstable {
@@ -12,7 +11,7 @@
   };
   nodePkgs = upkgs.callPackages ./nodePackages/override.nix {};
 in {
-  "advcp" = pkgs2205.callPackage ./advcp {};
+  "advcp" = upkgs.callPackage ./advcp {};
   "gnucash-de" = upkgs.callPackage ./gnucash-de {};
   "keyleds" = upkgs.callPackage ./keyleds {};
   "dracula/konsole" = upkgs.callPackage ./dracula/konsole {};
