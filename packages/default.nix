@@ -37,6 +37,8 @@ in {
     inherit (inputs.home-manager.packages.x86_64-linux) home-manager;
   };
 
+  restic = inputs.nixpkgs-restic.legacyPackages.x86_64-linux.restic;
+
   # "rnix-lsp" = inputs.rnix-lsp.defaultPackage.x86_64-linux;
   # "statix" = inputs.statix.defaultPackage.x86_64-linux;
   "alejandra" = inputs.alejandra.defaultPackage.x86_64-linux;

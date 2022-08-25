@@ -360,6 +360,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-restic": {
+      "locked": {
+        "lastModified": 1661453276,
+        "narHash": "sha256-R8R86SuoYi4JBVUc5pILbG8KLR1FAlRrznKOqwPh2k0=",
+        "owner": "nobbz",
+        "repo": "nixpkgs",
+        "rev": "5c7f600e6728b64dc4b83d7712f1221cb556ff0f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nobbz",
+        "ref": "restic-0-14-0",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1659494082,
@@ -437,6 +453,7 @@
         "nixpkgs-2105": "nixpkgs-2105",
         "nixpkgs-2111": "nixpkgs-2111",
         "nixpkgs-2205": "nixpkgs-2205",
+        "nixpkgs-restic": "nixpkgs-restic",
         "statix": "statix",
         "unstable": "unstable"
       }
