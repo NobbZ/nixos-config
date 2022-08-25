@@ -1,4 +1,4 @@
-_: {
+{self, ...}: {
   config,
   pkgs,
   lib,
@@ -6,7 +6,8 @@ _: {
 }: let
   resticPort = 9999;
 
-  inherit (pkgs) writeShellScript proot restic mount umount;
+  inherit (pkgs) writeShellScript proot mount umount;
+  inherit (self.packages.x86_64-linux) restic;
 
   pools = {
     docker = "/var/lib/docker";
