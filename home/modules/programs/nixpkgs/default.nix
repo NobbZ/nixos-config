@@ -16,5 +16,5 @@ in {
   config.nixpkgs.config.allowUnfreePredicate =
     if (allowed == [])
     then (_: false)
-    else (pkg: __elem (lib.getName pkg) allowed);
+    else (pkg: builtins.elem (lib.getName pkg) allowed);
 }

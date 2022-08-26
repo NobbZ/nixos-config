@@ -3,6 +3,8 @@
   self,
   ...
 } @ inputs: username: hostname: system: nixpkgs: let
+  inherit (builtins) attrValues;
+
   args = inputs;
   entrypoint = import "${self}/home/configurations/${username}@${hostname}.nix" inputs;
   homeDirectory = "/home/${username}";
@@ -15,6 +17,6 @@ in
         entrypoint
         {home = {inherit username homeDirectory;};}
       ]
-      ++ __attrValues self.homeModules
-      ++ __attrValues self.mixedModules;
+      ++ attrValues self.homeModules
+      ++ attrValues self.mixedModules;
   }

@@ -8,7 +8,7 @@
   cfg = config.services.restic;
 
   bin = "${cfg.package}/bin/restic";
-  excludes = __concatStringsSep " " (builtins.map (e: "--exclude=${e}") cfg.exclude);
+  excludes = builtins.concatStringsSep " " (builtins.map (e: "--exclude=${e}") cfg.exclude);
   xFlags = lib.optionalString cfg.oneFileSystem "-x";
   flags = "${xFlags} ${excludes}";
 

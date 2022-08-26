@@ -3,7 +3,7 @@
 
   inherit (pkgs.lib) genAttrs mapAttrs';
 
-  hostNames = __attrNames self.homeConfigurations;
+  hostNames = builtins.attrNames self.homeConfigurations;
   attrHostNames = genAttrs hostNames (name: "home/config/${name}");
   configs =
     mapAttrs' (name: pname: {

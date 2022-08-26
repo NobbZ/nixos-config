@@ -1,6 +1,8 @@
 {self, ...} @ inputs: name: nixpkgs:
 nixpkgs.lib.nixosSystem (
   let
+    inherit (builtins) attrValues;
+
     configFolder = "${self}/nixos/configurations";
     entryPoint = import "${configFolder}/${name}.nix" inputs;
     bootloader = "${configFolder}/bootloader/${name}.nix";
@@ -26,7 +28,7 @@ nixpkgs.lib.nixosSystem (
         hardware
         inputs.nixos-vscode-server.nixosModules.system
       ]
-      ++ __attrValues self.nixosModules
-      ++ __attrValues self.mixedModules;
+      ++ attrValues self.nixosModules
+      ++ attrValues self.mixedModules;
   }
 )

@@ -16,7 +16,7 @@ in {
   };
 
   config = lib.mkMerge [
-    (lib.mkIf (allowed != []) {nixpkgs.config.allowUnfreePredicate = pkg: __elem (lib.getName pkg) allowed;})
+    (lib.mkIf (allowed != []) {nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed;})
     {nix.settings.auto-optimise-store = lib.mkDefault true;}
     {
       nix.gc.automatic = lib.mkDefault true;

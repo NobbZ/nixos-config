@@ -3,7 +3,7 @@
 
   inherit (pkgs.lib) genAttrs mapAttrs';
 
-  hostNames = __attrNames self.nixosConfigurations;
+  hostNames = builtins.attrNames self.nixosConfigurations;
   attrHostNames = genAttrs hostNames (name: "nixos/config/${name}");
   configs =
     mapAttrs' (name: pname: {

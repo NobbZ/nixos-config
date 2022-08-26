@@ -47,7 +47,7 @@
 
     devShell.x86_64-linux = self.devShells.x86_64-linux.default;
     devShells.x86_64-linux.default = inputs.unstable.legacyPackages.x86_64-linux.mkShell {
-      packages = __attrValues {
+      packages = builtins.attrValues {
         inherit (self.packages.x86_64-linux) nil alejandra;
         inherit (inputs.unstable.legacyPackages.x86_64-linux) rust-analyzer rustc cargo rustfmt clippy openssl pkg-config;
       };
