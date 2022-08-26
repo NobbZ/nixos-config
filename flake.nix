@@ -26,6 +26,8 @@
   inputs.alejandra.url = "github:kamadorueda/alejandra/3.0.0";
 
   outputs = {self, ...} @ inputs: {
+    formatter.x86_64-linux = self.packages.x86_64-linux.alejandra;
+
     nixosModules = import ./nixos/modules inputs;
     nixosConfigurations = import ./nixos/configurations inputs;
 
