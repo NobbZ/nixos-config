@@ -4,10 +4,14 @@ pre-commit:
     formatting:
       glob: "*.nix"
       run: nix fmt -- --check {all_files}
+    
+    linting:
+      glob: "*.nix"
+      run: nix run --option allow-import-from-derivation true --inputs-from . statix -- check -i packages/nodePackages/node-env.nix
 
 statix:
   parallel: false
   commands:
     statix:
       glob: "*.nix"
-      run: statix check -i packages/nodePackages/node-env.nix
+      run: statix check -i packages/nodePackages/node-env.nix 
