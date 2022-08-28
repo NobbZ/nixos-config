@@ -31,7 +31,9 @@
   lvunchanges = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvchange -an pool/${name}") snaps);
   lvremoves = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: origin: "lvremove pool/${name}") snaps);
 
-  repo = "rest:https://restic.mimas.internal.nobbz.dev/mimas";
+  rest_repo = "rest:https://restic.mimas.internal.nobbz.dev/mimas";
+  gdrv_repo = "/home/nmelzer/timmelzer@gmail.com/restic_repos/mimas";
+  btwo_repo = "b2:nobbz-restic-services";
   pass = "/home/nmelzer/.config/restic/password";
 
   script = writeShellScript "restic-services-backup" ''
@@ -88,8 +90,9 @@ in {
     path = [proot restic mount umount config.services.lvm.package];
     script = "${script}";
     environment = {
-      RESTIC_REPOSITORY = "rest:https://restic.mimas.internal.nobbz.dev/mimas";
-      RESTIC_PASSWORD_FILE = "/home/nmelzer/.config/restic/password";
+      RESTIC_REPOSITORY = rest_repo;
+      RESTIC_PASSWORD_FILE = pass;
+      RESTIC_COMPRESSION = "max";
     };
     serviceConfig = {
       Type = "oneshot";
@@ -110,22 +113,22 @@ in {
     script = ''
       eval $(cat "$CREDENTIALS_DIRECTORY/b2")
 
-      restic copy --repo rest:https://restic.mimas.internal.nobbz.dev/mimas --repo2 /home/nmelzer/timmelzer@gmail.com/restic_repos/mimas -vvv
-      restic copy --repo rest:https://restic.mimas.internal.nobbz.dev/mimas --repo2 b2:nobbz-restic-services -vvv
+      restic copy --repo ${rest_repo} --repo2 ${gdrv_repo} -vvv
+      restic copy --repo ${rest_repo} --repo2 ${btwo_repo} -vvv
 
-      restic forget --repo rest:https://restic.mimas.internal.nobbz.dev/mimas --keep-hourly 12 --keep-daily 4 --keep-weekly 3 --keep-monthly 7 --keep-yearly 10
-      restic forget --repo /home/nmelzer/timmelzer@gmail.com/restic_repos/mimas --keep-daily 30 --keep-weekly 4 --keep-monthly 12 --keep-yearly 20
-      restic forget --repo b2:nobbz-restic-services --keep-daily 30 --keep-weekly 4 --keep-monthly 12 --keep-yearly 20
+      restic forget --repo ${rest_repo} --keep-hourly 12 --keep-daily 4 --keep-weekly 3 --keep-monthly 7 --keep-yearly 10
+      restic forget --repo ${gdrv_repo} --keep-daily 30 --keep-weekly 4 --keep-monthly 12 --keep-yearly 20
+      restic forget --repo ${btwo_repo} --keep-daily 30 --keep-weekly 4 --keep-monthly 12 --keep-yearly 20
 
-      restic prune --repo rest:https://restic.mimas.internal.nobbz.dev/mimas --max-unused 0
-      restic prune --repo /home/nmelzer/timmelzer@gmail.com/restic_repos/mimas --max-unused 0
-      restic prune --repo b2:nobbz-restic-services
+      restic prune --repo ${rest_repo} --max-unused 0
+      restic prune --repo ${gdrv_repo} --max-unused 0
+      restic prune --repo ${btwo_repo}
 
       chown -Rv nmelzer:users /home/nmelzer/timmelzer@gmail.com/restic_repos
     '';
     environment = {
-      RESTIC_PASSWORD_FILE = "/home/nmelzer/.config/restic/password";
-      RESTIC_PASSWORD_FILE2 = "/home/nmelzer/.config/restic/password";
+      RESTIC_PASSWORD_FILE = pass;
+      RESTIC_PASSWORD_FILE2 = pass;
       RESTIC_COMPRESSION = "max";
       XDG_CACHE_HOME = "%C";
     };
