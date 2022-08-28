@@ -126,6 +126,7 @@ in {
     environment = {
       RESTIC_PASSWORD_FILE = "/home/nmelzer/.config/restic/password";
       RESTIC_PASSWORD_FILE2 = "/home/nmelzer/.config/restic/password";
+      RESTIC_COMPRESSION = "max";
       XDG_CACHE_HOME = "%C";
     };
   };
