@@ -10,7 +10,8 @@
   bin = "${cfg.package}/bin/restic";
   excludes = builtins.concatStringsSep " " (builtins.map (e: "--exclude=${e}") cfg.exclude);
   xFlags = lib.optionalString cfg.oneFileSystem "-x";
-  flags = "${xFlags} ${excludes}";
+  compressFlag = "--compression ${cfg.compression}";
+  flags = "${xFlags} ${compressFlag} ${excludes}";
 
   command = "${bin} --tag home -vv backup ${flags} %h";
 in {
@@ -38,6 +39,12 @@ in {
     repo = lib.mkOption {
       type = lib.types.str;
       description = "Location of the repository";
+    };
+
+    compression = lib.mkOption {
+      type = lib.types.enum ["off" "auto" "max"];
+      description = "The compression mode to use";
+      default = "auto";
     };
 
     # TODO: Add options for inlcude, password file, etc

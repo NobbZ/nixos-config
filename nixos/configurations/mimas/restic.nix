@@ -6,8 +6,7 @@
 }: let
   resticPort = 9999;
 
-  inherit (pkgs) writeShellScript proot mount umount;
-  inherit (self.packages.x86_64-linux) restic;
+  inherit (pkgs) writeShellScript proot mount umount restic;
 
   pools = {
     docker = "/var/lib/docker";

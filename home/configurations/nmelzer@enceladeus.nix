@@ -23,6 +23,7 @@
       enable = true;
       exclude = (map (e: "%h/${e}") [".cache" ".cabal" ".cargo" ".emacs.d/eln-cache" ".emacs.d/.cache" ".gem" ".gradle" ".hex" ".kube" ".local" ".m2" ".minikube" ".minishift" ".mix" ".mozilla" "npm" ".opam" ".rancher" ".vscode-oss" "go/pkg"]) ++ ["_build" "deps" "result" "target" ".elixir_ls" "ccls-cache" ".direnv"];
       oneFileSystem = true;
+      compression = "max";
       repo = "rest:https://restic.mimas.internal.nobbz.dev/nobbz";
     };
     systemd.user.timers.restic-backup.Timer.OnCalendar = lib.mkForce "hourly";
