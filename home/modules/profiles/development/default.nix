@@ -41,6 +41,8 @@ in {
         root = "rev-parse --show-toplevel";
         st = "status";
         sw = "switch";
+        swag = ''!f() { if [ -z "$1" ]; then tag=$(git describe --abbrev=0 --tag); else tag=$(git describe --abbrev=0 --tag "$1"); fi; git switch --detach "''${tag}"; }; f'';
+        hopbase = ''!f() { set -o nounset; tag=$(git describe --abbrev=0 --tag "$1") && git rebase -i "''${tag}"; }; f'';
       };
 
       extraConfig = {
