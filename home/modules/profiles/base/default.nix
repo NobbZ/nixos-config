@@ -220,6 +220,8 @@ in {
         initExtra = ''
           bindkey "^[[1;5D" backward-word
           bindkey "^[[1;5C" forward-word
+
+          ZSH_AUTOSUGGEST_STRATEGY=(completion history)
         '';
 
         sessionVariables = {
