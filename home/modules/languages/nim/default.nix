@@ -5,8 +5,6 @@
   ...
 }: let
   cfg = config.languages.nim;
-
-  inherit (unstable.legacyPackage.x86_64-linux) nim;
 in {
   options.languages.nim = {
     enable = lib.mkEnableOption "Nim-lang";

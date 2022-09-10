@@ -114,7 +114,7 @@ in {
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.windowManager.awesome.enable = true;
 
-  services.dbus.packages = with pkgs; [pkgs.dconf];
+  services.dbus.packages = [pkgs.dconf];
 
   services.udev.extraRules = ''
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666"

@@ -2,8 +2,7 @@ _: {
   config,
   lib,
   ...
-}:
-with lib; let
+}: let
   # emacs = config.programs.emacs;
   inherit (config.programs) emacs;
 in {

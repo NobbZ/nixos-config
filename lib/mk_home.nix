@@ -5,7 +5,6 @@
 } @ inputs: username: hostname: system: nixpkgs: let
   inherit (builtins) attrValues;
 
-  args = inputs;
   entrypoint = import "${self}/home/configurations/${username}@${hostname}.nix" inputs;
   homeDirectory = "/home/${username}";
 in
