@@ -13,7 +13,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.zshell.aliases = {
+    programs.zsh.shellAliases = {
       mdg = "mix deps.get";
       mic = "mix compile";
       mit = "mix test";
