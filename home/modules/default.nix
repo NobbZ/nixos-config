@@ -21,7 +21,6 @@ inputs: {
 
   "programs/advcp" = import ./programs/advcp inputs;
   "programs/openshift" = import ./programs/openshift inputs;
-  "programs/zshell" = import ./programs/zshell inputs;
   "programs/nixpkgs" = import ./programs/nixpkgs inputs;
   "programs/exa" = import ./programs/exa inputs;
   "programs/emacs" = import ./programs/emacs inputs;
