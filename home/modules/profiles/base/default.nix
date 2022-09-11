@@ -219,12 +219,7 @@ in {
           # ];
         };
 
-        shellAliases = lib.mkMerge [
-          config.programs.zshell.aliases
-          {
-            fixstore = "sudo nix-store --verify --check-contents --repair";
-          }
-        ];
+        shellAliases.fixstore = "sudo nix-store --verify --check-contents --repair";
       };
     };
   };

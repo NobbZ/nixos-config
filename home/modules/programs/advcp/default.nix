@@ -13,7 +13,7 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = [self.packages.x86_64-linux.advcp];
 
-    programs.zshell.aliases = {
+    programs.zsh.shellAliases = {
       cp = "advcp -g";
       mv = "advmv -g";
     };
