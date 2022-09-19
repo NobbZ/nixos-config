@@ -96,9 +96,10 @@ in {
   systemd.services.restic-system-snapshot-backup = {
     path = [proot restic mount umount config.services.lvm.package];
     script = "${script}";
+    serviceConfig.LoadCredential = ["pass:${pass}"];
     environment = {
       RESTIC_REPOSITORY = rest_repo;
-      RESTIC_PASSWORD_FILE = pass;
+      RESTIC_PASSWORD_FILE = "%d/pass";
       RESTIC_COMPRESSION = "max";
     };
     serviceConfig = {
@@ -116,6 +117,7 @@ in {
     serviceConfig.Type = "oneshot";
     serviceConfig.LoadCredential = [
       "b2:/home/nmelzer/.config/restic/b2"
+      "pass:${pass}"
     ];
     script = ''
       eval $(cat "$CREDENTIALS_DIRECTORY/b2")
@@ -134,8 +136,8 @@ in {
       chown -Rv nmelzer:users /home/nmelzer/timmelzer@gmail.com/restic_repos
     '';
     environment = {
-      RESTIC_PASSWORD_FILE = pass;
-      RESTIC_PASSWORD_FILE2 = pass;
+      RESTIC_PASSWORD_FILE = "%d/pass";
+      RESTIC_PASSWORD_FILE2 = "%d/pass";
       RESTIC_COMPRESSION = "max";
       XDG_CACHE_HOME = "%C";
     };
