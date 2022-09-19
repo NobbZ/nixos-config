@@ -16,8 +16,16 @@
     prometheus = "/var/lib/prometheus2";
   };
 
+  extraPathes = [
+    "/var/lib/nixos"
+  ];
+
+  fileFromList = pkgs.writeText "files-from-verbatim" ''
+    ${lib.concatStringsSep "\n" pathes}
+  '';
+
   basePath = "/tmp/backup";
-  pathes = builtins.attrValues pools;
+  pathes = extraPathes ++ builtins.attrValues pools;
   mounts = lib.flatten (lib.mapAttrsToList (lv: path: ["-b" "${basePath}/${lv}:${path}"]) pools);
 
   snaps = lib.mapAttrs' (lv: _: lib.nameValuePair "${lv}_snap" "pool/${lv}") pools;
@@ -45,7 +53,7 @@
     ${mountCmds}
 
     # TODO: Make the latter from snapshots as well!
-    proot ${lib.escapeShellArgs mounts} restic --tag services -vv backup ${lib.escapeShellArgs pathes}
+    proot ${lib.escapeShellArgs mounts} restic --tag services -vv backup --files-from-verbatim ${fileFromList}
 
     ${unmountCmds}
     ${lvunchanges}
