@@ -34,7 +34,7 @@
       p.handbrake
       p.keybase-gui
       p.minikube
-      p.gnome3.gnome-tweaks
+      p.gnome.gnome-tweaks
       p.freerdp
       p.vscode
       p.teams
