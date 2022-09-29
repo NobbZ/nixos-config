@@ -28,12 +28,10 @@ in {
       s = self';
     in [
       p.cachix
-      # nix-prefetch-scripts
-      p.nix-review
-      p.exercism
-      p.tmate
       p.element-desktop
-      # p.powershell
+      p.exercism
+      p.nixpkgs-review
+      p.tmate
       s."dracula/konsole"
 
       p.fira-code
