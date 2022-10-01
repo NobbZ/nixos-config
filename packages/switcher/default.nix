@@ -10,8 +10,9 @@
   ncurses6,
   pkg-config,
   openssl,
+  nix-output-monitor,
 }: let
-  runtimeDeps = [hostname coreutils nix home-manager nixos-rebuild ncurses6];
+  runtimeDeps = [hostname coreutils nix home-manager nixos-rebuild ncurses6 nix-output-monitor];
 in
   rustPlatform.buildRustPackage {
     pname = "nobbz-switcher";
