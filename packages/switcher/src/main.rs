@@ -1,5 +1,11 @@
 use futures::future;
-use std::{error::Error, io::Error as IoError, path::Path, process::ExitStatus, str};
+use std::{
+    error::Error,
+    io::Error as IoError,
+    path::Path,
+    process::{ExitStatus, Stdio},
+    str,
+};
 use tokio::{self, process::Command};
 use tracing::{instrument, Level};
 use tracing_futures::Instrument;
@@ -75,15 +81,22 @@ async fn main() -> Result<(), Box<dyn Error>> {
     tracing::info!(%flake_url, %nixos_config, %nixos_rebuild, %home_config, %home_manager, ?out_link, "Built strings");
     tracing::info!("Starting to build");
 
-    spawn_command(Command::new("nix").args([
-        "build",
-        "--keep-going",
-        "-L",
-        "--out-link",
-        out_link.as_os_str().to_str().unwrap(),
-        &nixos_config,
-        &home_config,
-    ]))
+    spawn_command(
+        Command::new("bash").arg("-c").arg(
+            [
+                "build",
+                "--keep-going",
+                "-L",
+                "--out-link",
+                out_link.as_os_str().to_str().unwrap(),
+                &nixos_config,
+                &home_config,
+                "|&",
+                "nom",
+            ]
+            .join(" "),
+        ),
+    )
     .await?;
 
     tracing::info!("Finished building");
