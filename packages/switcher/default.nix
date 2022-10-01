@@ -16,7 +16,7 @@
 in
   rustPlatform.buildRustPackage {
     pname = "nobbz-switcher";
-    version = "0.2.1";
+    version = "0.2.2";
 
     nativeBuildInputs = [makeWrapper pkg-config];
     buildInputs = [openssl];
