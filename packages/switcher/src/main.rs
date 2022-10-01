@@ -84,6 +84,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     spawn_command(
         Command::new("bash").arg("-c").arg(
             [
+                "nix",
                 "build",
                 "--keep-going",
                 "-L",
