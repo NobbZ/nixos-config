@@ -1,11 +1,5 @@
 use futures::future;
-use std::{
-    error::Error,
-    io::Error as IoError,
-    path::Path,
-    process::{ExitStatus, Stdio},
-    str,
-};
+use std::{error::Error, io::Error as IoError, path::Path, process::ExitStatus, str};
 use tokio::{self, process::Command};
 use tracing::{instrument, Level};
 use tracing_futures::Instrument;
