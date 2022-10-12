@@ -5,6 +5,7 @@
 }: {pkgs, ...}: {
   config = {
     nixpkgs.allowedUnfree = ["teamspeak-client" "google-chrome" "vscode" "teams"];
+    nixpkgs.config.allowBroken = true;
 
     activeProfiles = ["browsing" "development"];
 
