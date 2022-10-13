@@ -4,6 +4,7 @@
   inputs.nixpkgs-2205.url = "github:nixos/nixpkgs/nixos-22.05";
   inputs.unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.master.url = "github:nixos/nixpkgs/master";
+  inputs.nixpkgs-insync.url = "github:nixos/nixpkgs/bd751508cf67db3b13b03e25eb937854fc92ee30";
 
   inputs.nix.url = "github:nixos/nix"; #/caf51729450d4c57d48ddbef8e855e9bf65f8792";
   # inputs.rnix-lsp.url = "github:nix-community/rnix-lsp/master";

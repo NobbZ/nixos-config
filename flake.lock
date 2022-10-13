@@ -344,6 +344,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-insync": {
+      "locked": {
+        "lastModified": 1665164923,
+        "narHash": "sha256-GTiFmVaqHKRMPz9rpvrij+wDMjpHca1OS61PaaJr3i4=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "bd751508cf67db3b13b03e25eb937854fc92ee30",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "bd751508cf67db3b13b03e25eb937854fc92ee30",
+        "type": "github"
+      }
+    },
     "nixpkgs-regression": {
       "locked": {
         "lastModified": 1643052045,
@@ -437,6 +453,7 @@
         "nixpkgs-2105": "nixpkgs-2105",
         "nixpkgs-2111": "nixpkgs-2111",
         "nixpkgs-2205": "nixpkgs-2205",
+        "nixpkgs-insync": "nixpkgs-insync",
         "statix": "statix",
         "unstable": "unstable"
       }

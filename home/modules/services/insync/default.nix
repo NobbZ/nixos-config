@@ -1,4 +1,8 @@
-{self, ...}: {
+{
+  self,
+  nixpkgs-insync,
+  ...
+}: {
   config,
   lib,
   pkgs,
@@ -11,7 +15,7 @@ in {
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.insync;
+      default = nixpkgs-insync.legacyPackages.${pkgs.system}.insync;
       description = ''
         The insync package to use.
 
