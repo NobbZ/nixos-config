@@ -15,7 +15,12 @@ in {
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = nixpkgs-insync.legacyPackages.${pkgs.system}.insync;
+      default =
+        (import nixpkgs-insync {
+          inherit (pkgs) system;
+          config.allowUnfree = true;
+        })
+        .insync;
       description = ''
         The insync package to use.
 
