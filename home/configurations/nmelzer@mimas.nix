@@ -41,6 +41,7 @@
       p.teams
       p.keepassxc
       p.ipfs
+      p.nix-output-monitor
 
       s.gnucash-de
     ];
