@@ -8,7 +8,7 @@
   ...
 }: let
   upkgs = unstable.legacyPackages.x86_64-linux;
-  steamPackages = ["steam" "steam-original" "steam-runtime"];
+  steamPackages = ["steam" "steam-run" "steam-original" "steam-runtime"];
   printerPackages = ["hplip" "samsung-UnifiedLinuxDriver"];
 in {
   imports = [
