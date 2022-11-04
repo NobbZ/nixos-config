@@ -23,12 +23,12 @@ in
     deps = fetchMixDeps {
       name = "${self.name}-${self.version}";
       inherit (self) src;
-      sha256 = "sha256-8MOV2a/C5uO5Q1S97XY8VP0bJI4ByFRIIHNwRtG94cs=";
+      sha256 = "sha256-8M0V2a/C5uO5Q1S97XY8VP0bJI4ByFRIIHNwRtG94cs=";
     };
 
     src = fetchFromGitHub rec {
       name = "source-${owner}-${repo}-${self.version}";
-      inherit (source) owner repo rev sha256;
+      inherit (source) owner repo rev hash;
     };
 
     dontStrip = true;

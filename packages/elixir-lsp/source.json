@@ -2,7 +2,7 @@
   "fetchSubmodules": true,
   "owner": "elixir-lsp",
   "repo": "elixir-ls",
-  "rev": "v0.8.1",
-  "sha256": "sha256-KlZq12RCor9GrwA8QMP3R+jUQ/xFHRjkLwwkvthiMU0=",
-  "version": "0.8.1"
+  "rev": "v0.11.0",
+  "hash": "sha256-z2KkhTjw8AumD1FWbTCxYB6PHZIWmUPnwBnxKbpHfRQ=",
+  "version": "0.11.0"
 }

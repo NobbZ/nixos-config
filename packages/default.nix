@@ -16,7 +16,7 @@ in {
   "keyleds" = upkgs.callPackage ./keyleds {};
   "dracula/konsole" = upkgs.callPackage ./dracula/konsole {};
   "emacs" = epkgs.emacsNativeComp;
-  "elixir-lsp" = upkgs.beam.packages.erlang.callPackage ./elixir-lsp {};
+  "elixir-lsp" = upkgs.elixir_ls;
   "erlang-ls" = upkgs.beam.packages.erlang.callPackage ./erlang-ls {};
   "rofi/unicode" = upkgs.callPackage ./rofi-unicode {};
   "zx" = upkgs.nodePackages.zx;
