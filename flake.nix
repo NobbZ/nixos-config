@@ -42,6 +42,8 @@
       // (import ./packages inputs "aarch64-darwin")
       // self.lib.nixosConfigurationsAsPackages.x86_64-linux
       // self.lib.homeConfigurationsAsPackages.x86_64-linux;
+    packages.aarch64-darwin =
+      (import ./packages inputs "aarch64-darwin");
 
     checks.x86_64-linux = import ./checks inputs;
 
