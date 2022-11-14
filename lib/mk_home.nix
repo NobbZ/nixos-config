@@ -8,7 +8,7 @@
   entrypoint = import "${self}/home/configurations/${username}@${hostname}.nix" inputs;
   
   base = if nixpkgs.legacyPackages."${system}".lib.strings.hasSuffix "-darwin" system then "Users" else "home";
-  homeDirectory = "/home/${username}";
+  homeDirectory = "/${base}/${username}";
 in
   home-manager.lib.homeManagerConfiguration {
     pkgs = nixpkgs.legacyPackages.${system};
