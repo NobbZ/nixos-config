@@ -13,13 +13,16 @@
   self' = self.packages.x86_64-linux;
 
   mediaKeys = let
-    keyMap = {
-      "XF86AudioMute" = "amixer set Master 1+ toggle";
-      "XF86AudioLowerVolume" = "amixer set Master 4%-";
-      "XF86AudioRaiseVolume" = "amixer set Master 4%+";
-      "XF86AudioPlay" = "${pkgs.playerctl}/bin/playerctl play-pause";
-      "XF86AudioPrev" = "${pkgs.playerctl}/bin/playerctl previous";
-      "XF86AudioNext" = "${pkgs.playerctl}/bin/playerctl next";
+    keyMap = let
+      amixer = "${pkgs.alsa-utils}/bin/amixer";
+      playerctl = "${pkgs.playerctl}/bin/playerctl";
+    in {
+      "XF86AudioMute" = "${amixer} set Master 1+ toggle";
+      "XF86AudioLowerVolume" = "${amixer} set Master 4%-";
+      "XF86AudioRaiseVolume" = "${amixer} set Master 4%+";
+      "XF86AudioPlay" = "${playerctl} play-pause";
+      "XF86AudioPrev" = "${playerctl} previous";
+      "XF86AudioNext" = "${playerctl} next";
     };
     keyList = lib.attrsets.mapAttrsToList (key: command: ''awful.key({ }, "${key}", function () awful.util.spawn("${command}") end)'') keyMap;
   in
