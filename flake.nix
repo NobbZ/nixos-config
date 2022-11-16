@@ -39,11 +39,10 @@
 
     packages.x86_64-linux =
       (import ./packages inputs "x86_64-linux")
-      // (import ./packages inputs "aarch64-darwin")
       // self.lib.nixosConfigurationsAsPackages.x86_64-linux
       // self.lib.homeConfigurationsAsPackages.x86_64-linux;
     packages.aarch64-darwin =
-      (import ./packages inputs "aarch64-darwin");
+      import ./packages inputs "aarch64-darwin";
 
     checks.x86_64-linux = import ./checks inputs;
 
@@ -60,8 +59,9 @@
     devShells.aarch64-darwin.default = let
       pkgs = inputs.unstable.legacyPackages.aarch64-darwin;
       mpkgs = inputs.master.legacyPackages.aarch64-darwin;
-    in pkgs.mkShell {
-      packages = [
+    in
+      pkgs.mkShell {
+        packages = [
           self.packages.aarch64-darwin.nil
           self.packages.aarch64-darwin.alejandra
           pkgs.rust-analyzer
@@ -73,5 +73,5 @@
           pkgs.pkg-config
         ];
       };
-    };
+  };
 }
