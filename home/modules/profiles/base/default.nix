@@ -42,7 +42,7 @@ in {
     gtk.theme.name = "Adwaita-dark";
 
     home.keyboard.layout = "de";
-    home.packages = [pkgs.hydra-check] ++ lib.optionals pkgs.stdenv.isLinux [ pkgs.dconf];
+    home.packages = [pkgs.hydra-check] ++ lib.optionals pkgs.stdenv.isLinux [pkgs.dconf];
 
     dconf.enable = lib.mkMerge [
       (lib.mkIf pkgs.stdenv.isLinux true)

@@ -1,6 +1,8 @@
-{self,...}:
-{pkgs,lib,...}:
-{
+{self, ...}: {
+  pkgs,
+  lib,
+  ...
+}: {
   nixpkgs.allowedUnfree = [];
 
   activeProfiles = ["base" "development"];
