@@ -12,6 +12,11 @@
     overlays = [emacs.overlay];
   };
   nodePkgs = upkgs.callPackages ./nodePackages/override.nix {};
+
+  nil =
+    if pkgs.stdenv.isLinux
+    then inputs.nil.packages.${system}.nil
+    else upkgs.nil;
 in
   {
     "advcp" = upkgs.callPackage ./advcp {};
@@ -30,7 +35,7 @@ in
 
     "alejandra" = inputs.alejandra.defaultPackage."${system}";
     "nil" = upkgs.writeShellScriptBin "rnix-lsp" ''
-      exec ${inputs.nil.packages.${system}.nil}/bin/nil "$@"
+      exec ${nil}/bin/nil "$@"
     '';
   }
   // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {

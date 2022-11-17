@@ -66,6 +66,7 @@
           self.packages.aarch64-darwin.alejandra
           pkgs.rust-analyzer
           pkgs.rustc
+
           pkgs.cargo
           pkgs.rustfmt
           pkgs.clippy
