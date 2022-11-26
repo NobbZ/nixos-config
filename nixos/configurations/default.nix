@@ -1,4 +1,4 @@
-{self, ...} @ inputs: {
-  mimas = self.lib.mkSystem "mimas" inputs.unstable; # nixpkgs-2105;
-  enceladeus = self.lib.mkSystem "enceladeus" inputs.unstable;
+_: {
+  nobbz.nixosConfigurations.mimas.system = "x86_64-linux";
+  nobbz.nixosConfigurations.enceladeus.system = "x86_64-linux";
 }
