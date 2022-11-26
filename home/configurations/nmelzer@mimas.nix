@@ -4,7 +4,7 @@
   ...
 }: {pkgs, ...}: {
   config = {
-    nixpkgs.allowedUnfree = ["teamspeak-client" "google-chrome" "vscode" "teams"];
+    nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord"];
     nixpkgs.config.allowBroken = true;
 
     activeProfiles = ["browsing" "development"];
@@ -38,7 +38,6 @@
       p.gnome.gnome-tweaks
       p.freerdp
       p.vscode
-      p.teams
       p.keepassxc
       p.ipfs
       p.nix-output-monitor
