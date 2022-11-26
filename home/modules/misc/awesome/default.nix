@@ -91,6 +91,10 @@ in {
   config = lib.mkIf cfg.enable {
     xsession.enable = true;
 
+    xsession.initExtra = ''
+      unset XDG_CURRENT_DESKTOP
+    '';
+
     home.file.".config/awesome/rc.lua".text = ''
       --[[
          Awesome WM configuration

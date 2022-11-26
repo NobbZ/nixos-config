@@ -42,6 +42,7 @@
       p.keepassxc
       p.ipfs
       p.nix-output-monitor
+      p.discord
 
       s.gnucash-de
     ];
