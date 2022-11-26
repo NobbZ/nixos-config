@@ -8,6 +8,8 @@
   cfg = config.nobbz.nixosConfigurations;
 
   configs = builtins.mapAttrs (_: config: config.finalSystem) cfg;
+
+  packages = builtins.attrValues (builtins.mapAttrs (_: config: config.packageModule) cfg);
 in {
   options = {
     nobbz.nixosConfigurations = lib.mkOption {
@@ -57,6 +59,21 @@ in {
             type = lib.types.unspecified;
             readOnly = true;
           };
+
+          packageName = lib.mkOption {
+            type = lib.types.str;
+            readOnly = true;
+          };
+
+          finalPackage = lib.mkOption {
+            type = lib.types.package;
+            readOnly = true;
+          };
+
+          packageModule = lib.mkOption {
+            type = lib.types.unspecified;
+            readOnly = true;
+          };
         };
 
         config = {
@@ -81,6 +98,11 @@ in {
             ++ builtins.attrValues self.nixosModules
             ++ builtins.attrValues self.mixedModules;
 
+          packageName = "nixos/config/${name}";
+          finalPackage = config.finalSystem.config.system.build.toplevel;
+
+          packageModule = {${config.system}.${config.packageName} = config.finalPackage;};
+
           finalSystem = config.nixpkgs.lib.nixosSystem {
             inherit (config) system;
 
@@ -92,4 +114,5 @@ in {
   };
 
   config.flake.nixosConfigurations = configs;
+  config.flake.packages = lib.mkMerge packages;
 }
