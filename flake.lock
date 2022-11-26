@@ -486,6 +486,9 @@
         "nil": "nil",
         "nix": "nix",
         "nixos-vscode-server": "nixos-vscode-server",
+        "nixpkgs": [
+          "unstable"
+        ],
         "nixpkgs-2105": "nixpkgs-2105",
         "nixpkgs-2111": "nixpkgs-2111",
         "nixpkgs-2205": "nixpkgs-2205",

@@ -8,6 +8,9 @@
 
   inputs.parts.url = "github:hercules-ci/flake-parts";
 
+  # The following is required to make flake-parts work.
+  inputs.nixpkgs.follows = "unstable";
+
   inputs.nix.url = "github:nixos/nix"; #/caf51729450d4c57d48ddbef8e855e9bf65f8792";
   # inputs.rnix-lsp.url = "github:nix-community/rnix-lsp/master";
   # inputs.rnix-lsp.inputs.nixpkgs.follows = "nixpkgs-2111";
@@ -34,9 +37,13 @@
     ...
   } @ inputs:
     parts.lib.mkFlake {inherit self;} {
-      flake = {
-        formatter.x86_64-linux = self.packages.x86_64-linux.alejandra;
+      systems = ["x86_64-linux" "aarch64-darwin"];
 
+      imports = [
+        ./parts/auxiliary.nix
+      ];
+
+      flake = {
         nixosModules = import ./nixos/modules inputs;
         nixosConfigurations = import ./nixos/configurations inputs;
 
@@ -55,34 +62,6 @@
         checks.x86_64-linux = import ./checks inputs;
 
         lib = import ./lib inputs;
-
-        devShell.x86_64-linux = self.devShells.x86_64-linux.default;
-        devShells.x86_64-linux.default = inputs.unstable.legacyPackages.x86_64-linux.mkShell {
-          packages = builtins.attrValues {
-            inherit (self.packages.x86_64-linux) nil alejandra;
-            inherit (inputs.unstable.legacyPackages.x86_64-linux) rust-analyzer rustc cargo rustfmt clippy openssl pkg-config;
-          };
-        };
-
-        devShells.aarch64-darwin.default = let
-          pkgs = inputs.unstable.legacyPackages.aarch64-darwin;
-          mpkgs = inputs.master.legacyPackages.aarch64-darwin;
-        in
-          pkgs.mkShell {
-            packages = [
-              self.packages.aarch64-darwin.nil
-              self.packages.aarch64-darwin.alejandra
-              pkgs.rust-analyzer
-              pkgs.rustc
-
-              pkgs.cargo
-              pkgs.rustfmt
-              pkgs.clippy
-              pkgs.openssl
-              pkgs.pkg-config
-            ];
-          };
       };
-      systems = ["x86_64-linux aarch64-darwin"];
     };
 }
