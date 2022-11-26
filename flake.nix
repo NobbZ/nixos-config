@@ -41,15 +41,17 @@
 
       imports = [
         ./parts/auxiliary.nix
+        ./parts/home_configs.nix
         ./parts/system_configs.nix
+
         ./nixos/configurations
+        ./home/configurations
       ];
 
       flake = {
         nixosModules = import ./nixos/modules inputs;
 
         homeModules = import ./home/modules inputs;
-        homeConfigurations = import ./home/configurations inputs;
 
         mixedModules = import ./mixed inputs;
 

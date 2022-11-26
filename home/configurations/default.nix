@@ -1,5 +1,9 @@
-{self, ...} @ inputs: {
-  "nmelzer@mimas" = self.lib.mkHome "nmelzer" "mimas" "x86_64-linux" inputs.unstable;
-  "nmelzer@enceladeus" = self.lib.mkHome "nmelzer" "enceladeus" "x86_64-linux" inputs.unstable;
-  "nmelzer@Titan.local" = self.lib.mkHome "nmelzer" "titan" "aarch64-darwin" inputs.unstable;
+_: {
+  nobbz.homeConfigurations."nmelzer@mimas".system = "x86_64-linux";
+  nobbz.homeConfigurations."nmelzer@enceladeus".system = "x86_64-linux";
+
+  nobbz.homeConfigurations."nmelzer@Titan.local" = {
+    system = "x86_64-linux";
+    hostname = "titan";
+  };
 }
