@@ -3,7 +3,7 @@ _: {
   nobbz.homeConfigurations."nmelzer@enceladeus".system = "x86_64-linux";
 
   nobbz.homeConfigurations."nmelzer@Titan.local" = {
-    system = "x86_64-linux";
+    system = "aarch64-darwin";
     hostname = "titan";
   };
 }
