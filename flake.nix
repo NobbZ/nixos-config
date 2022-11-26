@@ -41,8 +41,8 @@
 
       imports = [
         ./parts/auxiliary.nix
-        ./parts/configs.nix
-        ./parts/nixos_systems.nix
+        ./parts/system_configs.nix
+        ./nixos/configurations
       ];
 
       flake = {
