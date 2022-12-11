@@ -5,7 +5,6 @@
 } @ inputs: system: let
   pkgs = inputs.nixpkgs-2105.legacyPackages."${system}";
   upkgs = inputs.unstable.legacyPackages."${system}";
-  mpkgs = inputs.master.legacyPackages."${system}";
 
   epkgs = import inputs.unstable {
     inherit system;
@@ -21,7 +20,7 @@ in
   {
     "advcp" = upkgs.callPackage ./advcp {};
     "dracula/konsole" = upkgs.callPackage ./dracula/konsole {};
-    "emacs" = epkgs.emacsNativeComp;
+    "emacs" = epkgs.emacsUnstable;
     "elixir-lsp" = upkgs.elixir_ls;
     "erlang-ls" = upkgs.beam.packages.erlang.callPackage ./erlang-ls {};
     "rofi/unicode" = upkgs.callPackage ./rofi-unicode {};
