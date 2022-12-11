@@ -139,16 +139,18 @@ in {
   hardware.opengl.enable = true;
   hardware.opengl.extraPackages = [pkgs.vaapiIntel pkgs.beignet];
 
-  services.gitea.enable = true;
-  services.gitea.httpAddress = "127.0.0.1";
-  services.gitea.domain = "gitea.mimas.internal.nobbz.dev";
-  services.gitea.settings.server.ROOT_URL = lib.mkForce "https://gitea.mimas.internal.nobbz.dev/";
-  services.gitea.settings."git.timeout".DEFAULT = 3600; # 1 hour
-  services.gitea.settings."git.timeout".MIGRATE = 3600; # 1 hour
-  services.gitea.settings."git.timeout".MIRROR = 3600; # 1 hour
-  services.gitea.settings."git.timeout".CLONE = 3600; # 1 hour
-  services.gitea.settings."git.timeout".PULL = 3600; # 1 hour
-  services.gitea.settings."git.timeout".GC = 3600; # 1 hour
+  services.gitea = {
+    enable = true;
+    httpAddress = "127.0.0.1";
+    domain = "gitea.mimas.internal.nobbz.dev";
+    settings.server.ROOT_URL = lib.mkForce "https://gitea.mimas.internal.nobbz.dev/";
+    settings."git.timeout".DEFAULT = 3600; # 1 hour
+    settings."git.timeout".MIGRATE = 3600; # 1 hour
+    settings."git.timeout".MIRROR = 3600; # 1 hour
+    settings."git.timeout".CLONE = 3600; # 1 hour
+    settings."git.timeout".PULL = 3600; # 1 hour
+    settings."git.timeout".GC = 3600;
+  }; # 1 hour
   systemd.services.gitea.after = ["var-lib-gitea.mount"];
 
   virtualisation = {
