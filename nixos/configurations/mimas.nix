@@ -340,7 +340,7 @@ in {
       gitea.loadBalancer.servers = [{url = "http://localhost:${toString config.services.gitea.httpPort}";}];
 
       grafana.loadBalancer.passHostHeader = true;
-      grafana.loadBalancer.servers = [{url = "http://localhost:${toString config.services.grafana.port}";}];
+      grafana.loadBalancer.servers = [{url = "http://localhost:${toString config.services.grafana.settings.server.http_port}";}];
     };
   };
 
