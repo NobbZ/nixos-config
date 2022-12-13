@@ -21,7 +21,6 @@
       "nim"
       "nix"
       # "ocaml"
-      "python"
       "rust"
       "tex"
     ];

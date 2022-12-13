@@ -15,7 +15,7 @@
       "${pkgs.networkmanagerapplet}/bin/nm-applet"
     ];
 
-    enabledLanguages = ["cpp" "nix" "elixir" "erlang" "python"];
+    enabledLanguages = ["cpp" "nix" "elixir" "erlang"];
 
     programs.emacs.splashScreen = false;
 
