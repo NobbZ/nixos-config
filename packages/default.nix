@@ -12,12 +12,23 @@
   };
   nodePkgs = upkgs.callPackages ./nodePackages/override.nix {};
 
-  nil =
-    if pkgs.stdenv.isLinux
+  nilBasePackage =
+    if upkgs.stdenv.isLinux
     then inputs.nil.packages.${system}.nil
     else upkgs.nil;
+
+  rnil-lsp = upkgs.writeShellScriptBin "rnix-lsp" ''
+    exec ${nilBasePackage}/bin/nil "$@"
+  '';
+
+  nil = upkgs.symlinkJoin {
+    name = "nil";
+    paths = [nilBasePackage rnil-lsp];
+  };
 in
   {
+    inherit nil;
+
     "advcp" = upkgs.callPackage ./advcp {};
     "dracula/konsole" = upkgs.callPackage ./dracula/konsole {};
     "emacs" = epkgs.emacsUnstable;
@@ -33,9 +44,6 @@ in
     };
 
     "alejandra" = inputs.alejandra.defaultPackage."${system}";
-    "nil" = upkgs.writeShellScriptBin "rnix-lsp" ''
-      exec ${nil}/bin/nil "$@"
-    '';
   }
   // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
     "google-chrome" =
