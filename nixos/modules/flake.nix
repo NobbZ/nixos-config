@@ -33,7 +33,7 @@ in {
         "nixpkgs=${nixpkgsPath}"
         "nixpkgs2105=${nixpkgs2105Path}"
         "nixpkgs2111=${nixpkgs2111Path}"
-        "nixpkgs2205=${nixpkgs2105Path}"
+        "nixpkgs2205=${nixpkgs2205Path}"
         "/nix/var/nix/profiles/per-user/root/channels"
       ];
     };
