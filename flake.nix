@@ -8,6 +8,9 @@
 
   inputs.parts.url = "github:hercules-ci/flake-parts";
 
+  inputs.programsdb.url = "github:wamserma/flake-programs-sqlite";
+  inputs.programsdb.inputs.nixpkgs.follows = "unstable";
+
   # The following is required to make flake-parts work.
   inputs.nixpkgs.follows = "unstable";
 
