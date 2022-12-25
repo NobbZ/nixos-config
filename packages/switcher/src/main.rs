@@ -66,9 +66,15 @@ async fn main() -> Result<(), Box<dyn Error>> {
     tracing::info!("Building strings");
 
     let flake_url = format!("github:{}/{}?ref={}", OWNER, REPO, sha1);
-    let nixos_config = format!("{}#nixos/config/{}", flake_url, host);
+    let nixos_config = format!(
+        "{}#nixosConfigurations.{}.config.system.build.toplevel",
+        flake_url, host
+    );
     let nixos_rebuild = format!("{}#{}", flake_url, host);
-    let home_config = format!("{}#home/config/{}@{}", flake_url, user, host);
+    let home_config = format!(
+        "{}#homeConfigurations.{}@{}.activationPackage",
+        flake_url, user, host
+    );
     let home_manager = format!("{}#{}@{}", flake_url, user, host);
     let out_link = Path::new(&temp).join("result");
 
