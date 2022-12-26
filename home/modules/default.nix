@@ -36,6 +36,7 @@ inputs: {
   "services/keyleds" = import ./services/keyleds inputs;
   "services/insync" = import ./services/insync inputs;
   "services/restic" = import ./services/restic inputs;
+  "services/rustic" = import ./services/rustic inputs;
 
   "misc/awesome" = import ./misc/awesome inputs;
   "misc/home" = import ./misc/home inputs;
