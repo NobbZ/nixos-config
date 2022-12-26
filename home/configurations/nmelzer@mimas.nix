@@ -2,7 +2,11 @@
   unstable,
   self,
   ...
-}: {pkgs, ...}: {
+}: {
+  config,
+  pkgs,
+  ...
+}: {
   config = {
     nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord"];
     nixpkgs.config.allowBroken = true;
@@ -70,11 +74,17 @@
       insync.enable = true;
       playerctld.enable = true;
 
-      restic = {
+      rustic = {
         enable = true;
-        exclude = (map (e: "%h/${e}") [".cache" ".cabal" ".cargo" ".emacs.d/eln-cache" ".emacs.d/.cache" ".gem" ".gradle" ".hex" ".kube" ".local" ".m2" ".minikube" ".minishift" ".mix" ".mozilla" "npm" ".opam" ".rancher" ".vscode-oss" "go/pkg" "timmelzer@gmail.com/restic_repos"]) ++ ["_build" "deps" "result" "target" ".elixir_ls" "ccls-cache" ".direnv" "direnv"];
+        globs = let
+          mkHome = e: "${config.home.homeDirectory}/${e}";
+          mkIgnore = e: "!${e}";
+
+          home = map mkHome [".cache" ".cabal" ".cargo" ".emacs.d/eln-cache" ".emacs.d/.cache" ".gem" ".gradle" ".hex" ".kube" ".local" ".m2" ".minikube" ".minishift" ".mix" ".mozilla" "npm" ".opam" ".rancher" ".vscode-oss" "go/pkg" "timmelzer@gmail.com/restic_repos"];
+          patterns = ["_build" "Cache" "deps" "result" "target" ".elixir_ls" "ccls-cache" ".direnv" "direnv" "node_modules"];
+        in
+          map mkIgnore (home ++ patterns);
         oneFileSystem = true;
-        compression = "max";
         repo = "rest:https://restic.mimas.internal.nobbz.dev/nobbz";
       };
     };
