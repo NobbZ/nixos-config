@@ -1,4 +1,8 @@
-{statix, ...}: {
+{
+  self,
+  statix,
+  ...
+}: {
   config,
   pkgs,
   lib,
