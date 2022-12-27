@@ -7,7 +7,7 @@ pre-commit:
 
     linting:
       glob: "*.nix"
-      run: nix run --option allow-import-from-derivation true --inputs-from . statix -- check -i packages/nodePackages/node-env.nix
+      run: nix run --option allow-import-from-derivation true --inputs-from . statix -- check -i packages/nodePackages/node-env.nix npins/default.nix
 
 statix:
   parallel: false

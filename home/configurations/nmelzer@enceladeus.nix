@@ -1,4 +1,5 @@
 {statix, ...}: {
+  config,
   pkgs,
   lib,
   ...
@@ -19,11 +20,18 @@
 
     programs.emacs.splashScreen = false;
 
-    services.restic = {
+    services.rustic = {
       enable = true;
-      exclude = (map (e: "%h/${e}") [".cache" ".cabal" ".cargo" ".emacs.d/eln-cache" ".emacs.d/.cache" ".gem" ".gradle" ".hex" ".kube" ".local" ".m2" ".minikube" ".minishift" ".mix" ".mozilla" "npm" ".opam" ".rancher" ".vscode-oss" "go/pkg"]) ++ ["_build" "deps" "result" "target" ".elixir_ls" "ccls-cache" ".direnv"];
+      package = self.packages.x86_64-linux.rustic-rs;
+      globs = let
+        mkHome = e: "${config.home.homeDirectory}/${e}";
+        mkIgnore = e: "!${e}";
+
+        home = map mkHome [".cache" ".cabal" ".cargo" ".emacs.d/eln-cache" ".emacs.d/.cache" ".gem" ".gradle" ".hex" ".kube" ".local" ".m2" ".minikube" ".minishift" ".mix" ".mozilla" "npm" ".opam" ".rancher" ".vscode-oss" "go/pkg"];
+        patterns = ["_build" "deps" "result" "target" ".elixir_ls" "ccls-cache" ".direnv"];
+      in
+        map mkIgnore (home ++ patterns);
       oneFileSystem = true;
-      compression = "max";
       repo = "rest:https://restic.mimas.internal.nobbz.dev/nobbz";
     };
     systemd.user.timers.restic-backup.Timer.OnCalendar = lib.mkForce "hourly";
