@@ -34,7 +34,6 @@
       oneFileSystem = true;
       repo = "rest:https://restic.mimas.internal.nobbz.dev/nobbz";
     };
-    systemd.user.timers.restic-backup.Timer.OnCalendar = lib.mkForce "hourly";
 
     home.packages = [pkgs.vscode];
   };

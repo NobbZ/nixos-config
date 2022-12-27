@@ -31,23 +31,11 @@
 
     programs.emacs.splashScreen = false;
 
-    home.packages = let
-      p = pkgs;
-      s = self.packages.x86_64-linux;
-    in [
-      p.handbrake
-      p.keybase-gui
-      p.minikube
-      p.gnome.gnome-tweaks
-      p.freerdp
-      p.vscode
-      p.keepassxc
-      p.ipfs
-      p.nix-output-monitor
-      p.discord
-
-      s.gnucash-de
-    ];
+    home.packages = builtins.attrValues {
+      inherit (pkgs) handbrake keybase-gui freerdp vscode keepassxc nix-output-monitor discord;
+      inherit (pkgs.gnome) gnome-tweaks;
+      inherit (self.packages.x86_64-linux) gnucash-de;
+    };
 
     programs.obs-studio.enable = true;
     programs.htop = {
