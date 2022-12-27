@@ -1,7 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{unstable, ...} @ inputs: {
+{
+  unstable,
+  nixpkgs-2211,
+  ...
+} @ inputs: {
   config,
   pkgs,
   lib,
@@ -391,6 +395,7 @@ in {
 
   services.paperless = {
     enable = true;
+    package = nixpkgs-2211.legacyPackages.x86_64-linux.paperless-ngx;
     address = "0.0.0.0";
     port = 58080;
     extraConfig.PAPERLESS_OCR_LANGUAGE = "deu+eng";

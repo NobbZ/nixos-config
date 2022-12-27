@@ -2,6 +2,7 @@
   inputs.nixpkgs-2105.url = "github:nixos/nixpkgs/nixos-21.05";
   inputs.nixpkgs-2111.url = "github:nixos/nixpkgs/nixos-21.11";
   inputs.nixpkgs-2205.url = "github:nixos/nixpkgs/nixos-22.05";
+  inputs.nixpkgs-2211.url = "github:nixos/nixpkgs/nixos-22.11";
   inputs.unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.master.url = "github:nixos/nixpkgs/master";
   inputs.nixpkgs-insync.url = "github:nixos/nixpkgs/bd751508cf67db3b13b03e25eb937854fc92ee30";
