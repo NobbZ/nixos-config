@@ -17,6 +17,7 @@
 in {
   imports = [
     (import ./mimas/restic.nix inputs)
+    (import ./mimas/paperless.nix inputs)
   ];
 
   nix.allowedUnfree = ["zerotierone"] ++ printerPackages ++ steamPackages;
@@ -301,13 +302,6 @@ in {
         tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
         tls.certResolver = "mimasWildcard";
       };
-      paperless = {
-        entryPoints = ["https" "http"];
-        rule = "Host(`paperless.mimas.internal.nobbz.dev`)";
-        service = "paperless";
-        tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
-        tls.certResolver = "mimasWildcard";
-      };
       gitea = {
         entryPoints = ["https" "http"];
         rule = "Host(`gitea.mimas.internal.nobbz.dev`)";
@@ -336,9 +330,6 @@ in {
 
       fritz.loadBalancer.passHostHeader = false;
       fritz.loadBalancer.servers = [{url = "http://fritz.box";}];
-
-      paperless.loadBalancer.passHostHeader = true;
-      paperless.loadBalancer.servers = [{url = "http://localhost:${toString config.services.paperless.port}";}];
 
       gitea.loadBalancer.passHostHeader = true;
       gitea.loadBalancer.servers = [{url = "http://localhost:${toString config.services.gitea.httpPort}";}];
@@ -392,17 +383,6 @@ in {
       }
     ];
   };
-
-  services.paperless = {
-    enable = true;
-    package = nixpkgs-2211.legacyPackages.x86_64-linux.paperless-ngx;
-    address = "0.0.0.0";
-    port = 58080;
-    extraConfig.PAPERLESS_OCR_LANGUAGE = "deu+eng";
-  };
-  systemd.services.paperless-scheduler.after = ["var-lib-paperless.mount"];
-  systemd.services.paperless-consumer.after = ["var-lib-paperless.mount"];
-  systemd.services.paperless-web.after = ["var-lib-paperless.mount"];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
