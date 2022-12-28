@@ -2,7 +2,7 @@ name: Updater
 
 on:
   schedule:
-  - cron: '0 2 * * *'
+    - cron: "0 2 * * *"
   workflow_dispatch: {}
 
 jobs:
@@ -12,60 +12,60 @@ jobs:
       packages: ${{ steps.gen_packages.outputs.packages }}
       checks: ${{ steps.gen_checks.outputs.checks }}
     steps:
-    - name: Clone repository
-      uses: actions/checkout@v3
-      with:
-        token: '${{ secrets.GITHUB_TOKEN }}'
-    - name: Install nix
-      uses: cachix/install-nix-action@v18
-      with:
-        extra_nix_config: |
-          auto-optimise-store = true
-          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-          experimental-features = nix-command flakes
-          substituters = https://cache.nixos.org/ https://nix-community.cachix.org
-          trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
-        install_url: https://releases.nixos.org/nix/nix-2.7.0/install
-    - name: Generate flake.json
-      run: |
-        nix flake show --json > flake.json
-    - id: gen_packages
-      run: |
-        packages=$(jq -c '.packages."x86_64-linux" | keys' < flake.json)
-        printf "::set-output name=packages::%s" "$packages"
-    - id: gen_checks
-      run: |
-        checks=$(jq -c '.checks."x86_64-linux" | keys' < flake.json)
-        printf "::set-output name=checks::%s" "$checks"
-    
+      - name: Clone repository
+        uses: actions/checkout@v3
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Install nix
+        uses: cachix/install-nix-action@v18
+        with:
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            experimental-features = nix-command flakes
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+          install_url: https://releases.nixos.org/nix/nix-2.12.0/install
+      - name: Generate flake.json
+        run: |
+          nix flake show --json > flake.json
+      - id: gen_packages
+        run: |
+          packages=$(jq -c '.packages."x86_64-linux" | keys' < flake.json)
+          printf "::set-output name=packages::%s" "$packages"
+      - id: gen_checks
+        run: |
+          checks=$(jq -c '.checks."x86_64-linux" | keys' < flake.json)
+          printf "::set-output name=checks::%s" "$checks"
+
   update_flake:
     runs-on: ubuntu-20.04
     steps:
-    - name: Clone repository
-      uses: actions/checkout@v3
-      with:
-        token: '${{ secrets.GITHUB_TOKEN }}'
-    - name: Install nix
-      uses: cachix/install-nix-action@v18
-      with:
-        extra_nix_config: |
-          auto-optimise-store = true
-          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-          experimental-features = nix-command flakes
-          substituters = https://cache.nixos.org/ https://nix-community.cachix.org
-          trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
-        install_url: https://releases.nixos.org/nix/nix-2.7.0/install
-    - name: Set up git
-      run: |
-        git config user.email gitbot@nobbz.dev
-        git config user.name "Git Bot"
-    - name: Update the flake
-      run: nix flake update
-    - name: Store flake.lock
-      uses: actions/upload-artifact@v3
-      with:
-        name: flake_lock
-        path: flake.lock
+      - name: Clone repository
+        uses: actions/checkout@v3
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Install nix
+        uses: cachix/install-nix-action@v18
+        with:
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            experimental-features = nix-command flakes
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+          install_url: https://releases.nixos.org/nix/nix-2.12.0/install
+      - name: Set up git
+        run: |
+          git config user.email gitbot@nobbz.dev
+          git config user.name "Git Bot"
+      - name: Update the flake
+        run: nix flake update
+      - name: Store flake.lock
+        uses: actions/upload-artifact@v3
+        with:
+          name: flake_lock
+          path: flake.lock
 
   build_flake:
     runs-on: ubuntu-20.04
@@ -76,41 +76,41 @@ jobs:
       matrix:
         package: ${{fromJson(needs.generate_matrix.outputs.packages)}}
     steps:
-    # - name: Prepare store folder
-    #   run: sudo mkdir -p /nix
-    # - name: Free diskspace
-    #   uses: easimon/maximize-build-space@master
-    #   with:
-    #     build-mount-path: /nix
-    #     remove-dotnet: true
-    #     remove-android: true
-    #     remove-haskell: true
-    - name: Clone repository
-      uses: actions/checkout@v3
-      with:
-        token: '${{ secrets.GITHUB_TOKEN }}'
-    - name: Install nix
-      uses: cachix/install-nix-action@v18
-      with:
-        extra_nix_config: |
-          auto-optimise-store = true
-          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-          experimental-features = nix-command flakes
-          substituters = https://cache.nixos.org/ https://nix-community.cachix.org
-          trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
-        install_url: https://releases.nixos.org/nix/nix-2.7.0/install
-    - name: Set up cachix
-      uses: cachix/cachix-action@master # pathsToPush, please update once we have v11!
-      with:
-        name: nobbz
-        signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
-        pathsToPush: result
-    - name: Restore flake.lock
-      uses: actions/download-artifact@v3
-      with:
-        name: flake_lock
-    - name: Build everything
-      run: nix build .#${{ matrix.package }}
+      # - name: Prepare store folder
+      #   run: sudo mkdir -p /nix
+      # - name: Free diskspace
+      #   uses: easimon/maximize-build-space@master
+      #   with:
+      #     build-mount-path: /nix
+      #     remove-dotnet: true
+      #     remove-android: true
+      #     remove-haskell: true
+      - name: Clone repository
+        uses: actions/checkout@v3
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Install nix
+        uses: cachix/install-nix-action@v18
+        with:
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            experimental-features = nix-command flakes
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+          install_url: https://releases.nixos.org/nix/nix-2.12.0/install
+      - name: Set up cachix
+        uses: cachix/cachix-action@master # pathsToPush, please update once we have v11!
+        with:
+          name: nobbz
+          signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
+          pathsToPush: result
+      - name: Restore flake.lock
+        uses: actions/download-artifact@v3
+        with:
+          name: flake_lock
+      - name: Build everything
+        run: nix build .#${{ matrix.package }}
 
   build_checks:
     runs-on: ubuntu-20.04
@@ -121,89 +121,89 @@ jobs:
       matrix:
         check: ${{fromJson(needs.generate_matrix.outputs.checks)}}
     steps:
-    - name: Clone repository
-      uses: actions/checkout@v3
-      with:
-        token: '${{ secrets.GITHUB_TOKEN }}'
-    - name: Install nix
-      uses: cachix/install-nix-action@v18
-      with:
-        extra_nix_config: |
-          auto-optimise-store = true
-          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-          experimental-features = nix-command flakes
-          substituters = https://cache.nixos.org/ https://nix-community.cachix.org
-          trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
-        install_url: https://releases.nixos.org/nix/nix-2.7.0/install
-    - name: Set up cachix
-      uses: cachix/cachix-action@master # pathsToPush, please update once we have v11!
-      with:
-        name: nobbz
-        signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
-        skipPush: true
-    - name: Restore flake.lock
-      uses: actions/download-artifact@v3
-      with:
-        name: flake_lock
-    - name: Build everything
-      run: nix build .#checks.x86_64-linux.${{ matrix.check }} --no-link
+      - name: Clone repository
+        uses: actions/checkout@v3
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Install nix
+        uses: cachix/install-nix-action@v18
+        with:
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            experimental-features = nix-command flakes
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+          install_url: https://releases.nixos.org/nix/nix-2.12.0/install
+      - name: Set up cachix
+        uses: cachix/cachix-action@master # pathsToPush, please update once we have v11!
+        with:
+          name: nobbz
+          signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
+          skipPush: true
+      - name: Restore flake.lock
+        uses: actions/download-artifact@v3
+        with:
+          name: flake_lock
+      - name: Build everything
+        run: nix build .#checks.x86_64-linux.${{ matrix.check }} --no-link
 
   check_flake:
     runs-on: ubuntu-20.04
     needs: [update_flake]
     continue-on-error: true
     steps:
-    - name: Clone repository
-      uses: actions/checkout@v3
-      with:
-        token: '${{ secrets.GITHUB_TOKEN }}'
-    - name: Install nix
-      uses: cachix/install-nix-action@v18
-      with:
-        extra_nix_config: |
-          auto-optimise-store = true
-          access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-          experimental-features = nix-command flakes
-          substituters = https://cache.nixos.org/ https://nix-community.cachix.org
-          trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
-        install_url: https://releases.nixos.org/nix/nix-2.7.0/install
-    - name: Restore flake.lock
-      uses: actions/download-artifact@v3
-      with:
-        name: flake_lock
-    - name: Build everything
-      run: |
-        nix flake check --keep-going
+      - name: Clone repository
+        uses: actions/checkout@v3
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Install nix
+        uses: cachix/install-nix-action@v18
+        with:
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            experimental-features = nix-command flakes
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+          install_url: https://releases.nixos.org/nix/nix-2.12.0/install
+      - name: Restore flake.lock
+        uses: actions/download-artifact@v3
+        with:
+          name: flake_lock
+      - name: Build everything
+        run: |
+          nix flake check --keep-going
 
   push_update:
     runs-on: ubuntu-20.04
     permissions: write-all
     needs: [update_flake, build_flake, build_checks, check_flake]
     steps:
-    - name: Clone repository
-      uses: actions/checkout@v3
-      with:
-        token: '${{ secrets.GITHUB_TOKEN }}'
-    - name: Restore flake.lock
-      uses: actions/download-artifact@v3
-      with:
-        name: flake_lock
-    - name: Set up git
-      run: |
-        git config user.email gitbot@nobbz.dev
-        git config user.name "Git Bot"
-    - name: Create and merge PR
-      run: |
-        git switch -c updates-${{ github.run_id }}
-        git commit -am "flake.lock: Update"
-        git push -u origin updates-${{ github.run_id }}
-        PR=$(gh pr create \
-          --assignee NobbZ \
-          --base main \
-          --body "Automatic flake update on $(date -I)" \
-          --fill \
-          --label bot \
-          --title "Auto update $(date -I)")
-        gh pr merge $PR --merge --delete-branch
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Clone repository
+        uses: actions/checkout@v3
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Restore flake.lock
+        uses: actions/download-artifact@v3
+        with:
+          name: flake_lock
+      - name: Set up git
+        run: |
+          git config user.email gitbot@nobbz.dev
+          git config user.name "Git Bot"
+      - name: Create and merge PR
+        run: |
+          git switch -c updates-${{ github.run_id }}
+          git commit -am "flake.lock: Update"
+          git push -u origin updates-${{ github.run_id }}
+          PR=$(gh pr create \
+            --assignee NobbZ \
+            --base main \
+            --body "Automatic flake update on $(date -I)" \
+            --fill \
+            --label bot \
+            --title "Auto update $(date -I)")
+          gh pr merge $PR --merge --delete-branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
