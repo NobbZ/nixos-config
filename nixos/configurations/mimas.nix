@@ -21,6 +21,7 @@ in {
   ];
 
   nix.allowedUnfree = ["zerotierone"] ++ printerPackages ++ steamPackages;
+  nix.settings.experimental-features = ["ca-derivations" "impure-derivations"];
 
   security.chromiumSuidSandbox.enable = true;
 
