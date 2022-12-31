@@ -25,7 +25,7 @@ in {
 
     nix = {
       package = lib.mkDefault nix.packages.x86_64-linux.nix; # pkgs.nixUnstable;
-      settings.experimental-features = "nix-command flakes";
+      settings.experimental-features = ["nix-command" "flakes"];
 
       registry.nixpkgs.flake = unstable;
       registry.nixpkgs2105.flake = nixpkgs-2105;
