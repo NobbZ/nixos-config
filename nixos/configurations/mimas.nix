@@ -31,6 +31,9 @@ in {
   services.lvm.boot.thin.enable = true;
   boot.enableContainers = false;
 
+  boot.binfmt.emulatedSystems = ["i686-linux" "aarch64-linux"];
+  nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;
+
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
