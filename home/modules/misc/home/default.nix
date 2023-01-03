@@ -9,7 +9,7 @@
   lib,
   ...
 }: let
-  self' = self.packages.x86_64-linux;
+  self' = self.packages.${pkgs.system};
 in {
   profiles.base.enable = true;
   fonts.fontconfig.enable = true;

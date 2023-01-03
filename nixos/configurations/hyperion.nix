@@ -1,4 +1,4 @@
-_: {pkgs,...}: {
+_: {pkgs, ...}: {
   nix.allowedUnfree = ["zerotierone"];
 
   networking.hostName = "hyperion";
