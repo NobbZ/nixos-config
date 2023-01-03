@@ -41,7 +41,7 @@
     ...
   } @ inputs:
     parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux" "aarch64-darwin"];
+      systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
 
       imports = [
         ./parts/auxiliary.nix
@@ -60,6 +60,7 @@
         mixedModules = import ./mixed inputs;
 
         packages.x86_64-linux = import ./packages inputs "x86_64-linux";
+        packages.aarch64-linux = import ./packages inputs "aarch64-linux";
         packages.aarch64-darwin = import ./packages inputs "aarch64-darwin";
 
         checks.x86_64-linux = import ./checks inputs;
