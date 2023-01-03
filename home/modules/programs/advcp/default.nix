@@ -11,7 +11,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [self.packages.x86_64-linux.advcp];
+    home.packages = [self.packages.${pkgs.system}.advcp];
 
     programs.zsh.shellAliases = {
       cp = "advcp -g";

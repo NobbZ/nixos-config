@@ -6,7 +6,7 @@
 }: let
   cfg = config.profiles.base;
 
-  inherit (self.packages.x86_64-linux) emacs;
+  inherit (self.packages.${pkgs.system}) emacs;
   inherit (lib.hm) dag;
 
   # TODO: make these a bit more nice, so that repeating the hosts and individual config isn't necessary.
@@ -44,10 +44,10 @@ in {
     home.keyboard.layout = "de";
     home.packages = [pkgs.hydra-check] ++ lib.optionals pkgs.stdenv.isLinux [pkgs.dconf];
 
-    dconf.enable = lib.mkMerge [
-      (lib.mkIf pkgs.stdenv.isLinux true)
-      (lib.mkIf pkgs.stdenv.isDarwin false)
-    ];
+    # dconf.enable = lib.mkMerge [
+    #   (lib.mkIf pkgs.stdenv.isLinux true)
+    #   (lib.mkIf pkgs.stdenv.isDarwin false)
+    # ];
 
     xsession = {
       enable = true;

@@ -24,7 +24,7 @@ in {
     programs.command-not-found.dbPath = programsdb.packages.${pkgs.system}.programs-sqlite;
 
     nix = {
-      package = lib.mkDefault nix.packages.x86_64-linux.nix; # pkgs.nixUnstable;
+      package = lib.mkDefault nix.packages.${pkgs.system}.nix; # pkgs.nixUnstable;
       settings.experimental-features = ["nix-command" "flakes"];
 
       registry.nixpkgs.flake = unstable;
