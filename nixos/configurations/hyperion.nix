@@ -14,10 +14,12 @@ _: {pkgs, ...}: {
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.lxqt.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.enlightenment.enable = true;
 
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
+
+  services.acpid.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
