@@ -13,6 +13,11 @@ _: {pkgs, ...}: {
   # Enable the LXQT Desktop Environment.
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.lxqt.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
+
+  services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -25,8 +30,6 @@ _: {pkgs, ...}: {
 
   services.printing.enable = true;
 
-  sound.enable = false;
-
   programs.zsh.enable = true;
 
   users.users.nmelzer = {
@@ -35,7 +38,7 @@ _: {pkgs, ...}: {
     extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.zsh;
     packages = [
-      # firefox
+      pkgs.firefox
       #  thunderbird
     ];
   };
