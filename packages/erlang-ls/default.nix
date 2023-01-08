@@ -55,7 +55,7 @@ in
       inherit version;
       name = pname;
       src = "${src}/rebar.lock";
-      sha256 = "sha256-nm3e5DfehSCjjTPADSzohilOBFW4QiXnokwVNrpDZ1E=";
+      sha256 = "sha256-0jHvRgg9VC31ubxFYuD6rc9B6b15g5Smck4sccgBsek=";
     };
 
     postPatch = ''
