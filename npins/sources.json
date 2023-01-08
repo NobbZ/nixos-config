@@ -1,5 +1,17 @@
 {
   "pins": {
+    "konsole": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "dracula",
+        "repo": "konsole"
+      },
+      "branch": "master",
+      "revision": "030486c75f12853e9d922b59eb37c25aea4f66f4",
+      "url": "https://github.com/dracula/konsole/archive/030486c75f12853e9d922b59eb37c25aea4f66f4.tar.gz",
+      "hash": "123dll2w2mbflgxfgdjg0a3gbr4srnwbyj3zd6wg1hx5miki48xj"
+    },
     "zsh-syntax-highlighting": {
       "type": "Git",
       "repository": {
