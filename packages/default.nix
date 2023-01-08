@@ -25,8 +25,7 @@
     name = "nil";
     paths = [nilBasePackage rnil-lsp];
   };
-
-  npins = import ../npins;
+  # npins = import ../npins;
 in
   {
     inherit nil;
@@ -46,15 +45,6 @@ in
     };
 
     "alejandra" = inputs.alejandra.defaultPackage."${system}";
-
-    "rustic-rs" = upkgs.rustic-rs.overrideAttrs (oa: {
-      version = "${oa.version}+${npins.rustic.revision}";
-      src = npins.rustic;
-      cargoDeps = oa.cargoDeps.overrideAttrs (_: {
-        src = npins.rustic;
-        outputHash = "sha256-Y9cx8TD2aSMwYmaKyjBAVqUUAOkHBtY39gb5QNVLQoE=";
-      });
-    });
   }
   // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
     "google-chrome" =
