@@ -33,6 +33,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    manual.manpages.enable = false;
+
     home.sessionVariables = rec {
       EDITOR = "emacs -nw";
       VISUAL = "emacs";
