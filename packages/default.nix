@@ -47,6 +47,10 @@ in
     "alejandra" = inputs.alejandra.defaultPackage."${system}";
   }
   // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
+    "gnucash-de" = upkgs.callPackage ./gnucash-de {};
+    "keyleds" = upkgs.callPackage ./keyleds {};
+  }
+  // pkgs.lib.optionalAttrs (system == "x86_64-linux") {
     "google-chrome" =
       (import inputs.master {
         inherit system;
@@ -54,7 +58,4 @@ in
         config.google-chrome.enableWideVine = true;
       })
       .google-chrome;
-
-    "gnucash-de" = upkgs.callPackage ./gnucash-de {};
-    "keyleds" = upkgs.callPackage ./keyleds {};
   }
