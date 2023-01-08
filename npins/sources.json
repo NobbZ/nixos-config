@@ -1,17 +1,4 @@
 {
-  "pins": {
-    "rustic": {
-      "type": "Git",
-      "repository": {
-        "type": "GitHub",
-        "owner": "rustic-rs",
-        "repo": "rustic"
-      },
-      "branch": "main",
-      "revision": "65ffa0ad14f9dcd7ebc33dd2d5ecd0d13f894c53",
-      "url": "https://github.com/rustic-rs/rustic/archive/65ffa0ad14f9dcd7ebc33dd2d5ecd0d13f894c53.tar.gz",
-      "hash": "1hzsq2jjgpcwzayx480xsx3vafx1xxv5m9jwh2nr7yc0hgk1gdpn"
-    }
-  },
+  "pins": {},
   "version": 3
 }

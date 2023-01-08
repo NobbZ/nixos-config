@@ -64,7 +64,6 @@
 
       rustic = {
         enable = true;
-        package = self.packages.x86_64-linux.rustic-rs;
         globs = let
           mkHome = e: "${config.home.homeDirectory}/${e}";
           mkIgnore = e: "!${e}";

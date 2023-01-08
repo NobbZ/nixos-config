@@ -25,8 +25,7 @@
     name = "nil";
     paths = [nilBasePackage rnil-lsp];
   };
-
-  npins = import ../npins;
+  # npins = import ../npins;
 in
   {
     inherit nil;
@@ -46,17 +45,12 @@ in
     };
 
     "alejandra" = inputs.alejandra.defaultPackage."${system}";
-
-    "rustic-rs" = upkgs.rustic-rs.overrideAttrs (oa: {
-      version = "${oa.version}+${npins.rustic.revision}";
-      src = npins.rustic;
-      cargoDeps = oa.cargoDeps.overrideAttrs (_: {
-        src = npins.rustic;
-        outputHash = "sha256-Y9cx8TD2aSMwYmaKyjBAVqUUAOkHBtY39gb5QNVLQoE=";
-      });
-    });
   }
   // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
+    "gnucash-de" = upkgs.callPackage ./gnucash-de {};
+    "keyleds" = upkgs.callPackage ./keyleds {};
+  }
+  // pkgs.lib.optionalAttrs (system == "x86_64-linux") {
     "google-chrome" =
       (import inputs.master {
         inherit system;
@@ -64,7 +58,4 @@ in
         config.google-chrome.enableWideVine = true;
       })
       .google-chrome;
-
-    "gnucash-de" = upkgs.callPackage ./gnucash-de {};
-    "keyleds" = upkgs.callPackage ./keyleds {};
   }
