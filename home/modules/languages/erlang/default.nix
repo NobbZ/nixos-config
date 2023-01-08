@@ -6,7 +6,7 @@
 }: let
   cfg = config.languages.erlang;
 
-  inherit (self.packages.x86_64-linux) erlang-ls;
+  inherit (pkgs) erlang-ls;
 in {
   options.languages.erlang = {
     enable = lib.mkEnableOption "Enable support for erlang language";
