@@ -1,4 +1,17 @@
 {
-  "pins": {},
+  "pins": {
+    "zsh-syntax-highlighting": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "zsh-users",
+        "repo": "zsh-syntax-highlighting"
+      },
+      "branch": "master",
+      "revision": "b2c910a85ed84cb7e5108e7cb3406a2e825a858f",
+      "url": "https://github.com/zsh-users/zsh-syntax-highlighting/archive/b2c910a85ed84cb7e5108e7cb3406a2e825a858f.tar.gz",
+      "hash": "1b4hqdsfvcg87wm8jpvrh1005nzij2wgl0wbcrvgkcjqmxb2874p"
+    }
+  },
   "version": 3
 }
