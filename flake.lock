@@ -603,11 +603,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1663988440,
-        "narHash": "sha256-WVwLYETylrLu74Oix+b7WVXGRT6SGJ3PEoQ4RgKwgNE=",
+        "lastModified": 1673173471,
+        "narHash": "sha256-P+Y1vjr5uuuuK7vxDeRP0JfrbP3LV/COQ3/aWQTDLWo=",
         "owner": "nerdypepper",
         "repo": "statix",
-        "rev": "6b490d712ec88460e1f9d85d7f97fdaa85d800e8",
+        "rev": "f0267dfb72971a074180b351c927573008c54b06",
         "type": "github"
       },
       "original": {
