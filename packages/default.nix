@@ -33,8 +33,6 @@ in
     "advcp" = upkgs.callPackage ./advcp {};
     "dracula/konsole" = upkgs.callPackage ./dracula/konsole {};
     "emacs" = epkgs.emacsUnstable;
-    "elixir-lsp" = upkgs.elixir_ls;
-    "erlang-ls" = upkgs.beam.packages.erlang.callPackage ./erlang-ls {};
     "rofi/unicode" = upkgs.callPackage ./rofi-unicode {};
     "zx" = upkgs.nodePackages.zx;
     "angular" = nodePkgs."@angular/cli";

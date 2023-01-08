@@ -6,7 +6,7 @@
 }: let
   cfg = config.languages.elixir;
 
-  inherit (self.packages.x86_64-linux) elixir-lsp;
+  inherit (pkgs) elixir_ls;
 in {
   options.languages.elixir = {
     enable = lib.mkEnableOption "Enable support for elixir language";
@@ -36,7 +36,7 @@ in {
           ep.lsp-mode
         ];
         code = ''
-          (add-to-list 'exec-path "${elixir-lsp}/bin")
+          (add-to-list 'exec-path "${elixir_ls}/bin")
           (setq lsp-elixir-server-command '("elixir-ls"))
 
           (add-hook 'elixir-mode-hook
