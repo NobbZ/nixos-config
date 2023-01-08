@@ -46,7 +46,6 @@ in
   }
   // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
     "gnucash-de" = upkgs.callPackage ./gnucash-de {};
-    "keyleds" = upkgs.callPackage ./keyleds {};
   }
   // pkgs.lib.optionalAttrs (system == "x86_64-linux") {
     "google-chrome" =

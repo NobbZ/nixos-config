@@ -56,7 +56,6 @@
     ];
 
     services = {
-      keyleds.enable = true;
       keybase.enable = true;
       kbfs.enable = true;
       insync.enable = true;
