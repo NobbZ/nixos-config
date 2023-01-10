@@ -19,6 +19,8 @@ _: {pkgs, ...}: {
   services.qemuGuest.enable = true;
   services.spice-vdagentd.enable = true;
 
+  services.ssh.enable = true;
+
   services.acpid.enable = true;
 
   # Configure keymap in X11
