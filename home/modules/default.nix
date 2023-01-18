@@ -33,7 +33,6 @@ inputs: {
   "programs/emacs/lib" = import ./programs/emacs/lib.nix inputs;
   "programs/emacs/whichkey" = import ./programs/emacs/whichkey inputs;
 
-  "services/keyleds" = import ./services/keyleds inputs;
   "services/insync" = import ./services/insync inputs;
   "services/restic" = import ./services/restic inputs;
   "services/rustic" = import ./services/rustic inputs;
