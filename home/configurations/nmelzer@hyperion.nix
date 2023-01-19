@@ -25,7 +25,7 @@
     programs.emacs.splashScreen = false;
 
     home.packages = builtins.attrValues {
-      inherit (pkgs) handbrake vscode keepassxc nix-output-monitor;
+      inherit (pkgs) vscode keepassxc nix-output-monitor;
       inherit (pkgs.gnome) gnome-tweaks;
       inherit (self.packages.aarch64-linux) gnucash-de;
     };

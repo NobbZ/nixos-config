@@ -32,7 +32,7 @@
     programs.emacs.splashScreen = false;
 
     home.packages = builtins.attrValues {
-      inherit (pkgs) handbrake keybase-gui freerdp vscode keepassxc nix-output-monitor discord;
+      inherit (pkgs) keybase-gui freerdp vscode keepassxc nix-output-monitor discord;
       inherit (pkgs.gnome) gnome-tweaks;
       inherit (self.packages.x86_64-linux) gnucash-de;
     };
