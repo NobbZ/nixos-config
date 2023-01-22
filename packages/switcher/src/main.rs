@@ -103,9 +103,9 @@ async fn main() -> Result<(), Box<dyn Error>> {
     tracing::info!("Finished building");
     tracing::info!(%host, "Switching system configuration");
 
-    spawn_command(Command::new("sudo").args([
-        "nixos-rebuild",
+    spawn_command(Command::new("nixos-rebuild").args([
         "switch",
+        "--use-remote-sudo",
         "--flake",
         &nixos_rebuild,
     ]))
