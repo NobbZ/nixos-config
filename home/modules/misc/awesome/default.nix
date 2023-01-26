@@ -93,6 +93,7 @@ in {
 
     xsession.initExtra = ''
       unset XDG_CURRENT_DESKTOP
+      unset DESKTOP_SESSION
     '';
 
     home.file.".config/awesome/rc.lua".text = ''
