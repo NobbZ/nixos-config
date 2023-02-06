@@ -30,7 +30,7 @@
   inputs.emacs.url = "github:nix-community/emacs-overlay";
   inputs.emacs.inputs.nixpkgs.follows = "master";
 
-  inputs.nixos-vscode-server.url = "github:mudrii/nixos-vscode-ssh-fix/main";
+  inputs.nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
 
   inputs.statix.url = "github:nerdypepper/statix";
   inputs.alejandra.url = "github:kamadorueda/alejandra/3.0.0";

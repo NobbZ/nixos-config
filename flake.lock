@@ -266,17 +266,16 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1631782689,
-        "narHash": "sha256-/E2kuaU7IPtF2Wf1wWazjWmhmKyfpr/7h6gXZ1UCVY0=",
-        "owner": "mudrii",
-        "repo": "nixos-vscode-ssh-fix",
-        "rev": "b7886e9c046d52a1be8e907a8bdb182b60677acb",
+        "lastModified": 1662442857,
+        "narHash": "sha256-e2ex4mO4q6UBoJvPSRdYBX1vIvpulqs6SNxvdSsL6uE=",
+        "owner": "msteen",
+        "repo": "nixos-vscode-server",
+        "rev": "c54b714db58ad05d064f394d6603751ee6bd04f6",
         "type": "github"
       },
       "original": {
-        "owner": "mudrii",
-        "ref": "main",
-        "repo": "nixos-vscode-ssh-fix",
+        "owner": "msteen",
+        "repo": "nixos-vscode-server",
         "type": "github"
       }
     },
@@ -444,18 +443,15 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1626395775,
-        "narHash": "sha256-7Uo+4PIQGirfd7WfFuRuspLCyDT7eUn6pnJx/CL9UC8=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "a165aeceda9f9741d15bc2488425daeb06c0707e",
-        "type": "github"
+        "lastModified": 1675183161,
+        "narHash": "sha256-Zq8sNgAxDckpn7tJo7V1afRSk2eoVbu3OjI1QklGLNg=",
+        "path": "/nix/store/dxfmn2pdvvpiark08jlwc8s8gkhviiw1-source",
+        "rev": "e1e1b192c1a5aab2960bf0a0bd53a2e8124fa18e",
+        "type": "path"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-21.05",
-        "repo": "nixpkgs",
-        "type": "github"
+        "id": "nixpkgs",
+        "type": "indirect"
       }
     },
     "nixpkgs_5": {
