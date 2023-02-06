@@ -1,12 +1,18 @@
 {
   unstable,
   self,
+  master,
   ...
 }: {
   config,
   pkgs,
   ...
-}: {
+}: let
+  mpkgs = import master {
+    inherit (pkgs) system;
+    inherit (config.nixpkgs) config;
+  };
+in {
   config = {
     nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord"];
     nixpkgs.config.allowBroken = true;
@@ -32,9 +38,10 @@
     programs.emacs.splashScreen = false;
 
     home.packages = builtins.attrValues {
-      inherit (pkgs) keybase-gui freerdp vscode keepassxc nix-output-monitor discord;
+      inherit (pkgs) keybase-gui freerdp keepassxc nix-output-monitor discord;
       inherit (pkgs.gnome) gnome-tweaks;
       inherit (self.packages.x86_64-linux) gnucash-de;
+      inherit (mpkgs) vscode;
     };
 
     programs.obs-studio.enable = true;
