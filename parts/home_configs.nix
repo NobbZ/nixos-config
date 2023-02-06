@@ -95,7 +95,7 @@ in {
             [
               config.entryPoint
               {home = {inherit (config) username homeDirectory;};}
-              inputs.nixos-vscode-server.nixosModule
+              inputs.nixos-vscode-server.nixosModules.home
             ]
             ++ config.modules
             ++ builtins.attrValues self.homeModules
