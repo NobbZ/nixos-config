@@ -35,7 +35,7 @@ in {
   config = lib.mkIf cfg.enable {
     manual.manpages.enable = false;
 
-    services.vscode-server.enable = true;
+    services.vscode-server.enable = lib.mkDefault pkgs.stdenv.isLinux;
 
     home.sessionVariables = rec {
       EDITOR = "emacs -nw";
