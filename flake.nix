@@ -15,10 +15,8 @@
   # The following is required to make flake-parts work.
   inputs.nixpkgs.follows = "unstable";
 
-  inputs.nix.url = "github:nixos/nix"; #/caf51729450d4c57d48ddbef8e855e9bf65f8792";
-  # inputs.rnix-lsp.url = "github:nix-community/rnix-lsp/master";
-  # inputs.rnix-lsp.inputs.nixpkgs.follows = "nixpkgs-2111";
-  # inputs.rnix-lsp.inputs.naersk.inputs.nixpkgs.follows = "unstable";
+  # https://github.com/NixOS/nix/issues/7783
+  inputs.nix.url = "github:nixos/nix?ref=fb2f7f5dcc6b37a4f39f59d9f477d3fa57d79095";
 
   inputs.nil.url = "github:oxalica/nil";
 
