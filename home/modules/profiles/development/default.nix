@@ -32,7 +32,21 @@ in {
       userName = "Norbert Melzer";
       userEmail = "timmelzer@gmail.com";
 
-      aliases = {
+      aliases = let
+        mkFixupAlias = command:
+          pkgs.resholve.writeScript "git-${command}" {
+            inputs = builtins.attrValues {inherit (pkgs) git fzf ripgrep;};
+            interpreter = "${pkgs.bash}/bin/bash";
+            execer = ["cannot:${pkgs.git}/bin/git" "cannot:${pkgs.fzf}/bin/fzf"];
+          } ''
+            git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+              fzf --ansi --no-sort --reverse --tiebreak=index \
+                --bind=ctrl-s:toggle-sort \
+                --bind="ctrl-m:execute:(rg -o '\b[a-f0-9]{6,}\b' | head -1 | xargs -I% sh -c 'git commit --${command}=% | less -R') <<FZF-EOF
+                {}
+            FZF-EOF"
+          '';
+      in {
         br = "branch";
         co = "checkout";
         graph = "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold cyan)%h%C(reset) - %C(green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all";
@@ -43,6 +57,8 @@ in {
         sw = "switch";
         swag = ''!f() { if [ -z "$1" ]; then tag=$(git describe --abbrev=0 --tag); else tag=$(git describe --abbrev=0 --tag "$1"); fi; git switch --detach "''${tag}"; }; f'';
         hopbase = ''!f() { set -o nounset; tag=$(git describe --abbrev=0 --tag "$1") && git rebase -i "''${tag}"; }; f'';
+        comfix = "!${mkFixupAlias "fixup"}";
+        comreb = "!${mkFixupAlias "rebase"}";
       };
 
       extraConfig = {
