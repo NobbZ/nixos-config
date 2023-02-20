@@ -3,7 +3,7 @@
   emacs,
   ...
 } @ inputs: system: let
-  pkgs = inputs.nixpkgs-2105.legacyPackages."${system}";
+  pkgs = inputs.nixpkgs-2111.legacyPackages."${system}";
   upkgs = inputs.unstable.legacyPackages."${system}";
 
   epkgs = import inputs.unstable {
