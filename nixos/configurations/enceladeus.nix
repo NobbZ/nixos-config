@@ -10,38 +10,29 @@ _: {
   nix.allowedUnfree = ["b43-firmware" "zerotierone"];
   nixpkgs.config.contentAddressedByDefault = false;
 
+  # nixpkgs.hostPlatform.gcc.arch = "core2";
+  # nixpkgs.hostPlatform.system = "x86_64-linux";
+  # nixpkgs.buildPlatform.gcc.arch = "haswell";
+  # nixpkgs.buildPlatform.system = "x86_64-linux";
+
   nixpkgs.overlays = [
     # (final: prev: {
-    #   stdenv =
-    #     prev.stdenv
-    #     // {
-    #       mkDerivation = args:
-    #         prev.stdenv.mkDerivation (args
-    #           // {
-    #             NIX_CFLAGS_COMPILE = toString (args.NIX_CFLAGS_COMPILE or " -pipe -march=core2 -O3");
-    #           });
-    #     };
+    #   abseil-cpp = nixpkgs.legacyPackages.${final.system}.abseil-cpp;
+    #   #bash = prev.bash.override { stdenv = nixpkgs.legacyPackages.${final.system}.stdenv; };
     # })
   ];
 
-  # nix.useSandbox = false;
-  # nix.package = pkgs.nix_2_4;
-
-  services.lvm.boot.vdo.enable = true;
   services.lvm.boot.thin.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_5_15;
+  boot.kernelPackages = pkgs.linuxPackages_5_15; # TODO: Figure why I have this and nothing newer?
   services.lvm.dmeventd.enable = true;
   boot.blacklistedKernelModules = ["rtl8xxxu"];
   boot.extraModulePackages = with config.boot.kernelPackages; [
     rtl8192eu
   ];
 
-  # boot.kernelPackages = pkgs.linuxPackages_4_19;
   boot.kernel.sysctl = {
     "vm.swappiness" = 75;
   };
-
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -56,9 +47,6 @@ _: {
   networking.interfaces.enp0s25.useDHCP = false;
   networking.interfaces.wlan0.useDHCP = false;
   networking.hostId = "62a007d6"; # required by ZFS
-
-  # hardware.opengl.driSupport32Bit = true;
-  # hardware.pulseaudio.support32Bit = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -77,17 +65,15 @@ _: {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    wget
-    rsync
-    git
-    firefox
-    unison
+    unison # Sadly required on the host for unison copy to work :(
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
   programs.zsh.enable = true;
 
   # List services that you want to enable:
@@ -117,34 +103,27 @@ _: {
   # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable touchpad support.
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
 
   # Enable the KDE Desktop Environment.
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.plasma5.enable = false;
   services.xserver.windowManager.awesome.enable = true;
 
-  # services.kbfs.enable = true;
-  # services.keybase.enable = true;
-
-  virtualisation = {
-    docker = {
-      enable = false;
-    };
-
-    # virtualbox.host.enable = true;
-  };
+  virtualisation.docker.enable = false;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
     nmelzer = {
       isNormalUser = true;
       shell = pkgs.zsh;
-      extraGroups = ["wheel" "networkmanager" "adbusers"]; # Enable ‘sudo’ for the user.
+      extraGroups = ["wheel" "networkmanager"];
     };
+
     aroemer = {
       isNormalUser = true;
     };
+
     proemer = {
       isNormalUser = true;
     };
@@ -165,8 +144,6 @@ _: {
   # servers. You should change this only after NixOS release notes say you
   # should.
   system.stateVersion = "19.09"; # Did you read the comment?
-
-  hardware.keyboard.zsa.enable = true;
 
   security.sudo.extraRules = [
     {
