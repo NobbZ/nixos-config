@@ -33,6 +33,7 @@ in {
 
   boot.binfmt.emulatedSystems = ["i686-linux" "aarch64-linux"];
   nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;
+  nix.settings.system-features = ["nixos-test" "benchmark" "big-parallel" "kvm" "gccarch-core2" "gccarch-haswell"];
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
