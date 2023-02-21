@@ -8,8 +8,10 @@ _: {
   in
     builtins.foldl' reducer {} config.enabledLanguages;
 in {
-  options.enabledLanguages =
-    lib.mkOption {type = lib.types.listOf lib.types.str;};
+  options.enabledLanguages = lib.mkOption {
+    default = [];
+    type = lib.types.listOf lib.types.str;
+  };
 
   config = {languages = langsEnabler;};
 }
