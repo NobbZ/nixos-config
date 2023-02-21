@@ -15,7 +15,7 @@
   # The following is required to make flake-parts work.
   inputs.nixpkgs.follows = "unstable";
 
-  inputs.nix.url = "github:nixos/nix?ref=pull/7856/head";
+  inputs.nix.url = "github:nixos/nix";
 
   inputs.nil.url = "github:oxalica/nil";
 
