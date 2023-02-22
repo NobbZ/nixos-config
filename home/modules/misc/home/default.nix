@@ -1,5 +1,5 @@
 {
-  nixpkgs-2205,
+  nixpkgs-2211,
   unstable,
   self,
   ...
