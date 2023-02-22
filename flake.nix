@@ -30,7 +30,6 @@
 
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
 
-    statix.url = "github:nerdypepper/statix";
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
   };
 

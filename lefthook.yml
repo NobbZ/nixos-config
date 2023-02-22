@@ -7,7 +7,7 @@ pre-commit:
 
     linting:
       glob: "*.nix"
-      run: nix run --option allow-import-from-derivation true --inputs-from . statix -- check
+      run: nix run --inputs-from . nixpkgs#statix -- check
 
 statix:
   parallel: false
