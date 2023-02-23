@@ -9,7 +9,6 @@
   inherit (pkgs) writeShellScript proot mount umount restic;
 
   pools = {
-    docker = "/var/lib/docker";
     gitea = "/var/lib/gitea";
     grafana = "/var/lib/grafana";
     paperless = "/var/lib/paperless";
@@ -41,7 +40,7 @@
   rest_repo = "rest:https://restic.mimas.internal.nobbz.dev/mimas";
   gdrv_repo = "/home/nmelzer/timmelzer@gmail.com/restic_repos/mimas";
   btwo_repo = "b2:nobbz-restic-services";
-  pass = "/home/nmelzer/.config/restic/password";
+  pass = config.sops.secrets.restic.path;
 
   script = writeShellScript "restic-services-backup" ''
     set -ex
@@ -114,9 +113,10 @@ in {
 
   systemd.services.restic-system-snapshot-sync-and-prune = {
     path = [restic];
+    after = ["run-secrets.d.mount"];
     serviceConfig.Type = "oneshot";
     serviceConfig.LoadCredential = [
-      "b2:/home/nmelzer/.config/restic/b2"
+      "b2:${config.sops.secrets.backblaze.path}"
       "pass:${pass}"
     ];
     script = ''

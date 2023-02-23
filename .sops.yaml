@@ -1,0 +1,14 @@
+keys:
+  - &admin_nobbz age1wpwkf2g475umw3wwns57r8ucykvy6lflpc7uphs0mx9exsj04quqpy7t6r
+  - &host_mimas age10jl78vwyqk622dpn2890l9jl4et3p7lsr8wh8vusem3j8jdxle8qg000qa
+creation_rules:
+  - path_regex: secrets/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *admin_nobbz
+          - *host_mimas
+  - path_regex: secrets/mimas/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *admin_nobbz
+          - *host_mimas

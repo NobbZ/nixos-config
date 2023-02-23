@@ -2,6 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
+  self,
   unstable,
   nixpkgs-2211,
   ...
@@ -19,6 +20,13 @@ in {
     (import ./mimas/restic.nix inputs)
     (import ./mimas/paperless.nix inputs)
   ];
+
+  sops.age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+  sops.age.keyFile = "/home/nmelzer/.config/sops/age/keys.txt";
+  sops.defaultSopsFile = "${self}/secrets/mimas/default.yaml";
+
+  sops.secrets.restic = {};
+  sops.secrets.backblaze = {};
 
   nix.allowedUnfree = ["zerotierone"] ++ printerPackages ++ steamPackages;
   nix.settings.experimental-features = ["ca-derivations" "impure-derivations"];
