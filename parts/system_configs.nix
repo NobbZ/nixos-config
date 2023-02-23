@@ -90,6 +90,7 @@ in {
               {system.configurationRevision = self.rev or "dirty";}
               {documentation.man.enable = true;}
               {documentation.man.generateCaches = true;}
+              inputs.sops-nix.nixosModules.sops
             ]
             ++ config.modules
             ++ builtins.attrValues {
