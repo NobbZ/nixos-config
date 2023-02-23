@@ -15,7 +15,7 @@
     unstable.follows = "nixpkgs-unstable";
     stable.follows = "nixpkgs-2211";
 
-    nix.url = "github:nixos/nix?ref=pull/7856/head";
+    nix.url = "github:nixos/nix";
 
     nil.url = "github:oxalica/nil";
 

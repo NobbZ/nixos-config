@@ -16,9 +16,7 @@
       "${pkgs.networkmanagerapplet}/bin/nm-applet"
     ];
 
-    enabledLanguages = ["cpp" "nix" "elixir" "erlang"];
-
-    programs.emacs.splashScreen = false;
+    programs.emacs.enable = lib.mkForce false;
 
     services.rustic = {
       enable = true;
