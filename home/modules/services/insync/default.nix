@@ -1,6 +1,6 @@
 {
   self,
-  nixpkgs-insync,
+  nixpkgs-insync-v3,
   ...
 }: {
   config,
@@ -15,12 +15,10 @@ in {
 
     package = lib.mkOption {
       type = lib.types.package;
-      default =
-        (import nixpkgs-insync {
+      default = let ipkgs = import nixpkgs-insync-v3 {
           inherit (pkgs) system;
-          config.allowUnfree = true;
-        })
-        .insync;
+          inherit (config.nixpkgs) config;
+        }; in ipkgs.insync-v3;
       description = ''
         The insync package to use.
 

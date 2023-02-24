@@ -3,7 +3,7 @@
     nixpkgs-2211.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     master.url = "github:nixos/nixpkgs/master";
-    nixpkgs-insync.url = "github:nixos/nixpkgs/bd751508cf67db3b13b03e25eb937854fc92ee30";
+    nixpkgs-insync-v3.url = "github:nixos/nixpkgs?ref=32fdc268e921994e3f38088486ddfe765d11df93";
 
     parts.url = "github:hercules-ci/flake-parts";
 

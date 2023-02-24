@@ -268,19 +268,19 @@
         "type": "github"
       }
     },
-    "nixpkgs-insync": {
+    "nixpkgs-insync-v3": {
       "locked": {
-        "lastModified": 1665164923,
-        "narHash": "sha256-GTiFmVaqHKRMPz9rpvrij+wDMjpHca1OS61PaaJr3i4=",
+        "lastModified": 1674552486,
+        "narHash": "sha256-FK9Y4P5Q7lzq9hjXIflr9oW+Cxw+5gxP/dN9+R/bHnA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "bd751508cf67db3b13b03e25eb937854fc92ee30",
+        "rev": "32fdc268e921994e3f38088486ddfe765d11df93",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
+        "ref": "32fdc268e921994e3f38088486ddfe765d11df93",
         "repo": "nixpkgs",
-        "rev": "bd751508cf67db3b13b03e25eb937854fc92ee30",
         "type": "github"
       }
     },
@@ -465,7 +465,7 @@
           "nixpkgs-unstable"
         ],
         "nixpkgs-2211": "nixpkgs-2211",
-        "nixpkgs-insync": "nixpkgs-insync",
+        "nixpkgs-insync-v3": "nixpkgs-insync-v3",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "parts": "parts",
         "programsdb": "programsdb",
