@@ -18,7 +18,6 @@
     enabledLanguages = [
       "nix"
       # "ocaml"
-      "tex"
     ];
 
     programs.emacs.splashScreen = false;
