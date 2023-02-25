@@ -5,7 +5,6 @@ inputs: {
   "profiles/development" = import ./profiles/development inputs;
 
   "languages" = import ./languages inputs;
-  "languages/agda" = import ./languages/agda inputs;
   "languages/c++" = import ./languages/c++ inputs;
   "languages/clojure" = import ./languages/clojure inputs;
   "languages/elixir" = import ./languages/elixir inputs;
