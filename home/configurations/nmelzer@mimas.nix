@@ -16,7 +16,6 @@
     dconf.enable = true;
 
     enabledLanguages = [
-      "clojure"
       "elixir"
       "erlang"
       "go"
