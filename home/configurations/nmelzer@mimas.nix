@@ -15,19 +15,7 @@
 
     dconf.enable = true;
 
-    enabledLanguages = [
-      # "agda"  # Seems as if AGDA2-mode isn't on melpa anymore
-      "clojure"
-      "cpp"
-      "elixir"
-      "erlang"
-      "go"
-      "nim"
-      "nix"
-      # "ocaml"
-      "rust"
-      "tex"
-    ];
+    enabledLanguages = ["nix"];
 
     programs.emacs.splashScreen = false;
 
