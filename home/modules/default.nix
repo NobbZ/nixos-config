@@ -10,7 +10,6 @@ inputs: {
   "languages/python" = import ./languages/python inputs;
   "languages/rust" = import ./languages/rust inputs;
   "languages/tex" = import ./languages/tex inputs;
-  "languages/lua" = import ./languages/lua inputs;
   "languages/terraform" = import ./languages/terraform inputs;
 
   "programs/advcp" = import ./programs/advcp inputs;
