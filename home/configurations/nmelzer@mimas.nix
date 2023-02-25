@@ -16,7 +16,6 @@
     dconf.enable = true;
 
     enabledLanguages = [
-      "elixir"
       "erlang"
       "go"
       "nim"

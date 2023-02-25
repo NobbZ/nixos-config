@@ -5,7 +5,6 @@ inputs: {
   "profiles/development" = import ./profiles/development inputs;
 
   "languages" = import ./languages inputs;
-  "languages/elixir" = import ./languages/elixir inputs;
   "languages/erlang" = import ./languages/erlang inputs;
   "languages/go" = import ./languages/go inputs;
   "languages/nim" = import ./languages/nim inputs;
