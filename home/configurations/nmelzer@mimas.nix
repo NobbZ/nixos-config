@@ -17,7 +17,6 @@
 
     enabledLanguages = [
       "clojure"
-      "cpp"
       "elixir"
       "erlang"
       "go"
