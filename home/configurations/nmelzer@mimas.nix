@@ -16,7 +16,6 @@
     dconf.enable = true;
 
     enabledLanguages = [
-      "erlang"
       "go"
       "nim"
       "nix"
