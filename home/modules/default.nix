@@ -5,7 +5,6 @@ inputs: {
   "profiles/development" = import ./profiles/development inputs;
 
   "languages" = import ./languages inputs;
-  "languages/nim" = import ./languages/nim inputs;
   "languages/nix" = import ./languages/nix inputs;
   "languages/python" = import ./languages/python inputs;
   "languages/rust" = import ./languages/rust inputs;

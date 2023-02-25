@@ -16,7 +16,6 @@
     dconf.enable = true;
 
     enabledLanguages = [
-      "nim"
       "nix"
       # "ocaml"
       "rust"
