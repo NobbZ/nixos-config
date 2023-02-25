@@ -15,10 +15,7 @@
 
     dconf.enable = true;
 
-    enabledLanguages = [
-      "nix"
-      # "ocaml"
-    ];
+    enabledLanguages = ["nix"];
 
     programs.emacs.splashScreen = false;
 
