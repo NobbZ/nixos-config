@@ -18,7 +18,6 @@
     enabledLanguages = [
       "nix"
       # "ocaml"
-      "rust"
       "tex"
     ];
 
