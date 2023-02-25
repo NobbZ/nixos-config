@@ -6,7 +6,6 @@ inputs: {
 
   "languages" = import ./languages inputs;
   "languages/nix" = import ./languages/nix inputs;
-  "languages/python" = import ./languages/python inputs;
   "languages/rust" = import ./languages/rust inputs;
   "languages/tex" = import ./languages/tex inputs;
   "languages/terraform" = import ./languages/terraform inputs;
