@@ -15,10 +15,13 @@ in {
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = let ipkgs = import nixpkgs-insync-v3 {
+      default = let
+        ipkgs = import nixpkgs-insync-v3 {
           inherit (pkgs) system;
           inherit (config.nixpkgs) config;
-        }; in ipkgs.insync-v3;
+        };
+      in
+        ipkgs.insync-v3;
       description = ''
         The insync package to use.
 
