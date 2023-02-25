@@ -16,7 +16,6 @@
     dconf.enable = true;
 
     enabledLanguages = [
-      "go"
       "nim"
       "nix"
       # "ocaml"
