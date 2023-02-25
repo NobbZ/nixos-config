@@ -7,7 +7,6 @@ inputs: {
   "languages" = import ./languages inputs;
   "languages/nix" = import ./languages/nix inputs;
   "languages/tex" = import ./languages/tex inputs;
-  "languages/terraform" = import ./languages/terraform inputs;
 
   "programs/advcp" = import ./programs/advcp inputs;
   "programs/openshift" = import ./programs/openshift inputs;
