@@ -39,7 +39,7 @@ in {
             interpreter = "${pkgs.bash}/bin/bash";
             execer = ["cannot:${pkgs.git}/bin/git" "cannot:${pkgs.fzf}/bin/fzf"];
           } ''
-            git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+            git log --graph --color=always --format="%C(auto)%h%d %s0x09%C(white)%C(bold)%cr" "$@" |
               fzf --ansi --no-sort --reverse --tiebreak=index \
                 --bind=ctrl-s:toggle-sort \
                 --bind="ctrl-m:execute:(rg -o '\b[a-f0-9]{6,}\b' | head -1 | xargs -I% sh -c 'git commit --${command}=% | less -R') <<FZF-EOF
