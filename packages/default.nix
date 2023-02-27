@@ -37,15 +37,11 @@ in
     "zx" = upkgs.nodePackages.zx;
     "angular" = nodePkgs."@angular/cli";
 
-    "switcher" = upkgs.callPackage ./switcher {
-      inherit (inputs.nix.packages."${system}") nix;
-      inherit (inputs.home-manager.packages."${system}") home-manager;
-    };
-
     "alejandra" = inputs.alejandra.defaultPackage."${system}";
   }
   // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
     "gnucash-de" = upkgs.callPackage ./gnucash-de {};
+    "switcher" = inputs.switcher.packages.${system}.switcher;
   }
   // pkgs.lib.optionalAttrs (system == "x86_64-linux") {
     "google-chrome" =
