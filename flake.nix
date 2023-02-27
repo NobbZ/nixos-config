@@ -5,6 +5,10 @@
     master.url = "github:nixos/nixpkgs/master";
     nixpkgs-insync-v3.url = "github:nixos/nixpkgs?ref=32fdc268e921994e3f38088486ddfe765d11df93";
 
+    switcher.url = "github:nobbz/nix-switcher?ref=main";
+    switcher.inputs.nixpkgs.follows = "unstable";
+    switcher.inputs.flake-parts.follows = "parts";
+
     parts.url = "github:hercules-ci/flake-parts";
 
     programsdb.url = "github:wamserma/flake-programs-sqlite";
