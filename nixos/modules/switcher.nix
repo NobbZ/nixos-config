@@ -1,3 +1,3 @@
-{switcher, ...}: {pkgs, ...}: {
-  environment.systemPackages = [switcher.packages."${pkgs.system}".switcher];
+{self, ...}: {pkgs, ...}: {
+  environment.systemPackages = [self.packages."${pkgs.system}".switcher];
 }
