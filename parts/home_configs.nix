@@ -95,6 +95,7 @@ in {
             [
               config.entryPoint
               {home = {inherit (config) username homeDirectory;};}
+              {systemd.user.startServices = "sd-switch";}
               inputs.nixos-vscode-server.nixosModules.home
             ]
             ++ config.modules
