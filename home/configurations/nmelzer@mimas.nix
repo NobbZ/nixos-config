@@ -13,6 +13,11 @@
 
     activeProfiles = ["browsing" "development"];
 
+    sops.age.sshKeyPaths = ["${config.home.homeDirectory}/.ssh/id_ed25519"];
+    sops.defaultSopsFile = "${self}/secrets/mimas/nmelzer/default.yaml";
+
+    sops.secrets.rustic.path = "${config.xdg.configHome}/rustic/password";
+
     dconf.enable = true;
 
     enabledLanguages = ["nix"];
@@ -51,6 +56,7 @@
 
       rustic = {
         enable = true;
+        passwordFile = config.sops.secrets.rustic.path;
         globs = let
           mkHome = e: "${config.home.homeDirectory}/${e}";
           mkIgnore = e: "!${e}";
@@ -65,6 +71,7 @@
     };
 
     systemd.user.services = {
+      rustic.Unit.After = ["sops-nix.service"];
       keybase-gui = {
         Unit = {
           Description = "Keybase GUI";
