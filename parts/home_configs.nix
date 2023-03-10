@@ -97,6 +97,7 @@ in {
               {home = {inherit (config) username homeDirectory;};}
               {systemd.user.startServices = "sd-switch";}
               inputs.nixos-vscode-server.nixosModules.home
+              inputs.sops-nix.homeManagerModules.sops
             ]
             ++ config.modules
             ++ builtins.attrValues self.homeModules
