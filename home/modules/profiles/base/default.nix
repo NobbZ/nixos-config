@@ -72,7 +72,6 @@ in {
       home-manager.enable = true;
       htop.enable = true;
       jq.enable = true;
-      openshift.enable = true;
 
       starship = {
         enable = true;
