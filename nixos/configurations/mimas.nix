@@ -220,11 +220,24 @@ in {
     };
   };
 
-  security.sudo.extraRules = [
+  security.sudo.extraConfig = "Defaults passwd_timeout=0";
+  security.sudo.extraRules = let
+    storePrefix = "/nix/store/*";
+    systemName = "nixos-system-${config.networking.hostName}-*";
+  in [
     {
       commands = [
         {
-          command = "/run/current-system/sw/bin/nixos-rebuild";
+          command = "${storePrefix}-nix-*/bin/nix-env -p /nix/var/nix/profiles/system --set ${storePrefix}-${systemName}";
+          options = ["NOPASSWD"];
+        }
+      ];
+      groups = ["wheel"];
+    }
+    {
+      commands = [
+        {
+          command = "${storePrefix}-${systemName}/bin/switch-to-configuration";
           options = ["NOPASSWD"];
         }
       ];
