@@ -220,17 +220,7 @@ in {
     };
   };
 
-  security.sudo.extraRules = [
-    {
-      commands = [
-        {
-          command = "/run/current-system/sw/bin/nixos-rebuild";
-          options = ["NOPASSWD"];
-        }
-      ];
-      groups = ["wheel"];
-    }
-  ];
+  security.sudo.extraConfig = "Defaults passwd_timeout=0";
 
   # services.wakeonlan.interfaces = [
   #   {
