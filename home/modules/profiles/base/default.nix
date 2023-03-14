@@ -73,50 +73,6 @@ in {
       htop.enable = true;
       jq.enable = true;
 
-      starship = {
-        enable = true;
-
-        settings = {
-          # disable the cloud modules, we don't use them
-          aws.disabled = true;
-          azure.disabled = true;
-          openstack.disabled = true;
-
-          # We will probably never use GUIX
-          guix_shell.disabled = true;
-
-          character = {
-            success_symbol = "[\\$](bold green)";
-            error_symbol = "[\\$](bold red)";
-          };
-
-          cmd_duration = {
-            min_time = 500; # milliseconds => so half of a second
-            show_milliseconds = true;
-            show_notifications = true;
-            min_time_to_notify = 60000; # milliseconds => 1 minute
-          };
-
-          directory = {
-            truncation_length = 2;
-            truncate_to_repo = false;
-            fish_style_pwd_dir_length = 2;
-            before_repo_root_style = "cyan";
-            repo_root_style = "bold cyan";
-            style = "blue dimmed";
-          };
-
-          nix_shell = {
-            format = "via [$symbol]($style)";
-          };
-
-          os.disabled = false;
-          status.disabled = false;
-          sudo.disabled = false;
-          time.disabled = false;
-        };
-      };
-
       ssh = {
         enable = true;
         compression = true;
@@ -237,16 +193,16 @@ in {
             src = zsh-complete;
             file = "_nix";
           }
-          # {
-          #   name = "powerlevel10k";
-          #   src = pkgs.zsh-powerlevel10k;
-          #   file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-          # }
-          # {
-          #   name = "powerlevel10k-config";
-          #   src = ./p10k-config;
-          #   file = "p10k.zsh";
-          # }
+          {
+            name = "powerlevel10k";
+            src = pkgs.zsh-powerlevel10k;
+            file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+          }
+          {
+            name = "powerlevel10k-config";
+            src = ./p10k-config;
+            file = "p10k.zsh";
+          }
           {
             name = "zsh-syntax-highlighting";
             src = npins.zsh-syntax-highlighting;
