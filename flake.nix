@@ -38,11 +38,7 @@
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
   };
 
-  outputs = {
-    self,
-    parts,
-    ...
-  } @ inputs:
+  outputs = {parts, ...} @ inputs:
     parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
 
@@ -53,6 +49,8 @@
 
         ./nixos/configurations
         ./home/configurations
+
+        ./packages
       ];
 
       flake = {
@@ -61,10 +59,6 @@
         homeModules = import ./home/modules inputs;
 
         mixedModules = import ./mixed inputs;
-
-        packages.x86_64-linux = import ./packages inputs "x86_64-linux";
-        packages.aarch64-linux = import ./packages inputs "aarch64-linux";
-        packages.aarch64-darwin = import ./packages inputs "aarch64-darwin";
 
         checks.x86_64-linux = import ./checks inputs;
       };

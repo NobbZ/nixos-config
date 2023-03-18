@@ -1,54 +1,53 @@
-{
-  self,
-  emacs,
-  ...
-} @ inputs: system: let
-  pkgs = inputs.nixpkgs-2211.legacyPackages."${system}";
-  upkgs = inputs.unstable.legacyPackages."${system}";
+{inputs, ...}: {
+  perSystem = {
+    system,
+    pkgs,
+    lib,
+    inputs',
+    ...
+  }: let
+    upkgs = inputs'.nixpkgs-unstable.legacyPackages;
 
-  epkgs = import inputs.unstable {
-    inherit system;
-    overlays = [emacs.overlay];
-  };
-  nodePkgs = upkgs.callPackages ./nodePackages/override.nix {};
+    epkgs = upkgs.extend inputs.emacs.overlay;
+    chromePkgs = import inputs.master {
+      inherit system;
+      config.allowUnfree = true;
+      config.google-chrome.enableWideVine = true;
+    };
 
-  nilBasePackage =
-    if upkgs.stdenv.isLinux
-    then inputs.nil.packages.${system}.nil
-    else upkgs.nil;
+    nilBase =
+      if upkgs.stdenv.isLinux
+      then inputs'.nil.packages.nil
+      else upkgs.nil;
 
-  rnil-lsp = upkgs.writeShellScriptBin "rnix-lsp" ''
-    exec ${nilBasePackage}/bin/nil "$@"
-  '';
+    rnil-lsp = upkgs.writeShellScriptBin "rnix-lsp" ''
+      exec ${nilBase}/bin/nil "$@"
+    '';
 
-  nil = upkgs.symlinkJoin {
-    name = "nil";
-    paths = [nilBasePackage rnil-lsp];
-  };
-  # npins = import ../npins;
-in
-  {
-    inherit nil;
+    nil = upkgs.symlinkJoin {
+      name = "nil";
+      paths = [nilBase rnil-lsp];
+    };
+  in {
+    packages = lib.mkMerge [
+      {
+        inherit nil;
 
-    "advcp" = upkgs.callPackage ./advcp {};
-    "dracula/konsole" = upkgs.callPackage ./dracula/konsole {};
-    "emacs" = epkgs.emacsUnstable;
-    "rofi/unicode" = upkgs.callPackage ./rofi-unicode {};
-    "zx" = upkgs.nodePackages.zx;
-    "angular" = nodePkgs."@angular/cli";
+        advcp = upkgs.callPackage ./advcp {};
+        "dracula/konsole" = upkgs.callPackage ./dracula/konsole {};
+        emacs = epkgs.emacsUnstable;
+        "rofi/unicode" = upkgs.callPackage ./rofi-unicode {};
+        "zx" = upkgs.nodePackages.zx;
 
-    "alejandra" = inputs.alejandra.defaultPackage."${system}";
-  }
-  // pkgs.lib.optionalAttrs pkgs.stdenv.isLinux {
-    "gnucash-de" = upkgs.callPackage ./gnucash-de {};
-    "switcher" = inputs.switcher.packages.${system}.switcher;
-  }
-  // pkgs.lib.optionalAttrs (system == "x86_64-linux") {
-    "google-chrome" =
-      (import inputs.master {
-        inherit system;
-        config.allowUnfree = true;
-        config.google-chrome.enableWideVine = true;
+        alejandra = inputs'.alejandra.packages.default;
+      }
+      (lib.mkIf pkgs.stdenv.isLinux {
+        inherit (inputs'.switcher.packages) switcher;
+        gnucash-de = upkgs.callPackage ./gnucash-de {};
       })
-      .google-chrome;
-  }
+      (lib.mkIf (system == "x86_64-linux") {
+        inherit (chromePkgs) google-chrome;
+      })
+    ];
+  };
+}
