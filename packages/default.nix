@@ -9,7 +9,6 @@
     upkgs = inputs'.nixpkgs-unstable.legacyPackages;
 
     epkgs = upkgs.extend inputs.emacs.overlay;
-    nodePkgs = upkgs.callPackage ./nodePackages/override.nix {};
     chromePkgs = import inputs.master {
       inherit system;
       config.allowUnfree = true;
@@ -39,7 +38,6 @@
         emacs = epkgs.emacsUnstable;
         "rofi/unicode" = upkgs.callPackage ./rofi-unicode {};
         "zx" = upkgs.nodePackages.zx;
-        angular = nodePkgs."@angular/cli";
 
         alejandra = inputs'.alejandra.packages.default;
       }
