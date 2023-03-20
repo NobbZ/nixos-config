@@ -12,7 +12,7 @@
     nixpkgs.allowedUnfree = ["vscode"];
     # nixpkgs.config.allowBroken = true;
 
-    activeProfiles = ["development"];
+    activeProfiles = ["development" "browsing"];
 
     dconf.enable = true;
 

@@ -5,6 +5,11 @@
   ...
 }: let
   cfg = config.profiles.browsing;
+
+  graphicalBrowser =
+    if pkgs.system == "x86_64-linux"
+    then pkgs.google-chrome
+    else pkgs.chromium;
 in {
   options.profiles.browsing = {
     enable =
@@ -14,6 +19,6 @@ in {
 
   config = lib.mkIf cfg.enable {
     nixpkgs.config = {google-chrome = {enableWideVine = true;};};
-    home.packages = with pkgs; [self.packages.${pkgs.system}.google-chrome lynx];
+    home.packages = [graphicalBrowser pkgs.lynx];
   };
 }
