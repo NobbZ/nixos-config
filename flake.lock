@@ -430,6 +430,7 @@
       "original": {
         "owner": "nixos",
         "repo": "nix",
+        "rev": "b5b6055bbf00fa809633e88dab1e8eaec3ae9f8d",
         "type": "github"
       }
     },

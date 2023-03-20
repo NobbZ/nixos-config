@@ -19,7 +19,9 @@
     unstable.follows = "nixpkgs-unstable";
     stable.follows = "nixpkgs-2211";
 
-    nix.url = "github:nixos/nix";
+    # Known to work, try again after nixos/nix#8072 git fixed
+    # https://github.com/NixOS/nix/issues/8072
+    nix.url = "github:nixos/nix?rev=b5b6055bbf00fa809633e88dab1e8eaec3ae9f8d";
 
     nil.url = "github:oxalica/nil";
 
