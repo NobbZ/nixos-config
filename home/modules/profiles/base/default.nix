@@ -48,7 +48,30 @@ in {
     gtk.theme.name = "Adwaita-dark";
 
     home.keyboard.layout = "de";
-    home.packages = [pkgs.hydra-check] ++ lib.optionals pkgs.stdenv.isLinux [pkgs.dconf];
+    home.packages = let
+      optisave =
+        pkgs.resholve.writeScriptBin "optisave" {
+          inputs = builtins.attrValues {inherit (pkgs) fd pv gawk coreutils gnused;};
+          interpreter = "${pkgs.bash}/bin/bash";
+          execer = [
+            # TODO: Make this `might` or `can` in the long run
+            "cannot:${pkgs.fd}/bin/fd"
+          ];
+        } ''
+          count=$(fd . /nix/store/.links/ | pv -l | wc -l)
+
+          # TODO: make resholve understant the call to `stat`
+          saved=$(fd . /nix/store/.links/ -X ${pkgs.coreutils}/bin/stat --format='%h %s' {} \
+            | pv -altrpe -s $count \
+            | awk '{sum += ($1 - 1) * $2} END {print sum}')
+
+          printf "Currently hardlinking saves %sB (%s B)\n" \
+            "$(numfmt --to=iec-i --format='%.2f' ''${saved} \
+              | sed -E 's/([0-9])([A-Za-z])/\1 \2/')" \
+            "$(numfmt --to=none --format="%'f" ''${saved})"
+        '';
+    in
+      [optisave pkgs.hydra-check] ++ lib.optionals pkgs.stdenv.isLinux [pkgs.dconf];
 
     # dconf.enable = lib.mkMerge [
     #   (lib.mkIf pkgs.stdenv.isLinux true)
