@@ -66,6 +66,7 @@ _: {
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     unison # Sadly required on the host for unison copy to work :(
+    nix-output-monitor
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
