@@ -100,6 +100,7 @@ in {
       ssh = {
         enable = true;
         compression = true;
+        controlMaster = "auto";
 
         matchBlocks = {
           "*.internal.nobbz.dev" = dag.entryAfter zerotierHosts {
@@ -132,56 +133,6 @@ in {
 
           "github.com" = {
             identityFile = "~/.ssh/github";
-          };
-
-          "*.actum.internal" = {
-            user = "norbert.melzer";
-            identityFile = "~/.ssh/actum-gitlab";
-          };
-
-          "*.vcp.internal" = {
-            user = "cloudseeds";
-            identityFile = "~/.ssh/vogel";
-          };
-
-          "deploy-vogel.custpoc.cloudseeds.de" =
-            dag.entryBefore [
-              "*.custpoc.cloudseeds.de"
-              "*.cloudseeds.de"
-            ]
-            {
-              user = "cloudseeds";
-              identityFile = "~/.ssh/vogel";
-            };
-
-          "repo.cloudseeds.de" = dag.entryBefore ["*.cloudseeds.de"] {
-            identityFile = "~/.ssh/id_rsa";
-          };
-
-          "*.custpoc.cloudseeds.de" = dag.entryBefore ["*.cloudseeds.de"] {
-            user = "norbert.melzer";
-            identityFile = "~/.ssh/actum-gitlab";
-          };
-
-          "com01.internal.cloudseeds.de" = dag.entryBefore ["*.cloudseeds.de"] {
-            hostname = "192.168.123.22";
-            user = "root";
-          };
-
-          "ironic.internal.cloudseeds.de" = dag.entryBefore ["*.cloudseeds.de"] {
-            hostname = "192.168.123.31";
-            user = "root";
-          };
-
-          "*.cloudseeds.de" = {
-            user = "norbert.melzer";
-            identityFile = "~/.ssh/cloudseeds";
-          };
-
-          "ironic" = {
-            hostname = "192.168.123.31";
-            user = "root";
-            identityFile = "~/.ssh/cloudseeds";
           };
         };
       };
