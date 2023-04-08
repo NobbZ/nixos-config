@@ -63,7 +63,7 @@ in {
           # TODO: make resholve understant the call to `stat`
           saved=$(fd . /nix/store/.links/ -X ${pkgs.coreutils}/bin/stat --format='%h %s' {} \
             | pv -altrpe -s $count \
-            | awk '{sum += ($1 - 1) * $2} END {print sum}')
+            | awk '{sum += ($1 - 2) * $2} END {print sum}')
 
           printf "Currently hardlinking saves %sB (%s B)\n" \
             "$(numfmt --to=iec-i --format='%.2f' ''${saved} \
