@@ -9,6 +9,8 @@ _: {
 }: {
   nix.allowedUnfree = ["b43-firmware" "zerotierone"];
   nixpkgs.config.contentAddressedByDefault = false;
+  nix.distributedBuilds = true;
+  nix.enabledMachines = ["mimas"];
 
   # nixpkgs.hostPlatform.gcc.arch = "core2";
   # nixpkgs.hostPlatform.system = "x86_64-linux";
