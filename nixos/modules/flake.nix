@@ -20,7 +20,10 @@ in {
     programs.command-not-found.dbPath = programsdb.packages.${pkgs.system}.programs-sqlite;
 
     nix = {
-      package = lib.mkDefault nix.packages.${pkgs.system}.nix; # pkgs.nixUnstable;
+      package = lib.mkDefault (nix.packages.${pkgs.system}.nix.overrideAttrs (oa: {
+        version = "${oa.version}_patched";
+        patches = [./prefer-local.patch];
+      }));
       settings.experimental-features = ["nix-command" "flakes"];
 
       registry.nixpkgs.flake = unstable;

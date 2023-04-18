@@ -1,0 +1,13 @@
+diff --git a/src/build-remote/build-remote.cc b/src/build-remote/build-remote.cc
+index cfc4baaca..4fbaae4fa 100644
+--- a/src/build-remote/build-remote.cc
++++ b/src/build-remote/build-remote.cc
+@@ -122,6 +122,8 @@ static int main_build_remote(int argc, char * * argv)
+             /* It's possible to build this locally right now: */
+             bool canBuildLocally = amWilling && couldBuildLocally;
+ 
++            if (canBuildLocally) continue;
++
+             /* Error ignored here, will be caught later */
+             mkdir(currentLoad.c_str(), 0777);
+ 
