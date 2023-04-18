@@ -13,7 +13,7 @@ _: {
       speedFactor = 1;
       protocol = "ssh-ng";
       maxJobs = 2;
-      hostName = "enceladeus.internal.nobbz.dev";
+      hostName = "enceladeus";
     };
 
     mimas = {
@@ -24,7 +24,7 @@ _: {
       speedFactor = 8;
       protocol = "ssh-ng";
       maxJobs = 4;
-      hostName = "mimas.internal.nobbz.dev";
+      hostName = "mimas";
     };
   };
 
