@@ -30,7 +30,7 @@ in {
   nix.allowedUnfree = ["zerotierone"] ++ printerPackages ++ steamPackages;
   nix.settings.experimental-features = ["ca-derivations" "impure-derivations"];
   nix.distributedBuilds = true;
-  nix.enabledMachines = ["enceladeus"];
+  # nix.enabledMachines = ["enceladeus"];
 
   security.chromiumSuidSandbox.enable = true;
 
