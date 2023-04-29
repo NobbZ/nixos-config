@@ -46,6 +46,75 @@ in {
                 {}
             FZF-EOF"
           '';
+        gitSwitchFzf =
+          pkgs.resholve.writeScript "git-switch-fzf" {
+            inputs = builtins.attrValues {inherit (pkgs) git fzf coreutils gawk;};
+            interpreter = "${pkgs.bash}/bin/bash";
+            execer = ["cannot:${pkgs.git}/bin/git" "cannot:${pkgs.fzf}/bin/fzf"];
+          } ''
+            # Function to determine the ref type
+            function get_ref_type() {
+                local ref="$1"
+                if git show-ref --verify --quiet refs/heads/"$ref"; then
+                    echo "branch"
+                elif git show-ref --verify --quiet refs/tags/"$ref"; then
+                    echo "tag"
+                elif git rev-parse --verify --quiet "$ref" >/dev/null; then
+                    echo "commit"
+                else
+                    echo "unknown"
+                fi
+            }
+
+            # Function to select a ref using fzf
+            function select_ref_with_fzf() {
+                cat <(git branch --format='%(refname:short) [branch]') \
+                    <(git tag --format='%(refname:short) [tag]') \
+                    <(git log --pretty=format:'%h %s [commit]') \
+                | fzf
+            }
+
+            # If the first argument is -c or -C, forward the arguments as-is to git switch
+            if [ "$#" -ge 2 ] && ([[ "$1" == "-c" ]] || [[ "$1" == "-C" ]]); then
+                git switch "$@"
+            else
+                # If an argument is provided and it's not -c or -C, switch to the specified ref
+                if [ "$#" -eq 1 ]; then
+                    ref_name="$1"
+                    ref_type=$(get_ref_type "$ref_name")
+
+                    if [ "$ref_type" == "unknown" ]; then
+                        echo "Invalid ref: $ref_name" >&2
+                        exit 1
+                    fi
+                else
+                    # If no argument or only -c/-C is provided, use the fzf selection interface to select a ref
+                    selected_ref=$(select_ref_with_fzf)
+
+                    # Extract the ref name and type from the selected_ref string
+                    ref_name=$(echo "$selected_ref" | awk '{print $1}')
+                    ref_type=$(echo "$selected_ref" | awk '{print $NF}' | tr -d '[]')
+                fi
+
+                # Based on the ref type, issue the appropriate git switch command
+                case "$ref_type" in
+                  branch)
+                    git switch "$ref_name"
+                    ;;
+                  tag)
+                    git switch --detach "$ref_name"
+                    ;;
+                  commit)
+                    git switch --detach "$ref_name"
+                    ;;
+                  *)
+                    # If an invalid ref type is encountered, print an error message and exit
+                    echo "Invalid ref type: $ref_type" >&2
+                    exit 1
+                    ;;
+                esac
+            fi
+          '';
       in {
         br = "branch";
         co = "checkout";
@@ -54,7 +123,7 @@ in {
         ps = "push";
         root = "rev-parse --show-toplevel";
         st = "status";
-        sw = "switch";
+        sw = "!${gitSwitchFzf}";
         swag = ''!f() { if [ -z "$1" ]; then tag=$(git describe --abbrev=0 --tag); else tag=$(git describe --abbrev=0 --tag "$1"); fi; git switch --detach "''${tag}"; }; f'';
         hopbase = ''!f() { set -o nounset; tag=$(git describe --abbrev=0 --tag "$1") && git rebase -i "''${tag}"; }; f'';
         comfix = "!${mkFixupAlias "fixup"}";
