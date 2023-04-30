@@ -2,11 +2,10 @@
   config,
   lib,
   pkgs,
+  npins,
   ...
 }: let
   cfg = config.profiles.base;
-
-  npins = import ../../../../npins;
 
   inherit (self.packages.${pkgs.system}) emacs;
   inherit (lib.hm) dag;

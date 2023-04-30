@@ -1,9 +1,9 @@
 {
   self,
-  nixpkgs,
   inputs,
   config,
   lib,
+  npins,
   ...
 }: let
   cfg = config.nobbz.homeConfigurations;
@@ -110,6 +110,7 @@ in {
 
           finalHome = inputs.home-manager.lib.homeManagerConfiguration {
             pkgs = config.nixpkgs.legacyPackages.${config.system};
+            extraSpecialArgs.npins = npins;
             modules = config.finalModules;
           };
         };

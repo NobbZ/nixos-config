@@ -44,6 +44,8 @@
     parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
 
+      _module.args.npins = import ./npins;
+
       imports = [
         ./parts/auxiliary.nix
         ./parts/home_configs.nix
