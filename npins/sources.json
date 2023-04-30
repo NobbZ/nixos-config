@@ -1,5 +1,17 @@
 {
   "pins": {
+    "fzf-tab": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "Aloxaf",
+        "repo": "fzf-tab"
+      },
+      "branch": "master",
+      "revision": "5a81e13792a1eed4a03d2083771ee6e5b616b9ab",
+      "url": "https://github.com/Aloxaf/fzf-tab/archive/5a81e13792a1eed4a03d2083771ee6e5b616b9ab.tar.gz",
+      "hash": "0lfl4r44ci0wflfzlzzxncrb3frnwzghll8p365ypfl0n04bkxvl"
+    },
     "konsole": {
       "type": "Git",
       "repository": {
