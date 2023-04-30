@@ -92,6 +92,7 @@ in {
       direnv.enable = true;
       direnv.nix-direnv.enable = true;
       exa.enable = true;
+      fzf.enable = true;
       home-manager.enable = true;
       htop.enable = true;
       jq.enable = true;
@@ -163,6 +164,10 @@ in {
         defaultKeymap = "emacs";
 
         plugins = [
+          {
+            name = "fzf-tab";
+            src = npins.fzf-tab;
+          }
           {
             name = "nix-zsh-complete.zsh";
             src = zsh-complete;
