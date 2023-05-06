@@ -39,7 +39,6 @@
 
   rest_repo = "rest:https://restic.mimas.internal.nobbz.dev/mimas";
   gdrv_repo = "/home/nmelzer/timmelzer@gmail.com/restic_repos/mimas";
-  btwo_repo = "b2:nobbz-restic-services";
   pass = config.sops.secrets.restic.path;
 
   preStart = ''
@@ -144,15 +143,12 @@ in {
       eval $(cat "$CREDENTIALS_DIRECTORY/b2")
 
       restic copy --repo ${rest_repo} --repo2 ${gdrv_repo} -vvv
-      restic copy --repo ${rest_repo} --repo2 ${btwo_repo} -vvv
 
       restic forget --repo ${rest_repo} --keep-hourly 12 --keep-daily 4 --keep-weekly 3 --keep-monthly 7 --keep-yearly 10
       restic forget --repo ${gdrv_repo} --keep-daily 30 --keep-weekly 4 --keep-monthly 12 --keep-yearly 20
-      restic forget --repo ${btwo_repo} --keep-daily 30 --keep-weekly 4 --keep-monthly 12 --keep-yearly 20
 
       restic prune --repo ${rest_repo} --max-unused 0
       restic prune --repo ${gdrv_repo} --max-unused 0
-      restic prune --repo ${btwo_repo}
 
       chown -Rv nmelzer:users /home/nmelzer/timmelzer@gmail.com/restic_repos
     '';
