@@ -29,33 +29,46 @@
 
   snaps = lib.mapAttrs' (lv: _: lib.nameValuePair "${lv}_snap" "pool/${lv}") pools;
   lvcreates = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: origin: "lvcreate -s --name ${name} ${origin}") snaps);
-  lvchanges = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvchange -ay -Ky pool/${name}") snaps);
+  lvactivates = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvchange -ay -Ky pool/${name}") snaps);
   mkdirs = lib.concatStringsSep "\n" (lib.mapAttrsToList (lv: _: "mkdir -p ${basePath}/${lv}") pools);
   mountCmds = lib.concatStringsSep "\n" (lib.mapAttrsToList (lv: _: "mount -o ro /dev/pool/${lv}_snap ${basePath}/${lv}") pools);
 
   unmountCmds = lib.concatStringsSep "\n" (lib.mapAttrsToList (lv: _: "umount ${basePath}/${lv}") pools);
-  lvunchanges = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvchange -an pool/${name}") snaps);
-  lvremoves = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: origin: "lvremove pool/${name}") snaps);
+  lvdeactivates = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvs | grep -E '${name}\\s+.*a' || lvchange -an pool/${name}") snaps);
+  lvremoves = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvs | grep -E '${name}' || lvremove pool/${name}") snaps);
 
   rest_repo = "rest:https://restic.mimas.internal.nobbz.dev/mimas";
   gdrv_repo = "/home/nmelzer/timmelzer@gmail.com/restic_repos/mimas";
   btwo_repo = "b2:nobbz-restic-services";
   pass = config.sops.secrets.restic.path;
 
-  script = writeShellScript "restic-services-backup" ''
-    set -ex
+  pre = writeShellScript "restic-services-backup-pre" ''
+    set -x
 
-    # Create the snapshots
+    ${lvdeactivates}
+    ${lvremoves}
+
     ${lvcreates}
-    ${lvchanges}
+    ${lvactivates}
+
     ${mkdirs}
+
     ${mountCmds}
+  '';
+
+  script = writeShellScript "restic-services-backup" ''
+    set -x
 
     # TODO: Make the latter from snapshots as well!
     proot ${lib.escapeShellArgs mounts} restic --tag services -vv backup --files-from-verbatim ${fileFromList}
+  '';
+
+  post = writeShellScript "restic-services-backup-post" ''
+    set -x
 
     ${unmountCmds}
-    ${lvunchanges}
+
+    ${lvdeactivates}
     ${lvremoves}
 
     rm -rfv ${basePath}
@@ -94,7 +107,9 @@ in {
 
   systemd.services.restic-system-snapshot-backup = {
     path = [proot restic mount umount config.services.lvm.package];
+    preStart = "${pre}";
     script = "${script}";
+    postStart = "${post}";
     serviceConfig.LoadCredential = ["pass:${pass}"];
     environment = {
       RESTIC_REPOSITORY = rest_repo;
