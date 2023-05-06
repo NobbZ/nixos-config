@@ -6,7 +6,7 @@
 }: let
   resticPort = 9999;
 
-  inherit (pkgs) writeShellScript proot mount umount restic;
+  inherit (pkgs) proot mount umount restic;
 
   pools = {
     gitea = "/var/lib/gitea";
@@ -20,12 +20,7 @@
     "/var/lib/redis-paperless"
   ];
 
-  fileFromList = pkgs.writeText "files-from-verbatim" ''
-    ${lib.concatStringsSep "\n" pathes}
-  '';
-
   basePath = "/tmp/backup";
-  pathes = extraPathes ++ builtins.attrValues pools;
   mounts = lib.flatten (
     (lib.mapAttrsToList (lv: path: ["-b" "${basePath}/${lv}:${path}"]) pools)
     ++ (builtins.map (path: ["-b" "${path}:${path}"]) extraPathes)
