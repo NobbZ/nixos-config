@@ -34,6 +34,7 @@
   mountCmds = lib.concatStringsSep "\n" (lib.mapAttrsToList (lv: _: "mount -o ro /dev/pool/${lv}_snap ${basePath}/${lv}") pools);
 
   unmountCmds = lib.concatStringsSep "\n" (lib.mapAttrsToList (lv: _: "umount ${basePath}/${lv}") pools);
+  uncheckedUnmountCmds = lib.concatStringsSep "\n" (lib.mapAttrsToList (lv: _: "umount ${basePath}/${lv} || true") pools);
   lvdeactivates = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvs | grep -E '${name}\\s+.*a' && lvchange -an pool/${name}") snaps);
   lvremoves = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvs | grep -E '${name}' && lvremove pool/${name}") snaps);
 
@@ -44,6 +45,8 @@
 
   preStart = ''
     set -x
+
+    ${uncheckedUnmountCmds}
 
     ${lvdeactivates}
     ${lvremoves}
