@@ -42,7 +42,7 @@
   btwo_repo = "b2:nobbz-restic-services";
   pass = config.sops.secrets.restic.path;
 
-  pre = writeShellScript "restic-services-backup-pre" ''
+  preStart = ''
     set -x
 
     ${lvdeactivates}
@@ -56,14 +56,14 @@
     ${mountCmds}
   '';
 
-  script = writeShellScript "restic-services-backup" ''
+  script = ''
     set -x
 
     # TODO: Make the latter from snapshots as well!
     proot ${lib.escapeShellArgs mounts} restic --tag services -vv backup --files-from-verbatim ${fileFromList}
   '';
 
-  post = writeShellScript "restic-services-backup-post" ''
+  postStart = ''
     set -x
 
     ${unmountCmds}
@@ -106,10 +106,8 @@ in {
   };
 
   systemd.services.restic-system-snapshot-backup = {
+    inherit preStart script postStart;
     path = [proot restic mount umount config.services.lvm.package];
-    preStart = "${pre}";
-    script = "${script}";
-    postStart = "${post}";
     serviceConfig.LoadCredential = ["pass:${pass}"];
     environment = {
       RESTIC_REPOSITORY = rest_repo;
