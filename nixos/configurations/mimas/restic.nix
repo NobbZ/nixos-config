@@ -17,6 +17,7 @@
 
   extraPathes = [
     "/var/lib/nixos"
+    "/var/lib/redis-paperless"
   ];
 
   fileFromList = pkgs.writeText "files-from-verbatim" ''
