@@ -26,7 +26,10 @@
 
   basePath = "/tmp/backup";
   pathes = extraPathes ++ builtins.attrValues pools;
-  mounts = lib.flatten (lib.mapAttrsToList (lv: path: ["-b" "${basePath}/${lv}:${path}"]) pools);
+  mounts = lib.flatten (
+    (lib.mapAttrsToList (lv: path: ["-b" "${basePath}/${lv}:${path}"]) pools)
+    ++ (builtins.map (path: ["-b" "${path}:${path}"]) extraPathes)
+  );
 
   snaps = lib.mapAttrs' (lv: _: lib.nameValuePair "${lv}_snap" "pool/${lv}") pools;
   lvcreates = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: origin: "lvcreate -s --name ${name} ${origin}") snaps);
@@ -64,7 +67,13 @@
     set -x
 
     # TODO: Make the latter from snapshots as well!
-    proot ${lib.escapeShellArgs mounts} restic --tag services -vv backup --files-from-verbatim ${fileFromList}
+    proot ${lib.escapeShellArgs mounts} \
+      -b /nix:/nix \
+      -b ''${CREDENTIALS_DIRECTORY}:''${CREDENTIALS_DIRECTORY} \
+      -b /etc:/etc \
+      -b /tmp:/tmp \
+      -r /var/empty \
+      restic --tag services -vv backup /var/lib
   '';
 
   postStart = ''
