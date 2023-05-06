@@ -34,8 +34,8 @@
   mountCmds = lib.concatStringsSep "\n" (lib.mapAttrsToList (lv: _: "mount -o ro /dev/pool/${lv}_snap ${basePath}/${lv}") pools);
 
   unmountCmds = lib.concatStringsSep "\n" (lib.mapAttrsToList (lv: _: "umount ${basePath}/${lv}") pools);
-  lvdeactivates = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvs | grep -E '${name}\\s+.*a' || lvchange -an pool/${name}") snaps);
-  lvremoves = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvs | grep -E '${name}' || lvremove pool/${name}") snaps);
+  lvdeactivates = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvs | grep -E '${name}\\s+.*a' && lvchange -an pool/${name}") snaps);
+  lvremoves = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvs | grep -E '${name}' && lvremove pool/${name}") snaps);
 
   rest_repo = "rest:https://restic.mimas.internal.nobbz.dev/mimas";
   gdrv_repo = "/home/nmelzer/timmelzer@gmail.com/restic_repos/mimas";
