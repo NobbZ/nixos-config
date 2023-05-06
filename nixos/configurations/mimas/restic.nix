@@ -6,7 +6,7 @@
 }: let
   resticPort = 9999;
 
-  inherit (pkgs) writeShellScript proot mount umount restic;
+  inherit (pkgs) proot mount umount restic;
 
   pools = {
     gitea = "/var/lib/gitea";
@@ -17,45 +17,65 @@
 
   extraPathes = [
     "/var/lib/nixos"
+    "/var/lib/redis-paperless"
   ];
 
-  fileFromList = pkgs.writeText "files-from-verbatim" ''
-    ${lib.concatStringsSep "\n" pathes}
-  '';
-
   basePath = "/tmp/backup";
-  pathes = extraPathes ++ builtins.attrValues pools;
-  mounts = lib.flatten (lib.mapAttrsToList (lv: path: ["-b" "${basePath}/${lv}:${path}"]) pools);
+  mounts = lib.flatten (
+    (lib.mapAttrsToList (lv: path: ["-b" "${basePath}/${lv}:${path}"]) pools)
+    ++ (builtins.map (path: ["-b" "${path}:${path}"]) extraPathes)
+  );
 
   snaps = lib.mapAttrs' (lv: _: lib.nameValuePair "${lv}_snap" "pool/${lv}") pools;
   lvcreates = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: origin: "lvcreate -s --name ${name} ${origin}") snaps);
-  lvchanges = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvchange -ay -Ky pool/${name}") snaps);
+  lvactivates = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvchange -ay -Ky pool/${name}") snaps);
   mkdirs = lib.concatStringsSep "\n" (lib.mapAttrsToList (lv: _: "mkdir -p ${basePath}/${lv}") pools);
   mountCmds = lib.concatStringsSep "\n" (lib.mapAttrsToList (lv: _: "mount -o ro /dev/pool/${lv}_snap ${basePath}/${lv}") pools);
 
   unmountCmds = lib.concatStringsSep "\n" (lib.mapAttrsToList (lv: _: "umount ${basePath}/${lv}") pools);
-  lvunchanges = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvchange -an pool/${name}") snaps);
-  lvremoves = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: origin: "lvremove pool/${name}") snaps);
+  uncheckedUnmountCmds = lib.concatStringsSep "\n" (lib.mapAttrsToList (lv: _: "umount ${basePath}/${lv} || true") pools);
+  lvdeactivates = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvs | grep -E '${name}\\s+.*a' && lvchange -an pool/${name}") snaps);
+  lvremoves = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvs | grep -E '${name}' && lvremove pool/${name}") snaps);
 
   rest_repo = "rest:https://restic.mimas.internal.nobbz.dev/mimas";
   gdrv_repo = "/home/nmelzer/timmelzer@gmail.com/restic_repos/mimas";
-  btwo_repo = "b2:nobbz-restic-services";
   pass = config.sops.secrets.restic.path;
 
-  script = writeShellScript "restic-services-backup" ''
-    set -ex
+  preStart = ''
+    set -x
 
-    # Create the snapshots
+    ${uncheckedUnmountCmds}
+
+    ${lvdeactivates}
+    ${lvremoves}
+
     ${lvcreates}
-    ${lvchanges}
+    ${lvactivates}
+
     ${mkdirs}
+
     ${mountCmds}
+  '';
+
+  script = ''
+    set -x
 
     # TODO: Make the latter from snapshots as well!
-    proot ${lib.escapeShellArgs mounts} restic --tag services -vv backup --files-from-verbatim ${fileFromList}
+    proot ${lib.escapeShellArgs mounts} \
+      -b /nix:/nix \
+      -b ''${CREDENTIALS_DIRECTORY}:''${CREDENTIALS_DIRECTORY} \
+      -b /etc:/etc \
+      -b /tmp:/tmp \
+      -r /var/empty \
+      restic --tag services -vv backup /var/lib
+  '';
+
+  postStart = ''
+    set -x
 
     ${unmountCmds}
-    ${lvunchanges}
+
+    ${lvdeactivates}
     ${lvremoves}
 
     rm -rfv ${basePath}
@@ -93,8 +113,8 @@ in {
   };
 
   systemd.services.restic-system-snapshot-backup = {
+    inherit preStart script postStart;
     path = [proot restic mount umount config.services.lvm.package];
-    script = "${script}";
     serviceConfig.LoadCredential = ["pass:${pass}"];
     environment = {
       RESTIC_REPOSITORY = rest_repo;
@@ -123,15 +143,12 @@ in {
       eval $(cat "$CREDENTIALS_DIRECTORY/b2")
 
       restic copy --repo ${rest_repo} --repo2 ${gdrv_repo} -vvv
-      restic copy --repo ${rest_repo} --repo2 ${btwo_repo} -vvv
 
       restic forget --repo ${rest_repo} --keep-hourly 12 --keep-daily 4 --keep-weekly 3 --keep-monthly 7 --keep-yearly 10
       restic forget --repo ${gdrv_repo} --keep-daily 30 --keep-weekly 4 --keep-monthly 12 --keep-yearly 20
-      restic forget --repo ${btwo_repo} --keep-daily 30 --keep-weekly 4 --keep-monthly 12 --keep-yearly 20
 
       restic prune --repo ${rest_repo} --max-unused 0
       restic prune --repo ${gdrv_repo} --max-unused 0
-      restic prune --repo ${btwo_repo}
 
       chown -Rv nmelzer:users /home/nmelzer/timmelzer@gmail.com/restic_repos
     '';
