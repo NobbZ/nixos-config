@@ -28,4 +28,5 @@ inputs: {
 
   "misc/awesome" = import ./misc/awesome inputs;
   "misc/home" = import ./misc/home inputs;
+  "misc/rofi" = import ./misc/rofi inputs;
 }
