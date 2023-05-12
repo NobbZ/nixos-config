@@ -1,0 +1,16 @@
+configuration {
+    font: "Cascadia Mono PL 20";
+    fixed-num-lines: false;
+    show-icons: true;
+    drun-show-actions: false;
+    sidebar-mode: true;
+    window-format: "{w}\t| {c}\t| {t}";
+    timeout {
+        action: "kb-cancel";
+        delay:  0;
+    }
+    filebrowser {
+        directories-first: true;
+        sorting-method:    "name";
+    }
+}

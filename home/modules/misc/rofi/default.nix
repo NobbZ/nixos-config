@@ -5,44 +5,25 @@
 }: let
   self' = self.packages.x86_64-linux;
 
-  baseConfig = pkgs.writeText "launcher-config" ''
-    configuration {
-      font: "Cascadia Mono PL 20";
-      fixed-num-lines: false;
-      show-icons: true;
-      drun-show-actions: false;
-      sidebar-mode: true;
-      window-format: "{w}\t| {c}\t| {t}";
-      timeout {
-          action: "kb-cancel";
-          delay:  0;
-      }
-      filebrowser {
-          directories-first: true;
-          sorting-method:    "name";
-      }
-    }
-  '';
-
   launcherConfig = pkgs.writeText "launcher-config" ''
     configuration {
       modes: "drun#run#ssh";
     }
-    @import "${baseConfig}"
+    @import "${./common.rasi}"
   '';
 
   windowSwitcherConfig = pkgs.writeText "window-switcher-config" ''
     configuration {
       modes: "window";
     }
-    @import "${baseConfig}"
+    @import "${./common.rasi}"
   '';
 
   emojiConfig = pkgs.writeText "window-switcher-config" ''
     configuration {
       modes: "emoji#unicode:${self'."rofi/unicode"}/bin/rofiunicode.sh";
     }
-    @import "${baseConfig}"
+    @import "${./common.rasi}"
   '';
 
   wrapper = rofi: config:
