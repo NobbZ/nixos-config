@@ -6,12 +6,6 @@
 }: let
   cfg = config.xsession.windowManager.awesome;
 
-  rofi = pkgs.rofi.override {
-    plugins = [pkgs.rofi-emoji];
-  };
-
-  self' = self.packages.x86_64-linux;
-
   mediaKeys = let
     keyMap = let
       amixer = "${pkgs.alsa-utils}/bin/amixer";
@@ -79,7 +73,17 @@ in {
 
     launcher = lib.mkOption {
       type = lib.types.str;
-      default = "${rofi}/bin/rofi -modi drun#run#window#ssh#emoji#unicode:${self'."rofi/unicode"}/bin/rofiunicode.sh -show drun -show-icons";
+      default = "${pkgs.rofi}/bin/rofi -modi drun -show drun -show-icons";
+    };
+
+    windowSwitcher = lib.mkOption {
+      type = lib.types.str;
+      default = "${pkgs.rofi}/bin/rofi -modi window -show window -show-icons";
+    };
+
+    emojiPicker = lib.mkOption {
+      type = lib.types.str;
+      default = "${pkgs.rofi}/bin/rofi -modi drun -show drun -show-icons";
     };
 
     autostart = lib.mkOption {
@@ -173,6 +177,8 @@ in {
       -- Create a launcher widget and a main menu
       myawesomemenu = {
          { "launcher", '${cfg.launcher}' },
+         { "windows", '${cfg.windowSwitcher}' },
+         { "emoji", '${cfg.emojiPicker}' },
          { "hotkeys", function() return false, hotkeys_popup.show_help end},
          { "manual", terminal .. " -e man awesome" },
          { "edit config", editor_cmd .. " " .. awesome.conffile },
@@ -346,8 +352,6 @@ in {
             end,
             {description = "focus previous by index", group = "client"}
          ),
-         awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
-            {description = "show main menu", group = "awesome"}),
 
          -- Layout manipulation
          awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
@@ -409,8 +413,10 @@ in {
          awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
             {description = "run prompt", group = "launcher"}),
 
-         awful.key({ modkey },            "d", function () awful.util.spawn('${cfg.launcher}') end),
-         awful.key({ modkey },            "y", function () awful.util.spawn('${pkgs.i3lock}/bin/i3lock') end),
+         awful.key({ modkey },            "d", function () awful.util.spawn('${cfg.launcher}') end, {description = "open launcher", group = "launcher"}),
+         awful.key({ modkey },            "w", function () awful.util.spawn('${cfg.windowSwitcher}') end, {description = "open window selecter", group = "launcher"}),
+         awful.key({ modkey },            "c", function () awful.util.spawn('${cfg.emojiPicker}') end, {description = "open emoji picker", group = "launcher"}),
+         awful.key({ modkey },            "y", function () awful.util.spawn('${pkgs.i3lock}/bin/i3lock') end, {description = "lock screen", group = "client"}),
 
          awful.key({ modkey }, "x",
             function ()
