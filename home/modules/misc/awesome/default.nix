@@ -1,10 +1,26 @@
-{self, ...}: {
+{
+  self,
+  nixpkgs-bls,
+  ...
+}: {
   config,
   lib,
   pkgs,
   ...
 }: let
   cfg = config.xsession.windowManager.awesome;
+
+  bls = lib.getExe (nixpkgs-bls.legacyPackages.${pkgs.system}.betterlockscreen.override {withDunst = false;});
+  scrot = lib.getExe pkgs.scrot;
+
+  locker = pkgs.writeShellScript "betterlockscreen-with-screenshot" ''
+    tmpf="$(mktemp -d)"
+    file="$tmpf/screenshot.png"
+    ${scrot} -z $file
+    ${bls} -u $file --display 1 --span --fx blur --blur 1.0
+    rm -rf $tmpf
+    ${bls} -l blur --display 1 --span --off 5
+  '';
 
   mediaKeys = let
     keyMap = let
@@ -69,6 +85,12 @@ in {
     terminalEmulator = lib.mkOption {
       type = lib.types.str;
       default = "${pkgs.konsole}/bin/konsole";
+    };
+
+    lockCommand = lib.mkOption {
+      type = lib.types.str;
+      # default = "${lib.getExe pkgs.i3lock}";
+      default = "${locker}";
     };
 
     launcher = lib.mkOption {
@@ -182,7 +204,7 @@ in {
          { "hotkeys", function() return false, hotkeys_popup.show_help end},
          { "manual", terminal .. " -e man awesome" },
          { "edit config", editor_cmd .. " " .. awesome.conffile },
-         { "lock session", '${pkgs.i3lock}/bin/i3lock' },
+         { "lock session", '${cfg.lockCommand}' },
          { "restart", awesome.restart },
          { "quit", function() awesome.quit() end}
       }
@@ -416,7 +438,7 @@ in {
          awful.key({ modkey },            "d", function () awful.util.spawn('${cfg.launcher}') end, {description = "open launcher", group = "launcher"}),
          awful.key({ modkey },            "w", function () awful.util.spawn('${cfg.windowSwitcher}') end, {description = "open window selecter", group = "launcher"}),
          awful.key({ modkey },            "e", function () awful.util.spawn('${cfg.emojiPicker}') end, {description = "open emoji picker", group = "launcher"}),
-         awful.key({ modkey },            "y", function () awful.util.spawn('${pkgs.i3lock}/bin/i3lock') end, {description = "lock screen", group = "client"}),
+         awful.key({ modkey },            "y", function () awful.util.spawn('${cfg.lockCommand}') end, {description = "lock screen", group = "client"}),
 
          awful.key({ modkey }, "x",
             function ()
