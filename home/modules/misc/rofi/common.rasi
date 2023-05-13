@@ -1,10 +1,16 @@
 configuration {
     font: "Cascadia Mono PL 20";
+    terminal: "konsole";
     fixed-num-lines: false;
     show-icons: true;
     drun-show-actions: false;
     sidebar-mode: true;
     window-format: "{w}\t| {c}\t| {t}";
+
+    location: 2;
+    width: 75;
+    yoffset: 0;
+
     timeout {
         action: "kb-cancel";
         delay:  0;
