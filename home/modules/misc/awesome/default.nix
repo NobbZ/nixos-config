@@ -19,7 +19,7 @@
     ${scrot} -z $file
     ${bls} -u $file --display 1 --span --fx blur --blur 1.0
     rm -rf $tmpf
-    ${bls} -l blur --display 1 --span --off 5
+    ${bls} -l blur --display 1 --span --off 30
   '';
 
   mediaKeys = let
