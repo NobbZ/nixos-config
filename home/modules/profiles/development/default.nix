@@ -118,6 +118,8 @@ in {
       in {
         br = "branch";
         co = "checkout";
+        vommit = "commit";
+        vomit = "commit";
         graph = "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold cyan)%h%C(reset) - %C(green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all";
         pl = "pull";
         ps = "push";
