@@ -76,6 +76,11 @@
     options = ["nofail"];
   };
 
+  fileSystems."/var/lib/pool-photoprism" = {
+    device = "/dev/pool/photoprism";
+    fsType = "ext4";
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/7000-3A85";
     fsType = "vfat";

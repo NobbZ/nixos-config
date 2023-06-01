@@ -17,8 +17,9 @@
   printerPackages = ["hplip" "samsung-UnifiedLinuxDriver"];
 in {
   imports = [
-    (import ./mimas/restic.nix inputs)
     (import ./mimas/paperless.nix inputs)
+    (import ./mimas/photoprism.nix inputs)
+    (import ./mimas/restic.nix inputs)
   ];
 
   sops.age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
