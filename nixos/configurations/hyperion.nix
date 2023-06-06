@@ -1,4 +1,6 @@
 _: {pkgs, ...}: {
+  _file = ./hyperion.nix;
+
   nix.allowedUnfree = ["zerotierone"];
 
   networking.hostName = "hyperion";

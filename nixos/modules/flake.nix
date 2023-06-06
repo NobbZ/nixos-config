@@ -14,6 +14,8 @@
   nixpkgsPath = "${base}/nixpkgs";
   nixpkgs2211Path = "${base}/nixpkgs2211";
 in {
+  _file = ./flake.nix;
+
   options.nix.flakes.enable = lib.mkEnableOption "nix flakes";
 
   config = lib.mkIf config.nix.flakes.enable {

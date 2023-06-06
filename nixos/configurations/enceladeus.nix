@@ -7,6 +7,8 @@ _: {
   lib,
   ...
 }: {
+  _file = ./enceladeus.nix;
+
   nix.allowedUnfree = ["b43-firmware" "zerotierone"];
   nixpkgs.config.contentAddressedByDefault = false;
   nix.distributedBuilds = true;

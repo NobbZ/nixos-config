@@ -81,6 +81,8 @@
     rm -rfv ${basePath}
   '';
 in {
+  _file = ./restic.nix;
+
   services.restic.server = {
     enable = true;
     prometheus = true;
