@@ -6,6 +6,8 @@ _: {
 }: let
   cfg = config.programs.exa;
 in {
+  _file = ./default.nix;
+
   config = lib.mkIf cfg.enable {
     home.packages = [pkgs.exa];
 

@@ -86,7 +86,7 @@ in {
         };
 
         config = {
-          entryPoint = import "${self}/home/configurations/${config.username}@${config.hostname}.nix" (inputs // {inherit self;});
+          entryPoint = import "${self}/home/configurations/${config.username}_at_${config.hostname}.nix" (inputs // {inherit self;});
           base =
             if lib.strings.hasSuffix "-darwin" config.system
             then "Users"

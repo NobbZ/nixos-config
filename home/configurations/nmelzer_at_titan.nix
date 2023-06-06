@@ -3,6 +3,8 @@
   lib,
   ...
 }: {
+  _file = ./nmelzer_at_titan.nix;
+
   nixpkgs.allowedUnfree = [];
 
   activeProfiles = ["base" "development"];

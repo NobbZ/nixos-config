@@ -9,6 +9,8 @@ _: {
   # rnixLsp = rnix-lsp.defaultPackage.x86_64-linux;
   rnixLsp = pkgs.rnix-lsp;
 in {
+  _file = ./default.nix;
+
   options.languages.nix = {
     enable = lib.mkEnableOption "Enable support for the nix language";
   };

@@ -8,6 +8,8 @@
   lib,
   ...
 }: {
+  _file = ./nmelzer_at_hyperion.nix;
+
   config = {
     nixpkgs.allowedUnfree = ["vscode"];
     # nixpkgs.config.allowBroken = true;

@@ -10,6 +10,8 @@
 }: let
   cfg = config.services.insync;
 in {
+  _file = ./default.nix;
+
   options.services.insync = {
     enable = lib.mkEnableOption "Insync cloud sync tool";
 

@@ -49,6 +49,8 @@
   windowSwitcher = wrapper windowSwitcherPkg windowSwitcherConfig;
   emoji = wrapper emojiPkg emojiConfig;
 in {
+  _file = ./default.nix;
+
   xsession.windowManager.awesome.launcher = "${lib.getExe launcher} -show drun";
   xsession.windowManager.awesome.windowSwitcher = "${lib.getExe windowSwitcher} -show window";
   xsession.windowManager.awesome.emojiPicker = "${lib.getExe emoji} -show emoji";

@@ -11,6 +11,8 @@
 }: let
   self' = self.packages.${pkgs.system};
 in {
+  _file = ./default.nix;
+
   profiles.base.enable = true;
   fonts.fontconfig.enable = true;
 

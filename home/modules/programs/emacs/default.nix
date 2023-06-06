@@ -43,6 +43,8 @@ _: {
   in
     builtins.concatStringsSep "\n" required;
 in {
+  _file = ./default.nix;
+
   options.programs.emacs = {
     splashScreen = lib.mkOption {
       type = lib.types.bool;
