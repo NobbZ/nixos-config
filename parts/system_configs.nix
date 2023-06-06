@@ -86,7 +86,7 @@ in {
 
           finalModules =
             [
-              {boot.cleanTmpDir = true;}
+              {boot.tmp.cleanOnBoot = true;}
               {networking.hostName = name;}
               {nix.flakes.enable = true;}
               {system.configurationRevision = self.rev or "dirty";}

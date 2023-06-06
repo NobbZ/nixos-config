@@ -37,7 +37,7 @@
 
         advcp = upkgs.callPackage ./advcp {};
         "dracula/konsole" = upkgs.callPackage ./dracula/konsole {};
-        emacs = epkgs.emacsUnstable;
+        emacs = epkgs.emacs-unstable;
         "rofi/unicode" = upkgs.callPackage ./rofi-unicode {};
         "zx" = upkgs.nodePackages.zx;
 
