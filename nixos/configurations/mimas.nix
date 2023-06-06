@@ -26,8 +26,9 @@ in {
   sops.age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
   sops.defaultSopsFile = "${self}/secrets/mimas/default.yaml";
 
-  sops.secrets.restic = {};
   sops.secrets.backblaze = {};
+  sops.secrets.restic = {};
+  sops.secrets.traefik = {};
 
   nix.allowedUnfree = ["zerotierone"] ++ printerPackages ++ steamPackages;
   nix.settings.experimental-features = ["ca-derivations" "impure-derivations"];
@@ -256,7 +257,7 @@ in {
   hardware.sane.extraBackends = [pkgs.hplipWithPlugin];
 
   services.traefik.enable = true;
-  systemd.services.traefik.serviceConfig.EnvironmentFile = ["/etc/traefik/env"];
+  systemd.services.traefik.serviceConfig.EnvironmentFile = [config.sops.secrets.traefik.path];
   services.traefik.staticConfigOptions = {
     log.level = "DEBUG";
 
