@@ -1,4 +1,6 @@
 {self, ...}: {
+  _file = ./auxiliary.nix;
+
   perSystem = {
     config,
     pkgs,

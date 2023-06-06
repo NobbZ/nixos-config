@@ -11,6 +11,8 @@
 
   packages = builtins.attrValues (builtins.mapAttrs (_: config: config.packageModule) cfg);
 in {
+  _file = ./system_configs.nix;
+
   options = {
     nobbz.nixosConfigurations = lib.mkOption {
       type = lib.types.attrsOf (lib.types.submodule ({
