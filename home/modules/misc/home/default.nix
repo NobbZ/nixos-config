@@ -31,6 +31,7 @@ in {
     in [
       p.cachix
       p.exercism
+      p.nheko
       p.nixpkgs-review
       p.tmate
       s."dracula/konsole"
