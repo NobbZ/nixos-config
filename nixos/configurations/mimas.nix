@@ -16,6 +16,8 @@
   steamPackages = ["steam" "steam-run" "steam-original" "steam-runtime"];
   printerPackages = ["hplip" "samsung-UnifiedLinuxDriver"];
 in {
+  _file = ./mimas.nix;
+
   imports = [
     (import ./mimas/restic.nix inputs)
     (import ./mimas/paperless.nix inputs)
@@ -254,7 +256,7 @@ in {
   hardware.sane.extraBackends = [pkgs.hplipWithPlugin];
 
   services.traefik.enable = true;
-  systemd.services.traefik.serviceConfig.EnvironmentFile = "/etc/traefik/env";
+  systemd.services.traefik.serviceConfig.EnvironmentFile = ["/etc/traefik/env"];
   services.traefik.staticConfigOptions = {
     log.level = "DEBUG";
 
