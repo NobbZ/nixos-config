@@ -30,8 +30,8 @@ in {
       s = self';
     in [
       p.cachix
-      p.element-desktop
       p.exercism
+      p.nheko
       p.nixpkgs-review
       p.tmate
       s."dracula/konsole"
