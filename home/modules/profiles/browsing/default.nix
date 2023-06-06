@@ -6,6 +6,8 @@
 }: let
   cfg = config.profiles.browsing;
 in {
+  _file = ./default.nix;
+
   options.profiles.browsing = {
     enable =
       lib.mkEnableOption

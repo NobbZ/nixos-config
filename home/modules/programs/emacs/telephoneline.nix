@@ -5,6 +5,8 @@ _: {
 }: let
   ecfg = config.programs.emacs;
 in {
+  _file = ./telephoneline.nix;
+
   config = lib.mkIf ecfg.enable {
     programs.emacs.localPackages."init-telephoneline" = {
       tag = "Setup telephone line";

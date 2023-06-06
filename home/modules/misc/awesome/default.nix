@@ -81,6 +81,8 @@
     -- }}}
   '';
 in {
+  _file = ./default.nix;
+
   options.xsession.windowManager.awesome = {
     terminalEmulator = lib.mkOption {
       type = lib.types.str;

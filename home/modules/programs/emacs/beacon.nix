@@ -5,6 +5,8 @@ _: {
 }: let
   cfg = config.programs.emacs.packages.beacon;
 in {
+  _file = ./beacon.nix;
+
   options.programs.emacs.packages.beacon = {
     enable = lib.mkOption {
       type = lib.types.bool;

@@ -27,6 +27,8 @@
     '';
   };
 in {
+  _file = ./default.nix;
+
   options.profiles.base = {
     enable = lib.mkEnableOption "The base profile, should be always enabled";
   };

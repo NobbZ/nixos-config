@@ -13,6 +13,8 @@ _: {
   in
     builtins.concatStringsSep "\n" add-hooks;
 in {
+  _file = ./lsp.nix;
+
   options.programs.emacs.lsp-mode = {
     enable = lib.mkEnableOption "Enables and installs lsp-mode";
 

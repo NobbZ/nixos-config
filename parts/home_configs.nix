@@ -12,6 +12,8 @@
 
   packages = builtins.attrValues (builtins.mapAttrs (_: config: config.packageModule) cfg);
 in {
+  _file = ./home_configs.nix;
+
   options = {
     nobbz.homeConfigurations = lib.mkOption {
       type = lib.types.attrsOf (lib.types.submodule ({
@@ -84,7 +86,7 @@ in {
         };
 
         config = {
-          entryPoint = import "${self}/home/configurations/${config.username}@${config.hostname}.nix" (inputs // {inherit self;});
+          entryPoint = import "${self}/home/configurations/${config.username}_at_${config.hostname}.nix" (inputs // {inherit self;});
           base =
             if lib.strings.hasSuffix "-darwin" config.system
             then "Users"

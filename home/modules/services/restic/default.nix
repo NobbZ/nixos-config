@@ -15,6 +15,8 @@
 
   command = "${bin} --tag home -vv backup ${flags} %h";
 in {
+  _file = ./default.nix;
+
   options.services.restic = {
     enable = lib.mkEnableOption "Restic Backup Tool";
 

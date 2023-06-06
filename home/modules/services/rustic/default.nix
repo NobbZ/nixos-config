@@ -19,6 +19,8 @@ _: {
 
   command = "${bin} backup ${flags} %h";
 in {
+  _file = ./default.nix;
+
   options.services.rustic = {
     enable = lib.mkEnableOption "rustic";
 

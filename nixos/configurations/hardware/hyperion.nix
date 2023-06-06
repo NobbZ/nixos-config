@@ -2,12 +2,12 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }: {
+  _file = ./hyperion.nix;
+
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
