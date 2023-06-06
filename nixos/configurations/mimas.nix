@@ -162,16 +162,16 @@ in {
 
   services.gitea = {
     enable = true;
-    httpAddress = "127.0.0.1";
-    domain = "gitea.mimas.internal.nobbz.dev";
+    settings.server.DOMAIN = "gitea.mimas.internal.nobbz.dev";
+    settings.server.HTTP_ADDR = "127.0.0.1";
     settings.server.ROOT_URL = lib.mkForce "https://gitea.mimas.internal.nobbz.dev/";
     settings."git.timeout".DEFAULT = 3600; # 1 hour
     settings."git.timeout".MIGRATE = 3600; # 1 hour
     settings."git.timeout".MIRROR = 3600; # 1 hour
     settings."git.timeout".CLONE = 3600; # 1 hour
     settings."git.timeout".PULL = 3600; # 1 hour
-    settings."git.timeout".GC = 3600;
-  }; # 1 hour
+    settings."git.timeout".GC = 3600; # 1 hour
+  };
   systemd.services.gitea.after = ["var-lib-gitea.mount"];
 
   virtualisation = {
@@ -338,7 +338,7 @@ in {
       fritz.loadBalancer.servers = [{url = "http://fritz.box";}];
 
       gitea.loadBalancer.passHostHeader = true;
-      gitea.loadBalancer.servers = [{url = "http://localhost:${toString config.services.gitea.httpPort}";}];
+      gitea.loadBalancer.servers = [{url = "http://localhost:${toString config.services.gitea.settings.server.HTTP_PORT}";}];
 
       grafana.loadBalancer.passHostHeader = true;
       grafana.loadBalancer.servers = [{url = "http://localhost:${toString config.services.grafana.settings.server.http_port}";}];
