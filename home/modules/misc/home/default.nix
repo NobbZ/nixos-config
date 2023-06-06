@@ -30,7 +30,6 @@ in {
       s = self';
     in [
       p.cachix
-      p.element-desktop
       p.exercism
       p.nixpkgs-review
       p.tmate
