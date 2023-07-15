@@ -437,10 +437,10 @@ in {
          awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
             {description = "run prompt", group = "launcher"}),
 
-         awful.key({ modkey },            "d", function () awful.util.spawn('${cfg.launcher}') end, {description = "open launcher", group = "launcher"}),
+         awful.key({ modkey },            "d", function () awful.util.spawn('${cfg.launcher}')       end, {description = "open launcher",        group = "launcher"}),
          awful.key({ modkey },            "w", function () awful.util.spawn('${cfg.windowSwitcher}') end, {description = "open window selecter", group = "launcher"}),
-         awful.key({ modkey },            "e", function () awful.util.spawn('${cfg.emojiPicker}') end, {description = "open emoji picker", group = "launcher"}),
-         awful.key({ modkey },            "y", function () awful.util.spawn('${cfg.lockCommand}') end, {description = "lock screen", group = "client"}),
+         awful.key({ modkey, "Shift" },   "e", function () awful.util.spawn('${cfg.emojiPicker}')    end, {description = "open emoji picker",    group = "launcher"}),
+         awful.key({ modkey },            "y", function () awful.util.spawn('${cfg.lockCommand}')    end, {description = "lock screen",          group = "client"  }),
 
          awful.key({ modkey }, "x",
             function ()
