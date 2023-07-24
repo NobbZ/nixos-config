@@ -35,6 +35,8 @@
       {
         inherit nil;
 
+        installer-iso = (upkgs.callPackage ./installer {inherit (inputs.nixpkgs.lib) nixosSystem;}).config.system.build.isoImage;
+
         advcp = upkgs.callPackage ./advcp {};
         "dracula/konsole" = upkgs.callPackage ./dracula/konsole {};
         emacs = epkgs.emacs-unstable;
