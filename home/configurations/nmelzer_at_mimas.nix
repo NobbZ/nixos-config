@@ -10,7 +10,7 @@
   _file = ./nmelzer_at_mimas.nix;
 
   config = {
-    nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord"];
+    nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "obsidian"];
     nixpkgs.config.allowBroken = true;
 
     activeProfiles = ["browsing" "development"];
@@ -29,6 +29,7 @@
 
     home.packages = builtins.attrValues {
       inherit (pkgs) keybase-gui freerdp vscode keepassxc nix-output-monitor discord;
+      inherit (pkgs) obsidian;
       inherit (pkgs.gnome) gnome-tweaks;
       inherit (self.packages.x86_64-linux) gnucash-de;
     };
