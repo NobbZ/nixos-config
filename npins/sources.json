@@ -8,9 +8,9 @@
         "repo": "fzf-tab"
       },
       "branch": "master",
-      "revision": "5a81e13792a1eed4a03d2083771ee6e5b616b9ab",
-      "url": "https://github.com/Aloxaf/fzf-tab/archive/5a81e13792a1eed4a03d2083771ee6e5b616b9ab.tar.gz",
-      "hash": "0lfl4r44ci0wflfzlzzxncrb3frnwzghll8p365ypfl0n04bkxvl"
+      "revision": "c2b4aa5ad2532cca91f23908ac7f00efb7ff09c9",
+      "url": "https://github.com/Aloxaf/fzf-tab/archive/c2b4aa5ad2532cca91f23908ac7f00efb7ff09c9.tar.gz",
+      "hash": "1b4pksrc573aklk71dn2zikiymsvq19bgvamrdffpf7azpq6kxl2"
     },
     "konsole": {
       "type": "Git",
@@ -32,9 +32,9 @@
         "repo": "zsh-syntax-highlighting"
       },
       "branch": "master",
-      "revision": "754cefe0181a7acd42fdcb357a67d0217291ac47",
-      "url": "https://github.com/zsh-users/zsh-syntax-highlighting/archive/754cefe0181a7acd42fdcb357a67d0217291ac47.tar.gz",
-      "hash": "1kjh42payg8mwgpa91cy20ilkqxmqy36vy6brl8k35h9nixhys4i"
+      "revision": "1386f1213eb0b0589d73cd3cf7c56e6a972a9bfd",
+      "url": "https://github.com/zsh-users/zsh-syntax-highlighting/archive/1386f1213eb0b0589d73cd3cf7c56e6a972a9bfd.tar.gz",
+      "hash": "0a39xfwxdq8zmzw8s40fvham7689am1icn03lhdj1882qjb7pb48"
     }
   },
   "version": 3
