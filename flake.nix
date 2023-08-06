@@ -55,6 +55,32 @@
         ./packages
       ];
 
+      perSystem = {
+        pkgs,
+        self',
+        ...
+      }: {
+        apps.installer.program = let
+          isoPath = "iso/${self'.packages.installer-iso.isoName}";
+        in
+          pkgs.writeShellScriptBin "installer" ''
+            image=disk.qcow2
+            isoPath=$(mktemp -d)/result
+            test -f $image || ${pkgs.qemu}/bin/qemu-img create -f qcow2 $image 50G
+
+            nom build .#installer-iso -o $isoPath
+
+            ${pkgs.qemu}/bin/qemu-system-x86_64 \
+              -drive file=$image,if=virtio \
+              -cdrom $isoPath/${isoPath} \
+              -m 8192 \
+              -enable-kvm \
+              -netdev user,id=net0 \
+              -device virtio-net,netdev=net0 \
+              -bios ${pkgs.OVMF.fd}/FV/OVMF.fd
+          '';
+      };
+
       flake = {
         nixosModules = import ./nixos/modules inputs;
 
