@@ -6,16 +6,8 @@ nixosSystem {
   inherit system;
 
   modules = [
-    ({modulesPath, ...}: {
-      imports = [
-        "${modulesPath}/installer/cd-dvd/installation-cd-graphical-base.nix"
-      ];
-
-      isoImage = {
-        edition = "nobbz";
-        squashfsCompression = "zstd -Xcompression-level 10";
-      };
-
+    ./base.nix
+    {
       services.xserver = {
         windowManager.awesome.enable = true;
         displayManager.sddm.enable = true;
@@ -28,6 +20,6 @@ nixosSystem {
         boot.vdo.enable = true;
         dmeventd.enable = true;
       };
-    })
+    }
   ];
 }
