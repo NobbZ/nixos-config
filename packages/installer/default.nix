@@ -8,12 +8,10 @@ nixosSystem {
   modules = [
     ./base.nix
     ./lvm.nix
+    ./sddm.nix
     {
       services.xserver = {
         windowManager.awesome.enable = true;
-        displayManager.sddm.enable = true;
-        displayManager.autoLogin.enable = true;
-        displayManager.autoLogin.user = "nixos";
       };
     }
   ];
