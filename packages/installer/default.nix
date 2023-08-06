@@ -6,9 +6,10 @@ nixosSystem {
   inherit system;
 
   modules = [
+    ./awesome.nix
     ./base.nix
     ./lvm.nix
     ./sddm.nix
-    ./awesome.nix
+    ./xterm.nix
   ];
 }
