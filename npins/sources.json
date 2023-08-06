@@ -1,5 +1,17 @@
 {
   "pins": {
+    "awesome": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "awesomewm",
+        "repo": "awesome"
+      },
+      "branch": "master",
+      "revision": "0e5fc4575ab0adbae75908cb49937d9cf63437ec",
+      "url": "https://github.com/awesomewm/awesome/archive/0e5fc4575ab0adbae75908cb49937d9cf63437ec.tar.gz",
+      "hash": "0zkqn5ni4iqwfxyilcnp78l0xan7ksvk1q71wqh1i2fh5hmxhn34"
+    },
     "catppuccin-bat": {
       "type": "Git",
       "repository": {
