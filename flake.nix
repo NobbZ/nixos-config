@@ -66,6 +66,8 @@
           pkgs.writeShellScriptBin "installer" ''
             image=disk.qcow2
             isoPath=$(mktemp -d)/result
+            isoFull=$isoPath/${isoPath}
+
             test -f $image || ${pkgs.qemu}/bin/qemu-img create -f qcow2 $image 50G
 
             nom build .#installer-iso -o $isoPath
@@ -78,6 +80,9 @@
               -netdev user,id=net0 \
               -device virtio-net,netdev=net0 \
               -bios ${pkgs.OVMF.fd}/FV/OVMF.fd
+
+            du -h $isoFull
+            rm -f $isoPath
           '';
       };
 
