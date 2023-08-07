@@ -2,12 +2,11 @@
   nixosSystem,
   system,
   npins,
-  wrapper-manager,
 }:
 nixosSystem {
   inherit system;
 
-  specialArgs = {inherit npins wrapper-manager;};
+  specialArgs = {inherit npins;};
 
   modules = [
     ./awesome.nix
