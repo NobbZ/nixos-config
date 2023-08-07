@@ -26,9 +26,6 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "unstable";
 
-    wrapper-manager.url = "github:viperml/wrapper-manager";
-    wrapper-manager.inputs.nixpkgs.follows = "unstable";
-
     flake-utils.url = "github:numtide/flake-utils";
 
     emacs.url = "github:nix-community/emacs-overlay";

@@ -848,8 +848,7 @@
         "switcher": "switcher",
         "unstable": [
           "nixpkgs-unstable"
-        ],
-        "wrapper-manager": "wrapper-manager"
+        ]
       }
     },
     "rust-analyzer-src": {
@@ -1045,26 +1044,6 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "wrapper-manager": {
-      "inputs": {
-        "nixpkgs": [
-          "unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1690217209,
-        "narHash": "sha256-qqONS2cH66fEku3OXMPIANlGnaJNhVlKTNEiwvN0yIc=",
-        "owner": "viperml",
-        "repo": "wrapper-manager",
-        "rev": "e8a9a3c9ca07b3d7638357b9a9078dd1ab76afb0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "viperml",
-        "repo": "wrapper-manager",
         "type": "github"
       }
     }
