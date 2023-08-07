@@ -23,7 +23,6 @@
         installer-iso =
           (upkgs.callPackage ./installer {
             inherit (inputs.nixpkgs.lib) nixosSystem;
-            inherit (inputs) wrapper-manager;
             inherit npins;
           })
           .config
