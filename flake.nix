@@ -26,6 +26,9 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "unstable";
 
+    wrapper-manager.url = "github:viperml/wrapper-manager";
+    wrapper-manager.inputs.nixpkgs.follows = "unstable";
+
     flake-utils.url = "github:numtide/flake-utils";
 
     emacs.url = "github:nix-community/emacs-overlay";
@@ -41,6 +44,8 @@
   outputs = {parts, ...} @ inputs:
     parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
+
+      debug = true;
 
       _module.args.npins = import ./npins;
 
