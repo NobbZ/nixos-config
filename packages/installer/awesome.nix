@@ -1,35 +1,22 @@
 {
   pkgs,
   npins,
-  wrapper-manager,
   ...
 }: let
   rc_lua = pkgs.runCommandNoCC "awesomerc.lua" {} ''
     substitute ${./awesomerc.lua} $out \
       --subst-var-by FILE_PATH_WALLPAPER ${./nix-glow-black.png}
   '';
-  awesome = wrapper-manager.lib.build {
-    inherit pkgs;
+  awesome = pkgs.awesome.overrideAttrs (oa: {
+    version = npins.awesome.revision;
+    src = npins.awesome;
 
-    modules = [
-      {
-        wrappers.awesome = {
-          basePackage = pkgs.awesome.overrideAttrs (oa: {
-            version = npins.awesome.revision;
-            src = npins.awesome;
+    patches = [];
 
-            patches = [];
-
-            postPatch = ''
-              patchShebangs tests/examples/_postprocess.lua
-            '';
-          });
-
-          flags = ["--config" "${rc_lua}"];
-        };
-      }
-    ];
-  };
+    postPatch = ''
+      patchShebangs tests/examples/_postprocess.lua
+    '';
+  });
 in {
   _file = ./awesome.nix;
 
@@ -37,4 +24,8 @@ in {
     enable = true;
     package = awesome;
   };
+
+  systemd.user.tmpfiles.rules = [
+    "L+ %h/.config/awesome/rc.lua - - - - ${rc_lua}"
+  ];
 }
