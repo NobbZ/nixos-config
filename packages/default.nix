@@ -21,6 +21,17 @@
       config.google-chrome.enableWideVine = true;
     };
 
+    awesome = pkgs.awesome.overrideAttrs (oa: {
+      version = npins.awesome.revision;
+      src = npins.awesome;
+
+      patches = [];
+
+      postPatch = ''
+        patchShebangs tests/examples/_postprocess.lua
+      '';
+    });
+
     nilBase =
       if upkgs.stdenv.isLinux
       then inputs'.nil.packages.nil
@@ -59,6 +70,7 @@
       }
       (lib.mkIf pkgs.stdenv.isLinux {
         inherit (inputs'.switcher.packages) switcher;
+        inherit awesome;
         gnucash-de = upkgs.callPackage ./gnucash-de {};
       })
       (lib.mkIf (system == "x86_64-linux") {
