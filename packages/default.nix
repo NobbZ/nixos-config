@@ -20,6 +20,17 @@
       config.allowUnfree = true;
       config.google-chrome.enableWideVine = true;
     };
+
+    awesome = pkgs.awesome.overrideAttrs (oa: {
+      version = npins.awesome.revision;
+      src = npins.awesome;
+
+      patches = [];
+
+      postPatch = ''
+        patchShebangs tests/examples/_postprocess.lua
+      '';
+    });
   in {
     packages = lib.mkMerge [
       {
@@ -41,6 +52,7 @@
       }
       (lib.mkIf pkgs.stdenv.isLinux {
         inherit (inputs'.switcher.packages) switcher;
+        inherit awesome;
       })
       (lib.mkIf (system == "x86_64-linux") {
         inherit (chromePkgs) google-chrome;

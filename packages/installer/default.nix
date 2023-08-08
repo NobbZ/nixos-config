@@ -12,6 +12,7 @@ nixosSystem {
     ./awesome.nix
     ./base.nix
     ./lvm.nix
+    ./network.nix
     ./sddm.nix
     ./xterm.nix
   ];
