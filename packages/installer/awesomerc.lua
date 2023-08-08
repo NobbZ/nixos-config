@@ -3,7 +3,6 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
--- @DOC_REQUIRE_SECTION@
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -25,7 +24,6 @@ require("awful.hotkeys_popup.keys")
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
--- @DOC_ERROR_HANDLING@
 naughty.connect_signal("request::display_error", function(message, startup)
     naughty.notification {
         urgency = "critical",
@@ -36,11 +34,9 @@ end)
 -- }}}
 
 -- {{{ Variable definitions
--- @DOC_LOAD_THEME@
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
--- @DOC_DEFAULT_APPLICATIONS@
 -- This is used later as the default terminal and editor to run.
 terminal = "xterm"
 editor = os.getenv("EDITOR") or "nano"
@@ -55,7 +51,6 @@ modkey = "Mod4"
 -- }}}
 
 -- {{{ Menu
--- @DOC_MENU@
 -- Create a launcher widget and a main menu
 myawesomemenu = {
    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
@@ -78,7 +73,6 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- {{{ Tag layout
--- @DOC_LAYOUT@
 -- Table of layouts to cover with awful.layout.inc, order matters.
 tag.connect_signal("request::default_layouts", function()
     awful.layout.append_default_layouts({
@@ -100,13 +94,12 @@ end)
 -- }}}
 
 -- {{{ Wallpaper
--- @DOC_WALLPAPER@
 screen.connect_signal("request::wallpaper", function(s)
     awful.wallpaper {
         screen = s,
         widget = {
             {
-                image     = "@FILE_PATH_WALLPAPER@", -- beautiful.wallpaper,
+                image     = "@FILE_PATH_WALLPAPER@",
                 upscale   = true,
                 downscale = true,
                 widget    = wibox.widget.imagebox,
@@ -128,7 +121,6 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
 
--- @DOC_FOR_EACH_SCREEN@
 screen.connect_signal("request::desktop_decoration", function(s)
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
@@ -170,7 +162,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
         }
     }
 
-    -- @TASKLIST_BUTTON@
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
@@ -185,12 +176,10 @@ screen.connect_signal("request::desktop_decoration", function(s)
         }
     }
 
-    -- @DOC_WIBAR@
     -- Create the wibox
     s.mywibox = awful.wibar {
         position = "top",
         screen   = s,
-        -- @DOC_SETUP_WIDGETS@
         widget   = {
             layout = wibox.layout.align.horizontal,
             { -- Left widgets
@@ -214,7 +203,6 @@ end)
 -- }}}
 
 -- {{{ Mouse bindings
--- @DOC_ROOT_BUTTONS@
 awful.mouse.append_global_mousebindings({
     awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewprev),
@@ -223,7 +211,6 @@ awful.mouse.append_global_mousebindings({
 -- }}}
 
 -- {{{ Key bindings
--- @DOC_GLOBAL_KEYBINDINGS@
 
 -- General Awesome keys
 awful.keyboard.append_global_keybindings({
@@ -326,7 +313,6 @@ awful.keyboard.append_global_keybindings({
               {description = "select previous", group = "layout"}),
 })
 
--- @DOC_NUMBER_KEYBINDINGS@
 
 awful.keyboard.append_global_keybindings({
     awful.key {
@@ -397,7 +383,6 @@ awful.keyboard.append_global_keybindings({
     }
 })
 
--- @DOC_CLIENT_BUTTONS@
 client.connect_signal("request::default_mousebindings", function()
     awful.mouse.append_client_mousebindings({
         awful.button({ }, 1, function (c)
@@ -412,7 +397,6 @@ client.connect_signal("request::default_mousebindings", function()
     })
 end)
 
--- @DOC_CLIENT_KEYBINDINGS@
 client.connect_signal("request::default_keybindings", function()
     awful.keyboard.append_client_keybindings({
         awful.key({ modkey,           }, "f",
@@ -463,9 +447,7 @@ end)
 
 -- {{{ Rules
 -- Rules to apply to new clients.
--- @DOC_RULES@
 ruled.client.connect_signal("request::rules", function()
-    -- @DOC_GLOBAL_RULE@
     -- All clients will match this rule.
     ruled.client.append_rule {
         id         = "global",
@@ -478,7 +460,6 @@ ruled.client.connect_signal("request::rules", function()
         }
     }
 
-    -- @DOC_FLOATING_RULE@
     -- Floating clients.
     ruled.client.append_rule {
         id       = "floating",
@@ -502,10 +483,8 @@ ruled.client.connect_signal("request::rules", function()
         properties = { floating = true }
     }
 
-    -- @DOC_DIALOG_RULE@
     -- Add titlebars to normal clients and dialogs
     ruled.client.append_rule {
-        -- @DOC_CSD_TITLEBARS@
         id         = "titlebars",
         rule_any   = { type = { "normal", "dialog" } },
         properties = { titlebars_enabled = true      }
@@ -520,7 +499,6 @@ end)
 -- }}}
 
 -- {{{ Titlebars
--- @DOC_TITLEBARS@
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
     -- buttons for the titlebar
