@@ -43,10 +43,12 @@
             ${pkgs.qemu}/bin/qemu-system-x86_64 \
               -drive file=$image,if=virtio \
               -cdrom $isoPath/${isoPath} \
-              -m 8192 \
+              -m 8G \
+              -smp 2 \
               -enable-kvm \
               -netdev user,id=net0 \
               -device virtio-net,netdev=net0 \
+              -device virtio-vga \
               -bios ${pkgs.OVMF.fd}/FV/OVMF.fd
 
             du -h $isoFull
