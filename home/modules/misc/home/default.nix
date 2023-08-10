@@ -32,9 +32,12 @@ in {
       p.cachix
       p.exercism
       p.nheko
-      p.nixpkgs-review
       p.tmate
       s."dracula/konsole"
+
+      # There is a conflict with the ZSH completion plugin, installed by default
+      # therefore we need to override here
+      (lib.setPrio 0 p.nixpkgs-review)
 
       p.fira-code
       p.cascadia-code
