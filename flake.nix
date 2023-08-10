@@ -54,6 +54,17 @@
             du -h $isoFull
             rm -f $isoPath
           '';
+
+        apps.awesome-preview.program = let
+          rc_lua = pkgs.runCommandNoCC "awesomerc.lua" {} ''
+            substitute ${./packages/installer/awesomerc.lua} $out \
+              --subst-var-by FILE_PATH_WALLPAPER ${./packages/installer/nix-glow-black.png} \
+              --subst-var-by NIX_FLAKE_SVG       ${./packages/installer/nix-flake.svg}
+          '';
+        in
+          pkgs.writeShellScriptBin "awesome-preview" ''
+            ${pkgs.xorg.xorgserver}/bin/Xephyr :5 & sleep 1 ; DISPLAY=:5 ${self'.packages.awesome}/bin/awesome --config ${rc_lua}
+          '';
       };
 
       flake = {

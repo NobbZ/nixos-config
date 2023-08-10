@@ -5,7 +5,8 @@
 }: let
   rc_lua = pkgs.runCommandNoCC "awesomerc.lua" {} ''
     substitute ${./awesomerc.lua} $out \
-      --subst-var-by FILE_PATH_WALLPAPER ${./nix-glow-black.png}
+      --subst-var-by FILE_PATH_WALLPAPER ${./nix-glow-black.png} \
+      --subst-var-by NIX_FLAKE_SVG       ${./nix-flake.svg}
   '';
   awesome = pkgs.awesome.overrideAttrs (oa: {
     version = npins.awesome.revision;
