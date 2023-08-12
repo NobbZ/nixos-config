@@ -8,7 +8,7 @@ in {
   _file = ./default.nix;
 
   options.nixpkgs.allowedUnfree = lib.mkOption {
-    type = lib.types.listOf lib.types.string;
+    type = lib.types.listOf lib.types.str;
     default = [];
     description = ''
       Allows for  unfree packages by their name.
