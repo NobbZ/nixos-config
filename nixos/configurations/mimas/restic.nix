@@ -38,7 +38,7 @@
   lvremoves = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvs | grep -E '${name}' && lvremove pool/${name}") snaps);
 
   rest_repo = "rest:https://restic.mimas.internal.nobbz.dev/mimas";
-  gdrv_repo = "/home/nmelzer/timmelzer@gmail.com/restic_repos/mimas";
+  gdrv_repo = "rclone:drive-timmelzer:restic_repos/mimas";
   pass = config.sops.secrets.restic.path;
 
   preStart = ''
@@ -138,27 +138,17 @@ in {
     after = ["run-secrets.d.mount"];
     serviceConfig.Type = "oneshot";
     serviceConfig.LoadCredential = [
-      "b2:${config.sops.secrets.backblaze.path}"
       "pass:${pass}"
     ];
     script = ''
-      eval $(cat "$CREDENTIALS_DIRECTORY/b2")
-
-      restic copy --repo ${rest_repo} --repo2 ${gdrv_repo} -vvv
-
-      restic forget --repo ${rest_repo} --keep-hourly 12 --keep-daily 4 --keep-weekly 3 --keep-monthly 7 --keep-yearly 10
-      restic forget --repo ${gdrv_repo} --keep-daily 30 --keep-weekly 4 --keep-monthly 12 --keep-yearly 20
-
-      restic prune --repo ${rest_repo} --max-unused 0
-      restic prune --repo ${gdrv_repo} --max-unused 0
-
-      chown -Rv nmelzer:users /home/nmelzer/timmelzer@gmail.com/restic_repos
+      restic copy --from-repo ${rest_repo} --repo ${gdrv_repo}
     '';
     environment = {
       RESTIC_PASSWORD_FILE = "%d/pass";
-      RESTIC_PASSWORD_FILE2 = "%d/pass";
+      RESTIC_FROM_PASSWORD_FILE = "%d/pass";
       RESTIC_COMPRESSION = "max";
       XDG_CACHE_HOME = "%C";
+      XDG_CONFIG_HOME = "/home/nmelzer/.config";
     };
   };
 }
