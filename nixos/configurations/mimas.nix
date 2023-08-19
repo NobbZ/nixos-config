@@ -26,7 +26,6 @@ in {
   sops.age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
   sops.defaultSopsFile = "${self}/secrets/mimas/default.yaml";
 
-  sops.secrets.backblaze = {};
   sops.secrets.restic = {};
   sops.secrets.traefik = {};
 
