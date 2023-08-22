@@ -137,11 +137,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1692555851,
-        "narHash": "sha256-OcCzFUTiYsP1K/vlhV7U0ae8Ine/vTG8XaQll0AeqGw=",
+        "lastModified": 1692643643,
+        "narHash": "sha256-znMUMwiNYZph8YZNA4x5F0bLpWRH2kNQDl8kcLTDLDY=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "9a7388497abed4a4c0fffd938fab35f1168ce8c9",
+        "rev": "519c98cef1aa5901568266146d085d230d92952f",
         "type": "github"
       },
       "original": {
@@ -410,11 +410,11 @@
     },
     "master": {
       "locked": {
-        "lastModified": 1692581052,
-        "narHash": "sha256-1gWqjmA9sbgR5xzGcrAeiyjRCKQo7+w4K9NsruSymjU=",
+        "lastModified": 1692670081,
+        "narHash": "sha256-bjWnSQpg9y4sVvaxGvt2yteEA1zJNXQunUahFvvDv5E=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "59f057ef4608e7c7a342137935083e8ed7707339",
+        "rev": "ebb4d8a13f5f73d878543ad94d1b4c557c6f7a08",
         "type": "github"
       },
       "original": {
@@ -452,11 +452,11 @@
         "nixpkgs-regression": "nixpkgs-regression"
       },
       "locked": {
-        "lastModified": 1692453612,
-        "narHash": "sha256-T53szNMtOf6oFYAZ7gjtBHhzFTdAEOHHqm/2QYFieBQ=",
+        "lastModified": 1692622680,
+        "narHash": "sha256-n5+foqRKUNbQg2ofGHe28BlGidem+iJea1gEyt9PTh0=",
         "owner": "nixos",
         "repo": "nix",
-        "rev": "10afcf06aa2607bf088f7f08989f42c1fa2689a2",
+        "rev": "3fcdea4ca0f362d21637002918b49cd41358e8e2",
         "type": "github"
       },
       "original": {
@@ -600,11 +600,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1692414505,
-        "narHash": "sha256-sSTuyR9JYSxmUcYcj0Jvw1hIq1tz/Canw9mK0hEJvnE=",
+        "lastModified": 1692525914,
+        "narHash": "sha256-MUgZ9/9mE/EbEQA6JPdcQHkjoR5fgvaKhpy6UO67uEc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4cdad15f34e6321a2f789b99d42815b9142ac2ba",
+        "rev": "475d5ae2c4cb87b904545bdb547af05681198fcc",
         "type": "github"
       },
       "original": {
@@ -809,11 +809,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1692571950,
-        "narHash": "sha256-b72Y94+DyWnmOJrtL3h0DCQxBRNmiRc+Uj9cj2UuaoE=",
+        "lastModified": 1692651168,
+        "narHash": "sha256-daRiEBDUUSAdTJ1MIhWS8nHUjzvrUckg/01X7IS6QuM=",
         "owner": "wamserma",
         "repo": "flake-programs-sqlite",
-        "rev": "0861f036d705eb6e596b8d371975527df927cca1",
+        "rev": "a50edf3c0cf073bfdce485701bc026f689bd7da5",
         "type": "github"
       },
       "original": {
