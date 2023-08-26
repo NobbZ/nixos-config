@@ -54,6 +54,7 @@
           (upkgs.callPackage ./installer {
             inherit (inputs.nixpkgs.lib) nixosSystem;
             inherit npins;
+            inherit (inputs) nixvim;
           })
           .config
           .system

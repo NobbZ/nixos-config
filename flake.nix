@@ -36,6 +36,8 @@
     sops-nix.url = "github:Mic92/sops-nix";
 
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
+
+    nixvim.url = "github:nix-community/nixvim";
   };
 
   outputs = {parts, ...} @ inputs:
