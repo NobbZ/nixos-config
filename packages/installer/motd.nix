@@ -14,8 +14,8 @@
     Currently you are looking at an <tt>awesome wm</tt> session, the modkey is
     <tt>Mod4</tt> (the "windows" key).
 
-    <s>Most important tooling is available through the "awesome" menu, which is</s>
-    <s>located in the upper left corner of the screen.</s>
+    Most important tooling is available through the "awesome" menu, which is
+    located in the upper left corner of the screen.
 
     If you want to use the terminal, you can either use the menu, or press
     <tt>Mod4+Enter</tt>.
