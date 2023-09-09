@@ -18,5 +18,17 @@
       enable = true;
       servers.nil_ls.enable = true;
     };
+
+    noice = {
+      enable = true;
+    };
+
+    neo-tree = {
+      enable = true;
+    };
+
+    neogit = {
+      enable = true;
+    };
   };
 }
