@@ -9,10 +9,9 @@ in {
   _file = ./default.nix;
 
   config = lib.mkIf cfg.enable {
-    home.packages = [pkgs.exa];
-
+    programs.exa.package = pkgs.eza;
     programs.zsh.shellAliases = {
-      ll = "exa --header --git --classify --long --binary --group --time-style=long-iso --links --all --all --group-directories-first --sort=name";
+      ll = "eza --header --git --classify --long --binary --group --time-style=long-iso --links --all --all --group-directories-first --sort=name";
     };
   };
 }
