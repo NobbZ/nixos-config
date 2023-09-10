@@ -163,8 +163,8 @@ in {
       (pname: v:
         ep.trivialBuild {
           inherit pname;
+          version = "0.0.0";
           inherit (v) src;
-          # src = v.src;
           packageRequires = v.ep ep;
         })
       confPackages;
