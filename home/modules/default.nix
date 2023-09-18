@@ -17,7 +17,7 @@ inputs: {
   "programs/emacs/projectile" = import ./programs/emacs/projectile.nix inputs;
   "programs/emacs/telephoneline" = import ./programs/emacs/telephoneline.nix inputs;
   "programs/emacs/whichkey" = import ./programs/emacs/whichkey inputs;
-  "programs/exa" = import ./programs/exa inputs;
+  "programs/eza" = import ./programs/eza inputs;
   "programs/nixpkgs" = import ./programs/nixpkgs inputs;
   "programs/openshift" = import ./programs/openshift inputs;
   "programs/p10k" = import ./programs/p10k inputs;
