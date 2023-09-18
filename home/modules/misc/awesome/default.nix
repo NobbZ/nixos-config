@@ -1,8 +1,4 @@
-{
-  self,
-  nixpkgs-bls,
-  ...
-}: {
+{self, ...}: {
   config,
   lib,
   pkgs,
@@ -12,7 +8,7 @@
 
   flameshot = lib.getExe pkgs.flameshot;
 
-  bls = lib.getExe (nixpkgs-bls.legacyPackages.${pkgs.system}.betterlockscreen.override {withDunst = false;});
+  bls = lib.getExe (pkgs.betterlockscreen.override {withDunst = false;});
   scrot = lib.getExe pkgs.scrot;
 
   locker = pkgs.writeShellScript "betterlockscreen-with-screenshot" ''
