@@ -4,7 +4,6 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     master.url = "github:nixos/nixpkgs/master";
     nixpkgs-insync-v3.url = "github:nixos/nixpkgs?ref=32fdc268e921994e3f38088486ddfe765d11df93";
-    nixpkgs-bls.url = "github:nixos/nixpkgs?ref=pull/231714/head";
 
     switcher.url = "github:nobbz/nix-switcher?ref=main";
     switcher.inputs.nixpkgs.follows = "unstable";
