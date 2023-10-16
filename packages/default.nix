@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  npins,
+  ...
+}: {
   _file = ./default.nix;
 
   perSystem = {
@@ -16,6 +20,17 @@
       config.allowUnfree = true;
       config.google-chrome.enableWideVine = true;
     };
+
+    awesome = pkgs.awesome.overrideAttrs (oa: {
+      version = npins.awesome.revision;
+      src = npins.awesome;
+
+      patches = [];
+
+      postPatch = ''
+        patchShebangs tests/examples/_postprocess.lua
+      '';
+    });
 
     nilBase =
       if upkgs.stdenv.isLinux
@@ -35,6 +50,17 @@
       {
         inherit nil;
 
+        installer-iso =
+          (upkgs.callPackage ./installer {
+            inherit (inputs.nixpkgs.lib) nixosSystem;
+            inherit npins;
+            inherit (inputs) nixvim;
+          })
+          .config
+          .system
+          .build
+          .isoImage;
+
         advcp = upkgs.callPackage ./advcp {};
         "dracula/konsole" = upkgs.callPackage ./dracula/konsole {};
         emacs = epkgs.emacs-unstable;
@@ -45,6 +71,7 @@
       }
       (lib.mkIf pkgs.stdenv.isLinux {
         inherit (inputs'.switcher.packages) switcher;
+        inherit awesome;
         gnucash-de = upkgs.callPackage ./gnucash-de {};
       })
       (lib.mkIf (system == "x86_64-linux") {
