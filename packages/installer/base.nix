@@ -1,4 +1,8 @@
-{modulesPath, ...}: {
+{
+  modulesPath,
+  lib,
+  ...
+}: {
   _file = ./base.nix;
 
   imports = [
@@ -9,4 +13,8 @@
     edition = "nobbz";
     squashfsCompression = "zstd -Xcompression-level 10";
   };
+
+  # VMware guest tools are enabled by default in the installer and caused issues
+  # on my Tuxedo laptop.
+  virtualisation.vmware.guest.enable = lib.mkForce false;
 }
