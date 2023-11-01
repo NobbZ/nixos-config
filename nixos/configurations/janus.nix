@@ -1,13 +1,15 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-_:
-{ config, lib, pkgs, ... }:
-
-{
-  imports =
-    [ # Include the results of the hardware scan.
-    ];
+_: {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -19,12 +21,12 @@ _:
     dmeventd.enable = true;
   };
 
-  nix.allowedUnfree = ["zerotierone"];
+  nix.allowedUnfree = ["zerotierone" "steam" "steam-original" "steam-runtime" "steam-run"];
 
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
   networking.hostName = "janus";
 
   boot.kernelPackages = pkgs.linuxPackages;
@@ -69,7 +71,8 @@ _:
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nmelzer = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
+    shell = pkgs.zsh;
   };
 
   # List packages installed in system profile. To search, run:
@@ -86,6 +89,10 @@ _:
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+
+  programs.steam.enable = true;
+  programs.zsh.enable = true;
+  programs.zsh.enableCompletion = true;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
@@ -108,6 +115,4 @@ _:
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }
-
