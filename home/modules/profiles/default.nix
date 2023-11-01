@@ -10,7 +10,10 @@ _: {
 in {
   _file = ./default.nix;
 
-  options.activeProfiles = lib.mkOption {type = lib.types.listOf lib.types.str;};
+  options.activeProfiles = lib.mkOption {
+    type = lib.types.listOf lib.types.str;
+    default = [];
+  };
 
   config.profiles = profileEnabler;
 }
