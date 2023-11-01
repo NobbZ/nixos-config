@@ -31,6 +31,7 @@ in {
   };
 
   xsession.windowManager.awesome.enable = lib.mkForce false;
+  xsession.enable = lib.mkForce false;
 
   services.playerctld.enable = true;
 }
