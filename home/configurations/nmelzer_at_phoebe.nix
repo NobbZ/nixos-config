@@ -5,7 +5,7 @@ in {
 
   nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "obsidian" "slack"];
 
-  activeProfiles = ["browsing" "development"];
+  activeProfiles = ["development"];
 
   sops.age.sshKeyPaths = ["${sshConfigPath}/id_ed25519"];
   sops.defaultSopsFile = "${self}/secrets/phoebe/nmelzer/default.yaml";
