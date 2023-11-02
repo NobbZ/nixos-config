@@ -1,4 +1,9 @@
-{self, ...}: {config, pkgs, lib, ...}: let
+{self, ...}: {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   sshConfigPath = "${config.home.homeDirectory}/.ssh";
 in {
   _file = ./nmelzer_at_phoebe.nix;
@@ -21,6 +26,13 @@ in {
     path = "${sshConfigPath}/gitlab";
     mode = "0400";
     sopsFile = "${self}/secrets/users/nmelzer/gitlab";
+    format = "binary";
+  };
+
+  sops.secrets."nobbz_dev" = {
+    path = "${sshConfigPath}/nobbz_dev";
+    mode = "0400";
+    sopsFile = "${self}/secrets/users/nmelzer/nobbz_dev";
     format = "binary";
   };
 
