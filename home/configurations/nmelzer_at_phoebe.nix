@@ -5,6 +5,7 @@
   ...
 }: let
   sshConfigPath = "${config.home.homeDirectory}/.ssh";
+  inherit (lib.hm) dag;
 in {
   _file = ./nmelzer_at_phoebe.nix;
 
@@ -46,4 +47,13 @@ in {
   xsession.enable = lib.mkForce false;
 
   services.playerctld.enable = true;
+
+  programs.ssh.matchBlocks = {
+    # TODO: properly use seperate key
+    "gitlab.com-bravo" = dag.entryAfter ["gitlab.com"] {
+      hostname = "gitlab.com";
+      addressFamily = "inet";
+      identityFile = "~/.ssh/id_ed25519";
+    };
+  };
 }
