@@ -170,6 +170,12 @@ in {
             user.email = "norbert.melzer@cloudseeds.de";
           };
         }
+        {
+          condition = "gitdir:~/Projects/BravoBike/**";
+          contents = {
+            user.email = "norbert.melzer@bravobike.de";
+          };
+        }
       ];
     };
 
