@@ -1,4 +1,8 @@
-{self, ...}: {config, pkgs, ...}: let
+{self, ...}: {
+  config,
+  pkgs,
+  ...
+}: let
   sshConfigPath = "${config.home.homeDirectory}/.ssh";
 in {
   _file = ./nmelzer_at_mimas.nix;
