@@ -55,5 +55,11 @@ in {
       addressFamily = "inet";
       identityFile = "~/.ssh/id_ed25519";
     };
+
+    # TODO: Make the actual hosts identity file configurable by other means. Actually moving all the logic over to `home/modules/profiles/base/default.nix`.
+    "*.internal.nobbz.dev" = lib.mkForce (dag.entryAfter ["delly-nixos.adoring_suess.zerotier" "tux-nixos.adoring_suess.zerotier" "nixos.adoring_suess.zerotier"] {
+      identityFile = "~/.ssh/id_ed25519";
+      user = "nmelzer";
+    });
   };
 }
