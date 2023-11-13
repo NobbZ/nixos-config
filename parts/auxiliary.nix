@@ -21,7 +21,7 @@
       rotate = pkgs.writeShellScript "rotate" ''
         ${pkgs.git}/bin/git switch -c rotate-$(${pkgs.coreutils}/bin/date -Idate) >/dev/null || true
 
-        ${pkgs.findutils}/bin/find secrets -a -type f -exec ${sopsrotate} '{}' \;
+        ${pkgs.findutils}/bin/find secrets -type f -exec ${sopsrotate} '{}' \;
 
         ${pkgs.git}/bin/git add secrets
         ${pkgs.git}/bin/git commit -m "chore: rotate secrets $(${pkgs.coreutils}/bin/date -Idate)"
