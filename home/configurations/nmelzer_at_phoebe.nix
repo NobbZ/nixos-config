@@ -16,6 +16,8 @@ in {
   sops.age.sshKeyPaths = ["${sshConfigPath}/id_ed25519"];
   sops.defaultSopsFile = "${self}/secrets/phoebe/nmelzer/default.yaml";
 
+  sops.secrets.ssh.path = "${sshConfigPath}/nightwing_config";
+
   sops.secrets."github" = {
     path = "${sshConfigPath}/github";
     mode = "0400";
@@ -47,6 +49,10 @@ in {
   xsession.enable = lib.mkForce false;
 
   services.playerctld.enable = true;
+
+  programs.ssh.includes = [
+    config.sops.secrets.ssh.path
+  ];
 
   programs.ssh.matchBlocks = {
     # TODO: properly use seperate key
