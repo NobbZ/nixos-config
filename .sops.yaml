@@ -32,6 +32,11 @@ creation_rules:
       - age:
           - *admin_nobbz
           - *user_nmelzer_janus
+  - path_regex: secrets/phoebe/nmelzer/[^/]+
+    key_groups:
+      - age:
+          - *admin_nobbz
+          - *user_nmelzer_phoebe
   - path_regex: secrets/users/nmelzer/[^/]+$
     key_groups:
       - age:
