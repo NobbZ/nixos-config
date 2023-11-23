@@ -106,6 +106,10 @@ in {
   services.printing.enable = true;
   services.printing.drivers = [pkgs.hplipWithPlugin pkgs.samsung-unified-linux-driver];
 
+  services.avahi.enable = true;
+  services.avahi.nssmdns = true;
+  services.avahi.openFirewall = true;
+
   services.ratbagd.enable = true;
 
   # services.hydra = {
