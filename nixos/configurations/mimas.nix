@@ -112,6 +112,9 @@ in {
 
   services.ratbagd.enable = true;
 
+  programs.partition-manager.enable = true;
+  # security.polkit.enable = true;
+
   # services.hydra = {
   #   enable = true;
   #   package = pkgs.hydra-unstable;
