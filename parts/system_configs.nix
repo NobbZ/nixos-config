@@ -92,6 +92,7 @@ in {
               {system.configurationRevision = self.rev or "dirty";}
               {documentation.man.enable = true;}
               {documentation.man.generateCaches = true;}
+              {nixpkgs.hostPlatform = config.system;}
               inputs.sops-nix.nixosModules.sops
             ]
             ++ config.modules
@@ -107,8 +108,6 @@ in {
           packageModule = {${config.system}.${config.packageName} = config.finalPackage;};
 
           finalSystem = config.nixpkgs.lib.nixosSystem {
-            inherit (config) system;
-
             modules = config.finalModules;
           };
         };
