@@ -8,9 +8,11 @@
 }: let
   cfg = config.nobbz.homeConfigurations;
 
-  configs = builtins.mapAttrs (_: config: config.finalHome) cfg;
+  enabledCfgs = lib.filterAttrs (_: config: config.enable) cfg;
 
-  packages = builtins.attrValues (builtins.mapAttrs (_: config: config.packageModule) cfg);
+  configs = builtins.mapAttrs (_: config: config.finalHome) enabledCfgs;
+
+  packages = builtins.attrValues (builtins.mapAttrs (_: config: config.packageModule) enabledCfgs);
 in {
   _file = ./home_configs.nix;
 
@@ -22,6 +24,8 @@ in {
         ...
       }: {
         options = {
+          enable = lib.mkEnableOption "Enable this home configuration." // {default = true;};
+
           nixpkgs = lib.mkOption {
             type = lib.types.unspecified;
             default = inputs.nixpkgs;
@@ -85,7 +89,7 @@ in {
           };
         };
 
-        config = {
+        config = lib.mkIf config.enable {
           entryPoint = import "${self}/home/configurations/${config.username}_at_${config.hostname}.nix" (inputs // {inherit self;});
           base =
             if lib.strings.hasSuffix "-darwin" config.system
