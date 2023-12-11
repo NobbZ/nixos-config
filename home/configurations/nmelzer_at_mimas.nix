@@ -33,10 +33,13 @@
         inherit (config.nixpkgs) config;
         inherit (pkgs) system;
       };
+
+      obsidian = pkgs.obsidian.override { electron = pkgs.electron_27; };
     in
       builtins.attrValues {
         inherit (pkgs) keybase-gui freerdp keepassxc nix-output-monitor discord;
-        inherit (pkgs) obsidian;
+        # inherit (pkgs) obsidian;
+        inherit obsidian;
         inherit (pkgs.gnome) gnome-tweaks;
         # https://nixpk.gs/pr-tracker.html?pr=248167
         # ^^ once in unstable, revert this commit ^^
