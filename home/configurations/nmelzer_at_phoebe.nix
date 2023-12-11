@@ -10,6 +10,7 @@ in {
   _file = ./nmelzer_at_phoebe.nix;
 
   nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "obsidian" "slack"];
+  nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0"];
 
   activeProfiles = ["development"];
 

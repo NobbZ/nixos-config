@@ -13,6 +13,7 @@
   config = {
     nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "obsidian"];
     nixpkgs.config.allowBroken = true;
+    nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0"];
 
     activeProfiles = ["browsing" "development"];
 
