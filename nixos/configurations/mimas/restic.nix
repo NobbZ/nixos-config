@@ -38,7 +38,6 @@
   lvremoves = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: _: "lvs | grep -E '${name}' && lvremove pool/${name}") snaps);
 
   rest_repo = "rest:https://restic.mimas.internal.nobbz.dev/mimas";
-  gdrv_repo = "rclone:drive-timmelzer:restic_repos/mimas";
   pass = config.sops.secrets.restic.path;
 
   preStart = ''
@@ -125,30 +124,6 @@ in {
     };
     serviceConfig = {
       Type = "oneshot";
-    };
-  };
-
-  systemd.timers.restic-system-snapshot-sync-and-prune = {
-    wantedBy = ["timers.target"];
-    timerConfig.OnCalendar = "daily";
-  };
-
-  systemd.services.restic-system-snapshot-sync-and-prune = {
-    path = [restic];
-    after = ["run-secrets.d.mount"];
-    serviceConfig.Type = "oneshot";
-    serviceConfig.LoadCredential = [
-      "pass:${pass}"
-    ];
-    script = ''
-      restic copy --from-repo ${rest_repo} --repo ${gdrv_repo}
-    '';
-    environment = {
-      RESTIC_PASSWORD_FILE = "%d/pass";
-      RESTIC_FROM_PASSWORD_FILE = "%d/pass";
-      RESTIC_COMPRESSION = "max";
-      XDG_CACHE_HOME = "%C";
-      XDG_CONFIG_HOME = "/home/nmelzer/.config";
     };
   };
 }
