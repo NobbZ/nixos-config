@@ -21,7 +21,6 @@
     sops.defaultSopsFile = "${self}/secrets/mimas/nmelzer/default.yaml";
 
     sops.secrets.rustic.path = "${config.xdg.configHome}/rustic/password";
-    sops.secrets.gh_hosts.path = "${config.xdg.configHome}/gh/hosts.yml";
 
     dconf.enable = true;
 

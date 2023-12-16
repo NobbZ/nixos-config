@@ -6,6 +6,8 @@ _: {
 }: let
   cfg = config.services.rustic;
 
+  osConfig = config;
+
   bin = lib.getExe cfg.package;
 
   globs = let lines = map (g: "${g}\n") cfg.globs; in lib.concatStrings lines;
@@ -18,6 +20,47 @@ _: {
   flags = lib.concatStringsSep " " flagList;
 
   command = "${bin} backup ${flags} %h";
+
+  profileModule = {
+    name,
+    config,
+    ...
+  }: {
+    enable = lib.mkEnableOption name // {default = true;};
+
+    repo = lib.mkOption {
+      type = lib.types.str;
+      description = "Location of the repository";
+    };
+
+    globs = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [];
+      description = "Patterns to apply to backup. Use a hardcoded prefix for the home directory";
+    };
+
+    oneFileSystem = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "If true, exclude other file systems, don't cross filesystem boundaries and subvolumes";
+    };
+
+    passwordFile = lib.mkOption {
+      type = lib.types.path;
+      default = "${config.xdg.configHome}/rustic/password";
+      description = "Location of the password file";
+    };
+
+    source = lib.mkOption {
+      type = lib.types.path;
+      description = "Location of the base directory for the backup.Of ";
+    };
+
+    settings = lib.mkOption {
+      type = lib.types.attrsOf lib.types.any;
+      description = "A nix representation of the profile settings which gets converted to a TOML file";
+    };
+  };
 in {
   _file = ./default.nix;
 
@@ -51,6 +94,11 @@ in {
       type = lib.types.path;
       default = "${config.xdg.configHome}/rustic/password";
       description = "Location of the password file";
+    };
+
+    profile = lib.mkOption {
+      type = lib.types.attrsOf profileModule;
+      description = "Specifies the backup profile to use and its settings";
     };
   };
 
