@@ -6,6 +6,7 @@
 }: {
   config,
   pkgs,
+  lib,
   ...
 }: {
   _file = ./nmelzer_at_mimas.nix;
@@ -13,7 +14,9 @@
   config = {
     nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "obsidian"];
     nixpkgs.config.allowBroken = true;
-    nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0"];
+    nixpkgs.config.permittedInsecurePackages = [
+      (lib.throwIf (pkgs.obsidian.version != "1.5.3") "Obsidian no longer requires EOL Electron" "electron-25.9.0")
+    ];
 
     activeProfiles = ["browsing" "development"];
 
