@@ -89,10 +89,10 @@ in {
               {boot.tmp.cleanOnBoot = true;}
               {networking.hostName = name;}
               {nix.flakes.enable = true;}
-              {system.configurationRevision = self.rev or "dirty";}
+              {system.configurationRevision = self.rev or "${self.dirtyRev}-dirty";}
               {documentation.man.enable = true;}
               {documentation.man.generateCaches = true;}
-              {nixpkgs.hostPlatform = config.system;}
+              {nixpkgs.hostPlatform.system = config.system;}
               inputs.sops-nix.nixosModules.sops
             ]
             ++ config.modules
