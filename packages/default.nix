@@ -45,7 +45,6 @@
       }
       (lib.mkIf pkgs.stdenv.isLinux {
         inherit (inputs'.switcher.packages) switcher;
-        gnucash-de = upkgs.callPackage ./gnucash-de {};
       })
       (lib.mkIf (system == "x86_64-linux") {
         inherit (chromePkgs) google-chrome;
