@@ -44,7 +44,6 @@
         # https://nixpk.gs/pr-tracker.html?pr=248167
         # ^^ once in unstable, revert this commit ^^
         inherit (mpkgs) vscode;
-        inherit (self.packages.x86_64-linux) gnucash-de;
       };
 
     programs.obs-studio.enable = true;
