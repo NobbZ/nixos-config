@@ -158,6 +158,7 @@ in {
 
   programs = {
     steam.enable = true;
+
     zsh.enable = true;
     zsh.enableCompletion = false;
   };
@@ -166,7 +167,7 @@ in {
   hardware.pulseaudio.support32Bit = true;
 
   hardware.opengl.enable = true;
-  hardware.opengl.extraPackages = [pkgs.vaapiIntel pkgs.beignet];
+  hardware.opengl.extraPackages = [pkgs.vaapiIntel];
 
   services.gitea = {
     enable = true;
