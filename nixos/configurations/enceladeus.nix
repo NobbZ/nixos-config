@@ -27,7 +27,7 @@ _: {
   ];
 
   services.lvm.boot.thin.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_6_6; # TODO: Figure why I have this and nothing newer?
+  boot.kernelPackages = pkgs.linuxPackages_6_6; # WiFi kernel module doesn't build on newer kernels
   services.lvm.dmeventd.enable = true;
   boot.blacklistedKernelModules = ["rtl8xxxu"];
   boot.extraModulePackages = with config.boot.kernelPackages; [
