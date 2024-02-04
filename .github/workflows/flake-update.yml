@@ -78,13 +78,13 @@ jobs:
     steps:
       # - name: Prepare store folder
       #   run: sudo mkdir -p /nix
-      # - name: Free diskspace
-      #   uses: easimon/maximize-build-space@master
-      #   with:
-      #     build-mount-path: /nix
-      #     remove-dotnet: true
-      #     remove-android: true
-      #     remove-haskell: true
+      - name: Free diskspace
+        uses: easimon/maximize-build-space@master
+        with:
+          build-mount-path: /nix
+          remove-dotnet: true
+          remove-android: true
+          remove-haskell: true
       - name: Clone repository
         uses: actions/checkout@v4
         with:
