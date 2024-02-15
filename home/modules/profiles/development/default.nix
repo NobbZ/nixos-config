@@ -125,6 +125,7 @@ in {
         graph = "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold cyan)%h%C(reset) - %C(green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all";
         pl = "pull";
         ps = "push";
+        psf = "push --force-with-lease";
         root = "rev-parse --show-toplevel";
         st = "status";
         sw = "!${gitSwitchFzf}";
@@ -137,6 +138,7 @@ in {
       extraConfig = {
         init.defaultBranch = "main";
         pull.rebase = false;
+        rerere.enabled = true;
       };
 
       ignores = [
