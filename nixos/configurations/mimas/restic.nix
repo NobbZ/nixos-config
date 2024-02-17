@@ -54,6 +54,8 @@
     ${mkdirs}
 
     ${mountCmds}
+
+    /run/wrappers/bin/sudo -u vaultwarden ${pkgs.sqlite}/bin/sqlite3 /var/lib/bitwarden_rs/db.sqlite3 .dump > /var/lib/bitwarden_rs/dump.sql
   '';
 
   script = ''
@@ -61,6 +63,7 @@
 
     # TODO: Make the latter from snapshots as well!
     proot ${lib.escapeShellArgs mounts} \
+      -b /var/lib/bitwarden_rs:/var/lib/bitwarden_rs \
       -b /nix:/nix \
       -b ''${CREDENTIALS_DIRECTORY}:''${CREDENTIALS_DIRECTORY} \
       -b /etc:/etc \
