@@ -83,6 +83,7 @@ jobs:
         with:
           build-mount-path: /nix
           temp-reserve-mb: 100240
+          root-reserve-mb: 5120
           remove-dotnet: true
           remove-android: true
           remove-haskell: true
