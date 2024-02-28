@@ -89,7 +89,7 @@ in {
               {boot.tmp.cleanOnBoot = true;}
               {networking.hostName = name;}
               {nix.flakes.enable = true;}
-              {system.configurationRevision = self.rev or "${self.dirtyRev}-dirty";}
+              {system.configurationRevision = self.rev or "${self.dirtyRev or "unknown"}-dirty";}
               {documentation.man.enable = true;}
               {documentation.man.generateCaches = true;}
               {nixpkgs.hostPlatform.system = config.system;}
