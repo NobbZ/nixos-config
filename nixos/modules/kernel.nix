@@ -4,7 +4,11 @@ _: {
   config,
   ...
 }: let
-  zfsUsed = lib.lists.elem "zfs" (config.boot.supportedFilesystems ++ config.boot.initrd.supportedFilesystems);
+  supportedFilesystems =
+    if builtins.isList config.boot.supportedFilesystems
+    then config.boot.supportedFilesystems ++ config.boot.initrd.supportedFilesystems
+    else builtins.attrNames (lib.filterAttrs (_name: value: value) (config.boot.supportedFilesystems // config.boot.initrd.supportedFilesystems));
+  zfsUsed = lib.lists.elem "zfs" supportedFilesystems;
 in {
   _file = ./kernel.nix;
 
