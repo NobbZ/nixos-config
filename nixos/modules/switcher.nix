@@ -14,6 +14,7 @@
     nixEnvCmd = "${commandPrefix}/bin/nix-env";
     systemdPath = "${commandPrefix}/bin/systemd-run";
     systemdRunCmd = "${systemdPath} -E LOCALE_ARCHIVE -E NIXOS_INSTALL_BOOTLOADER --collect --no-ask-password --pty --quiet --same-dir --service-type=exec --unit=nixos-rebuild-switch-to-configuration";
+    systemdRunEqCmd = "${systemdPath} -E LOCALE_ARCHIVE -E NIXOS_INSTALL_BOOTLOADER= --collect --no-ask-password --pty --quiet --same-dir --service-type=exec --unit=nixos-rebuild-switch-to-configuration";
     options = ["NOPASSWD"];
     mkRule = command: {
       commands = [{inherit command options;}];
@@ -22,6 +23,6 @@
   in [
     (mkRule "${nixEnvCmd} -p /nix/var/nix/profiles/system --set ${storePrefix}-${systemName}")
     (mkRule "${systemdRunCmd} --wait true")
-    (mkRule "${systemdRunCmd} --wait ${storePrefix}-${systemName}/bin/switch-to-configuration switch")
+    (mkRule "${systemdRunEqCmd} --wait ${storePrefix}-${systemName}/bin/switch-to-configuration switch")
   ];
 }
