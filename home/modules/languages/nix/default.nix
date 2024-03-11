@@ -7,12 +7,12 @@ _: {
   cfg = config.languages.nix;
 
   # rnixLsp = rnix-lsp.defaultPackage.x86_64-linux;
-  rnixLsp = pkgs.rnix-lsp;
+  inherit (pkgs) nil;
 in {
   _file = ./default.nix;
 
   options.languages.nix = {
-    enable = lib.mkEnableOption "Enable support for the nix language";
+    enable = lib.mkEnableOption "nix language for emacs";
   };
 
   config = lib.mkIf cfg.enable {
@@ -24,7 +24,7 @@ in {
       ;; make lsp-mode aware of nix
       (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
       (lsp-register-client
-       (make-lsp-client :new-connection (lsp-stdio-connection '("${rnixLsp}/bin/rnix-lsp"))
+       (make-lsp-client :new-connection (lsp-stdio-connection '("${nil}/bin/nil"))
                         :major-modes '(nix-mode)
                         :server-id 'nix))
 
