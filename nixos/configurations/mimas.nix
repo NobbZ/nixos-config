@@ -107,7 +107,7 @@ in {
   services.printing.drivers = [pkgs.hplipWithPlugin pkgs.samsung-unified-linux-driver];
 
   services.avahi.enable = true;
-  services.avahi.nssmdns = true;
+  services.avahi.nssmdns4 = true;
   services.avahi.openFirewall = true;
 
   services.ratbagd.enable = true;
@@ -136,7 +136,7 @@ in {
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.layout = "de";
+  services.xserver.xkb.layout = "de";
   # services.xserver.xkbOptions = "eurosign:e";
 
   # Enable touchpad support.
