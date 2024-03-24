@@ -98,6 +98,7 @@ in {
       htop.enable = true;
       jq.enable = true;
       p10k.enable = true;
+      zoxide.enable = true;
 
       ssh = {
         enable = true;
