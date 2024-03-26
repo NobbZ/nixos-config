@@ -2,30 +2,26 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  self,
-  unstable,
-  nixpkgs-2211,
-  ...
-} @ inputs: {
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }: let
-  upkgs = unstable.legacyPackages.x86_64-linux;
+  upkgs = inputs.unstable.legacyPackages.x86_64-linux;
   steamPackages = ["steam" "steam-run" "steam-original" "steam-runtime"];
   printerPackages = ["hplip" "samsung-UnifiedLinuxDriver"];
 in {
   _file = ./mimas.nix;
 
   imports = [
-    (import ./mimas/restic.nix inputs)
-    (import ./mimas/paperless.nix inputs)
-    (import ./mimas/vaultwarden.nix inputs)
+    ./mimas/restic.nix
+    ./mimas/paperless.nix
+    ./mimas/vaultwarden.nix
   ];
 
   sops.age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
-  sops.defaultSopsFile = "${self}/secrets/mimas/default.yaml";
+  sops.defaultSopsFile = "${inputs.self}/secrets/mimas/default.yaml";
 
   sops.secrets.restic = {};
   sops.secrets.traefik = {};

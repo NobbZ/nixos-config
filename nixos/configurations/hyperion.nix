@@ -1,4 +1,4 @@
-_: {pkgs, ...}: {
+{pkgs, ...}: {
   _file = ./hyperion.nix;
 
   nix.allowedUnfree = ["zerotierone"];

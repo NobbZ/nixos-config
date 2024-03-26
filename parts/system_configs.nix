@@ -80,7 +80,7 @@ in {
 
         config = {
           configFolder = "${self}/nixos/configurations";
-          entryPoint = import "${config.configFolder}/${name}.nix" (inputs // {inherit self;});
+          entryPoint = "${config.configFolder}/${name}.nix";
           bootloader = "${config.configFolder}/bootloader/${name}.nix";
           hardware = "${config.configFolder}/hardware/${name}.nix";
 
@@ -109,6 +109,7 @@ in {
 
           finalSystem = config.nixpkgs.lib.nixosSystem {
             modules = config.finalModules;
+            specialArgs = {inherit inputs;};
           };
         };
       }));
