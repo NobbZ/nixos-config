@@ -90,7 +90,7 @@ in {
         };
 
         config = lib.mkIf config.enable {
-          entryPoint = import "${self}/home/configurations/${config.username}_at_${config.hostname}.nix" (inputs // {inherit self;});
+          entryPoint = "${self}/home/configurations/${config.username}_at_${config.hostname}.nix";
           base =
             if lib.strings.hasSuffix "-darwin" config.system
             then "Users"
@@ -116,7 +116,7 @@ in {
 
           finalHome = inputs.home-manager.lib.homeManagerConfiguration {
             pkgs = config.nixpkgs.legacyPackages.${config.system};
-            extraSpecialArgs.npins = npins;
+            extraSpecialArgs = {inherit inputs npins;};
             modules = config.finalModules;
           };
         };

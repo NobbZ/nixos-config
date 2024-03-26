@@ -1,12 +1,8 @@
 {
-  master,
-  unstable,
-  self,
-  ...
-}: {
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   _file = ./nmelzer_at_mimas.nix;
@@ -17,7 +13,7 @@
     activeProfiles = ["browsing" "development"];
 
     sops.age.sshKeyPaths = ["${config.home.homeDirectory}/.ssh/id_ed25519"];
-    sops.defaultSopsFile = "${self}/secrets/mimas/nmelzer/default.yaml";
+    sops.defaultSopsFile = "${inputs.self}/secrets/mimas/nmelzer/default.yaml";
 
     sops.secrets.rustic.path = "${config.xdg.configHome}/rustic/password";
 
@@ -28,7 +24,7 @@
     programs.emacs.splashScreen = false;
 
     home.packages = let
-      mpkgs = import master {
+      mpkgs = import inputs.master {
         inherit (config.nixpkgs) config;
         inherit (pkgs) system;
       };

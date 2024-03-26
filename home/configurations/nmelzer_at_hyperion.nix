@@ -1,8 +1,4 @@
 {
-  unstable,
-  self,
-  ...
-}: {
   config,
   pkgs,
   lib,
