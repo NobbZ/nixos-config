@@ -16,7 +16,10 @@ in {
   nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "obsidian" "slack"];
   nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0"];
 
+  nix.checkConfig = false;
+  nix.settings.extra-experimental-features = ["flakes" "nix-command"];
   nix.settings.reject-flake-config = true;
+  nix.extraOptions = "include ${config.home.homeDirectory}/.config/nix/nix-phoebe.conf";
   nix.package = nix.packages.${pkgs.system}.nix.overrideAttrs (oa: {
     patches =
       (oa.patches or [])
@@ -60,6 +63,7 @@ in {
 
   home.packages = builtins.attrValues {
     inherit (pkgs) keepassxc nix-output-monitor discord obsidian vscode slack;
+    inherit (config.nix) package;
   };
 
   xsession.windowManager.awesome.enable = lib.mkForce false;
