@@ -1,4 +1,8 @@
-{self, ...}: {
+{
+  self,
+  nix,
+  ...
+}: {
   config,
   pkgs,
   lib,
@@ -11,6 +15,21 @@ in {
 
   nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "obsidian" "slack"];
   nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0"];
+
+  nix.checkConfig = false;
+  nix.settings.extra-experimental-features = ["flakes" "nix-command"];
+  nix.settings.reject-flake-config = true;
+  nix.extraOptions = "include ${config.home.homeDirectory}/.config/nix/nix-phoebe.conf";
+  nix.package = nix.packages.${pkgs.system}.nix.overrideAttrs (oa: {
+    patches =
+      (oa.patches or [])
+      ++ [
+        (pkgs.fetchpatch {
+          url = "https://github.com/eclairevoyant/nix-fork/commit/b6ae3be9c6ec4e9de55479188e76fc330b2304dd.patch";
+          hash = "sha256-VyIywGo1ie059wXmGWx+bNeHz9lNk6nlkJ/Qgd1kmzw=";
+        })
+      ];
+  });
 
   activeProfiles = ["development"];
 
@@ -44,6 +63,7 @@ in {
 
   home.packages = builtins.attrValues {
     inherit (pkgs) keepassxc nix-output-monitor discord obsidian vscode slack;
+    inherit (config.nix) package;
   };
 
   xsession.windowManager.awesome.enable = lib.mkForce false;
