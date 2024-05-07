@@ -16,6 +16,7 @@ in {
   nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "obsidian" "slack"];
   nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0"];
 
+  nix.settings.reject-flake-config = true;
   nix.package = nix.packages.${pkgs.system}.nix.overrideAttrs (oa: {
     patches =
       (oa.patches or [])

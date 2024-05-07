@@ -34,6 +34,7 @@ in {
       });
 
       settings.experimental-features = ["nix-command" "flakes"];
+      settings.reject-flake-config = true;
 
       registry.nixpkgs.flake = unstable;
       registry.nixpkgs2211.flake = nixpkgs-2211;
