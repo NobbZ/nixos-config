@@ -1,4 +1,8 @@
-{self, ...}: {
+{
+  self,
+  nix,
+  ...
+}: {
   config,
   pkgs,
   lib,
@@ -11,6 +15,17 @@ in {
 
   nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "obsidian" "slack"];
   nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0"];
+
+  nix.package = nix.packages.${pkgs.system}.nix.overrideAttrs (oa: {
+    patches =
+      (oa.patches or [])
+      ++ [
+        (pkgs.fetchpatch {
+          url = "https://github.com/eclairevoyant/nix-fork/commit/b6ae3be9c6ec4e9de55479188e76fc330b2304dd.patch";
+          hash = "sha256-VyIywGo1ie059wXmGWx+bNeHz9lNk6nlkJ/Qgd1kmzw=";
+        })
+      ];
+  });
 
   activeProfiles = ["development"];
 
