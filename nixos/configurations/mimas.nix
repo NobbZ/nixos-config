@@ -107,7 +107,7 @@ in {
   services.printing.drivers = [pkgs.hplipWithPlugin pkgs.samsung-unified-linux-driver];
 
   services.avahi.enable = true;
-  services.avahi.nssmdns = true;
+  services.avahi.nssmdns4 = true;
   services.avahi.openFirewall = true;
 
   services.ratbagd.enable = true;
@@ -136,14 +136,13 @@ in {
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.layout = "de";
-  # services.xserver.xkbOptions = "eurosign:e";
+  services.xserver.xkb.layout = "de";
 
   # Enable touchpad support.
   # services.xserver.libinput.enable = true;
 
   # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.windowManager.awesome.enable = true;
 
