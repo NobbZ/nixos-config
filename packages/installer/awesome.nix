@@ -1,7 +1,7 @@
 {
   lib,
   pkgs,
-  npins,
+  self',
   ...
 }: let
   rc_lua = pkgs.runCommandNoCC "awesomerc.lua" {} ''
@@ -21,23 +21,12 @@
       { "Power Off",    "poweroff",                   "${./icons/power-off.svg}" },
     }
   '';
-
-  awesome = pkgs.awesome.overrideAttrs (oa: {
-    version = npins.awesome.revision;
-    src = npins.awesome;
-
-    patches = [];
-
-    postPatch = ''
-      patchShebangs tests/examples/_postprocess.lua
-    '';
-  });
 in {
   _file = ./awesome.nix;
 
   services.xserver.windowManager.awesome = {
     enable = true;
-    package = awesome;
+    package = self'.packages.awesome;
   };
 
   systemd.user.tmpfiles.rules = [

@@ -8,6 +8,7 @@
     pkgs,
     lib,
     inputs',
+    self',
     ...
   }: let
     upkgs = inputs'.nixpkgs.legacyPackages;
@@ -24,6 +25,8 @@
 
       patches = [];
 
+      cmakeFlags = (oa.cmakeFlags or []) ++ ["-DCMAKE_POLICY_VERSION_MINIMUM=3.5"];
+
       postPatch = ''
         patchShebangs tests/examples/_postprocess.lua
       '';
@@ -36,6 +39,7 @@
             inherit (inputs.nixpkgs.lib) nixosSystem;
             inherit npins;
             inherit (inputs) nvim;
+            inherit self';
           })
           .config
           .system

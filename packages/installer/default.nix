@@ -3,11 +3,12 @@
   system,
   npins,
   nvim,
+  self',
 }:
 nixosSystem {
   inherit system;
 
-  specialArgs = {inherit npins nvim;};
+  specialArgs = {inherit npins nvim self';};
 
   modules = [
     ./awesome.nix
