@@ -8,9 +8,9 @@
         "repo": "awesome"
       },
       "branch": "master",
-      "revision": "0e5fc4575ab0adbae75908cb49937d9cf63437ec",
-      "url": "https://github.com/awesomewm/awesome/archive/0e5fc4575ab0adbae75908cb49937d9cf63437ec.tar.gz",
-      "hash": "0zkqn5ni4iqwfxyilcnp78l0xan7ksvk1q71wqh1i2fh5hmxhn34"
+      "revision": "8b1f8958b46b3e75618bc822d512bb4d449a89aa",
+      "url": "https://github.com/awesomewm/awesome/archive/8b1f8958b46b3e75618bc822d512bb4d449a89aa.tar.gz",
+      "hash": "0a140ixasiyzyr6axd5akjcgdgx58pn2kqdgy9ag6hczhpf7jrk4"
     },
     "catppuccin-bat": {
       "type": "Git",
