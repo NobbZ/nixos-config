@@ -22,7 +22,7 @@ in {
     programs.command-not-found.dbPath = programsdb.packages.${pkgs.system}.programs-sqlite;
 
     nix = {
-      package = lib.mkDefault nix.packages.${pkgs.system}.nix.overrideAttrs (oa: {
+      package = lib.mkDefault (nix.packages.${pkgs.system}.nix.overrideAttrs (oa: {
         patches =
           (oa.patches or [])
           ++ [
@@ -31,7 +31,7 @@ in {
               hash = "sha256-VyIywGo1ie059wXmGWx+bNeHz9lNk6nlkJ/Qgd1kmzw=";
             })
           ];
-      });
+      }));
 
       settings.experimental-features = ["nix-command" "flakes"];
       settings.reject-flake-config = true;
