@@ -1,4 +1,8 @@
-{self, ...}: {
+{
+  self,
+  nix,
+  ...
+}: {
   config,
   lib,
   pkgs,
@@ -92,6 +96,7 @@ in {
       bat.enable = true;
       direnv.enable = true;
       direnv.nix-direnv.enable = true;
+      direnv.nix-direnv.package = pkgs.nix-direnv.override {nix = nix.packages.${pkgs.system}.default;};
       eza.enable = true;
       fzf.enable = true;
       home-manager.enable = true;
