@@ -1,6 +1,7 @@
 {
   self,
   nix,
+  nvim,
   ...
 }: {
   config,
@@ -42,10 +43,9 @@ in {
 
     services.vscode-server.enable = lib.mkDefault pkgs.stdenv.isLinux;
 
-    home.sessionVariables = rec {
-      EDITOR = "emacs -nw";
-      VISUAL = "emacs";
-      GIT_EDITOR = EDITOR;
+    home.sessionVariables = {
+      EDITOR = "nvim";
+      GIT_EDITOR = "emacs -nw";
     };
 
     gtk.enable = true;
@@ -76,7 +76,7 @@ in {
             "$(numfmt --to=none --format="%'f" ''${saved})"
         '';
     in
-      [optisave pkgs.hydra-check] ++ lib.optionals pkgs.stdenv.isLinux [pkgs.dconf];
+      [optisave pkgs.hydra-check nvim.packages.x86_64-linux.default] ++ lib.optionals pkgs.stdenv.isLinux [pkgs.dconf];
 
     # dconf.enable = lib.mkMerge [
     #   (lib.mkIf pkgs.stdenv.isLinux true)
