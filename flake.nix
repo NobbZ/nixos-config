@@ -1,4 +1,32 @@
 {
+  outputs = {parts, ...} @ inputs:
+    parts.lib.mkFlake {inherit inputs;} {
+      systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
+
+      _module.args.npins = import ./npins;
+
+      imports = [
+        ./parts/auxiliary.nix
+        ./parts/home_configs.nix
+        ./parts/system_configs.nix
+
+        ./nixos/configurations
+        ./home/configurations
+
+        ./packages
+      ];
+
+      flake = {
+        nixosModules = import ./nixos/modules inputs;
+
+        homeModules = import ./home/modules inputs;
+
+        mixedModules = import ./mixed inputs;
+
+        checks.x86_64-linux = import ./checks inputs;
+      };
+    };
+
   inputs = {
     nixpkgs-2211.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -37,32 +65,4 @@
 
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
   };
-
-  outputs = {parts, ...} @ inputs:
-    parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
-
-      _module.args.npins = import ./npins;
-
-      imports = [
-        ./parts/auxiliary.nix
-        ./parts/home_configs.nix
-        ./parts/system_configs.nix
-
-        ./nixos/configurations
-        ./home/configurations
-
-        ./packages
-      ];
-
-      flake = {
-        nixosModules = import ./nixos/modules inputs;
-
-        homeModules = import ./home/modules inputs;
-
-        mixedModules = import ./mixed inputs;
-
-        checks.x86_64-linux = import ./checks inputs;
-      };
-    };
 }
