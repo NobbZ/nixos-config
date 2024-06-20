@@ -639,11 +639,11 @@
         "parts": "parts"
       },
       "locked": {
-        "lastModified": 1718876134,
-        "narHash": "sha256-AN9KHyuJqZKiYvr3lYLnzNdaGNMUdm4FqIQ3xKj64Gk=",
+        "lastModified": 1718915427,
+        "narHash": "sha256-F9t3XPSV6yN7InU+JFCJ875T9vrNMTFK7oDxiCAuvJQ=",
         "owner": "nobbz",
         "repo": "nobbz-vim",
-        "rev": "a3e6c786c91eaf30de9dcd8226a056a8a7802534",
+        "rev": "2fb70f3d85784f1af4588dce2adc5f66a15d35c6",
         "type": "github"
       },
       "original": {
