@@ -29,7 +29,8 @@
 
   inputs = {
     nixpkgs-2211.url = "github:nixos/nixpkgs/nixos-22.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    # FIXME: https://github.com/NixOS/nixpkgs/issues/317018
+    nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=9ca3f649614213b2aaf5f1e16ec06952fe4c2632";
     master.url = "github:nixos/nixpkgs/master";
     nixpkgs-insync-v3.url = "github:nixos/nixpkgs?ref=32fdc268e921994e3f38088486ddfe765d11df93";
 
