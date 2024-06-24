@@ -11,7 +11,7 @@
     upkgs = inputs'.nixpkgs-unstable.legacyPackages;
 
     epkgs = upkgs.extend inputs.emacs.overlay;
-    chromePkgs = import inputs.master {
+    chromePkgs = import inputs.nixpkgs {
       inherit system;
       config.allowUnfree = true;
       config.google-chrome.enableWideVine = true;

@@ -52,7 +52,7 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": [
-          "master"
+          "nixpkgs"
         ],
         "nixpkgs-stable": "nixpkgs-stable"
       },
@@ -317,22 +317,6 @@
       "original": {
         "owner": "libgit2",
         "repo": "libgit2",
-        "type": "github"
-      }
-    },
-    "master": {
-      "locked": {
-        "lastModified": 1719261889,
-        "narHash": "sha256-9Vn7gjC7f1nxjPor1e+0/9iH4quvoJvb/qIQ27ik1NQ=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "3d15d3b837ce4b14f91ced705f4a83f50df54b3e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "master",
-        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -734,7 +718,6 @@
         "emacs": "emacs",
         "flake-utils": "flake-utils_2",
         "home-manager": "home-manager",
-        "master": "master",
         "nil": "nil",
         "nix": "nix",
         "nixos-vscode-server": "nixos-vscode-server",

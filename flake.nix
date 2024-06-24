@@ -29,7 +29,6 @@
 
   inputs = {
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    master.url = "github:nixos/nixpkgs/master";
     nixpkgs-insync-v3.url = "github:nixos/nixpkgs?ref=32fdc268e921994e3f38088486ddfe765d11df93";
 
     nvim.url = "github:nobbz/nobbz-vim";
@@ -57,7 +56,7 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     emacs.url = "github:nix-community/emacs-overlay";
-    emacs.inputs.nixpkgs.follows = "master";
+    emacs.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
 
