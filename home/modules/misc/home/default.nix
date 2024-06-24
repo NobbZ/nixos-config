@@ -1,9 +1,4 @@
-{
-  nixpkgs-2211,
-  unstable,
-  self,
-  ...
-}: {
+{self, ...}: {
   config,
   pkgs,
   lib,

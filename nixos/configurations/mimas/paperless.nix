@@ -1,4 +1,4 @@
-{nixpkgs-2211, ...}: {config, ...}: {
+_: {config, ...}: {
   _file = ./paperless.nix;
 
   services.paperless = {

@@ -1,9 +1,4 @@
-{
-  master,
-  unstable,
-  self,
-  ...
-}: {
+{self, ...}: {
   config,
   pkgs,
   lib,
@@ -27,20 +22,12 @@
 
     programs.emacs.splashScreen = false;
 
-    home.packages = let
-      mpkgs = import master {
-        inherit (config.nixpkgs) config;
-        inherit (pkgs) system;
-      };
-    in
-      builtins.attrValues {
-        inherit (pkgs) keybase-gui freerdp keepassxc nix-output-monitor discord;
-        inherit (pkgs) obsidian;
-        inherit (pkgs.gnome) gnome-tweaks;
-        # https://nixpk.gs/pr-tracker.html?pr=248167
-        # ^^ once in unstable, revert this commit ^^
-        inherit (mpkgs) vscode;
-      };
+    home.packages = builtins.attrValues {
+      inherit (pkgs) keybase-gui freerdp keepassxc nix-output-monitor discord;
+      inherit (pkgs) obsidian;
+      inherit (pkgs.gnome) gnome-tweaks;
+      inherit (pkgs) vscode;
+    };
 
     programs.obs-studio.enable = true;
     programs.htop = {

@@ -1,18 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{
-  self,
-  unstable,
-  nixpkgs-2211,
-  ...
-} @ inputs: {
+{self, ...} @ inputs: {
   config,
   pkgs,
   lib,
   ...
 }: let
-  upkgs = unstable.legacyPackages.x86_64-linux;
   steamPackages = ["steam" "steam-run" "steam-original" "steam-runtime"];
   printerPackages = ["hplip" "samsung-UnifiedLinuxDriver"];
 in {
@@ -34,6 +28,37 @@ in {
   nix.settings.experimental-features = ["ca-derivations" "impure-derivations"];
   nix.distributedBuilds = true;
   # nix.enabledMachines = ["enceladeus"];
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      thin-provisioning-tools = prev.thin-provisioning-tools.overrideAttrs (oa: {
+        # required for compatability reasons with  =< 0.9.0
+        postInstall =
+          (oa.postInstall or "")
+          + ''
+            ln -s $out/bin/pdata_tools $out/bin/cache_check
+            ln -s $out/bin/pdata_tools $out/bin/cache_dump
+            ln -s $out/bin/pdata_tools $out/bin/cache_metadata_size
+            ln -s $out/bin/pdata_tools $out/bin/cache_repair
+            ln -s $out/bin/pdata_tools $out/bin/cache_restore
+            ln -s $out/bin/pdata_tools $out/bin/cache_writeback
+            ln -s $out/bin/pdata_tools $out/bin/era_check
+            ln -s $out/bin/pdata_tools $out/bin/era_dump
+            ln -s $out/bin/pdata_tools $out/bin/era_invalidate
+            ln -s $out/bin/pdata_tools $out/bin/era_restore
+            ln -s $out/bin/pdata_tools $out/bin/thin_check
+            ln -s $out/bin/pdata_tools $out/bin/thin_delta
+            ln -s $out/bin/pdata_tools $out/bin/thin_dump
+            ln -s $out/bin/pdata_tools $out/bin/thin_ls
+            ln -s $out/bin/pdata_tools $out/bin/thin_metadata_size
+            ln -s $out/bin/pdata_tools $out/bin/thin_repair
+            ln -s $out/bin/pdata_tools $out/bin/thin_restore
+            ln -s $out/bin/pdata_tools $out/bin/thin_rmap
+            ln -s $out/bin/pdata_tools $out/bin/thin_trim
+          '';
+      });
+    })
+  ];
 
   security.chromiumSuidSandbox.enable = true;
 
@@ -187,7 +212,7 @@ in {
       enable = true;
       # storageDriver = "zfs";
       # extraOptions = "--storage-opt zfs.fsname=rpool/local/docker";
-      package = upkgs.docker;
+      package = pkgs.docker;
       extraOptions = "--dns 1.1.1.1";
     };
 

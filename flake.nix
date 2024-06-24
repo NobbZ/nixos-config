@@ -28,43 +28,36 @@
     };
 
   inputs = {
-    nixpkgs-2211.url = "github:nixos/nixpkgs/nixos-22.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    master.url = "github:nixos/nixpkgs/master";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs-insync-v3.url = "github:nixos/nixpkgs?ref=32fdc268e921994e3f38088486ddfe765d11df93";
 
     nvim.url = "github:nobbz/nobbz-vim";
+    nvim.inputs.parts.follows = "parts";
 
     switcher.url = "github:nobbz/nix-switcher?ref=main";
-    switcher.inputs.nixpkgs.follows = "unstable";
+    switcher.inputs.nixpkgs.follows = "nixpkgs";
     switcher.inputs.flake-parts.follows = "parts";
 
     parts.url = "github:hercules-ci/flake-parts";
 
     programsdb.url = "github:wamserma/flake-programs-sqlite";
-    programsdb.inputs.nixpkgs.follows = "unstable";
-
-    # The following is required to make flake-parts work.
-    nixpkgs.follows = "nixpkgs-unstable";
-    unstable.follows = "nixpkgs-unstable";
-    stable.follows = "nixpkgs-2211";
+    programsdb.inputs.nixpkgs.follows = "nixpkgs";
 
     nix.url = "github:nixos/nix";
-
-    nil.url = "github:oxalica/nil";
+    nix.inputs.flake-parts.follows = "parts";
+    nix.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "unstable";
-
-    flake-utils.url = "github:numtide/flake-utils";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     emacs.url = "github:nix-community/emacs-overlay";
-    emacs.inputs.nixpkgs.follows = "master";
+    emacs.inputs.nixpkgs.follows = "nixpkgs";
+    emacs.inputs.nixpkgs-stable.follows = "nixpkgs";
 
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
+    nixos-vscode-server.inputs.flake-utils.follows = "emacs/flake-utils";
+    nixos-vscode-server.inputs.nixpkgs.follows = "nixpkgs";
 
     sops-nix.url = "github:Mic92/sops-nix";
-
-    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
   };
 }

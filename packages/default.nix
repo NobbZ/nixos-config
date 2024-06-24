@@ -8,40 +8,22 @@
     inputs',
     ...
   }: let
-    upkgs = inputs'.nixpkgs-unstable.legacyPackages;
+    upkgs = inputs'.nixpkgs.legacyPackages;
 
     epkgs = upkgs.extend inputs.emacs.overlay;
-    chromePkgs = import inputs.master {
+    chromePkgs = import inputs.nixpkgs {
       inherit system;
       config.allowUnfree = true;
       config.google-chrome.enableWideVine = true;
     };
-
-    nilBase =
-      if upkgs.stdenv.isLinux
-      then inputs'.nil.packages.nil
-      else upkgs.nil;
-
-    rnil-lsp = upkgs.writeShellScriptBin "rnix-lsp" ''
-      exec ${nilBase}/bin/nil "$@"
-    '';
-
-    nil = upkgs.symlinkJoin {
-      name = "nil";
-      paths = [nilBase rnil-lsp];
-    };
   in {
     packages = lib.mkMerge [
       {
-        inherit nil;
-
         advcp = upkgs.callPackage ./advcp {};
         "dracula/konsole" = upkgs.callPackage ./dracula/konsole {};
         emacs = epkgs.emacs-unstable;
         "rofi/unicode" = upkgs.callPackage ./rofi-unicode {};
         "zx" = upkgs.nodePackages.zx;
-
-        alejandra = inputs'.alejandra.packages.default;
       }
       (lib.mkIf pkgs.stdenv.isLinux {
         inherit (inputs'.switcher.packages) switcher;
