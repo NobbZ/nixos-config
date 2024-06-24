@@ -16,25 +16,9 @@
       config.allowUnfree = true;
       config.google-chrome.enableWideVine = true;
     };
-
-    nilBase =
-      if upkgs.stdenv.isLinux
-      then inputs'.nil.packages.nil
-      else upkgs.nil;
-
-    rnil-lsp = upkgs.writeShellScriptBin "rnix-lsp" ''
-      exec ${nilBase}/bin/nil "$@"
-    '';
-
-    nil = upkgs.symlinkJoin {
-      name = "nil";
-      paths = [nilBase rnil-lsp];
-    };
   in {
     packages = lib.mkMerge [
       {
-        inherit nil;
-
         advcp = upkgs.callPackage ./advcp {};
         "dracula/konsole" = upkgs.callPackage ./dracula/konsole {};
         emacs = epkgs.emacs-unstable;

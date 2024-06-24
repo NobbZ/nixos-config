@@ -44,8 +44,6 @@
 
     nix.url = "github:nixos/nix";
 
-    nil.url = "github:oxalica/nil";
-
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
