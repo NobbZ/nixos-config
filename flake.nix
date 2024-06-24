@@ -32,6 +32,7 @@
     nixpkgs-insync-v3.url = "github:nixos/nixpkgs?ref=32fdc268e921994e3f38088486ddfe765d11df93";
 
     nvim.url = "github:nobbz/nobbz-vim";
+    nvim.inputs.parts.follows = "parts";
 
     switcher.url = "github:nobbz/nix-switcher?ref=main";
     switcher.inputs.nixpkgs.follows = "nixpkgs";
@@ -43,6 +44,7 @@
     programsdb.inputs.nixpkgs.follows = "nixpkgs";
 
     nix.url = "github:nixos/nix";
+    nix.inputs.flake-parts.follows = "parts";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";

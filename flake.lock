@@ -81,27 +81,6 @@
         "type": "github"
       }
     },
-    "flake-parts": {
-      "inputs": {
-        "nixpkgs-lib": [
-          "nix",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1712014858,
-        "narHash": "sha256-sB4SWl2lX95bExY2gMFG5HIzvva5AVMJd4Igm+GpZNw=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "9126214d0a59633752a136528f5f3b9aa8565b7d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -228,7 +207,9 @@
     "nix": {
       "inputs": {
         "flake-compat": "flake-compat",
-        "flake-parts": "flake-parts",
+        "flake-parts": [
+          "parts"
+        ],
         "libgit2": "libgit2",
         "nixpkgs": "nixpkgs",
         "nixpkgs-23-11": "nixpkgs-23-11",
@@ -457,7 +438,9 @@
     "nvim": {
       "inputs": {
         "nixpkgs": "nixpkgs_4",
-        "parts": "parts"
+        "parts": [
+          "parts"
+        ]
       },
       "locked": {
         "lastModified": 1719171354,
@@ -474,27 +457,6 @@
       }
     },
     "parts": {
-      "inputs": {
-        "nixpkgs-lib": [
-          "nvim",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1717285511,
-        "narHash": "sha256-iKzJcpdXih14qYVcZ9QC9XuZYnPc6T8YImb6dX166kw=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "2a55567fcf15b1b1c7ed712a2c6fadaec7412ea8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
-    "parts_2": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
       },
@@ -574,7 +536,7 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-insync-v3": "nixpkgs-insync-v3",
         "nvim": "nvim",
-        "parts": "parts_2",
+        "parts": "parts",
         "programsdb": "programsdb",
         "sops-nix": "sops-nix",
         "switcher": "switcher"
