@@ -415,22 +415,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-2211": {
-      "locked": {
-        "lastModified": 1688392541,
-        "narHash": "sha256-lHrKvEkCPTUO+7tPfjIcb7Trk6k31rz18vkyqmkeJfY=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "ea4c80b39be4c09702b0cb3b42eab59e2ba4f24b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-22.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-23-11": {
       "locked": {
         "lastModified": 1717159533,
@@ -757,16 +741,12 @@
         "nixpkgs": [
           "nixpkgs-unstable"
         ],
-        "nixpkgs-2211": "nixpkgs-2211",
         "nixpkgs-insync-v3": "nixpkgs-insync-v3",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nvim": "nvim",
         "parts": "parts_2",
         "programsdb": "programsdb",
         "sops-nix": "sops-nix",
-        "stable": [
-          "nixpkgs-2211"
-        ],
         "switcher": "switcher",
         "unstable": [
           "nixpkgs-unstable"

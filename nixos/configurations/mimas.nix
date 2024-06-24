@@ -4,7 +4,6 @@
 {
   self,
   unstable,
-  nixpkgs-2211,
   ...
 } @ inputs: {
   config,

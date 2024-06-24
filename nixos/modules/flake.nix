@@ -1,6 +1,5 @@
 {
   unstable,
-  nixpkgs-2211,
   nix,
   programsdb,
   ...
@@ -12,7 +11,6 @@
 }: let
   base = "/etc/nixpkgs/channels";
   nixpkgsPath = "${base}/nixpkgs";
-  nixpkgs2211Path = "${base}/nixpkgs2211";
 in {
   _file = ./flake.nix;
 
@@ -37,18 +35,15 @@ in {
       settings.reject-flake-config = true;
 
       registry.nixpkgs.flake = unstable;
-      registry.nixpkgs2211.flake = nixpkgs-2211;
 
       nixPath = [
         "nixpkgs=${nixpkgsPath}"
-        "nixpkgs2211=${nixpkgs2211Path}"
         "/nix/var/nix/profiles/per-user/root/channels"
       ];
     };
 
     systemd.tmpfiles.rules = [
       "L+ ${nixpkgsPath}     - - - - ${unstable}"
-      "L+ ${nixpkgs2211Path} - - - - ${nixpkgs-2211}"
     ];
   };
 }

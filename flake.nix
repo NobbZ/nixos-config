@@ -28,7 +28,6 @@
     };
 
   inputs = {
-    nixpkgs-2211.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     master.url = "github:nixos/nixpkgs/master";
     nixpkgs-insync-v3.url = "github:nixos/nixpkgs?ref=32fdc268e921994e3f38088486ddfe765d11df93";
@@ -47,7 +46,6 @@
     # The following is required to make flake-parts work.
     nixpkgs.follows = "nixpkgs-unstable";
     unstable.follows = "nixpkgs-unstable";
-    stable.follows = "nixpkgs-2211";
 
     nix.url = "github:nixos/nix";
 
