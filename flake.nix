@@ -45,14 +45,18 @@
 
     nix.url = "github:nixos/nix";
     nix.inputs.flake-parts.follows = "parts";
+    nix.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     emacs.url = "github:nix-community/emacs-overlay";
     emacs.inputs.nixpkgs.follows = "nixpkgs";
+    emacs.inputs.nixpkgs-stable.follows = "nixpkgs";
 
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
+    nixos-vscode-server.inputs.flake-utils.follows = "emacs/flake-utils";
+    nixos-vscode-server.inputs.nixpkgs.follows = "nixpkgs";
 
     sops-nix.url = "github:Mic92/sops-nix";
   };
