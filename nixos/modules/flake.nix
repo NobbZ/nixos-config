@@ -1,6 +1,6 @@
 {
-  unstable,
   nix,
+  nixpkgs,
   programsdb,
   ...
 }: {
@@ -34,7 +34,7 @@ in {
       settings.experimental-features = ["nix-command" "flakes"];
       settings.reject-flake-config = true;
 
-      registry.nixpkgs.flake = unstable;
+      registry.nixpkgs.flake = nixpkgs;
 
       nixPath = [
         "nixpkgs=${nixpkgsPath}"
@@ -43,7 +43,7 @@ in {
     };
 
     systemd.tmpfiles.rules = [
-      "L+ ${nixpkgsPath}     - - - - ${unstable}"
+      "L+ ${nixpkgsPath}     - - - - ${nixpkgs}"
     ];
   };
 }

@@ -8,7 +8,7 @@
     inputs',
     ...
   }: let
-    upkgs = inputs'.nixpkgs-unstable.legacyPackages;
+    upkgs = inputs'.nixpkgs.legacyPackages;
 
     epkgs = upkgs.extend inputs.emacs.overlay;
     chromePkgs = import inputs.nixpkgs {

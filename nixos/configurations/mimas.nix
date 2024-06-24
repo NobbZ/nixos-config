@@ -1,17 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{
-  self,
-  unstable,
-  ...
-} @ inputs: {
+{self, ...} @ inputs: {
   config,
   pkgs,
   lib,
   ...
 }: let
-  upkgs = unstable.legacyPackages.x86_64-linux;
   steamPackages = ["steam" "steam-run" "steam-original" "steam-runtime"];
   printerPackages = ["hplip" "samsung-UnifiedLinuxDriver"];
 in {
@@ -217,7 +212,7 @@ in {
       enable = true;
       # storageDriver = "zfs";
       # extraOptions = "--storage-opt zfs.fsname=rpool/local/docker";
-      package = upkgs.docker;
+      package = pkgs.docker;
       extraOptions = "--dns 1.1.1.1";
     };
 
