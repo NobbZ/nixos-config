@@ -9,7 +9,7 @@
     system,
     ...
   }: {
-    formatter = self.packages.${system}.alejandra;
+    formatter = pkgs.alejandra;
 
     apps.rotate.program = let
       sopsrotate = pkgs.writeShellScript "sops-rotate" ''
@@ -30,8 +30,7 @@
 
     devShells.default = pkgs.mkShell {
       packages = builtins.attrValues {
-        inherit (self'.packages) alejandra;
-        inherit (inputs'.nixpkgs.legacyPackages) npins sops age ssh-to-age nil;
+        inherit (pkgs) npins sops age ssh-to-age nil alejandra;
       };
     };
   };

@@ -24,8 +24,6 @@
         emacs = epkgs.emacs-unstable;
         "rofi/unicode" = upkgs.callPackage ./rofi-unicode {};
         "zx" = upkgs.nodePackages.zx;
-
-        alejandra = inputs'.alejandra.packages.default;
       }
       (lib.mkIf pkgs.stdenv.isLinux {
         inherit (inputs'.switcher.packages) switcher;

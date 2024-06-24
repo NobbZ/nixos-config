@@ -53,7 +53,5 @@
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
 
     sops-nix.url = "github:Mic92/sops-nix";
-
-    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
   };
 }
