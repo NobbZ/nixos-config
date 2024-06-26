@@ -388,11 +388,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1719384337,
-        "narHash": "sha256-EwBORCu7zhObOl3a3FnUVvBsQjvz8uk7bb9nGgdkGAU=",
+        "lastModified": 1719394469,
+        "narHash": "sha256-w5jVEon9ZT0o87EePERZHBVDw18cO7XaM59lOsfy2qk=",
         "owner": "nobbz",
         "repo": "nobbz-vim",
-        "rev": "85c21f819415d233dd9165470d02fbf3619a5574",
+        "rev": "0ee6a24da0e8607bf40c6724e042435b8c5fccda",
         "type": "github"
       },
       "original": {
