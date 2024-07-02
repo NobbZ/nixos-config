@@ -1,5 +1,17 @@
 {
   "pins": {
+    "awesome": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "awesomewm",
+        "repo": "awesome"
+      },
+      "branch": "master",
+      "revision": "8b1f8958b46b3e75618bc822d512bb4d449a89aa",
+      "url": "https://github.com/awesomewm/awesome/archive/8b1f8958b46b3e75618bc822d512bb4d449a89aa.tar.gz",
+      "hash": "0a140ixasiyzyr6axd5akjcgdgx58pn2kqdgy9ag6hczhpf7jrk4"
+    },
     "fzf-tab": {
       "type": "Git",
       "repository": {

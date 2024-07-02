@@ -30,7 +30,7 @@
 
     devShells.default = pkgs.mkShell {
       packages = builtins.attrValues {
-        inherit (pkgs) npins sops age ssh-to-age nil alejandra;
+        inherit (pkgs) npins sops age ssh-to-age nil alejandra lua-language-server;
       };
     };
   };
