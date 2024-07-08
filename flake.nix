@@ -39,6 +39,7 @@
     switcher.inputs.flake-parts.follows = "parts";
 
     parts.url = "github:hercules-ci/flake-parts";
+    parts.inputs.nixpkgs-lib.follows = "nixpkgs";
 
     programsdb.url = "github:wamserma/flake-programs-sqlite";
     programsdb.inputs.nixpkgs.follows = "nixpkgs";
