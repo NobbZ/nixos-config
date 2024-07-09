@@ -8,7 +8,6 @@
   ...
 }: let
   steamPackages = ["steam" "steam-run" "steam-original" "steam-runtime"];
-  printerPackages = ["hplip" "samsung-UnifiedLinuxDriver"];
 in {
   _file = ./mimas.nix;
 
@@ -24,41 +23,10 @@ in {
   sops.secrets.restic = {};
   sops.secrets.traefik = {};
 
-  nix.allowedUnfree = ["zerotierone"] ++ printerPackages ++ steamPackages;
+  nix.allowedUnfree = ["zerotierone"] ++ steamPackages;
   nix.settings.experimental-features = ["ca-derivations" "impure-derivations"];
   nix.distributedBuilds = true;
   # nix.enabledMachines = ["enceladeus"];
-
-  nixpkgs.overlays = [
-    (final: prev: {
-      thin-provisioning-tools = prev.thin-provisioning-tools.overrideAttrs (oa: {
-        # required for compatability reasons with  =< 0.9.0
-        postInstall =
-          (oa.postInstall or "")
-          + ''
-            ln -s $out/bin/pdata_tools $out/bin/cache_check
-            ln -s $out/bin/pdata_tools $out/bin/cache_dump
-            ln -s $out/bin/pdata_tools $out/bin/cache_metadata_size
-            ln -s $out/bin/pdata_tools $out/bin/cache_repair
-            ln -s $out/bin/pdata_tools $out/bin/cache_restore
-            ln -s $out/bin/pdata_tools $out/bin/cache_writeback
-            ln -s $out/bin/pdata_tools $out/bin/era_check
-            ln -s $out/bin/pdata_tools $out/bin/era_dump
-            ln -s $out/bin/pdata_tools $out/bin/era_invalidate
-            ln -s $out/bin/pdata_tools $out/bin/era_restore
-            ln -s $out/bin/pdata_tools $out/bin/thin_check
-            ln -s $out/bin/pdata_tools $out/bin/thin_delta
-            ln -s $out/bin/pdata_tools $out/bin/thin_dump
-            ln -s $out/bin/pdata_tools $out/bin/thin_ls
-            ln -s $out/bin/pdata_tools $out/bin/thin_metadata_size
-            ln -s $out/bin/pdata_tools $out/bin/thin_repair
-            ln -s $out/bin/pdata_tools $out/bin/thin_restore
-            ln -s $out/bin/pdata_tools $out/bin/thin_rmap
-            ln -s $out/bin/pdata_tools $out/bin/thin_trim
-          '';
-      });
-    })
-  ];
 
   security.chromiumSuidSandbox.enable = true;
 
@@ -129,7 +97,6 @@ in {
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = [pkgs.hplipWithPlugin pkgs.samsung-unified-linux-driver];
 
   services.avahi.enable = true;
   services.avahi.nssmdns4 = true;
@@ -286,7 +253,6 @@ in {
 
   hardware.keyboard.zsa.enable = true;
   hardware.sane.enable = true;
-  hardware.sane.extraBackends = [pkgs.hplipWithPlugin];
 
   services.traefik.enable = true;
   systemd.services.traefik.serviceConfig.EnvironmentFile = [config.sops.secrets.traefik.path];
