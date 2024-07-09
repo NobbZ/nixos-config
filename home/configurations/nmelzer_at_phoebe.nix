@@ -18,18 +18,8 @@ in {
 
   nix.checkConfig = false;
   nix.settings.extra-experimental-features = ["flakes" "nix-command"];
-  nix.settings.reject-flake-config = true;
   nix.extraOptions = "include ${config.home.homeDirectory}/.config/nix/nix-phoebe.conf";
-  nix.package = nix.packages.${pkgs.system}.nix.overrideAttrs (oa: {
-    patches =
-      (oa.patches or [])
-      ++ [
-        (pkgs.fetchpatch {
-          url = "https://github.com/eclairevoyant/nix-fork/commit/b6ae3be9c6ec4e9de55479188e76fc330b2304dd.patch";
-          hash = "sha256-VyIywGo1ie059wXmGWx+bNeHz9lNk6nlkJ/Qgd1kmzw=";
-        })
-      ];
-  });
+  nix.package = nix.packages.${pkgs.system}.nix;
 
   activeProfiles = ["development"];
 

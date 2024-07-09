@@ -20,19 +20,9 @@ in {
     programs.command-not-found.dbPath = programsdb.packages.${pkgs.system}.programs-sqlite;
 
     nix = {
-      package = lib.mkDefault (nix.packages.${pkgs.system}.nix.overrideAttrs (oa: {
-        patches =
-          (oa.patches or [])
-          ++ [
-            (pkgs.fetchpatch {
-              url = "https://github.com/eclairevoyant/nix-fork/commit/b6ae3be9c6ec4e9de55479188e76fc330b2304dd.patch";
-              hash = "sha256-VyIywGo1ie059wXmGWx+bNeHz9lNk6nlkJ/Qgd1kmzw=";
-            })
-          ];
-      }));
+      package = lib.mkDefault nix.packages.${pkgs.system}.nix;
 
       settings.experimental-features = ["nix-command" "flakes"];
-      settings.reject-flake-config = true;
 
       registry.nixpkgs.flake = nixpkgs;
 
