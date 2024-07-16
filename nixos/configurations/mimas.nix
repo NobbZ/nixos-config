@@ -153,9 +153,6 @@ in {
     zsh.enableCompletion = false;
   };
 
-  hardware.opengl.driSupport32Bit = true;
-  hardware.pulseaudio.support32Bit = true;
-
   hardware.opengl.enable = true;
   hardware.opengl.extraPackages = [pkgs.vaapiIntel];
 
