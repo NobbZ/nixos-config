@@ -153,8 +153,8 @@ in {
     zsh.enableCompletion = false;
   };
 
-  hardware.opengl.enable = true;
-  hardware.opengl.extraPackages = [pkgs.vaapiIntel];
+  hardware.graphics.enable = true;
+  hardware.graphics.extraPackages = [pkgs.vaapiIntel];
 
   services.gitea = {
     enable = true;
