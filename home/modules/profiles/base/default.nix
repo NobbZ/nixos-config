@@ -49,7 +49,7 @@ in {
     };
 
     gtk.enable = true;
-    gtk.theme.package = pkgs.gnome.gnome-themes-extra;
+    gtk.theme.package = pkgs.gnome-themes-extra;
     gtk.theme.name = "Adwaita-dark";
 
     home.keyboard.layout = "de";
