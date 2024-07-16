@@ -119,7 +119,6 @@ in {
   # networking.firewall.allowedTCPPorts = [ 3000 ];
 
   # Enable sound.
-  sound.enable = true;
   hardware.pulseaudio = {
     enable = true;
     package = pkgs.pulseaudioFull;
@@ -154,11 +153,8 @@ in {
     zsh.enableCompletion = false;
   };
 
-  hardware.opengl.driSupport32Bit = true;
-  hardware.pulseaudio.support32Bit = true;
-
-  hardware.opengl.enable = true;
-  hardware.opengl.extraPackages = [pkgs.vaapiIntel];
+  hardware.graphics.enable = true;
+  hardware.graphics.extraPackages = [pkgs.vaapiIntel];
 
   services.gitea = {
     enable = true;

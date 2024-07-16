@@ -25,7 +25,7 @@
     home.packages = builtins.attrValues {
       inherit (pkgs) keybase-gui freerdp keepassxc nix-output-monitor discord;
       inherit (pkgs) obsidian;
-      inherit (pkgs.gnome) gnome-tweaks;
+      inherit (pkgs) gnome-tweaks;
       inherit (pkgs) vscode;
     };
 
