@@ -77,6 +77,12 @@
     options = ["nofail"];
   };
 
+  fileSystems."/var/lib/actual" = {
+    device = "/dev/pool/actual";
+    fsType = "xfs";
+    options = ["nofail"];
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/7000-3A85";
     fsType = "vfat";

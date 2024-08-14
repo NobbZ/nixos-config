@@ -12,8 +12,9 @@ in {
   _file = ./mimas.nix;
 
   imports = [
-    (import ./mimas/restic.nix inputs)
+    (import ./mimas/actual.nix inputs)
     (import ./mimas/paperless.nix inputs)
+    (import ./mimas/restic.nix inputs)
     (import ./mimas/vaultwarden.nix inputs)
   ];
 
