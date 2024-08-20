@@ -346,6 +346,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-pre-rust": {
+      "locked": {
+        "lastModified": 1723634395,
+        "narHash": "sha256-K1ohl/M/HWXqieqNtsF39FbWqtaNX/mUgulrqcOO1KU=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "57d0d4a8f3025e2b902d2b4403bcece26ad1ea74",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "57d0d4a8f302",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-regression": {
       "locked": {
         "lastModified": 1643052045,
@@ -498,6 +514,7 @@
         "nixos-vscode-server": "nixos-vscode-server",
         "nixpkgs": "nixpkgs",
         "nixpkgs-insync-v3": "nixpkgs-insync-v3",
+        "nixpkgs-pre-rust": "nixpkgs-pre-rust",
         "nvim": "nvim",
         "parts": "parts",
         "programsdb": "programsdb",
