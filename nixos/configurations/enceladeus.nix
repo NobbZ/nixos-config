@@ -98,8 +98,8 @@ _: {
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-  hardware.pulseaudio.enable = true;
+  # Enable pulse compat.
+  services.pipewire.pulse.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;

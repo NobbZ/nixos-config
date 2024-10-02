@@ -119,11 +119,9 @@ in {
   # };
   # networking.firewall.allowedTCPPorts = [ 3000 ];
 
-  # Enable sound.
-  hardware.pulseaudio = {
-    enable = true;
-    package = pkgs.pulseaudioFull;
-  };
+  # Enable pulse compat.
+  services.pipewire.pulse.enable = true;
+  
   hardware.bluetooth.enable = true;
 
   # Enable the X11 windowing system.
