@@ -121,7 +121,7 @@ in {
 
   # Enable pulse compat.
   services.pipewire.pulse.enable = true;
-  
+
   hardware.bluetooth.enable = true;
 
   # Enable the X11 windowing system.
