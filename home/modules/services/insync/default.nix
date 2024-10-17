@@ -23,7 +23,7 @@ in {
           inherit (config.nixpkgs) config;
         };
       in
-        ipkgs.insync-v3;
+        ipkgs.insync;
       description = ''
         The insync package to use.
 
