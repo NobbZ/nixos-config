@@ -7,7 +7,7 @@
   lib,
   ...
 }: let
-  steamPackages = ["steam" "steam-run" "steam-original" "steam-runtime"];
+  steamPackages = ["steam" "steam-run" "steam-original" "steam-runtime" "steam-unwrapped"];
 in {
   _file = ./mimas.nix;
 
