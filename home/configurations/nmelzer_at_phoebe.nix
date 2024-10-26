@@ -18,7 +18,7 @@ in {
 
   nix.checkConfig = false;
   nix.settings.extra-experimental-features = ["flakes" "nix-command"];
-  nix.extraOptions = "include ${config.home.homeDirectory}/.config/nix/nix-phoebe.conf";
+  nix.extraOptions = "include ${config.sops.secrets."access-tokens".path}";
   nix.package = nix.packages.${pkgs.system}.nix;
 
   activeProfiles = ["development"];
@@ -27,6 +27,12 @@ in {
   sops.defaultSopsFile = "${self}/secrets/phoebe/nmelzer/default.yaml";
 
   sops.secrets.ssh.path = "${sshConfigPath}/nightwing_config";
+
+  sops.secrets."access-tokens" = {
+    path = "${config.home.homeDirectory}/.config/nix/access-tokens.conf";
+    mode = "0400";
+    sopsFile = "${self}/secrets/users/nmelzer/default.yaml";
+  };
 
   sops.secrets."github" = {
     path = "${sshConfigPath}/github";
