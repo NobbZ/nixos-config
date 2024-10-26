@@ -47,6 +47,10 @@
       "${pkgs.networkmanagerapplet}/bin/nm-applet"
     ];
 
+    systemd.user.tmpfiles.rules = [
+      "d ${config.home.homeDirectory}/tmp 700 ${config.home.username} users 14d"
+    ];
+
     services = {
       keybase.enable = true;
       kbfs.enable = true;
