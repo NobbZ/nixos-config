@@ -18,7 +18,7 @@ in {
 
   nix.checkConfig = false;
   nix.settings.extra-experimental-features = ["flakes" "nix-command"];
-  nix.extraOptions = "include ${config.sops.secrets."access-tokens".path}";
+  nix.extraOptions = "!include ${config.sops.secrets."access-tokens".path}";
   nix.package = nix.packages.${pkgs.system}.nix-cli;
 
   activeProfiles = ["development"];
