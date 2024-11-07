@@ -9,16 +9,17 @@
         ./parts/auxiliary.nix
         ./parts/home_configs.nix
         ./parts/system_configs.nix
+        ./parts/nixos_modules.nix
 
         ./nixos/configurations
         ./home/configurations
+
+        ./nixos/modules
 
         ./packages
       ];
 
       flake = {
-        nixosModules = import ./nixos/modules inputs;
-
         homeModules = import ./home/modules inputs;
 
         mixedModules = import ./mixed inputs;
