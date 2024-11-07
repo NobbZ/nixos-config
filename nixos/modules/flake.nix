@@ -20,7 +20,7 @@ in {
     programs.command-not-found.dbPath = programsdb.packages.${pkgs.system}.programs-sqlite;
 
     nix = {
-      package = lib.mkDefault nix.packages.${pkgs.system}.nix;
+      package = lib.mkDefault nix.packages.${pkgs.system}.nix-cli;
 
       settings.experimental-features = ["nix-command" "flakes"];
 
