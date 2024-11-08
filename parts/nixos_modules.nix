@@ -9,22 +9,14 @@
 
   inherit (builtins) isString isPath;
 
-  callModule = module: args: {
-    ${
-      if builtins.any (f: f module) [isPath isString]
-      then "_file"
-      else null
-    } =
-      module;
-
-    imports = [
-      (
-        if args == null
-        then module
-        else import module args
-      )
-    ];
-  };
+  callModule = module: args: let
+    moduleToImport =
+      if args == null
+      then module
+      else import module args;
+  in
+    {imports = [moduleToImport];}
+    // lib.optionalAttrs (builtins.any (p: p module) [isPath isString]) {_file = module;};
 
   modules = builtins.mapAttrs (_: config: config.wrappedModule) cfg;
 in {
