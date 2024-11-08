@@ -1,32 +1,34 @@
-inputs: {
-  "profiles" = import ./profiles inputs;
-  "profiles/base" = import ./profiles/base inputs;
-  "profiles/browsing" = import ./profiles/browsing inputs;
-  "profiles/development" = import ./profiles/development inputs;
+{
+  nobbz.homeManagerModules = {
+    "profiles" = ./profiles;
+    "profiles/base" = ./profiles/base;
+    "profiles/browsing" = ./profiles/browsing;
+    "profiles/development" = ./profiles/development;
 
-  "languages" = import ./languages inputs;
-  "languages/nix" = import ./languages/nix inputs;
+    "languages" = ./languages;
+    "languages/nix" = ./languages/nix;
 
-  "programs/advcp" = import ./programs/advcp inputs;
-  "programs/emacs" = import ./programs/emacs inputs;
-  "programs/emacs/beacon" = import ./programs/emacs/beacon.nix inputs;
-  "programs/emacs/company" = import ./programs/emacs/company.nix inputs;
-  "programs/emacs/helm" = import ./programs/emacs/helm.nix inputs;
-  "programs/emacs/lib" = import ./programs/emacs/lib.nix inputs;
-  "programs/emacs/lsp" = import ./programs/emacs/lsp.nix inputs;
-  "programs/emacs/projectile" = import ./programs/emacs/projectile.nix inputs;
-  "programs/emacs/telephoneline" = import ./programs/emacs/telephoneline.nix inputs;
-  "programs/emacs/whichkey" = import ./programs/emacs/whichkey inputs;
-  "programs/eza" = import ./programs/eza inputs;
-  "programs/nixpkgs" = import ./programs/nixpkgs inputs;
-  "programs/openshift" = import ./programs/openshift inputs;
-  "programs/p10k" = import ./programs/p10k inputs;
+    "programs/advcp" = ./programs/advcp;
+    "programs/emacs" = ./programs/emacs;
+    "programs/emacs/beacon" = ./programs/emacs/beacon.nix;
+    "programs/emacs/company" = ./programs/emacs/company.nix;
+    "programs/emacs/helm" = ./programs/emacs/helm.nix;
+    "programs/emacs/lib" = ./programs/emacs/lib.nix;
+    "programs/emacs/lsp" = ./programs/emacs/lsp.nix;
+    "programs/emacs/projectile" = ./programs/emacs/projectile.nix;
+    "programs/emacs/telephoneline" = ./programs/emacs/telephoneline.nix;
+    "programs/emacs/whichkey" = ./programs/emacs/whichkey;
+    "programs/eza" = ./programs/eza;
+    "programs/nixpkgs" = ./programs/nixpkgs;
+    "programs/openshift" = ./programs/openshift;
+    "programs/p10k" = ./programs/p10k;
 
-  "services/insync" = import ./services/insync inputs;
-  "services/restic" = import ./services/restic inputs;
-  "services/rustic" = import ./services/rustic inputs;
+    "services/insync" = ./services/insync;
+    "services/restic" = ./services/restic;
+    "services/rustic" = ./services/rustic;
 
-  "misc/awesome" = import ./misc/awesome inputs;
-  "misc/home" = import ./misc/home inputs;
-  "misc/rofi" = import ./misc/rofi inputs;
+    "misc/awesome" = ./misc/awesome;
+    "misc/home" = ./misc/home;
+    "misc/rofi" = ./misc/rofi;
+  };
 }
