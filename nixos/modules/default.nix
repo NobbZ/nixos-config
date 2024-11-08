@@ -1,13 +1,13 @@
 {
   nobbz.nixosModules = {
-    cachix.module = ./cachix;
-    distributed.module = ./distributed.nix;
-    flake.module = ./flake.nix;
-    hostnames.module = ./hostnames.nix;
-    kernel.module = ./kernel.nix;
-    moonlander.module = ./moonlander.nix;
-    nix.module = ./nix.nix;
-    switcher.module = ./switcher.nix;
-    zerotier.module = ./zerotier.nix;
+    cachix = ./cachix;
+    distributed = ./distributed.nix;
+    flake = ./flake.nix;
+    hostnames = ./hostnames.nix;
+    kernel = ./kernel.nix;
+    moonlander = ./moonlander.nix;
+    nix = ./nix.nix;
+    switcher = ./switcher.nix;
+    zerotier = ./zerotier.nix;
   };
 }

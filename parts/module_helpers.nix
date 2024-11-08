@@ -10,7 +10,9 @@ lib: inputs: let
     {imports = [moduleToImport];}
     // lib.optionalAttrs (builtins.any (p: p module) [isPath isString]) {_file = module;};
 
-  submodule = lib.types.submodule ({
+  from = lib.types.oneOf [lib.types.str lib.types.path];
+
+  submodule = lib.types.coercedTo from (m: {module = m;}) (lib.types.submodule ({
     name,
     config,
     ...
@@ -43,7 +45,7 @@ lib: inputs: let
     config = {
       wrappedModule = callModule config.module config.extraArgs;
     };
-  });
+  }));
 in {
   inherit callModule submodule;
 }
