@@ -8,19 +8,20 @@
       imports = [
         ./parts/auxiliary.nix
         ./parts/home_configs.nix
+        ./parts/home_modules.nix
+        ./parts/nixos_modules.nix
         ./parts/system_configs.nix
 
         ./nixos/configurations
         ./home/configurations
 
+        ./home/modules
+        ./nixos/modules
+
         ./packages
       ];
 
       flake = {
-        nixosModules = import ./nixos/modules inputs;
-
-        homeModules = import ./home/modules inputs;
-
         mixedModules = import ./mixed inputs;
 
         checks.x86_64-linux = import ./checks inputs;

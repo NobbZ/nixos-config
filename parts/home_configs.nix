@@ -106,7 +106,7 @@ in {
               inputs.sops-nix.homeManagerModules.sops
             ]
             ++ config.modules
-            ++ builtins.attrValues self.homeModules
+            ++ builtins.attrValues self.homeManagerModules
             ++ builtins.attrValues self.mixedModules;
 
           packageName = "home/config/${name}";
