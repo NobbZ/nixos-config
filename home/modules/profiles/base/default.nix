@@ -194,11 +194,7 @@ in {
         '';
 
         sessionVariables = {
-          # NIX_PATH = builtins.concatStringsSep ":" [
-          #   "nixpkgs=${inputs.nixpkgs}"
-          #   "nixos-config=/etc/nixos/configuration.nix"
-          #   "/nix/var/nix/profiles/per-user/root/channels"
-          # ];
+          PROMPT_EOL_MARK = "%F{243}¶%f";
         };
 
         shellAliases.fixstore = "sudo nix-store --verify --check-contents --repair";
