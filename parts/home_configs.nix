@@ -14,8 +14,6 @@
 
   packages = builtins.attrValues (builtins.mapAttrs (_: config: config.packageModule) enabledCfgs);
 in {
-  _file = ./home_configs.nix;
-
   options = {
     nobbz.homeConfigurations = lib.mkOption {
       type = lib.types.attrsOf (lib.types.submodule ({

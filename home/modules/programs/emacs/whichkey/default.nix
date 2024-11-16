@@ -33,8 +33,6 @@ with lib; let
     }: ''"${keys}" "${replace}"'')
     cfg.replacement);
 in {
-  _file = ./default.nix;
-
   options.programs.emacs.whichkey = {
     replacement = lib.mkOption {type = keyReplacementType;};
   };

@@ -10,8 +10,6 @@ _: {
     else builtins.attrNames (lib.filterAttrs (_name: value: value) (config.boot.supportedFilesystems // config.boot.initrd.supportedFilesystems));
   zfsUsed = lib.lists.elem "zfs" supportedFilesystems;
 in {
-  _file = ./kernel.nix;
-
   boot.kernelPackages = lib.mkDefault (
     if zfsUsed
     then pkgs.zfs.latestCompatibleLinuxPackages

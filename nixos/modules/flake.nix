@@ -12,8 +12,6 @@
   base = "/etc/nixpkgs/channels";
   nixpkgsPath = "${base}/nixpkgs";
 in {
-  _file = ./flake.nix;
-
   options.nix.flakes.enable = lib.mkEnableOption "nix flakes";
 
   config = lib.mkIf config.nix.flakes.enable {

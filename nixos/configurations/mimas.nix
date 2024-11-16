@@ -9,8 +9,6 @@
 }: let
   steamPackages = ["steam" "steam-run" "steam-original" "steam-runtime" "steam-unwrapped"];
 in {
-  _file = ./mimas.nix;
-
   imports = [
     (import ./mimas/actual.nix inputs)
     (import ./mimas/paperless.nix inputs)

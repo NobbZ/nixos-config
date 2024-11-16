@@ -5,8 +5,6 @@
 }: let
   inherit (config.programs) emacs;
 in {
-  _file = ./default.nix;
-
   config = lib.mkIf emacs.enable {
     programs.emacs.extraPackages = ep: [ep.polymode];
 

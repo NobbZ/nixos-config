@@ -1,6 +1,4 @@
 _: _: {
-  _file = ./ip_addresses.nix;
-
   lib.nobbz = {
     enceladeus.v4 = "172.24.199.101";
     enceladeus.v6 = "fcc5:ee64:a023:8429:3ae6:0000:0000:0001";

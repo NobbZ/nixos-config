@@ -8,8 +8,6 @@ _: {
   mibibyte = 1024 * kibibyte;
   gibibyte = 1024 * mibibyte;
 in {
-  _file = ./nix.nix;
-
   options.nix = {
     allowedUnfree = lib.mkOption {
       type = lib.types.listOf lib.types.str;

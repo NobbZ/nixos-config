@@ -4,8 +4,6 @@
   lib,
   ...
 }: {
-  _file = ./nmelzer_at_enceladeus.nix;
-
   config = {
     nixpkgs.allowedUnfree = ["google-chrome" "vscode"];
 

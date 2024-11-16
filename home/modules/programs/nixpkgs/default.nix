@@ -5,8 +5,6 @@ _: {
 }: let
   allowed = config.nixpkgs.allowedUnfree;
 in {
-  _file = ./default.nix;
-
   options.nixpkgs.allowedUnfree = lib.mkOption {
     type = lib.types.listOf lib.types.str;
     default = [];

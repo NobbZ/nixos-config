@@ -2,8 +2,6 @@ _: {config, ...}: let
   host = "passwords.mimas.internal.nobbz.dev";
   wardenPort = 10000;
 in {
-  _file = ./vaultwarden.nix;
-
   sops.secrets.warden = {};
 
   services.vaultwarden = {

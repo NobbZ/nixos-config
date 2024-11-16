@@ -6,8 +6,6 @@ _: {
   # emacs = config.programs.emacs;
   inherit (config.programs) emacs;
 in {
-  _file = ./company.nix;
-
   config = lib.mkIf emacs.enable {
     programs.emacs.extraPackages = ep: [ep.company];
 

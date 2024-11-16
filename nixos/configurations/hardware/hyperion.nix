@@ -6,8 +6,6 @@
   modulesPath,
   ...
 }: {
-  _file = ./hyperion.nix;
-
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
   ];

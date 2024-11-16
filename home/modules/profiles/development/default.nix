@@ -6,8 +6,6 @@ _: {
 }: let
   cfg = config.profiles.development;
 in {
-  _file = ./default.nix;
-
   options.profiles.development = {
     enable =
       lib.mkEnableOption

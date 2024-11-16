@@ -36,8 +36,6 @@ _: {
 
   selfRemote = builtins.elem hostName enabledMachines;
 in {
-  _file = ./distributed.nix;
-
   options.nix = {
     enabledMachines = lib.mkOption {
       type = listOf (enum names);

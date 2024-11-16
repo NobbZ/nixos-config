@@ -53,8 +53,6 @@ _: let
   in
     builtins.concatStringsSep "\n" required;
 in {
-  _file = ./lib.nix;
-
   config.lib.emacs.generatePackage = name: tagLine: commentLines: requireList: code:
     generatePackage {
       inherit name code tagLine commentLines requireList;

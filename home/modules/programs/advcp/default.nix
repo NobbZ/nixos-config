@@ -6,8 +6,6 @@
 }: let
   cfg = config.programs.advancedCopy;
 in {
-  _file = ./default.nix;
-
   options.programs.advancedCopy = {
     enable = lib.mkEnableOption "CP and MV with a progressbar";
   };

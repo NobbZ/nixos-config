@@ -4,8 +4,6 @@
   lib,
   ...
 }: {
-  _file = ./nmelzer_at_mimas.nix;
-
   config = {
     nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "obsidian"];
 

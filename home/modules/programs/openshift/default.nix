@@ -6,8 +6,6 @@ _: {
 }: let
   cfg = config.programs.openshift;
 in {
-  _file = ./default.nix;
-
   options.programs.openshift = {
     enable = lib.mkEnableOption "Tools to manage openshift instances";
   };

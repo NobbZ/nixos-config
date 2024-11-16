@@ -3,8 +3,6 @@
   config,
   ...
 }: {
-  _file = ./switcher.nix;
-
   environment.systemPackages = [self.packages."${pkgs.system}".switcher];
 
   security.sudo.extraRules = let

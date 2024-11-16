@@ -8,8 +8,6 @@ _: {
   in
     builtins.foldl' reducer {} config.activeProfiles;
 in {
-  _file = ./default.nix;
-
   options.activeProfiles = lib.mkOption {
     type = lib.types.listOf lib.types.str;
     default = [];

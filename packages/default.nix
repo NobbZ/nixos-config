@@ -1,6 +1,4 @@
 {inputs, ...}: {
-  _file = ./default.nix;
-
   perSystem = {
     system,
     pkgs,

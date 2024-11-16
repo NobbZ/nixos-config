@@ -6,8 +6,6 @@ _: {
 }: let
   cfg = config.services.rustic;
 
-  osConfig = config;
-
   bin = lib.getExe cfg.package;
 
   globs = let lines = map (g: "${g}\n") cfg.globs; in lib.concatStrings lines;
@@ -62,8 +60,6 @@ _: {
     };
   };
 in {
-  _file = ./default.nix;
-
   options.services.rustic = {
     enable = lib.mkEnableOption "rustic";
 

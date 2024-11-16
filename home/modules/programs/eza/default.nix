@@ -6,8 +6,6 @@ _: {
 }: let
   cfg = config.programs.eza;
 in {
-  _file = ./default.nix;
-
   config = lib.mkIf cfg.enable {
     programs.eza.package = pkgs.eza;
     programs.zsh.shellAliases = {

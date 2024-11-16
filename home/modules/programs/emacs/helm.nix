@@ -5,8 +5,6 @@ _: {
 }: let
   emacsCfg = config.programs.emacs;
 in {
-  _file = ./helm.nix;
-
   config = lib.mkIf emacsCfg.enable {
     programs.emacs = {
       localPackages."init-helm" = {

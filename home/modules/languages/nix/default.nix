@@ -9,8 +9,6 @@ _: {
   # rnixLsp = rnix-lsp.defaultPackage.x86_64-linux;
   inherit (pkgs) nil;
 in {
-  _file = ./default.nix;
-
   options.languages.nix = {
     enable = lib.mkEnableOption "nix language for emacs";
   };
