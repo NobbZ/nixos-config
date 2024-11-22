@@ -88,6 +88,44 @@
       };
     };
   };
+
+  xdg.configFile = {
+    "rustic/mimas-hetzner.toml".text =
+      # toml
+      ''
+        [repository]
+        repository = "rclone:hetzner-restic:mimas"
+        password-file = "${config.sops.secrets.rustic.path}"
+      '';
+    "rustic/mimas.toml".text =
+      # toml
+      ''
+        [repository]
+        repository = "rest:https://restic.mimas.internal.nobbz.dev/mimas"
+        password-file = "${config.sops.secrets.rustic.path}"
+
+        [copy]
+        targets = ["mimas-hetzner"]
+      '';
+
+    "rustic/nobbz-hetzner.toml".text =
+      # toml
+      ''
+        [repository]
+        repository = "rclone:hetzner-restic:nobbz"
+        password-file = "${config.sops.secrets.rustic.path}"
+      '';
+    "rustic/nobbz.toml" =
+      # toml
+      ''
+        [repository]
+        repository = "rest:https://restic.mimas.internal.nobbz.dev/nobbz"
+        password-file = "${config.sops.secrets.rustic.path}"
+
+        [copy]
+        targets = ["nobbz-hetzner"]
+      '';
+  };
   # environment.pathsToLink = [ "/share/zsh" ];
 }
 # /nix/store/7skqa8vxfydq7w3cix55ffvkmjb3b5da-python-2.7.18
