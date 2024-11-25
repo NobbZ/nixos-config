@@ -19,7 +19,7 @@
     "programs/emacs/telephoneline" = ./programs/emacs/telephoneline.nix;
     "programs/emacs/whichkey" = ./programs/emacs/whichkey;
     "programs/eza" = ./programs/eza;
-    "programs/ghostty" = ./programs/ghsotty;
+    "programs/ghostty" = ./programs/ghostty;
     "programs/nixpkgs" = ./programs/nixpkgs;
     "programs/openshift" = ./programs/openshift;
     "programs/p10k" = ./programs/p10k;
