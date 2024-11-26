@@ -1,9 +1,15 @@
-_: _: {
+{ghostty, ...}: _: {
   xdg.configFile."ghostty/config".text =
-    # init
+    # toml
     ''
       font-family = "Cascadia Mono"
 
-      gtk-titlebar = true
+      ## uncomment once keybindings have been set to something I am familiar
+      ## with. The bar contains the menu, which I need for splits for now…
+      # gtk-titlebar = false
+
+      theme = "catppuccin-mocha"
     '';
+
+  home.packages = [ghostty.packages.x86_64-linux.default];
 }

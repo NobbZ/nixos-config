@@ -58,6 +58,10 @@
     emacs.inputs.nixpkgs.follows = "nixpkgs";
     emacs.inputs.nixpkgs-stable.follows = "nixpkgs";
 
+    ghostty.url = "github:ghostty-org/ghostty";
+    ghostty.inputs.nixpkgs-unstable.follows = "nixpkgs";
+    ghostty.inputs.nixpkgs-stable.follows = "nixpkgs";
+
     nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
     nixos-vscode-server.inputs.nixpkgs.follows = "nixpkgs";
 
