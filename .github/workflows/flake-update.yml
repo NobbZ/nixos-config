@@ -15,13 +15,13 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
         with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
+          token: "${{ secrets.TEST_TOKEN }}"
       - name: Install nix
         uses: cachix/install-nix-action@v30
         with:
           extra_nix_config: |
             auto-optimise-store = true
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            access-tokens = github.com=${{ secrets.TEST_TOKEN }}
             experimental-features = nix-command flakes
             substituters = https://cache.nixos.org/ https://nix-community.cachix.org
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
@@ -44,13 +44,13 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
         with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
+          token: "${{ secrets.TEST_TOKEN }}"
       - name: Install nix
         uses: cachix/install-nix-action@v30
         with:
           extra_nix_config: |
             auto-optimise-store = true
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            access-tokens = github.com=${{ secrets.TEST_TOKEN }}
             experimental-features = nix-command flakes
             substituters = https://cache.nixos.org/ https://nix-community.cachix.org
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
@@ -89,13 +89,13 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
         with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
+          token: "${{ secrets.TEST_TOKEN }}"
       - name: Install nix
         uses: cachix/install-nix-action@v30
         with:
           extra_nix_config: |
             auto-optimise-store = true
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            access-tokens = github.com=${{ secrets.TEST_TOKEN }}
             experimental-features = nix-command flakes
             substituters = https://cache.nixos.org/ https://nix-community.cachix.org
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
@@ -125,13 +125,13 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
         with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
+          token: "${{ secrets.TEST_TOKEN }}"
       - name: Install nix
         uses: cachix/install-nix-action@v30
         with:
           extra_nix_config: |
             auto-optimise-store = true
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            access-tokens = github.com=${{ secrets.TEST_TOKEN }}
             experimental-features = nix-command flakes
             substituters = https://cache.nixos.org/ https://nix-community.cachix.org
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
@@ -157,13 +157,13 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
         with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
+          token: "${{ secrets.TEST_TOKEN }}"
       - name: Install nix
         uses: cachix/install-nix-action@v30
         with:
           extra_nix_config: |
             auto-optimise-store = true
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            access-tokens = github.com=${{ secrets.TEST_TOKEN }}
             experimental-features = nix-command flakes
             substituters = https://cache.nixos.org/ https://nix-community.cachix.org
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
@@ -184,7 +184,7 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v4
         with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
+          token: "${{ secrets.TEST_TOKEN }}"
       - name: Restore flake.lock
         uses: actions/download-artifact@v4
         with:
@@ -207,4 +207,4 @@ jobs:
             --title "Auto update $(date -I)")
           gh pr merge $PR --merge --delete-branch
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TEST_TOKEN }}
