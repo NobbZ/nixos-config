@@ -12,7 +12,6 @@
 }: let
   cfg = config.profiles.base;
 
-  inherit (self.packages.${pkgs.system}) emacs;
   inherit (lib.hm) dag;
 
   # TODO: make these a bit more nice, so that repeating the hosts and individual config isn't necessary.
@@ -43,7 +42,6 @@ in {
 
     home.sessionVariables = {
       EDITOR = "nvim";
-      GIT_EDITOR = "emacs -nw";
     };
 
     gtk.enable = true;
@@ -141,11 +139,6 @@ in {
             identityFile = "~/.ssh/github";
           };
         };
-      };
-
-      emacs = {
-        enable = true;
-        package = emacs;
       };
 
       tmux = {
