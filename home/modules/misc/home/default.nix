@@ -20,12 +20,10 @@ in {
 
     packages = let
       p = pkgs;
-      s = self';
     in [
       p.cachix
       p.exercism
       p.tmate
-      s."dracula/konsole"
 
       # There is a conflict with the ZSH completion plugin, installed by default
       # therefore we need to override here

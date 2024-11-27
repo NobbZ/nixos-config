@@ -13,18 +13,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    programs.emacs = {
-      extraPackages = ep: [ep.magit];
-      extraInit = ''
-        ;; prepare magit use from shell
-        (require 'magit)
-        (global-git-commit-mode)
-
-        ;; let magit autorefresh on file save within emacs
-        (add-hook 'after-save-hook 'magit-after-save-refresh-status t)
-      '';
-    };
-
     programs.gh.enable = true;
     programs.git = {
       enable = true;
