@@ -23,6 +23,9 @@
   };
 
   programs.obs-studio.enable = true;
+  programs.obs-studio.plugins = builtins.attrValues {
+    inherit (pkgs.obs-studio-plugins) obs-backgroundremoval;
+  };
   programs.htop = {
     settings = {
       detailed_cpu_time = true;
