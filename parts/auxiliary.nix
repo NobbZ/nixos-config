@@ -9,6 +9,7 @@ _: {
   }: {
     formatter = pkgs.alejandra;
 
+    apps.rotate.meta.description = "rotate keys for sops";
     apps.rotate.program = let
       sopsrotate = pkgs.writeShellScript "sops-rotate" ''
         file=$1
