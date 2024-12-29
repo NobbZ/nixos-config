@@ -10,7 +10,6 @@
   steamPackages = ["steam" "steam-run" "steam-original" "steam-runtime" "steam-unwrapped"];
 in {
   imports = [
-    (import ./mimas/actual.nix inputs)
     (import ./mimas/paperless.nix inputs)
     (import ./mimas/restic.nix inputs)
     (import ./mimas/vaultwarden.nix inputs)
