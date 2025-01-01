@@ -51,12 +51,12 @@ in {
         NU_LOG_LEVEL = "DEBUG";
       };
       serviceConfig = {
-        AmbientCapabilities = "CAP_SYS_ADMIN";
         CPUAccounting = true;
         CPUQuota = "200%";
         CPUWeight = "idle";
         ExecStart = "${lib.getExe gitea-gc-script} /var/lib/gitea/repositories";
         RemainAfterExit = true;
+        NotifyAccess = "all";
         Type = "notify";
         User = config.services.gitea.user;
       };
