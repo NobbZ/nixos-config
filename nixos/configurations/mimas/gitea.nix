@@ -51,6 +51,7 @@ in {
         NU_LOG_LEVEL = "DEBUG";
       };
       serviceConfig = {
+        AmbientCapabilities = "CAP_SYS_ADMIN";
         CPUAccounting = true;
         CPUQuota = "200%";
         CPUWeight = "idle";
