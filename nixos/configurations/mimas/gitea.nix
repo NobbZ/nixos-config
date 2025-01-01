@@ -43,8 +43,6 @@ in {
         CPUWeight = "idle";
         ExecStart = "${lib.getExe gitea-gc-script} /var/lib/gitea/repositories";
         RemainAfterExit = true;
-        StandardError = "tty";
-        StandardInput = "tty";
         Type = "oneshot";
         User = config.services.gitea.user;
       };
