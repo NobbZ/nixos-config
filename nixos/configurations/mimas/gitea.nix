@@ -24,7 +24,7 @@
         let repo_paths = run-external ${find} $repositories_base_folder "-maxdepth" 2 "-name" '*.git' | lines
         let repo_count = $repo_paths | length
 
-        run-external systemd-notify "--ready"
+        run-external ${systemd-notify} "--ready"
 
         $repo_paths | enumerate | each {|itm|
           let repo = $itm.item
