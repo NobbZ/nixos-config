@@ -24,7 +24,7 @@
         let repo_paths = run-external ${find} $repositories_base_folder "-maxdepth" 2 "-name" '*.git' | lines
         let repo_count = $repo_paths | length
 
-        run-external systemd-notify "--ready"
+        run-external ${systemd-notify} "--ready"
 
         $repo_paths | enumerate | each {|itm|
           let repo = $itm.item
@@ -47,16 +47,16 @@ in {
   systemd = {
     services.gitea-gc = {
       description = "Garbage Collect gitea repositories";
+      restartIfChanged = false;
       environment = {
         NU_LOG_LEVEL = "DEBUG";
       };
       serviceConfig = {
-        AmbientCapabilities = "CAP_SYS_ADMIN";
         CPUAccounting = true;
         CPUQuota = "200%";
         CPUWeight = "idle";
         ExecStart = "${lib.getExe gitea-gc-script} /var/lib/gitea/repositories";
-        RemainAfterExit = true;
+        NotifyAccess = "all";
         Type = "notify";
         User = config.services.gitea.user;
       };
