@@ -13,6 +13,7 @@ in {
     (import ./mimas/paperless.nix inputs)
     (import ./mimas/restic.nix inputs)
     (import ./mimas/vaultwarden.nix inputs)
+    ./mimas/gitea.nix
   ];
 
   sops.age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
