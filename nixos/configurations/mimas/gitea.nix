@@ -47,6 +47,7 @@ in {
   systemd = {
     services.gitea-gc = {
       description = "Garbage Collect gitea repositories";
+      restartIfChanged = false;
       environment = {
         NU_LOG_LEVEL = "DEBUG";
       };
