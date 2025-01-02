@@ -5,11 +5,11 @@
   ...
 }: let
   writeNuBin = pkgs.writers.writeNuBin.override {makeBinaryWrapper = pkgs.makeShellWrapper;};
-  
+
   find = lib.getExe pkgs.findutils;
   git = lib.getExe pkgs.git;
   systemd-notify = lib.getExe' pkgs.systemd "systemd-notify";
-  
+
   gitea-gc-script =
     writeNuBin "gitea-gc"
     # nu
