@@ -30,6 +30,20 @@
       cp $src $out/_nix
     '';
   };
+
+  fzf-tab = pkgs.stdenv.mkDerivation {
+    pname = "fzf-tab";
+    version = "0-unstable-${npins.fzf-tab.revision}";
+
+    src = npins.fzf-tab;
+
+    patches = [./colums-fix.patch];
+
+    installPhase = ''
+      mkdir -p $out
+      cp -rv . $out
+    '';
+  };
 in {
   options.profiles.base = {
     enable = lib.mkEnableOption "The base profile, should be always enabled";
@@ -164,7 +178,7 @@ in {
         plugins = [
           {
             name = "fzf-tab";
-            src = npins.fzf-tab;
+            src = fzf-tab;
           }
           {
             name = "nix-zsh-complete.zsh";
