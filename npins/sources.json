@@ -20,9 +20,9 @@
         "repo": "zsh-syntax-highlighting"
       },
       "branch": "master",
-      "revision": "e0165eaa730dd0fa321a6a6de74f092fe87630b0",
-      "url": "https://github.com/zsh-users/zsh-syntax-highlighting/archive/e0165eaa730dd0fa321a6a6de74f092fe87630b0.tar.gz",
-      "hash": "016adxfxk29akcmkhn9v11sar0plmfcnp4hfn3w03457wqvvddg2"
+      "revision": "5eb677bb0fa9a3e60f0eff031dc13926e093df92",
+      "url": "https://github.com/zsh-users/zsh-syntax-highlighting/archive/5eb677bb0fa9a3e60f0eff031dc13926e093df92.tar.gz",
+      "hash": "1x33gk7hhp07jqq7yjvrsp2vmdbxmadlv3335ixx29bc6h8106r9"
     }
   },
   "version": 3
