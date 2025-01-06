@@ -10,6 +10,7 @@
 }: let
   sshConfigPath = "${config.home.homeDirectory}/.ssh";
   inherit (lib.hm) dag;
+  spkgs = self.packages.${pkgs.system};
 in {
   nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "obsidian" "slack"];
   nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0"];
@@ -58,6 +59,7 @@ in {
   home.packages = builtins.attrValues {
     inherit (pkgs) keepassxc nix-output-monitor discord obsidian vscode slack;
     inherit (config.nix) package;
+    inherit (spkgs) switcher;
   };
 
   xsession.windowManager.awesome.enable = lib.mkForce false;
