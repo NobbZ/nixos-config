@@ -87,4 +87,6 @@ in {
       user = "nmelzer";
     });
   };
+
+  home.stateVersion = "20.09";
 }

@@ -123,7 +123,6 @@
         targets = ["nobbz-hetzner"]
       '';
   };
-  # environment.pathsToLink = [ "/share/zsh" ];
-}
-# /nix/store/7skqa8vxfydq7w3cix55ffvkmjb3b5da-python-2.7.18
 
+  home.stateVersion = "20.09";
+}
