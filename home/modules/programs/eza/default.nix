@@ -10,6 +10,7 @@ in {
     programs.eza.package = pkgs.eza;
     programs.zsh.shellAliases = {
       ll = "eza --header --git --classify --long --binary --group --time-style=long-iso --links --all --all --group-directories-first --sort=name";
+      tree = "eza --tree";
     };
   };
 }
