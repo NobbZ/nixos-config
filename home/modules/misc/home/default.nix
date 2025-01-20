@@ -39,7 +39,5 @@ in {
         exec ${p.timewarrior}/bin/timew "$@"
       '')
     ];
-
-    stateVersion = "20.09";
   };
 }
