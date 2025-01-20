@@ -52,6 +52,13 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    sops.secrets.nix-community = {
+      path = "${config.home.homeDirectory}/.ssh/nix-community";
+      mode = "0400";
+      sopsFile = "${self}/secrets/users/nmelzer/nix-community";
+      format = "binary";
+    };
+
     manual.manpages.enable = false;
 
     services.vscode-server.enable = lib.mkDefault pkgs.stdenv.isLinux;
@@ -126,6 +133,16 @@ in {
           "*.internal.nobbz.dev" = dag.entryAfter zerotierHosts {
             identityFile = "~/.ssh/id_rsa";
             user = "nmelzer";
+          };
+
+          "build-box.nix-community.org" = {
+            identityFile = config.sops.secrets.nix-community.path;
+            user = "nobbz";
+          };
+
+          "aarch64-build-box.nix-community.org" = {
+            identityFile = config.sops.secrets.nix-community.path;
+            user = "nobbz";
           };
 
           "ryzen-ubuntu.adoring_suess.zerotier" = {
