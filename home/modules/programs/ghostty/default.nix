@@ -1,4 +1,4 @@
-{ghostty, ...}: _: {
+{...}: {pkgs, ...}: {
   xdg.configFile."ghostty/config".text =
     # toml
     ''
@@ -11,5 +11,5 @@
       theme = "catppuccin-mocha"
     '';
 
-  home.packages = [ghostty.packages.x86_64-linux.default];
+  home.packages = [pkgs.ghostty];
 }
