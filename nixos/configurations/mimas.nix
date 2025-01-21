@@ -384,6 +384,22 @@ in {
     ];
   };
 
+  nix.buildMachines = let
+    communityBuilder = name: system: {
+      hostName = "${name}.nix-community.org";
+      inherit system;
+      sshKey = "/root/.ssh/id_ed25519";
+      sshUser = "NobbZ";
+      maxJobs = 8;
+      protocol = "ssh";
+      speedFactor = 4;
+      supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+    };
+  in [
+    (communityBuilder "build-box" "x86_64-linux")
+    (communityBuilder "aarch64-build.box" "aarch64-linux")
+  ];
+
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
