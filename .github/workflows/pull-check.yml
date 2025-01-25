@@ -38,7 +38,7 @@ jobs:
 
   build_flake:
     runs-on: ubuntu-20.04
-    needs: [generate_matrix, update_flake]
+    needs: [generate_matrix]
     strategy:
       fail-fast: false
       max-parallel: 5
@@ -72,7 +72,7 @@ jobs:
 
   build_checks:
     runs-on: ubuntu-20.04
-    needs: [generate_matrix, update_flake]
+    needs: [generate_matrix]
     strategy:
       fail-fast: false
       max-parallel: 5
@@ -98,7 +98,6 @@ jobs:
 
   check_flake:
     runs-on: ubuntu-20.04
-    needs: [update_flake]
     continue-on-error: true
     steps:
       - name: Clone repository
