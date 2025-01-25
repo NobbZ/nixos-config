@@ -2,8 +2,6 @@ name: PullRequest checker
 
 on:
   pull_request:
-    branches:
-      - master
 
 jobs:
   generate_matrix:
