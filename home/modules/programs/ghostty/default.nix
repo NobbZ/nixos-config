@@ -1,4 +1,4 @@
-{...}: {pkgs, ...}: {
+_: {pkgs, ...}: {
   xdg.configFile."ghostty/config".text =
     # toml
     ''
