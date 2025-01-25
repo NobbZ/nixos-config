@@ -1,0 +1,122 @@
+name: PullRequest checker
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  generate_matrix:
+    runs-on: ubuntu-20.04
+    outputs:
+      packages: ${{ steps.gen_packages.outputs.packages }}
+      checks: ${{ steps.gen_checks.outputs.checks }}
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+        with:
+          token: "${{ secrets.TEST_TOKEN }}"
+      - name: Install nix
+        uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.TEST_TOKEN }}
+            experimental-features = nix-command flakes
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+          install_url: https://releases.nixos.org/nix/nix-2.25.0/install
+      - name: Generate flake.json
+        run: |
+          nix flake show --json > flake.json
+      - id: gen_packages
+        run: |
+          packages=$(jq -c '.packages."x86_64-linux" | keys' < flake.json)
+          printf "::set-output name=packages::%s" "$packages"
+      - id: gen_checks
+        run: |
+          checks=$(jq -c '.checks."x86_64-linux" | keys' < flake.json)
+          printf "::set-output name=checks::%s" "$checks"
+
+  build_flake:
+    runs-on: ubuntu-20.04
+    needs: [generate_matrix, update_flake]
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        package: ${{fromJson(needs.generate_matrix.outputs.packages)}}
+    steps:
+      - name: Free diskspace
+        uses: easimon/maximize-build-space@master
+        with:
+          build-mount-path: /nix
+          root-reserve-mb: 5120
+          remove-dotnet: true
+          remove-android: true
+          remove-haskell: true
+      - name: Clone repository
+        uses: actions/checkout@v4
+        with:
+          token: "${{ secrets.TEST_TOKEN }}"
+      - name: Install nix
+        uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.TEST_TOKEN }}
+            experimental-features = nix-command flakes
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+          install_url: https://releases.nixos.org/nix/nix-2.25.0/install
+      - name: Build everything
+        run: nix build .#${{ matrix.package }}
+
+  build_checks:
+    runs-on: ubuntu-20.04
+    needs: [generate_matrix, update_flake]
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        check: ${{fromJson(needs.generate_matrix.outputs.checks)}}
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+        with:
+          token: "${{ secrets.TEST_TOKEN }}"
+      - name: Install nix
+        uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.TEST_TOKEN }}
+            experimental-features = nix-command flakes
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+          install_url: https://releases.nixos.org/nix/nix-2.25.0/install
+      - name: Build everything
+        run: nix build .#checks.x86_64-linux.${{ matrix.check }} --no-link
+
+  check_flake:
+    runs-on: ubuntu-20.04
+    needs: [update_flake]
+    continue-on-error: true
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+        with:
+          token: "${{ secrets.TEST_TOKEN }}"
+      - name: Install nix
+        uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.TEST_TOKEN }}
+            experimental-features = nix-command flakes
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+          install_url: https://releases.nixos.org/nix/nix-2.25.0/install
+      - name: run the checks
+        run: |
+          nix flake check --keep-going
