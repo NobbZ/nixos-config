@@ -30,11 +30,11 @@ jobs:
       - id: gen_packages
         run: |
           packages=$(jq -c '.packages."x86_64-linux" | keys' < flake.json)
-          printf "::set-output name=packages::%s" "$packages"
+          printf "packages=%s" "$packages" >> $GITHUB_OUTPUT
       - id: gen_checks
         run: |
           checks=$(jq -c '.checks."x86_64-linux" | keys' < flake.json)
-          printf "::set-output name=checks::%s" "$checks"
+          printf "checks=%s" "$checks" >> $GITHUB_OUTPUT
 
   build_flake:
     runs-on: ubuntu-20.04
