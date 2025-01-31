@@ -224,6 +224,7 @@ in {
         };
 
         shellAliases.fixstore = "sudo nix-store --verify --check-contents --repair";
+        shellAliases.pq = "pueue";
       };
     };
 
