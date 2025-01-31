@@ -71,6 +71,8 @@ in {
     gtk.theme.package = pkgs.gnome-themes-extra;
     gtk.theme.name = "Adwaita-dark";
 
+    services.pueue.enable = true;
+
     home.keyboard.layout = "de";
     home.packages = let
       optisave =
