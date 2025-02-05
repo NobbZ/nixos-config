@@ -97,7 +97,7 @@ in {
             "$(numfmt --to=none --format="%'f" ''${saved})"
         '';
     in
-      [optisave pkgs.hydra-check nvim.packages.x86_64-linux.default] ++ lib.optionals pkgs.stdenv.isLinux [pkgs.dconf];
+      [optisave pkgs.departure-mono pkgs.hydra-check nvim.packages.x86_64-linux.default] ++ lib.optionals pkgs.stdenv.isLinux [pkgs.dconf];
 
     # dconf.enable = lib.mkMerge [
     #   (lib.mkIf pkgs.stdenv.isLinux true)
