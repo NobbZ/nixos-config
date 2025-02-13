@@ -49,7 +49,9 @@
 
     nix.url = "github:nixos/nix";
     nix.inputs.flake-parts.follows = "parts";
-    nix.inputs.nixpkgs.follows = "nixpkgs";
+    # a libgit2 in the current version fails to build with the nix provided patches.
+    # therefore using upstreams pin for now.
+    # nix.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
