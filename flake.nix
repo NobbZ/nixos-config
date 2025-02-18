@@ -41,9 +41,6 @@
     switcher.inputs.nixpkgs.follows = "nixpkgs";
     switcher.inputs.flake-parts.follows = "parts";
 
-    grm.url = "github:hakoerber/git-repo-manager";
-    grm.inputs.nixpkgs.follows = "nixpkgs";
-
     parts.url = "github:hercules-ci/flake-parts";
     parts.inputs.nixpkgs-lib.follows = "nixpkgs";
 
