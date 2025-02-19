@@ -60,6 +60,8 @@ in {
       format = "binary";
     };
 
+    programs.rbw.enable = true;
+
     manual.manpages.enable = false;
 
     services.vscode-server.enable = lib.mkDefault pkgs.stdenv.isLinux;
