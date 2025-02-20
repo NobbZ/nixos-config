@@ -11,6 +11,7 @@
     "programs/nixpkgs" = ./programs/nixpkgs;
     "programs/openshift" = ./programs/openshift;
     "programs/p10k" = ./programs/p10k;
+    "programs/rbw" = ./programs/rbw;
 
     "services/insync" = ./services/insync;
     "services/restic" = ./services/restic;
