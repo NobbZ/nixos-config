@@ -229,9 +229,5 @@ in {
         shellAliases.pq = "pueue";
       };
     };
-
-    # htop has some nastly problem that is saves a new config when you change by which column to sort
-    # this workaround will always overwrite any changes made by the running system
-    xdg.configFile = lib.mkIf (config.programs.htop.settings != {}) {"htop/htoprc".force = true;};
   };
 }
