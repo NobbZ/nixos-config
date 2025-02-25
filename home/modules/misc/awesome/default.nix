@@ -82,7 +82,7 @@ in {
   options.xsession.windowManager.awesome = {
     terminalEmulator = lib.mkOption {
       type = lib.types.str;
-      default = "${pkgs.konsole}/bin/konsole";
+      default = "${lib.getExe pkgs.wezterm}";
     };
 
     lockCommand = lib.mkOption {

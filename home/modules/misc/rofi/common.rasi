@@ -1,6 +1,6 @@
 configuration {
     font: "Cascadia Mono PL 20";
-    terminal: "konsole";
+    terminal: "@TERMINAL@";
     fixed-num-lines: false;
     show-icons: true;
     drun-show-actions: false;

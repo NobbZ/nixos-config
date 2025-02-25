@@ -5,25 +5,30 @@
 }: let
   self' = self.packages.x86_64-linux;
 
+  common_rasi = pkgs.runCommandNoCC "common.rasi" {preferLocalBuild = true;} ''
+    substitute ${./common.rasi} $out \
+      --subst-var-by TERMINAL ${lib.getExe pkgs.wezterm}
+  '';
+
   launcherConfig = pkgs.writeText "launcher-config" ''
     configuration {
       modes: "drun#run#ssh";
     }
-    @import "${./common.rasi}"
+    @import "${common_rasi}"
   '';
 
   windowSwitcherConfig = pkgs.writeText "window-switcher-config" ''
     configuration {
       modes: "window";
     }
-    @import "${./common.rasi}"
+    @import "${common_rasi}"
   '';
 
   emojiConfig = pkgs.writeText "window-switcher-config" ''
     configuration {
       modes: "emoji#unicode:${self'."rofi/unicode"}/bin/rofiunicode.sh";
     }
-    @import "${./common.rasi}"
+    @import "${common_rasi}"
   '';
 
   wrapper = rofi: config:
