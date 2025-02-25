@@ -19,7 +19,7 @@
     inherit (pkgs) keybase-gui freerdp keepassxc nix-output-monitor discord;
     inherit (pkgs) obsidian;
     inherit (pkgs) gnome-tweaks;
-    inherit (pkgs) vscode;
+    inherit (pkgs) vscode wezterm;
   };
 
   programs.obs-studio.enable = true;
