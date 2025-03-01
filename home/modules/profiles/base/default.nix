@@ -183,7 +183,11 @@ in {
 
         clock24 = true;
         historyLimit = 10000;
-        terminal = "screen-256color";
+        terminal = "tmux-256color";
+
+        extraConfig = ''
+          set -ag terminal-overrides ",xterm-256color:RGB"
+        '';
       };
 
       zsh = {
