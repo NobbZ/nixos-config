@@ -116,7 +116,6 @@ in {
 
     programs = {
       advancedCopy.enable = true;
-      bat.enable = true;
       direnv.enable = true;
       direnv.nix-direnv.enable = true;
       direnv.nix-direnv.package = pkgs.nix-direnv.override {nix = nix.packages.${pkgs.system}.default;};
@@ -127,6 +126,17 @@ in {
       jq.enable = true;
       p10k.enable = true;
       zoxide.enable = true;
+
+      bat = {
+        enable = true;
+
+        config.theme = "mocha";
+
+        themes.mocha = {
+          src = npins.catppuccin-bat;
+          file = "themes/Catppuccin Mocha.tmTheme";
+        };
+      };
 
       ssh = {
         enable = true;
