@@ -12,6 +12,7 @@
     "programs/openshift" = ./programs/openshift;
     "programs/p10k" = ./programs/p10k;
     "programs/rbw" = ./programs/rbw;
+    "programs/wezterm" = ./programs/wezterm;
 
     "services/insync" = ./services/insync;
     "services/restic" = ./services/restic;
