@@ -29,7 +29,7 @@ _: {
       config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
       -- set the font
-      config.font_dirs = { '/home/nmelzer/.nix-profile/share/fonts/otf' }
+      config.font_dirs = { '${pkgs.departure-mono}/share/fonts/otf' }
       config.font_size = 11.0 * 1.25
       config.font = wezterm.font("Departure Mono")
 
