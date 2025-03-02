@@ -16,29 +16,20 @@
       --replace-fail '"catppuccin-mocha"' '"${npins.catppuccin-rofi}/themes/catppuccin-mocha.rasi"'
   '';
 
-  launcherConfig = pkgs.writeText "launcher-config" ''
-    configuration {
-      modes: "drun#run#ssh";
-    }
-    @theme "${catppuccin}"
-    @import "${common_rasi}"
-  '';
+  writeConfig = name: body:
+    pkgs.writeText name
+    # rasi
+    ''
+      configuration {
+      ${body}
+      }
+      @theme "${catppuccin}"
+      @import "${common_rasi}"
+    '';
 
-  windowSwitcherConfig = pkgs.writeText "window-switcher-config" ''
-    configuration {
-      modes: "window";
-    }
-    @theme "${catppuccin}"
-    @import "${common_rasi}"
-  '';
-
-  emojiConfig = pkgs.writeText "window-switcher-config" ''
-    configuration {
-      modes: "emoji#unicode:${self'."rofi/unicode"}/bin/rofiunicode.sh";
-    }
-    @theme "${catppuccin}"
-    @import "${common_rasi}"
-  '';
+  launcherConfig = writeConfig "launcher-config" ''modes: "drun#run#ssh";'';
+  windowSwitcherConfig = writeConfig "window-switcher-config" ''modes: "window";'';
+  emojiConfig = writeConfig "window-switcher-config" ''modes: "emoji#unicode:${self'."rofi/unicode"}/bin/rofiunicode.sh";'';
 
   wrapper = rofi: config:
     pkgs.callPackage ({
