@@ -1,6 +1,7 @@
 {self, ...}: {
   pkgs,
   lib,
+  npins,
   ...
 }: let
   self' = self.packages.x86_64-linux;
@@ -10,10 +11,16 @@
       --subst-var-by TERMINAL ${lib.getExe pkgs.wezterm}
   '';
 
+  catppuccin = pkgs.runCommandNoCC "catppuccin.rasi" {preferLocalBuild = true;} ''
+    substitute ${npins.catppuccin-rofi}/catppuccin-default.rasi $out \
+      --replace-fail '"catppuccin-mocha"' '"${npins.catppuccin-rofi}/themes/catppuccin-mocha.rasi"'
+  '';
+
   launcherConfig = pkgs.writeText "launcher-config" ''
     configuration {
       modes: "drun#run#ssh";
     }
+    @theme "${catppuccin}"
     @import "${common_rasi}"
   '';
 
@@ -21,6 +28,7 @@
     configuration {
       modes: "window";
     }
+    @theme "${catppuccin}"
     @import "${common_rasi}"
   '';
 
@@ -28,6 +36,7 @@
     configuration {
       modes: "emoji#unicode:${self'."rofi/unicode"}/bin/rofiunicode.sh";
     }
+    @theme "${catppuccin}"
     @import "${common_rasi}"
   '';
 
