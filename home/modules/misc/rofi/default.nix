@@ -29,7 +29,7 @@
 
   launcherConfig = writeConfig "launcher-config" ''modes: "drun#run#ssh";'';
   windowSwitcherConfig = writeConfig "window-switcher-config" ''modes: "window";'';
-  emojiConfig = writeConfig "window-switcher-config" ''modes: "emoji#unicode:${self'."rofi/unicode"}/bin/rofiunicode.sh";'';
+  emojiConfig = writeConfig "emoji-config" ''modes: "emoji#unicode:${self'."rofi/unicode"}/bin/rofiunicode.sh";'';
 
   wrapper = rofi: config:
     pkgs.callPackage ({
