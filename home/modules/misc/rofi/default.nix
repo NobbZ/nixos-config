@@ -1,6 +1,7 @@
 {self, ...}: {
   pkgs,
   lib,
+  npins,
   ...
 }: let
   self' = self.packages.x86_64-linux;
@@ -10,26 +11,25 @@
       --subst-var-by TERMINAL ${lib.getExe pkgs.wezterm}
   '';
 
-  launcherConfig = pkgs.writeText "launcher-config" ''
-    configuration {
-      modes: "drun#run#ssh";
-    }
-    @import "${common_rasi}"
+  catppuccin = pkgs.runCommandNoCC "catppuccin.rasi" {preferLocalBuild = true;} ''
+    substitute ${npins.catppuccin-rofi}/catppuccin-default.rasi $out \
+      --replace-fail '"catppuccin-mocha"' '"${npins.catppuccin-rofi}/themes/catppuccin-mocha.rasi"'
   '';
 
-  windowSwitcherConfig = pkgs.writeText "window-switcher-config" ''
-    configuration {
-      modes: "window";
-    }
-    @import "${common_rasi}"
-  '';
+  writeConfig = name: body:
+    pkgs.writeText name
+    # rasi
+    ''
+      configuration {
+      ${body}
+      }
+      @theme "${catppuccin}"
+      @import "${common_rasi}"
+    '';
 
-  emojiConfig = pkgs.writeText "window-switcher-config" ''
-    configuration {
-      modes: "emoji#unicode:${self'."rofi/unicode"}/bin/rofiunicode.sh";
-    }
-    @import "${common_rasi}"
-  '';
+  launcherConfig = writeConfig "launcher-config" ''modes: "drun#run#ssh";'';
+  windowSwitcherConfig = writeConfig "window-switcher-config" ''modes: "window";'';
+  emojiConfig = writeConfig "emoji-config" ''modes: "emoji#unicode:${self'."rofi/unicode"}/bin/rofiunicode.sh";'';
 
   wrapper = rofi: config:
     pkgs.callPackage ({

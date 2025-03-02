@@ -1,5 +1,5 @@
 configuration {
-    font: "Cascadia Mono PL 20";
+    font: "Departure Mono 22";
     terminal: "@TERMINAL@";
     fixed-num-lines: false;
     show-icons: true;
