@@ -27,9 +27,12 @@
       @import "${common_rasi}"
     '';
 
-  launcherConfig = writeConfig "launcher-config" ''modes: "drun#run#ssh";'';
   windowSwitcherConfig = writeConfig "window-switcher-config" ''modes: "window";'';
   emojiConfig = writeConfig "emoji-config" ''modes: "emoji#unicode:${self'."rofi/unicode"}/bin/rofiunicode.sh";'';
+  launcherConfig = writeConfig "launcher-config" ''
+    modes: "drun#run#ssh";
+    ssh-command: "{terminal} ssh {host}";
+  '';
 
   wrapper = rofi: config:
     pkgs.callPackage ({
