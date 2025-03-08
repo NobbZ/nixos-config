@@ -46,7 +46,7 @@ _: {
     ''
       [repository]
       repository = "opendal:sftp"
-      password-file ="${config.sops.secrets.rustic.path}"
+      password-file = "${config.sops.secrets.rustic.path}"
 
       [repository.options]
       endpoint = "ssh://${config.sops.placeholder.rustic-user}.your-storagebox.de:23"
