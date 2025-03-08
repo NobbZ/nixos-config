@@ -4,6 +4,8 @@ _: {
   lib,
   ...
 }: let
+  profile_name = template: lib.removeSuffix ".toml" config.sops.templates."${template}".path;
+
   mimas_template =
     # toml
     ''
@@ -12,7 +14,7 @@ _: {
       password-file = "${config.sops.secrets.rustic.path}"
 
       [copy]
-      targets = ["${lib.removeSuffix ".toml" config.sops.templates."mimas_hetzner.toml".path}"]
+      targets = ["${profile_name "mimas_hetzner.toml"}"]
     '';
   mimas_hetzner_template =
     # toml
@@ -36,7 +38,7 @@ _: {
       password-file = "${config.sops.secrets.rustic.path}"
 
       [copy]
-      targets = ["${lib.removeSuffix ".toml" config.sops.templates."nobbz_hetzner.toml".path}"]
+      targets = ["${profile_name "nobbz_hetzner.toml"}"]
     '';
 
   nobbz_hetzner_template =
@@ -85,7 +87,7 @@ in {
       path = [pkgs.rustic pkgs.openssh];
       serviceConfig.Type = "oneshot";
       script = ''
-        rustic forget -P ${lib.removeSuffix ".toml" config.sops.templates."mimas.toml".path} \
+        rustic forget -P ${profile_name "mimas.toml"} \
           --keep-last 4 \
           --keep-within-hourly 1d \
           --keep-within-daily 5d \
@@ -93,12 +95,12 @@ in {
           --keep-within-monthly 100d \
           --keep-within-yearly 2y
 
-        rustic prune -P ${lib.removeSuffix ".toml" config.sops.templates."mimas.toml".path} \
+        rustic prune -P ${profile_name "mimas.toml"} \
           --max-unused=0B \
           --keep-delete=12h \
           --max-repack=50GiB
 
-        rustic copy -P ${lib.removeSuffix ".toml" config.sops.templates."mimas.toml".path}
+        rustic copy -P ${profile_name "mimas.toml"}
       '';
     };
 
@@ -106,7 +108,7 @@ in {
       path = [pkgs.rustic pkgs.openssh];
       serviceConfig.Type = "oneshot";
       script = ''
-        rustic forget -P ${lib.removeSuffix ".toml" config.sops.templates."nobbz.toml".path} \
+        rustic forget -P ${profile_name "nobbz.toml"} \
           --filter-tags home \
           --keep-last 4 \
           --keep-within-hourly 1d \
@@ -115,12 +117,12 @@ in {
           --keep-within-monthly 100d \
           --keep-within-yearly 2y
 
-        rustic prune -P ${lib.removeSuffix ".toml" config.sops.templates."nobbz.toml".path} \
+        rustic prune -P ${profile_name "nobbz.toml"} \
           --max-unused=0B \
           --keep-delete=12h \
           --max-repack=50GiB
 
-        rustic copy -P ${lib.removeSuffix ".toml" config.sops.templates."nobbz.toml".path}
+        rustic copy -P ${profile_name "nobbz.toml"}
       '';
     };
 
@@ -128,7 +130,7 @@ in {
       path = [pkgs.rustic pkgs.openssh];
       serviceConfig.Type = "oneshot";
       script = ''
-        rustic forget -P ${lib.removeSuffix ".toml" config.sops.templates."nobbz_hetzner.toml".path} \
+        rustic forget -P ${profile_name "nobbz_hetzner.toml"} \
           --keep-last 1 \
           --keep-within-hourly 2h \
           --keep-within-daily 10d \
@@ -136,7 +138,7 @@ in {
           --keep-within-monthly 190d \
           --keep-within-yearly 5y
 
-        rustic prune -P ${lib.removeSuffix ".toml" config.sops.templates."nobbz_hetzner.toml".path} \
+        rustic prune -P ${profile_name "nobbz_hetzner.toml"} \
           --max-unused 0B \
           --max-repack 50GiB \
           --keep-delete 11h
@@ -147,7 +149,7 @@ in {
       path = [pkgs.rustic pkgs.openssh];
       serviceConfig.Type = "oneshot";
       script = ''
-        rustic forget -P ${lib.removeSuffix ".toml" config.sops.templates."mimas_hetzner.toml".path} \
+        rustic forget -P ${profile_name "mimas_hetzner.toml"} \
           --keep-last 1 \
           --keep-within-hourly 2h \
           --keep-within-daily 10d \
@@ -155,7 +157,7 @@ in {
           --keep-within-monthly 190d \
           --keep-within-yearly 5y
 
-        rustic prune -P ${lib.removeSuffix ".toml" config.sops.templates."mimas_hetzner.toml".path} \
+        rustic prune -P ${profile_name "mimas_hetzner.toml"} \
           --max-unused 0B \
           --max-repack 50GiB \
           --keep-delete 11h
