@@ -12,6 +12,7 @@ in {
   imports = [
     (import ./mimas/paperless.nix inputs)
     (import ./mimas/restic.nix inputs)
+    (import ./mimas/rustic-timers.nix inputs)
     (import ./mimas/vaultwarden.nix inputs)
     ./mimas/gitea.nix
   ];
