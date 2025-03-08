@@ -68,6 +68,8 @@ _: {
       timerConfig.onCalendar = calendar;
     };
   };
+
+  notify = lib.getExe' pkgs.systemd "systemd-notify";
 in {
   sops.secrets.rustic = {};
   sops.secrets.rustic-user = {};
@@ -85,8 +87,13 @@ in {
   systemd.services = {
     rustic-mimas-clean = {
       path = [pkgs.rustic pkgs.openssh];
-      serviceConfig.Type = "oneshot";
+      serviceConfig = {
+        NotifyAccess = "all";
+        Type = "notify";
+      };
       script = ''
+        ${notify} --ready
+        ${notify} --status=forget
         rustic forget -P ${profile_name "mimas.toml"} \
           --keep-last 4 \
           --keep-within-hourly 1d \
@@ -95,19 +102,28 @@ in {
           --keep-within-monthly 100d \
           --keep-within-yearly 2y
 
+        ${notify} --status=prune
         rustic prune -P ${profile_name "mimas.toml"} \
           --max-unused=0B \
           --keep-delete=12h \
           --max-repack=50GiB
 
+        ${notify} --status=copy
         rustic copy -P ${profile_name "mimas.toml"}
+
+        ${notify} --stopping
       '';
     };
 
     rustic-nobbz-clean = {
       path = [pkgs.rustic pkgs.openssh];
-      serviceConfig.Type = "oneshot";
+      serviceConfig = {
+        NotifyAccess = "all";
+        Type = "notify";
+      };
       script = ''
+        ${notify} --ready
+        ${notify} --status=forget
         rustic forget -P ${profile_name "nobbz.toml"} \
           --filter-tags home \
           --keep-last 4 \
@@ -117,19 +133,28 @@ in {
           --keep-within-monthly 100d \
           --keep-within-yearly 2y
 
+        ${notify} --status=prune
         rustic prune -P ${profile_name "nobbz.toml"} \
           --max-unused=0B \
           --keep-delete=12h \
           --max-repack=50GiB
 
+        ${notify} --status=copy
         rustic copy -P ${profile_name "nobbz.toml"}
+
+        ${notify} --stopping
       '';
     };
 
     rustic-nobbz-hetzner-clean = {
       path = [pkgs.rustic pkgs.openssh];
-      serviceConfig.Type = "oneshot";
+      serviceConfig = {
+        NotifyAccess = "all";
+        Type = "notify";
+      };
       script = ''
+        ${notify} --ready
+        ${notify} --status=forget
         rustic forget -P ${profile_name "nobbz_hetzner.toml"} \
           --keep-last 1 \
           --keep-within-hourly 2h \
@@ -138,17 +163,25 @@ in {
           --keep-within-monthly 190d \
           --keep-within-yearly 5y
 
+        ${notify} --status=prune
         rustic prune -P ${profile_name "nobbz_hetzner.toml"} \
           --max-unused 0B \
           --max-repack 50GiB \
           --keep-delete 11h
+
+        ${notify} --stopping
       '';
     };
 
     rustic-mimas-hetzner-clean = {
       path = [pkgs.rustic pkgs.openssh];
-      serviceConfig.Type = "oneshot";
+      serviceConfig = {
+        NotifyAccess = "all";
+        Type = "notify";
+      };
       script = ''
+        ${notify} --ready
+        ${notify} --status=forget
         rustic forget -P ${profile_name "mimas_hetzner.toml"} \
           --keep-last 1 \
           --keep-within-hourly 2h \
@@ -157,10 +190,13 @@ in {
           --keep-within-monthly 190d \
           --keep-within-yearly 5y
 
+        ${notify} --status=prune
         rustic prune -P ${profile_name "mimas_hetzner.toml"} \
           --max-unused 0B \
           --max-repack 50GiB \
           --keep-delete 11h
+
+        ${notify} --stopping
       '';
     };
   };
