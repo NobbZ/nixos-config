@@ -6,6 +6,11 @@ _: {
 }: let
   profile_name = template: lib.removeSuffix ".toml" config.sops.templates."${template}".path;
 
+  environment = {
+    RUSTIC_NO_PROGRESS = "1";
+    RUSTIC_NO_CACHE = "1";
+  };
+
   mimas_template =
     # toml
     ''
@@ -65,7 +70,7 @@ _: {
   mkTimer = name: calendar: {
     "${name}" = {
       wantedBy = ["timers.target"];
-      timerConfig.onCalendar = calendar;
+      timerConfig.OnCalendar = calendar;
     };
   };
 
@@ -87,6 +92,7 @@ in {
   systemd.services = {
     rustic-mimas-clean = {
       path = [pkgs.rustic pkgs.openssh];
+      inherit environment;
       serviceConfig = {
         NotifyAccess = "all";
         Type = "notify";
@@ -117,6 +123,7 @@ in {
 
     rustic-nobbz-clean = {
       path = [pkgs.rustic pkgs.openssh];
+      inherit environment;
       serviceConfig = {
         NotifyAccess = "all";
         Type = "notify";
@@ -148,6 +155,7 @@ in {
 
     rustic-nobbz-hetzner-clean = {
       path = [pkgs.rustic pkgs.openssh];
+      inherit environment;
       serviceConfig = {
         NotifyAccess = "all";
         Type = "notify";
@@ -175,6 +183,7 @@ in {
 
     rustic-mimas-hetzner-clean = {
       path = [pkgs.rustic pkgs.openssh];
+      inherit environment;
       serviceConfig = {
         NotifyAccess = "all";
         Type = "notify";
