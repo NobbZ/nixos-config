@@ -70,7 +70,7 @@ _: {
   mkTimer = name: calendar: {
     "${name}" = {
       wantedBy = ["timers.target"];
-      timerConfig.onCalendar = calendar;
+      timerConfig.OnCalendar = calendar;
     };
   };
 
