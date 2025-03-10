@@ -7,8 +7,8 @@ _: {
   profile_name = template: lib.removeSuffix ".toml" config.sops.templates."${template}".path;
 
   environment = {
-    RUSTIC_NO_PROGRESS = "1";
-    RUSTIC_NO_CACHE = "1";
+    RUSTIC_NO_PROGRESS = "true";
+    RUSTIC_NO_CACHE = "true";
   };
 
   mimas_template =
