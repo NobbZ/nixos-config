@@ -15,7 +15,7 @@ jobs:
         with:
           token: "${{ secrets.TEST_TOKEN }}"
       - name: Install nix
-        uses: cachix/install-nix-action@v30
+        uses: cachix/install-nix-action@v31
         with:
           extra_nix_config: |
             auto-optimise-store = true
@@ -58,7 +58,7 @@ jobs:
         with:
           token: "${{ secrets.TEST_TOKEN }}"
       - name: Install nix
-        uses: cachix/install-nix-action@v30
+        uses: cachix/install-nix-action@v31
         with:
           extra_nix_config: |
             auto-optimise-store = true
@@ -84,7 +84,7 @@ jobs:
         with:
           token: "${{ secrets.TEST_TOKEN }}"
       - name: Install nix
-        uses: cachix/install-nix-action@v30
+        uses: cachix/install-nix-action@v31
         with:
           extra_nix_config: |
             auto-optimise-store = true
@@ -105,7 +105,7 @@ jobs:
         with:
           token: "${{ secrets.TEST_TOKEN }}"
       - name: Install nix
-        uses: cachix/install-nix-action@v30
+        uses: cachix/install-nix-action@v31
         with:
           extra_nix_config: |
             auto-optimise-store = true
