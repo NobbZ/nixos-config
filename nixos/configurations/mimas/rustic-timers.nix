@@ -8,7 +8,7 @@ _: {
 
   environment = {
     RUSTIC_NO_PROGRESS = "true";
-    RUSTIC_NO_CACHE = "true";
+    RUSTIC_CACHE_DIR = "%T/rustic";
   };
 
   mimas_template =
@@ -117,7 +117,7 @@ in {
         ${notify} --status=copy
         rustic copy -P ${profile_name "mimas.toml"}
 
-        ${notify} --stopping
+        ${notify} --stopping --status=""
       '';
     };
 
@@ -149,7 +149,7 @@ in {
         ${notify} --status=copy
         rustic copy -P ${profile_name "nobbz.toml"}
 
-        ${notify} --stopping
+        ${notify} --stopping --status=""
       '';
     };
 
@@ -174,10 +174,10 @@ in {
         ${notify} --status=prune
         rustic prune -P ${profile_name "nobbz_hetzner.toml"} \
           --max-unused 0B \
-          --max-repack 50GiB \
+          --max-repack 20GiB \
           --keep-delete 11h
 
-        ${notify} --stopping
+        ${notify} --stopping --status=""
       '';
     };
 
@@ -202,10 +202,10 @@ in {
         ${notify} --status=prune
         rustic prune -P ${profile_name "mimas_hetzner.toml"} \
           --max-unused 0B \
-          --max-repack 50GiB \
+          --max-repack 20GiB \
           --keep-delete 11h
 
-        ${notify} --stopping
+        ${notify} --stopping --status=""
       '';
     };
   };
