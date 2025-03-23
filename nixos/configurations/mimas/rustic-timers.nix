@@ -8,7 +8,7 @@ _: {
 
   environment = {
     RUSTIC_NO_PROGRESS = "true";
-    RUSTIC_NO_CACHE = "true";
+    RUSTIC_CACHE_DIR = "%T/rustic";
   };
 
   mimas_template =
