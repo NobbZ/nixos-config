@@ -174,7 +174,7 @@ in {
         ${notify} --status=prune
         rustic prune -P ${profile_name "nobbz_hetzner.toml"} \
           --max-unused 0B \
-          --max-repack 50GiB \
+          --max-repack 20GiB \
           --keep-delete 11h
 
         ${notify} --stopping
@@ -202,7 +202,7 @@ in {
         ${notify} --status=prune
         rustic prune -P ${profile_name "mimas_hetzner.toml"} \
           --max-unused 0B \
-          --max-repack 50GiB \
+          --max-repack 20GiB \
           --keep-delete 11h
 
         ${notify} --stopping
