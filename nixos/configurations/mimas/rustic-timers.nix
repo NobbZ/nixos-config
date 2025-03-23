@@ -117,7 +117,7 @@ in {
         ${notify} --status=copy
         rustic copy -P ${profile_name "mimas.toml"}
 
-        ${notify} --stopping
+        ${notify} --stopping --status=""
       '';
     };
 
@@ -149,7 +149,7 @@ in {
         ${notify} --status=copy
         rustic copy -P ${profile_name "nobbz.toml"}
 
-        ${notify} --stopping
+        ${notify} --stopping --status=""
       '';
     };
 
@@ -177,7 +177,7 @@ in {
           --max-repack 20GiB \
           --keep-delete 11h
 
-        ${notify} --stopping
+        ${notify} --stopping --status=""
       '';
     };
 
@@ -205,7 +205,7 @@ in {
           --max-repack 20GiB \
           --keep-delete 11h
 
-        ${notify} --stopping
+        ${notify} --stopping --status=""
       '';
     };
   };
