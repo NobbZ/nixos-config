@@ -34,6 +34,12 @@ _: {
       -- For example, changing the color scheme:
       config.color_scheme = "Catppuccin Mocha"
 
+      -- show a scrollbar
+      config.enable_scroll_bar = true
+
+      -- forbid window size change on change of fontsize
+      config.adjust_window_size_when_changing_font_size = false
+
       -- disable ligatures
       config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
