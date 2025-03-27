@@ -123,10 +123,13 @@ in {
         hopbase = ''!f() { set -o nounset; tag=$(git describe --abbrev=0 --tag "$1") && git rebase -i "''${tag}"; }; f'';
         comfix = "!${mkFixupAlias "fixup"}";
         comreb = "!${mkFixupAlias "rebase"}";
+        show = "show --ext-diff";
+        lp = "log -p --ext-diff";
       };
 
       extraConfig = {
         init.defaultBranch = "main";
+        diff.external = lib.getExe pkgs.difftastic;
         pull.rebase = false;
         rerere.enabled = true;
       };
