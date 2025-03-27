@@ -171,6 +171,6 @@ in {
       ];
     };
 
-    home.packages = [pkgs.ripgrep];
+    home.packages = [pkgs.ripgrep pkgs.difftastic];
   };
 }
