@@ -26,7 +26,9 @@ in {
             inputs = builtins.attrValues {inherit (pkgs) git fzf ripgrep;};
             interpreter = "${pkgs.bash}/bin/bash";
             execer = ["cannot:${pkgs.git}/bin/git" "cannot:${pkgs.fzf}/bin/fzf"];
-          } ''
+          }
+          # bash
+          ''
             git log --graph --color=always --format="%C(auto)%h%d %s0x09%C(white)%C(bold)%cr" "$@" |
               fzf --ansi --no-sort --reverse --tiebreak=index \
                 --bind=ctrl-s:toggle-sort \
@@ -39,7 +41,9 @@ in {
             inputs = builtins.attrValues {inherit (pkgs) git fzf coreutils gawk;};
             interpreter = "${pkgs.bash}/bin/bash";
             execer = ["cannot:${pkgs.git}/bin/git" "cannot:${pkgs.fzf}/bin/fzf"];
-          } ''
+          }
+          # bash
+          ''
             # Function to determine the ref type
             function get_ref_type() {
                 local ref="$1"
@@ -119,10 +123,13 @@ in {
         hopbase = ''!f() { set -o nounset; tag=$(git describe --abbrev=0 --tag "$1") && git rebase -i "''${tag}"; }; f'';
         comfix = "!${mkFixupAlias "fixup"}";
         comreb = "!${mkFixupAlias "rebase"}";
+        show = "show --ext-diff";
+        lp = "log -p --ext-diff";
       };
 
       extraConfig = {
         init.defaultBranch = "main";
+        diff.external = lib.getExe pkgs.difftastic;
         pull.rebase = false;
         rerere.enabled = true;
       };
@@ -167,6 +174,6 @@ in {
       ];
     };
 
-    home.packages = [pkgs.ripgrep];
+    home.packages = [pkgs.ripgrep pkgs.difftastic];
   };
 }
