@@ -8,6 +8,7 @@ in
   stdenvNoCC.mkDerivation (self: {
     pname = "rofiemoji-rofiunicode";
     version = "${source.rev}";
+    strictDeps = true;
 
     src = fetchgit {
       inherit (source) rev url sha256;
