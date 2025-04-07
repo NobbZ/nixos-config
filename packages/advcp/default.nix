@@ -7,6 +7,7 @@
 stdenv.mkDerivation rec {
   name = "advcp";
   version = "9.1";
+  strictDeps = true;
 
   src = fetchurl {
     name = "source-${name}-${version}.tar.xz";
