@@ -49,6 +49,8 @@
 in {
   options.profiles.base = {
     enable = lib.mkEnableOption "The base profile, should be always enabled";
+
+    needsGL = lib.mkEnableOption "nix-gl wrappers";
   };
 
   config = lib.mkIf cfg.enable {
