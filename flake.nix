@@ -36,6 +36,7 @@
 
     nvim.url = "github:nobbz/nobbz-vim";
     nvim.inputs.parts.follows = "parts";
+    nvim.inputs.nixpkgs.follows = "nixpkgs";
 
     switcher.url = "github:nobbz/nix-switcher?ref=main";
     switcher.inputs.nixpkgs.follows = "nixpkgs";
@@ -52,6 +53,9 @@
     # a libgit2 in the current version fails to build with the nix provided patches.
     # therefore using upstreams pin for now.
     # nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    nix-gl.url = "github:nix-community/nixgl";
+    nix-gl.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";

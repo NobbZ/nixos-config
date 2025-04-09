@@ -2,6 +2,7 @@
   self,
   nix,
   nvim,
+  nix-gl,
   ...
 }: {
   config,
@@ -49,6 +50,8 @@
 in {
   options.profiles.base = {
     enable = lib.mkEnableOption "The base profile, should be always enabled";
+
+    needsGL = lib.mkEnableOption "nix-gl wrappers";
   };
 
   config = lib.mkIf cfg.enable {
@@ -98,8 +101,18 @@ in {
               | sed -E 's/([0-9])([A-Za-z])/\1 \2/')" \
             "$(numfmt --to=none --format="%'f" ''${saved})"
         '';
+      neovide =
+        if cfg.needsGL
+        then
+          pkgs.writeShellScriptBin nvim.packages.x86_64-linux.neovide.meta.mainProgram ''
+            exec ${lib.getExe nix-gl.packages.x86_64-linux.nixGLIntel} ${lib.getExe nvim.packages.x86_64-linux.neovide}
+          ''
+        else nvim.packages.x86_64-linux.neovide;
     in
-      [optisave pkgs.departure-mono pkgs.hydra-check nvim.packages.x86_64-linux.default] ++ lib.optionals pkgs.stdenv.isLinux [pkgs.dconf];
+      lib.mkMerge [
+        [optisave pkgs.departure-mono pkgs.hydra-check nvim.packages.x86_64-linux.neovim neovide]
+        (lib.mkIf pkgs.stdenv.isLinux [pkgs.dconf])
+      ];
 
     # dconf.enable = lib.mkMerge [
     #   (lib.mkIf pkgs.stdenv.isLinux true)
