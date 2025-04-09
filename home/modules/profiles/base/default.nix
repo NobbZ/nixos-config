@@ -105,7 +105,7 @@ in {
         if cfg.needsGL
         then
           pkgs.writeShellScriptBin nvim.packages.x86_64-linux.neovide.meta.mainProgram ''
-            ${lib.getExe nix-gl.packages.x86_64-linux.nixGLIntel} ${lib.getExe nvim.packages.x86_64-linux.neovide}
+            exec ${lib.getExe nix-gl.packages.x86_64-linux.nixGLIntel} ${lib.getExe nvim.packages.x86_64-linux.neovide}
           ''
         else nvim.packages.x86_64-linux.neovide;
     in
