@@ -14,6 +14,7 @@
 in {
   nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "obsidian" "slack"];
   nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0"];
+  profiles.base.needsGL = true;
 
   nix.checkConfig = false;
   nix.settings.extra-experimental-features = ["flakes" "nix-command"];
