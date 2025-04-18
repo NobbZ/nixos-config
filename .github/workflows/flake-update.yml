@@ -7,7 +7,7 @@ on:
 
 jobs:
   generate_matrix:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     outputs:
       packages: ${{ steps.gen_packages.outputs.packages }}
       checks: ${{ steps.gen_checks.outputs.checks }}
@@ -39,7 +39,7 @@ jobs:
           printf "::set-output name=checks::%s" "$checks"
 
   update_flake:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
@@ -68,7 +68,7 @@ jobs:
           path: flake.lock
 
   build_flake:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: [generate_matrix, update_flake]
     strategy:
       fail-fast: false
@@ -114,7 +114,7 @@ jobs:
         run: nix build .#${{ matrix.package }}
 
   build_checks:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: [generate_matrix, update_flake]
     strategy:
       fail-fast: false
@@ -150,7 +150,7 @@ jobs:
         run: nix build .#checks.x86_64-linux.${{ matrix.check }} --no-link
 
   check_flake:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: [update_flake]
     continue-on-error: true
     steps:
@@ -177,7 +177,7 @@ jobs:
           nix flake check --keep-going
 
   push_update:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     permissions: write-all
     needs: [update_flake, build_flake, build_checks, check_flake]
     steps:
