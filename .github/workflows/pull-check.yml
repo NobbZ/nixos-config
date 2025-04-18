@@ -5,7 +5,7 @@ on:
 
 jobs:
   generate_matrix:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     outputs:
       packages: ${{ steps.gen_packages.outputs.packages }}
       checks: ${{ steps.gen_checks.outputs.checks }}
@@ -37,7 +37,7 @@ jobs:
           printf "checks=%s" "$checks" >> $GITHUB_OUTPUT
 
   build_flake:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: [generate_matrix]
     strategy:
       fail-fast: false
@@ -71,7 +71,7 @@ jobs:
         run: nix build .#${{ matrix.package }}
 
   build_checks:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     needs: [generate_matrix]
     strategy:
       fail-fast: false
@@ -97,7 +97,7 @@ jobs:
         run: nix build .#checks.x86_64-linux.${{ matrix.check }} --no-link
 
   check_flake:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     continue-on-error: true
     steps:
       - name: Clone repository
