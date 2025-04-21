@@ -515,11 +515,11 @@
         "wrapper-manager": "wrapper-manager"
       },
       "locked": {
-        "lastModified": 1744918312,
-        "narHash": "sha256-RB2wIZxR/noIAm7wFIrMQaVR4f+uVby0OdxpnDSMwbc=",
+        "lastModified": 1745241351,
+        "narHash": "sha256-BtG1Lztyq1+gnqXBvsdIWDJwUjeu7ukFU5STzcwaloQ=",
         "owner": "nobbz",
         "repo": "nobbz-vim",
-        "rev": "a7121ea95eedfef5f219d6c4b5b5dcfe7c79a77d",
+        "rev": "65ff3fca60e7642964e70739ecca4bbcb16b0a52",
         "type": "github"
       },
       "original": {
