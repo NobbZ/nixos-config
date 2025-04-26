@@ -9,7 +9,6 @@
     "programs/eza" = ./programs/eza;
     "programs/ghostty" = ./programs/ghostty;
     "programs/nixpkgs" = ./programs/nixpkgs;
-    "programs/openshift" = ./programs/openshift;
     "programs/p10k" = ./programs/p10k;
     "programs/rbw" = ./programs/rbw;
     "programs/wezterm" = ./programs/wezterm;
