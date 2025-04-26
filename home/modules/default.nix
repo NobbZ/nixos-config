@@ -15,7 +15,6 @@
     "programs/wezterm" = ./programs/wezterm;
 
     "services/insync" = ./services/insync;
-    "services/restic" = ./services/restic;
     "services/rustic" = ./services/rustic;
 
     "misc/awesome" = ./misc/awesome;
