@@ -19,6 +19,9 @@ in {
 
   services.tailscale.enable = true;
 
+  security.pam.services.i3lock.enable = true;
+  security.pam.services.i3lock-color.enable = true;
+
   sops.age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
   sops.defaultSopsFile = "${self}/secrets/mimas/default.yaml";
 
