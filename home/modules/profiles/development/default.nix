@@ -13,6 +13,18 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    programs.jujutsu = {
+      enable = true;
+      settings = {
+        user = {
+          name = config.programs.git.userName;
+          email = config.programs.git.userEmail;
+        };
+
+        ui.diff.tool = [config.programs.git.extraConfig.diff.external "$left" "$right"];
+      };
+    };
+
     programs.gh.enable = true;
     programs.git = {
       enable = true;
