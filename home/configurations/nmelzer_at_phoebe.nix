@@ -68,7 +68,7 @@ in {
 
   services.playerctld.enable = true;
 
-  home.file."${config.gtk.gtk2.configLocation}".force = true;
+  gtk.gtk2.force = true;
 
   programs.ssh.includes = [
     config.sops.secrets.ssh.path
