@@ -27,7 +27,7 @@
     wantedBy = ["graphical-session.target"];
     script = ''
       motd=$(cat /etc/gui-motd)
-      ${pkgs.gnome.zenity}/bin/zenity --info --text="$motd" --no-wrap --title="Short usage notes"
+      ${pkgs.zenity}/bin/zenity --info --text="$motd" --no-wrap --title="Short usage notes"
     '';
     serviceConfig = {
       Type = "simple";
