@@ -25,7 +25,7 @@ jobs:
             experimental-features = nix-command flakes
             substituters = https://cache.nixos.org/ https://nix-community.cachix.org
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
-          install_url: https://releases.nixos.org/nix/nix-2.25.0/install
+          install_url: https://releases.nixos.org/nix/nix-2.28.0/install
       - name: Generate flake.json
         run: |
           nix flake show --json > flake.json
@@ -54,7 +54,7 @@ jobs:
             experimental-features = nix-command flakes
             substituters = https://cache.nixos.org/ https://nix-community.cachix.org
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
-          install_url: https://releases.nixos.org/nix/nix-2.25.0/install
+          install_url: https://releases.nixos.org/nix/nix-2.28.0/install
       - name: Set up git
         run: |
           git config user.email gitbot@nobbz.dev
@@ -99,7 +99,7 @@ jobs:
             experimental-features = nix-command flakes
             substituters = https://cache.nixos.org/ https://nix-community.cachix.org
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
-          install_url: https://releases.nixos.org/nix/nix-2.25.0/install
+          install_url: https://releases.nixos.org/nix/nix-2.28.0/install
       - name: Set up cachix
         uses: cachix/cachix-action@master # pathsToPush, please update once we have v11!
         with:
@@ -135,7 +135,7 @@ jobs:
             experimental-features = nix-command flakes
             substituters = https://cache.nixos.org/ https://nix-community.cachix.org
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
-          install_url: https://releases.nixos.org/nix/nix-2.25.0/install
+          install_url: https://releases.nixos.org/nix/nix-2.28.0/install
       - name: Set up cachix
         uses: cachix/cachix-action@master # pathsToPush, please update once we have v11!
         with:
@@ -167,7 +167,7 @@ jobs:
             experimental-features = nix-command flakes
             substituters = https://cache.nixos.org/ https://nix-community.cachix.org
             trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
-          install_url: https://releases.nixos.org/nix/nix-2.25.0/install
+          install_url: https://releases.nixos.org/nix/nix-2.28.0/install
       - name: Restore flake.lock
         uses: actions/download-artifact@v4
         with:
