@@ -3,6 +3,8 @@
     parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
 
+      debug = true;
+
       _module.args.npins = import ./npins;
 
       imports = [
@@ -20,6 +22,50 @@
 
         ./packages
       ];
+
+      perSystem = {
+        pkgs,
+        self',
+        ...
+      }: {
+        apps.installer.program = let
+          isoPath = "iso/${self'.packages.installer-iso.isoName}";
+        in
+          pkgs.writeShellScriptBin "installer" ''
+            image=disk.qcow2
+            isoPath=$(mktemp -d)/result
+            isoFull=$isoPath/${isoPath}
+
+            test -f $image || ${pkgs.qemu}/bin/qemu-img create -f qcow2 $image 50G
+
+            nom build .#installer-iso -o $isoPath
+
+            ${pkgs.qemu}/bin/qemu-system-x86_64 \
+              -drive file=$image,if=virtio \
+              -cdrom $isoPath/${isoPath} \
+              -m 8G \
+              -smp 2 \
+              -enable-kvm \
+              -netdev user,id=net0 \
+              -device virtio-net,netdev=net0 \
+              -device virtio-vga \
+              -bios ${pkgs.OVMF.fd}/FV/OVMF.fd
+
+            du -h $isoFull
+            rm -f $isoPath
+          '';
+
+        apps.awesome-preview.program = let
+          rc_lua = pkgs.runCommandNoCC "awesomerc.lua" {} ''
+            substitute ${./packages/installer/awesomerc.lua} $out \
+              --subst-var-by FILE_PATH_WALLPAPER ${./packages/installer/nix-glow-black.png} \
+              --subst-var-by NIX_FLAKE_SVG       ${./packages/installer/nix-flake.svg}
+          '';
+        in
+          pkgs.writeShellScriptBin "awesome-preview" ''
+            ${pkgs.xorg.xorgserver}/bin/Xephyr :5 & sleep 1 ; DISPLAY=:5 ${self'.packages.awesome}/bin/awesome --config ${rc_lua}
+          '';
+      };
 
       flake = {
         mixedModules = import ./mixed inputs;
