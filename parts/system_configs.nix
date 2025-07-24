@@ -91,6 +91,7 @@ in {
               {documentation.man.enable = true;}
               {documentation.man.generateCaches = true;}
               {nixpkgs.hostPlatform.system = config.system;}
+              {programs.command-not-found.enable = true;}
               inputs.sops-nix.nixosModules.sops
             ]
             ++ config.modules
