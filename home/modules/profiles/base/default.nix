@@ -231,7 +231,7 @@ in {
 
         autocd = true;
 
-        dotDir = "${config.home.homeDirectory}.config/zsh";
+        dotDir = "${config.home.homeDirectory}/.config/zsh";
 
         defaultKeymap = "emacs";
 
