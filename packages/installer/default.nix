@@ -15,7 +15,6 @@ nixosSystem {
     ./base.nix
     ./lvm.nix
     ./motd.nix
-    ./neovim.nix
     ./network.nix
     ./sddm.nix
     ./xterm.nix

@@ -61,20 +61,10 @@ local myawesomemenu = {
     { "quit",        function() awesome.quit() end },
 }
 
--- Read the menu entries from generated file
-local menu_entries = require("menu_entries")
-local menu_items = {
-    { "awesome",  myawesomemenu, beautiful.awesome_icon },
-    { "terminal", terminal,      "@TERMINAL_ICON_SVG@" },
-}
-
-
-for _, v in pairs(menu_entries) do
-    table.insert(menu_items, v)
-end
-
 local mymainmenu = awful.menu({
-    items = menu_items,
+    items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+        { "open terminal", terminal }
+    }
 })
 
 local mylauncher = awful.widget.launcher({
@@ -138,7 +128,20 @@ local mytextclock = wibox.widget.textclock()
 screen.connect_signal("request::desktop_decoration", function(s)
     -- Each screen has its own tag table.
     local svgFillColor = "#d3d3d3"
+    local svgBase      = [[<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">]]
     local svgEnd       = [[</svg>]]
+
+    local terminalSvg  = svgBase ..
+        [[<path fill="]] ..
+        svgFillColor ..
+        [[" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16c1.1 0 2-.9 2-2V6a2 2 0 0 0-2-2zm0 14H4V8h16v10zm-2-1h-6v-2h6v2zM7.5 17l-1.41-1.41L8.67 13l-2.59-2.59L7.5 9l4 4l-4 4z"/>]] ..
+        svgEnd
+
+    local globeSvg     = svgBase ..
+        [[<path fill="]] ..
+        svgFillColor ..
+        [[" d="M16.36 14c.08-.66.14-1.32.14-2c0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2c0-.68.06-1.35.16-2h4.68c.09.65.16 1.32.16 2c0 .68-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.923 7.923 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8.008 8.008 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2c0 .68.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.65 15.65 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2Z"/>]] ..
+        svgEnd
 
     local partedSvg    = [[<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">]] ..
         [[<path fill="]] ..
@@ -151,21 +154,21 @@ screen.connect_signal("request::desktop_decoration", function(s)
     local first        = awful.tag.add("1", {
         screen    = s,
         icon_only = true,
-        icon      = "@TERMINAL_ICON_SVG@",
+        icon      = terminalSvg,
         layout    = awful.layout.layouts[1],
     })
 
     awful.tag.add("2", {
         screen    = s,
         icon_only = true,
-        icon      = "@GLOBE_ICON_SVG@",
+        icon      = globeSvg,
         layout    = awful.layout.layouts[1],
     })
 
     awful.tag.add("3", {
         screen    = s,
         icon_only = true,
-        icon      = "@PARTED_ICON_SVG@",
+        icon      = partedSvg,
         layout    = awful.layout.layouts[1],
     })
 
