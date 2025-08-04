@@ -410,16 +410,12 @@
       "locked": {
         "lastModified": 1723634395,
         "narHash": "sha256-K1ohl/M/HWXqieqNtsF39FbWqtaNX/mUgulrqcOO1KU=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "57d0d4a8f3025e2b902d2b4403bcece26ad1ea74",
-        "type": "github"
+        "type": "tarball",
+        "url": "http://github.com/nixos/nixpkgs/archive/57d0d4a8f302.tar.gz"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "57d0d4a8f302",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "tarball",
+        "url": "http://github.com/nixos/nixpkgs/archive/57d0d4a8f302.tar.gz"
       }
     },
     "nixpkgs-regression": {
