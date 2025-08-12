@@ -13,7 +13,7 @@ jobs:
       checks: ${{ steps.gen_checks.outputs.checks }}
     steps:
       - name: Clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           token: "${{ secrets.TEST_TOKEN }}"
       - name: Install nix
@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           token: "${{ secrets.TEST_TOKEN }}"
       - name: Install nix
@@ -87,7 +87,7 @@ jobs:
           remove-android: true
           remove-haskell: true
       - name: Clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           token: "${{ secrets.TEST_TOKEN }}"
       - name: Install nix
@@ -123,7 +123,7 @@ jobs:
         check: ${{fromJson(needs.generate_matrix.outputs.checks)}}
     steps:
       - name: Clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           token: "${{ secrets.TEST_TOKEN }}"
       - name: Install nix
@@ -155,7 +155,7 @@ jobs:
     continue-on-error: true
     steps:
       - name: Clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           token: "${{ secrets.TEST_TOKEN }}"
       - name: Install nix
@@ -182,7 +182,7 @@ jobs:
     needs: [update_flake, build_flake, build_checks, check_flake]
     steps:
       - name: Clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           token: "${{ secrets.TEST_TOKEN }}"
       - name: Restore flake.lock
