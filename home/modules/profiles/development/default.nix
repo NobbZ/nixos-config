@@ -143,8 +143,15 @@ in {
         init.defaultBranch = "main";
         diff.external = lib.getExe pkgs.difftastic;
         pull.rebase = false;
+        merge.conflictStyle = "diff3";
+        merge.mergiraf.name = "mergiraf";
+        merge.mergiraf.driver = "mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L";
         rerere.enabled = true;
       };
+
+      attributes = [
+        "* merge=mergiraf"
+      ];
 
       ignores = [
         # IntelliJ files and folders
