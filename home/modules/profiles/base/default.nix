@@ -153,8 +153,7 @@ in {
 
       ssh = {
         enable = true;
-        compression = true;
-        controlMaster = "auto";
+        enableDefaultConfig = false;
 
         matchBlocks = {
           "*.internal.nobbz.dev" = dag.entryAfter zerotierHosts {
@@ -197,6 +196,16 @@ in {
 
           "github.com" = {
             identityFile = "~/.ssh/github";
+          };
+
+          "*" = {
+            compression = true;
+            forwardAgent = false;
+            addKeysToAgent = "no";
+            serverAliveInterval = 0;
+            serverAliveCountMax = 3;
+            hashKnownHosts = false;
+            userKnownHostsFile = "${config.home.homeDirectory}/.ssh/known_hosts";
           };
         };
       };
