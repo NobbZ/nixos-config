@@ -110,6 +110,9 @@ in {
   services.ratbagd.enable = true;
 
   programs.partition-manager.enable = true;
+
+  programs.kdeconnect.enable = true;
+
   # security.polkit.enable = true;
 
   # services.hydra = {
