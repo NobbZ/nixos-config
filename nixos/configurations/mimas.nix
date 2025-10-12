@@ -150,7 +150,7 @@ in {
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0666"
   '';
 
-  services.transmission.enable = true;
+  # services.transmission.enable = true;
   systemd.services.transmission.after = ["var-lib-transmission.mount"];
 
   programs = {
