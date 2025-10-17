@@ -87,6 +87,7 @@ in {
           execer = [
             # TODO: Make this `might` or `can` in the long run
             "cannot:${pkgs.fd}/bin/fd"
+            "cannot:${pkgs.pv}/bin/pv"
           ];
         } ''
           count=$(fd . /nix/store/.links/ | pv -l | wc -l)
