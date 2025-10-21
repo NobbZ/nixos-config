@@ -639,11 +639,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1760642176,
-        "narHash": "sha256-+lpYrr/x29OK4ZUgrNz5Oi/fEZLWRM9arvbpnu6JVyA=",
+        "lastModified": 1761073789,
+        "narHash": "sha256-GJWtXs75t+1PcNUyfDz7ajGfAV9p7Svuss1trcwvJaQ=",
         "owner": "nobbz",
         "repo": "nix-switcher",
-        "rev": "83ba5d7d3ba40b946cf74e12329d44a3d197a9de",
+        "rev": "866fa9be406e3857a378a9aca87acf97a32a0ddc",
         "type": "github"
       },
       "original": {
