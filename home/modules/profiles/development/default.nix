@@ -17,11 +17,10 @@ in {
       enable = true;
       settings = {
         user = {
-          name = config.programs.git.userName;
-          email = config.programs.git.userEmail;
+          inherit (config.programs.git.settings.user) name email;
         };
 
-        ui.diff.tool = [config.programs.git.extraConfig.diff.external "$left" "$right"];
+        ui.diff.tool = [config.programs.git.settings.diff.external "$left" "$right"];
       };
     };
 
@@ -29,10 +28,10 @@ in {
     programs.git = {
       enable = true;
 
-      userName = "Norbert Melzer";
-      userEmail = "timmelzer@gmail.com";
+      settings.user.name = "Norbert Melzer";
+      settings.user.email = "timmelzer@gmail.com";
 
-      aliases = let
+      settings.alias = let
         mkFixupAlias = command:
           pkgs.resholve.writeScript "git-${command}" {
             inputs = builtins.attrValues {inherit (pkgs) git fzf ripgrep;};
@@ -139,7 +138,7 @@ in {
         lp = "log -p --ext-diff";
       };
 
-      extraConfig = {
+      settings = {
         init.defaultBranch = "main";
         diff.external = lib.getExe pkgs.difftastic;
         pull.rebase = false;
