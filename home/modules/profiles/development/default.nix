@@ -20,7 +20,7 @@ in {
           inherit (config.programs.git.settings.user) name email;
         };
 
-        ui.diff.tool = [config.programs.git.settings.diff.external "$left" "$right"];
+        ui.diff-formatter = [config.programs.git.settings.diff.external "--color=always" "$left" "$right"];
       };
     };
 
