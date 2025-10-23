@@ -46,13 +46,7 @@ jobs:
         package: ${{fromJson(needs.generate_matrix.outputs.packages)}}
     steps:
       - name: Free diskspace
-        uses: easimon/maximize-build-space@master
-        with:
-          build-mount-path: /nix
-          root-reserve-mb: 5120
-          remove-dotnet: true
-          remove-android: true
-          remove-haskell: true
+        uses: wimpysworld/nothing-but-nix@main
       - name: Clone repository
         uses: actions/checkout@v5
         with:
