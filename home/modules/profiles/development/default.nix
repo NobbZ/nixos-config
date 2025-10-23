@@ -21,6 +21,7 @@ in {
         };
 
         ui.diff-formatter = [config.programs.git.settings.diff.external "--color=always" "$left" "$right"];
+        ui.paginate = "never";
       };
     };
 
