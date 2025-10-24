@@ -75,6 +75,9 @@ jobs:
       max-parallel: 5
       matrix:
         package: ${{fromJson(needs.generate_matrix.outputs.packages)}}
+        exclude:
+          # the ISO is known to be too large
+          - package: installer-iso
     steps:
       # - name: Prepare store folder
       #   run: sudo mkdir -p /nix
