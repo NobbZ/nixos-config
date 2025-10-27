@@ -62,7 +62,7 @@ jobs:
       - name: Update the flake
         run: nix flake update
       - name: Store flake.lock
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: flake_lock
           path: flake.lock
