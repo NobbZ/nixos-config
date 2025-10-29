@@ -18,6 +18,7 @@ in {
   ];
 
   services.tailscale.enable = true;
+  programs.mosh.enable = true;
 
   security.pam.services.i3lock.enable = true;
   security.pam.services.i3lock-color.enable = true;
