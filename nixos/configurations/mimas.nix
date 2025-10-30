@@ -162,7 +162,7 @@ in {
   };
 
   hardware.graphics.enable = true;
-  hardware.graphics.extraPackages = [pkgs.vaapiIntel];
+  hardware.graphics.extraPackages = [pkgs.intel-vaapi-driver];
 
   services.gitea = {
     enable = true;
