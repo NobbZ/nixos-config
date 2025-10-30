@@ -6,12 +6,12 @@
 }: let
   self' = self.packages.x86_64-linux;
 
-  common_rasi = pkgs.runCommandNoCC "common.rasi" {preferLocalBuild = true;} ''
+  common_rasi = pkgs.runCommand "common.rasi" {preferLocalBuild = true;} ''
     substitute ${./common.rasi} $out \
       --subst-var-by TERMINAL ${lib.getExe pkgs.wezterm}
   '';
 
-  catppuccin = pkgs.runCommandNoCC "catppuccin.rasi" {preferLocalBuild = true;} ''
+  catppuccin = pkgs.runCommand "catppuccin.rasi" {preferLocalBuild = true;} ''
     substitute ${npins.catppuccin-rofi}/catppuccin-default.rasi $out \
       --replace-fail '"catppuccin-mocha"' '"${npins.catppuccin-rofi}/themes/catppuccin-mocha.rasi"'
   '';
@@ -37,10 +37,10 @@
   wrapper = rofi: config:
     pkgs.callPackage ({
       rofi,
-      runCommandNoCC,
+      runCommand,
       makeWrapper,
     }:
-      runCommandNoCC "rofi" {
+      runCommand "rofi" {
         nativeBuildInputs = [makeWrapper];
         inherit (rofi) meta;
       } ''

@@ -3,7 +3,7 @@
   self',
   ...
 }: let
-  rc_lua = pkgs.runCommandNoCC "awesomerc.lua" {} ''
+  rc_lua = pkgs.runCommand "awesomerc.lua" {} ''
     substitute ${./awesomerc.lua} $out \
       --subst-var-by FILE_PATH_WALLPAPER ${./nix-glow-black.png} \
       --subst-var-by NIX_FLAKE_SVG       ${./nix-flake.svg}

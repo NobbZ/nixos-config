@@ -56,7 +56,7 @@
           '';
 
         apps.awesome-preview.program = let
-          rc_lua = pkgs.runCommandNoCC "awesomerc.lua" {} ''
+          rc_lua = pkgs.runCommand "awesomerc.lua" {} ''
             substitute ${./packages/installer/awesomerc.lua} $out \
               --subst-var-by FILE_PATH_WALLPAPER ${./packages/installer/nix-glow-black.png} \
               --subst-var-by NIX_FLAKE_SVG       ${./packages/installer/nix-flake.svg}
@@ -85,7 +85,7 @@
     nvim.inputs.nixpkgs.follows = "nixpkgs";
 
     switcher.url = "github:nobbz/nix-switcher?ref=main";
-    switcher.inputs.nixpkgs.follows = "nixpkgs";
+    # switcher.inputs.nixpkgs.follows = "nixpkgs";
     switcher.inputs.flake-parts.follows = "parts";
 
     parts.url = "github:hercules-ci/flake-parts";
