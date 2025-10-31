@@ -1,116 +1,124 @@
-name: PullRequest checker
-
-on:
-  pull_request:
-
 jobs:
-  generate_matrix:
+  build_checks:
+    needs:
+      - generate_matrix
     runs-on: ubuntu-24.04
-    outputs:
-      packages: ${{ steps.gen_packages.outputs.packages }}
-      checks: ${{ steps.gen_checks.outputs.checks }}
     steps:
-      - name: Clone repository
+      - name: Clone Repository
         uses: actions/checkout@v5
         with:
-          token: "${{ secrets.TEST_TOKEN }}"
+          token: ${{ secrets.TEST_TOKEN }}
       - name: Install nix
         uses: cachix/install-nix-action@v31
         with:
-          extra_nix_config: |
+          extra_nix_config: |-
             auto-optimise-store = true
             access-tokens = github.com=${{ secrets.TEST_TOKEN }}
             experimental-features = nix-command flakes
-            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://nobbz.cachix.org
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= nobbz.cachix.org-1:fODxpqE4ni+pFDSuj2ybYZbMUjmxNTjA7rtUNHW61Ok=
-          install_url: https://releases.nixos.org/nix/nix-2.28.0/install
-      - name: Generate flake.json
-        run: |
-          nix flake show --json > flake.json
-      - id: gen_packages
-        run: |
-          packages=$(jq -c '.packages."x86_64-linux" | keys' < flake.json)
-          printf "packages=%s" "$packages" >> $GITHUB_OUTPUT
-      - id: gen_checks
-        run: |
-          checks=$(jq -c '.checks."x86_64-linux" | keys' < flake.json)
-          printf "checks=%s" "$checks" >> $GITHUB_OUTPUT
-
-  build_flake:
-    runs-on: ubuntu-24.04
-    needs: [generate_matrix]
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+          install_url: https://releases.nixos.org/nix/nix-2.32.1/install
+      - name: Set up cachix
+        uses: cachix/cachix-action@v16
+        with:
+          name: nobbz
+          signingKey: ${{ secrets.CACHIX_SIGNING_KEY }}
+          skipPush: true
+      - name: Build the check
+        run: nix build .#checks.x86_64-linux.${{ matrix.check }} --no-link
     strategy:
       fail-fast: false
-      max-parallel: 5
       matrix:
-        package: ${{fromJson(needs.generate_matrix.outputs.packages)}}
-        exclude:
-          # the ISO is known to be too large
-          - package: installer-iso
+        check: ${{fromJson(needs.generate_matrix.outputs.checks)}}
+      max-parallel: 5
+  build_flake:
+    needs:
+      - generate_matrix
+    runs-on: ubuntu-24.04
     steps:
       - name: Free diskspace
         uses: wimpysworld/nothing-but-nix@main
-      - name: Clone repository
+      - name: Clone Repository
         uses: actions/checkout@v5
         with:
-          token: "${{ secrets.TEST_TOKEN }}"
+          token: ${{ secrets.TEST_TOKEN }}
       - name: Install nix
         uses: cachix/install-nix-action@v31
         with:
-          extra_nix_config: |
+          extra_nix_config: |-
             auto-optimise-store = true
             access-tokens = github.com=${{ secrets.TEST_TOKEN }}
             experimental-features = nix-command flakes
-            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://nobbz.cachix.org
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= nobbz.cachix.org-1:fODxpqE4ni+pFDSuj2ybYZbMUjmxNTjA7rtUNHW61Ok=
-          install_url: https://releases.nixos.org/nix/nix-2.28.0/install
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+          install_url: https://releases.nixos.org/nix/nix-2.32.1/install
+      - name: Set up cachix
+        uses: cachix/cachix-action@v16
+        with:
+          name: nobbz
+          pathsToPush: result
+          signingKey: ${{ secrets.CACHIX_SIGNING_KEY }}
       - name: Build everything
         run: nix build .#${{ matrix.package }}
-
-  build_checks:
-    runs-on: ubuntu-24.04
-    needs: [generate_matrix]
     strategy:
       fail-fast: false
-      max-parallel: 5
       matrix:
-        check: ${{fromJson(needs.generate_matrix.outputs.checks)}}
-    steps:
-      - name: Clone repository
-        uses: actions/checkout@v5
-        with:
-          token: "${{ secrets.TEST_TOKEN }}"
-      - name: Install nix
-        uses: cachix/install-nix-action@v31
-        with:
-          extra_nix_config: |
-            auto-optimise-store = true
-            access-tokens = github.com=${{ secrets.TEST_TOKEN }}
-            experimental-features = nix-command flakes
-            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://nobbz.cachix.org
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= nobbz.cachix.org-1:fODxpqE4ni+pFDSuj2ybYZbMUjmxNTjA7rtUNHW61Ok=
-          install_url: https://releases.nixos.org/nix/nix-2.28.0/install
-      - name: Build everything
-        run: nix build .#checks.x86_64-linux.${{ matrix.check }} --no-link
-
+        exclude:
+          - package: installer-iso
+        package: ${{fromJson(needs.generate_matrix.outputs.packages)}}
+      max-parallel: 5
   check_flake:
-    runs-on: ubuntu-24.04
     continue-on-error: true
+    needs:
+      - generate_matrix
+    runs-on: ubuntu-24.04
     steps:
-      - name: Clone repository
+      - name: Clone Repository
         uses: actions/checkout@v5
         with:
-          token: "${{ secrets.TEST_TOKEN }}"
+          token: ${{ secrets.TEST_TOKEN }}
       - name: Install nix
         uses: cachix/install-nix-action@v31
         with:
-          extra_nix_config: |
+          extra_nix_config: |-
             auto-optimise-store = true
             access-tokens = github.com=${{ secrets.TEST_TOKEN }}
             experimental-features = nix-command flakes
-            substituters = https://cache.nixos.org/ https://nix-community.cachix.org https://nobbz.cachix.org
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= nobbz.cachix.org-1:fODxpqE4ni+pFDSuj2ybYZbMUjmxNTjA7rtUNHW61Ok=
-          install_url: https://releases.nixos.org/nix/nix-2.28.0/install
-      - name: run the checks
-        run: |
-          nix flake check --keep-going
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+          install_url: https://releases.nixos.org/nix/nix-2.32.1/install
+      - name: Run generic check
+        run: nix flake check --keep-going
+  generate_matrix:
+    outputs:
+      checks: ${{ steps.gen_checks.outputs.checks }}
+      packages: ${{ steps.gen_packages.outputs.packages }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.TEST_TOKEN }}
+      - name: Install nix
+        uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |-
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.TEST_TOKEN }}
+            experimental-features = nix-command flakes
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+          install_url: https://releases.nixos.org/nix/nix-2.32.1/install
+      - name: Generate flake.json
+        run: nix flake show --json > flake.json
+      - id: gen_packages
+        run: |-
+          packages=$(jq -c '.packages."x86_64-linux" | keys' < flake.json)
+          printf "packages=%s" "$packages" >> "${GITHUB_OUTPUT}"
+      - id: gen_checks
+        run: |-
+          checks=$(jq -c '.checks."x86_64-linux" | keys' < flake.json)
+          printf "checks=%s" "$checks" >> "${GITHUB_OUTPUT}"
+name: Pull Request Checker
+"on":
+  pull_request: {}
