@@ -1,0 +1,16 @@
+jobs:
+  check_generated:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v5
+        with:
+          token: ${{ secrets.TEST_TOKEN }}
+      - name: Install Cue
+        uses: cue-lang/setup-cue@v1.0.1
+        with:
+          version: v0.14.2
+      - run: make check
+name: Check generated files
+"on":
+  pull_request: {}

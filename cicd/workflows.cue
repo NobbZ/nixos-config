@@ -14,6 +14,12 @@ _cloneRepo: githubactions.#Step & {
 	with: token: "${{ secrets.TEST_TOKEN }}"
 }
 
+_installCue: githubactions.#Step & {
+	name: "Install Cue"
+	uses: "cue-lang/setup-cue@v1.0.1"
+	with: version: "v0.14.2"
+}
+
 _installNix: githubactions.#Step & {
 	name: "Install nix"
 	uses: "cachix/install-nix-action@v31"
