@@ -1,7 +1,5 @@
-# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
-
 reviews:
   tools:
     github-checks:
       enabled: true
-      timeout_ms: 900000 # 15 minutes
+      timeout_ms: 900000
