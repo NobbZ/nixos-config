@@ -45,18 +45,9 @@
     "${pkgs.networkmanagerapplet}/bin/nm-applet"
   ];
 
-  ## TODO: Reintroduce if https://github.com/nix-community/home-manager/issues/8125 gets a proper fix.
-  # systemd.user.tmpfiles.rules = [
-  #   "d ${config.home.homeDirectory}/tmp 700 ${config.home.username} users 14d"
-  # ];
-
-  ## TODO: Remove if https://github.com/nix-community/home-manager/issues/8125 gets a proper fix.
-  systemd.user.tmpfiles.settings.tmp.rules.d."${config.home.homeDirectory}/tmp" = {
-    mode = "700";
-    user = "${config.home.username}";
-    group = "users";
-    age = "14d";
-  };
+  systemd.user.tmpfiles.rules = [
+    "d ${config.home.homeDirectory}/tmp 700 ${config.home.username} users 14d"
+  ];
 
   services = {
     keybase.enable = true;
