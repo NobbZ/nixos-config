@@ -15,6 +15,8 @@
 
   dconf.enable = true;
 
+  gtk.gtk2.force = true;
+
   home.packages = builtins.attrValues {
     inherit (pkgs) keybase-gui freerdp keepassxc nix-output-monitor discord;
     inherit (pkgs) obsidian;
