@@ -17,7 +17,7 @@ in {
       type = lib.types.package;
       default = let
         ipkgs = import nixpkgs-insync-v3 {
-          inherit (pkgs) system;
+          inherit (pkgs.stdenv.hostPlatform) system;
           inherit (config.nixpkgs) config;
         };
       in

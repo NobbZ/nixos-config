@@ -10,7 +10,7 @@
 }: let
   sshConfigPath = "${config.home.homeDirectory}/.ssh";
   inherit (lib.hm) dag;
-  spkgs = self.packages.${pkgs.system};
+  spkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
 in {
   nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "obsidian" "slack"];
   nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0"];
@@ -19,7 +19,7 @@ in {
   nix.checkConfig = false;
   nix.settings.extra-experimental-features = ["flakes" "nix-command"];
   nix.extraOptions = "!include ${config.sops.secrets."access-tokens".path}";
-  nix.package = nix.packages.${pkgs.system}.nix-cli;
+  nix.package = nix.packages.${pkgs.stdenv.hostPlatform.system}.nix-cli;
 
   activeProfiles = ["development"];
 

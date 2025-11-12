@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  self' = self.packages.${pkgs.system};
+  self' = self.packages.${pkgs.stdenv.hostPlatform.system};
 in {
   profiles.base.enable = true;
   fonts.fontconfig.enable = true;

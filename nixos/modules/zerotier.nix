@@ -11,7 +11,7 @@
   services.zerotierone.package =
     (import nixpkgs-pre-rust {
       inherit (config.nixpkgs) config;
-      inherit (pkgs) system;
+      inherit (pkgs.stdenv.hostPlatform) system;
     })
     .zerotierone;
 }

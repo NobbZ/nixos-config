@@ -3,7 +3,7 @@
   config,
   ...
 }: {
-  environment.systemPackages = [self.packages."${pkgs.system}".switcher];
+  environment.systemPackages = [self.packages."${pkgs.stdenv.hostPlatform.system}".switcher];
 
   security.sudo.extraRules = let
     storePrefix = "/nix/store/*";
