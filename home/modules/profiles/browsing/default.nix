@@ -14,6 +14,6 @@ in {
 
   config = lib.mkIf cfg.enable {
     nixpkgs.config = {google-chrome = {enableWideVine = true;};};
-    home.packages = with pkgs; [self.packages.${pkgs.system}.google-chrome lynx];
+    home.packages = with pkgs; [self.packages.${pkgs.stdenv.hostPlatform.system}.google-chrome lynx];
   };
 }
