@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Clone Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.TEST_TOKEN }}
       - name: Install nix
@@ -45,7 +45,7 @@ jobs:
       - name: Free diskspace
         uses: wimpysworld/nothing-but-nix@main
       - name: Clone Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.TEST_TOKEN }}
       - name: Install nix
@@ -85,7 +85,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Clone Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.TEST_TOKEN }}
       - name: Install nix
@@ -111,7 +111,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Clone Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.TEST_TOKEN }}
       - name: Install nix
@@ -144,7 +144,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Clone Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.TEST_TOKEN }}
       - name: Restore flake.lock
@@ -174,7 +174,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Clone Repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           token: ${{ secrets.TEST_TOKEN }}
       - name: Install nix
