@@ -47,7 +47,7 @@ workflows: updater: githubactions.#Workflow & {
 			},
 			{
 				name: "Store flake.lock"
-				uses: "actions/upload-artifact@v5"
+				uses: "actions/upload-artifact@v6"
 				with: {
 					name: "flake_lock"
 					path: "flake.lock"
