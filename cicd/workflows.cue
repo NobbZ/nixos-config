@@ -63,7 +63,7 @@ _cachix: _cachixBase & {
 
 _restoreFlakeLock: githubactions.#Step & {
 	name: "Restore flake.lock"
-	uses: "actions/download-artifact@v6"
+	uses: "actions/download-artifact@v7"
 	with: name: "flake_lock"
 }
 
