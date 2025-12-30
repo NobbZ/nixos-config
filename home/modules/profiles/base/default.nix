@@ -216,6 +216,7 @@ in {
 
         clock24 = true;
         historyLimit = 10000;
+        mouse = true;
         terminal = "tmux-256color";
 
         plugins = [
