@@ -11,7 +11,7 @@
       "submodules": false,
       "revision": "4f2bc5c10acaec4a1229db40f690e66284c109b9",
       "url": "https://github.com/awesomewm/awesome/archive/4f2bc5c10acaec4a1229db40f690e66284c109b9.tar.gz",
-      "hash": "0x308h0spkcfwvcr4s0gj7j11dw5w00qky6xyf227fkidcgc6lc1"
+      "hash": "sha256-gVHDHmtxuiOE8934iQHghbcQ5JEPaJLZ5o7NqwFEYHQ="
     },
     "catppuccin-bat": {
       "type": "Git",
@@ -24,7 +24,7 @@
       "submodules": false,
       "revision": "699f60fc8ec434574ca7451b444b880430319941",
       "url": "https://github.com/catppuccin/bat/archive/699f60fc8ec434574ca7451b444b880430319941.tar.gz",
-      "hash": "1lirgwgh2hnz6j60py19bbmhvgaqs7i6wf6702k6n83lgw4aixg9"
+      "hash": "sha256-6fWoCH90IGumAMc4buLRWL0N61op+AuMNN9CAR9/OdI="
     },
     "catppuccin-rofi": {
       "type": "Git",
@@ -37,7 +37,7 @@
       "submodules": false,
       "revision": "c24a212a6b07c2d45f32d01d7f10b4d88ddc9f45",
       "url": "https://github.com/catppuccin/rofi/archive/c24a212a6b07c2d45f32d01d7f10b4d88ddc9f45.tar.gz",
-      "hash": "0236bcwad4cmr1fhnywvcnzf7xdmhhwgrkrq8jdg8livhh1h8rjq"
+      "hash": "sha256-WGYEA4Q7UvSaRDjP/DiEtfXjvmWbewtdyJWRpjhbZgg="
     },
     "fzf-tab": {
       "type": "Git",
@@ -50,7 +50,7 @@
       "submodules": false,
       "revision": "6aced3f35def61c5edf9d790e945e8bb4fe7b305",
       "url": "https://github.com/Aloxaf/fzf-tab/archive/6aced3f35def61c5edf9d790e945e8bb4fe7b305.tar.gz",
-      "hash": "1brljd9744wg8p9v3q39kdys33jb03d27pd0apbg1cz0a2r1wqqi"
+      "hash": "sha256-EWMeslDgs/DWVaDdI9oAS46hfZtp4LHTRY8TclKTNK8="
     },
     "zsh-syntax-highlighting": {
       "type": "Git",
@@ -63,8 +63,8 @@
       "submodules": false,
       "revision": "5eb677bb0fa9a3e60f0eff031dc13926e093df92",
       "url": "https://github.com/zsh-users/zsh-syntax-highlighting/archive/5eb677bb0fa9a3e60f0eff031dc13926e093df92.tar.gz",
-      "hash": "1x33gk7hhp07jqq7yjvrsp2vmdbxmadlv3335ixx29bc6h8106r9"
+      "hash": "sha256-KRsQEDRsJdF7LGOMTZuqfbW6xdV5S38wlgdcCM98Y/Q="
     }
   },
-  "version": 5
+  "version": 7
 }
