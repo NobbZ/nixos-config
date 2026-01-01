@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "4f2bc5c10acaec4a1229db40f690e66284c109b9",
-      "url": "https://github.com/awesomewm/awesome/archive/4f2bc5c10acaec4a1229db40f690e66284c109b9.tar.gz",
-      "hash": "sha256-gVHDHmtxuiOE8934iQHghbcQ5JEPaJLZ5o7NqwFEYHQ="
+      "revision": "9475bb98f08dc051cda4f8f8c1f047cdd52baadc",
+      "url": "https://github.com/awesomewm/awesome/archive/9475bb98f08dc051cda4f8f8c1f047cdd52baadc.tar.gz",
+      "hash": "sha256-dTRx/0BuYY3judo5qY8MvbO5gVejwh44odcLBplj3LQ="
     },
     "catppuccin-bat": {
       "type": "Git",
@@ -22,9 +22,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "699f60fc8ec434574ca7451b444b880430319941",
-      "url": "https://github.com/catppuccin/bat/archive/699f60fc8ec434574ca7451b444b880430319941.tar.gz",
-      "hash": "sha256-6fWoCH90IGumAMc4buLRWL0N61op+AuMNN9CAR9/OdI="
+      "revision": "6810349b28055dce54076712fc05fc68da4b8ec0",
+      "url": "https://github.com/catppuccin/bat/archive/6810349b28055dce54076712fc05fc68da4b8ec0.tar.gz",
+      "hash": "sha256-lJapSgRVENTrbmpVyn+UQabC9fpV1G1e+CdlJ090uvg="
     },
     "catppuccin-rofi": {
       "type": "Git",
@@ -35,9 +35,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "c24a212a6b07c2d45f32d01d7f10b4d88ddc9f45",
-      "url": "https://github.com/catppuccin/rofi/archive/c24a212a6b07c2d45f32d01d7f10b4d88ddc9f45.tar.gz",
-      "hash": "sha256-WGYEA4Q7UvSaRDjP/DiEtfXjvmWbewtdyJWRpjhbZgg="
+      "revision": "71fb15577ccb091df2f4fc1f65710edbc61b5a53",
+      "url": "https://github.com/catppuccin/rofi/archive/71fb15577ccb091df2f4fc1f65710edbc61b5a53.tar.gz",
+      "hash": "sha256-81eeFjwM/haPjIEWkZPp1JSDwhWbWDAuKtWiCg7P9Q0="
     },
     "fzf-tab": {
       "type": "Git",
@@ -48,9 +48,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "6aced3f35def61c5edf9d790e945e8bb4fe7b305",
-      "url": "https://github.com/Aloxaf/fzf-tab/archive/6aced3f35def61c5edf9d790e945e8bb4fe7b305.tar.gz",
-      "hash": "sha256-EWMeslDgs/DWVaDdI9oAS46hfZtp4LHTRY8TclKTNK8="
+      "revision": "fac145167f7ec1861233c54de0c8900b09c650fe",
+      "url": "https://github.com/Aloxaf/fzf-tab/archive/fac145167f7ec1861233c54de0c8900b09c650fe.tar.gz",
+      "hash": "sha256-1Ior+/9e+M+Fc1u0uq5HhknlGRS96q7tazhEE6rmx9Y="
     },
     "zsh-syntax-highlighting": {
       "type": "Git",
