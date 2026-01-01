@@ -46,7 +46,7 @@
           .build
           .isoImage;
 
-        advcp = upkgs.callPackage ./advcp {};
+        advcp = upkgs.callPackage ./advcp {sources = npins;};
         "rofi/unicode" = upkgs.callPackage ./rofi-unicode {};
       }
       (lib.mkIf pkgs.stdenv.isLinux {

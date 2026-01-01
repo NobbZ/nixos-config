@@ -1,7 +1,7 @@
 {
   stdenv,
   fetchurl,
-  fetchpatch,
+  sources,
   upstream ? "coreutils",
 }:
 stdenv.mkDerivation rec {
@@ -16,10 +16,7 @@ stdenv.mkDerivation rec {
   };
 
   patches = [
-    (fetchpatch {
-      url = "https://raw.githubusercontent.com/jarun/advcpmv/1635eb96e5dbf0dde06830db8aee0c840705d7ed/advcpmv-0.9-${version}.patch";
-      hash = "sha256-LRfb4heZlAUKiXl/hC/HgoqeGMxCt8ruBYZUrbzSH+Y=";
-    })
+    "${sources.advcpmv}/advcpmv-0.9-${version}.patch"
   ];
 
   installPhase = ''

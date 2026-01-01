@@ -1,5 +1,18 @@
 {
   "pins": {
+    "advcpmv": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "jarun",
+        "repo": "advcpmv"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "1635eb96e5dbf0dde06830db8aee0c840705d7ed",
+      "url": "https://github.com/jarun/advcpmv/archive/1635eb96e5dbf0dde06830db8aee0c840705d7ed.tar.gz",
+      "hash": "sha256-MXng6XgBl2QF8mqA5BG+LOSxs9ZhZfZusdhZ/Jmyebc="
+    },
     "awesome": {
       "type": "Git",
       "repository": {
