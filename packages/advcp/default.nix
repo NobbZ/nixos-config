@@ -6,19 +6,19 @@
 }:
 stdenv.mkDerivation rec {
   name = "advcp";
-  version = "9.1";
+  version = "9.5";
   strictDeps = true;
 
   src = fetchurl {
     name = "source-${name}-${version}.tar.xz";
     url = "ftp://ftp.gnu.org/gnu/${upstream}/${upstream}-${version}.tar.xz";
-    hash = "sha256-YaH0ENeLp+fzelpPUObRMgrKMzdUhKMlXt3xejhYBCM=";
+    hash = "sha256-zTKO3qyS9qZl3p8yPJO3Eq8YWLwuDYjz9xAEaUcKG4o=";
   };
 
   patches = [
     (fetchpatch {
-      url = "https://raw.githubusercontent.com/jarun/advcpmv/ea268d870b475edd5960dcd55d5378abc9705958/advcpmv-0.9-${version}.patch";
-      hash = "sha256-d+SRT/R4xmfHLAdOr7m4R3WFiW64P5ZH6iqDvErYCyg=";
+      url = "https://raw.githubusercontent.com/jarun/advcpmv/1635eb96e5dbf0dde06830db8aee0c840705d7ed/advcpmv-0.9-${version}.patch";
+      hash = "sha256-LRfb4heZlAUKiXl/hC/HgoqeGMxCt8ruBYZUrbzSH+Y=";
     })
   ];
 
