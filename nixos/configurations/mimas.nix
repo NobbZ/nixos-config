@@ -15,6 +15,7 @@ in {
     (import ./mimas/rustic-timers.nix inputs)
     (import ./mimas/vaultwarden.nix inputs)
     ./mimas/gitea.nix
+    ./mimas/searx.nix
   ];
 
   services.tailscale.enable = true;
