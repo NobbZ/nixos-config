@@ -104,9 +104,9 @@ in {
   };
 
   # And the service configuration
-  services.traefik.dynamicConfigOptions.http.services.restic.loadBalancer = {
-    passHostHeader = false;
-    servers = [{url = "http://127.0.0.1:${toString resticPort}";}];
+  services.traefik.dynamicConfigOptions.http.services.restic = {
+    loadBalancer.passHostHeader = false;
+    loadBalancer.servers = [{url = "http://127.0.0.1:${toString resticPort}";}];
   };
 
   systemd.timers.restic-system-snapshot-backup = {
