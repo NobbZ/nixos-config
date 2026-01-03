@@ -19,8 +19,8 @@ _: {config, ...}: {
     tls.certResolver = "mimasWildcard";
   };
 
-  services.traefik.dynamicConfigOptions.http.services.paperless.loadBalancer = {
-    passHostHeader = true;
-    servers = [{url = "http://localhost:${toString config.services.paperless.port}";}];
+  services.traefik.dynamicConfigOptions.http.services.paperless = {
+    loadBalancer.passHostHeader = true;
+    loadBalancer.servers = [{url = "http://localhost:${toString config.services.paperless.port}";}];
   };
 }
