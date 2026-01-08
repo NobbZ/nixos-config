@@ -44,6 +44,20 @@
       }
     '';
 in {
+  services.gitea = {
+    enable = true;
+    settings.server.DOMAIN = "gitea.mimas.internal.nobbz.dev";
+    settings.server.HTTP_ADDR = "127.0.0.1";
+    settings.server.ROOT_URL = lib.mkForce "https://gitea.mimas.internal.nobbz.dev/";
+    settings."git.timeout".DEFAULT = 3600; # 1 hour
+    settings."git.timeout".MIGRATE = 3600; # 1 hour
+    settings."git.timeout".MIRROR = 3600; # 1 hour
+    settings."git.timeout".CLONE = 3600; # 1 hour
+    settings."git.timeout".PULL = 3600; # 1 hour
+    settings."git.timeout".GC = 3600; # 1 hour
+  };
+  systemd.services.gitea.after = ["var-lib-gitea.mount"];
+
   systemd = {
     services.gitea-gc = {
       description = "Garbage Collect gitea repositories";
@@ -67,5 +81,18 @@ in {
       wantedBy = ["timers.target"];
       timerConfig.OnCalendar = "Mon 01:00:00";
     };
+  };
+
+  services.traefik.dynamicConfigOptions.http.routers.gitea = {
+    entryPoints = ["https" "http"];
+    rule = "Host(`gitea.mimas.internal.nobbz.dev`)";
+    service = "gitea";
+    tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
+    tls.certResolver = "mimasWildcard";
+  };
+
+  services.traefik.dynamicConfigOptions.http.services.gitea.loadBalancer = {
+    passHostHeader = true;
+    servers = [{url = "http://localhost:${toString config.services.gitea.settings.server.HTTP_PORT}";}];
   };
 }
