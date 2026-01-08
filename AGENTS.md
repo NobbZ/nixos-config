@@ -158,7 +158,7 @@ Modules should be exported in `default.nix` files:
 ## CI/CD Integration
 
 ### Pre-commit Hooks (lefthook)
-- **Formatting**: `nix fmt . -- --check` on staged `.nix` files
+- **Formatting**: `nix fmt -- --check {staged_files}` on staged `.nix` files
 - **Linting**: `statix check` on `.nix` files
 
 ### Generated Files
