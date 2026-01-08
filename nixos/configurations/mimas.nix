@@ -14,7 +14,7 @@ in {
     ./mimas/services/grafana.nix
     ./mimas/services/paperless.nix
     ./mimas/services/prometheus.nix
-    ./mimas/services/restic.nix
+    (import ./mimas/services/restic.nix inputs)
     ./mimas/services/rustic-timers.nix
     ./mimas/services/searx.nix
     ./mimas/services/vaultwarden.nix
