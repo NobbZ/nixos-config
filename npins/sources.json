@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "9475bb98f08dc051cda4f8f8c1f047cdd52baadc",
-      "url": "https://github.com/awesomewm/awesome/archive/9475bb98f08dc051cda4f8f8c1f047cdd52baadc.tar.gz",
-      "hash": "sha256-dTRx/0BuYY3judo5qY8MvbO5gVejwh44odcLBplj3LQ="
+      "revision": "cab3e81dc6071e3c1c4bd15cf8fab91236c7f2bd",
+      "url": "https://github.com/awesomewm/awesome/archive/cab3e81dc6071e3c1c4bd15cf8fab91236c7f2bd.tar.gz",
+      "hash": "sha256-g4cSjASTulAIXM1nSRGqdBRNOyUDl8A+WlJhF3duq+E="
     },
     "catppuccin-bat": {
       "type": "Git",

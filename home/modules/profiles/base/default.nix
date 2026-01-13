@@ -132,7 +132,7 @@ in {
       advancedCopy.enable = true;
       direnv.enable = true;
       direnv.nix-direnv.enable = true;
-      direnv.nix-direnv.package = pkgs.nix-direnv.override {nix = nix.packages.${pkgs.stdenv.hostPlatform.system}.default;};
+      direnv.nix-direnv.package = pkgs.nix-direnv.override {nix = nix.packages.${pkgs.stdenv.hostPlatform.system}.nix-cli;};
       eza.enable = true;
       fzf.enable = true;
       home-manager.enable = true;
