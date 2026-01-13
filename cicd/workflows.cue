@@ -2,7 +2,7 @@ package cicd
 
 import "cue.dev/x/githubactions"
 
-_nixVersion: "2.32.1"
+_nixVersion: "2.32.5"
 
 workflows: [_]: githubactions.#Workflow & {
 	jobs: [_]: "runs-on": *"ubuntu-24.04" | _
