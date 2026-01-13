@@ -10,12 +10,14 @@
   steamPackages = ["steam" "steam-run" "steam-original" "steam-runtime" "steam-unwrapped"];
 in {
   imports = [
-    (import ./mimas/paperless.nix inputs)
-    (import ./mimas/restic.nix inputs)
-    (import ./mimas/rustic-timers.nix inputs)
-    (import ./mimas/vaultwarden.nix inputs)
-    ./mimas/gitea.nix
-    ./mimas/searx.nix
+    ./mimas/services/gitea.nix
+    ./mimas/services/grafana.nix
+    ./mimas/services/paperless.nix
+    ./mimas/services/prometheus.nix
+    (import ./mimas/services/restic.nix inputs)
+    ./mimas/services/rustic-timers.nix
+    ./mimas/services/searx.nix
+    ./mimas/services/vaultwarden.nix
   ];
 
   services.tailscale.enable = true;
@@ -165,20 +167,6 @@ in {
   hardware.graphics.enable = true;
   hardware.graphics.extraPackages = [pkgs.intel-vaapi-driver];
 
-  services.gitea = {
-    enable = true;
-    settings.server.DOMAIN = "gitea.mimas.internal.nobbz.dev";
-    settings.server.HTTP_ADDR = "127.0.0.1";
-    settings.server.ROOT_URL = lib.mkForce "https://gitea.mimas.internal.nobbz.dev/";
-    settings."git.timeout".DEFAULT = 3600; # 1 hour
-    settings."git.timeout".MIGRATE = 3600; # 1 hour
-    settings."git.timeout".MIRROR = 3600; # 1 hour
-    settings."git.timeout".CLONE = 3600; # 1 hour
-    settings."git.timeout".PULL = 3600; # 1 hour
-    settings."git.timeout".GC = 3600; # 1 hour
-  };
-  systemd.services.gitea.after = ["var-lib-gitea.mount"];
-
   virtualisation = {
     docker = {
       enable = true;
@@ -238,24 +226,6 @@ in {
   #   }
   # ];
 
-  # grafana configuration
-  services.grafana = {
-    enable = true;
-    settings.server = {
-      domain = "grafana.mimas.internal.nobbz.lan";
-      http_port = 2342;
-      http_addr = "127.0.0.1";
-    };
-  };
-
-  # nginx reverse proxy
-  services.nginx.virtualHosts.${config.services.grafana.domain} = {
-    locations."/" = {
-      proxyPass = "http://127.0.0.1:${toString config.services.grafana.settings.server.http_port}";
-      proxyWebsockets = true;
-    };
-  };
-
   hardware.keyboard.zsa.enable = true;
   hardware.sane.enable = true;
 
@@ -312,20 +282,7 @@ in {
         tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
         tls.certResolver = "mimasWildcard";
       };
-      gitea = {
-        entryPoints = ["https" "http"];
-        rule = "Host(`gitea.mimas.internal.nobbz.dev`)";
-        service = "gitea";
-        tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
-        tls.certResolver = "mimasWildcard";
-      };
-      grafana = {
-        entryPoints = ["https" "http"];
-        rule = "Host(`grafana.mimas.internal.nobbz.dev`)";
-        service = "grafana";
-        tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
-        tls.certResolver = "mimasWildcard";
-      };
+
       # minio-tls = {
       #   entryPoints = [ "https" "experimental" ];
       #   rule = "HostRegexp(`{subdomain:[a-z0-9]+}.mimas.internal.nobbz.dev`) && PathPrefix(`/`)";
@@ -340,58 +297,7 @@ in {
 
       fritz.loadBalancer.passHostHeader = false;
       fritz.loadBalancer.servers = [{url = "http://fritz.box";}];
-
-      gitea.loadBalancer.passHostHeader = true;
-      gitea.loadBalancer.servers = [{url = "http://localhost:${toString config.services.gitea.settings.server.HTTP_PORT}";}];
-
-      grafana.loadBalancer.passHostHeader = true;
-      grafana.loadBalancer.servers = [{url = "http://localhost:${toString config.services.grafana.settings.server.http_port}";}];
     };
-  };
-
-  services.prometheus = {
-    enable = true;
-    port = 9001;
-
-    rules = [
-      ''
-        groups:
-        - name: test
-          rules:
-          - record: nobbz:code_cpu_percent
-            expr: avg without (cpu) (irate(node_cpu_seconds_total[5m]))
-      ''
-    ];
-
-    exporters = {
-      node = {
-        enable = true;
-        enabledCollectors = ["systemd"];
-        port = 9002;
-      };
-    };
-
-    scrapeConfigs = [
-      {
-        job_name = "grafana";
-        static_configs = [{targets = ["127.0.0.1:2342"];}];
-      }
-      {
-        job_name = "prometheus";
-        static_configs = [{targets = ["127.0.0.1:9001"];}];
-      }
-      {
-        job_name = "node_import";
-        static_configs = [
-          {
-            targets = [
-              "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
-              "${config.lib.nobbz.enceladeus.v4}:9002"
-            ];
-          }
-        ];
-      }
-    ];
   };
 
   nix.buildMachines = let
