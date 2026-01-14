@@ -11,6 +11,7 @@
 in {
   imports = [
     ./mimas/services/gitea.nix
+    ./mimas/services/glance.nix
     ./mimas/services/grafana.nix
     ./mimas/services/paperless.nix
     ./mimas/services/prometheus.nix
@@ -242,6 +243,13 @@ in {
       email = "acme@nobbz.dev";
       storage = "/var/lib/traefik/mimas.json";
       # caServer = "https://acme-staging-v02.api.letsencrypt.org/directory";
+      dnsChallenge.provider = "cloudflare";
+      dnsChallenge.resolvers = ["1.1.1.1:53" "8.8.8.8:53"];
+    };
+
+    certificatesResolvers.dashboardNobbzDev.acme = {
+      email = "acme@nobbz.dev";
+      storage = "/var/lib/traefik/dashboard.json";
       dnsChallenge.provider = "cloudflare";
       dnsChallenge.resolvers = ["1.1.1.1:53" "8.8.8.8:53"];
     };
