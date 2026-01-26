@@ -233,6 +233,21 @@
         "type": "github"
       }
     },
+    "mnw": {
+      "locked": {
+        "lastModified": 1769269517,
+        "narHash": "sha256-SgZOSmsbJN+oPDVZyavctrkjQYDCWtoJ3uhlzQChb6s=",
+        "owner": "gerg-l",
+        "repo": "mnw",
+        "rev": "ee5e11d0d7f6a6cda68559c1a34b5392c3b1b1eb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gerg-l",
+        "repo": "mnw",
+        "type": "github"
+      }
+    },
     "nix": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -460,6 +475,7 @@
     "nvim": {
       "inputs": {
         "gen-luarc": "gen-luarc",
+        "mnw": "mnw",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -471,11 +487,11 @@
         "wrapper-manager": "wrapper-manager"
       },
       "locked": {
-        "lastModified": 1769120583,
-        "narHash": "sha256-Mf7D/brO4ucScUaSCa+gtSjzYIrnoE5Z7G1dXekKRME=",
+        "lastModified": 1769431611,
+        "narHash": "sha256-qkTHnmd6qTfHKR1zVb1luumFev+FuWX+ZI7fY7WrETQ=",
         "owner": "nobbz",
         "repo": "nobbz-vim",
-        "rev": "bb5904863c59dec008456f2ffa256e49a2dcf9d5",
+        "rev": "c653205a9a183beb405b78e9136cc062df0da4ab",
         "type": "github"
       },
       "original": {

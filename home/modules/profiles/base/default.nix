@@ -105,13 +105,13 @@ in {
       neovide =
         if cfg.needsGL
         then
-          pkgs.writeShellScriptBin nvim.packages.x86_64-linux.neovide.meta.mainProgram ''
-            exec ${lib.getExe nix-gl.packages.x86_64-linux.nixGLIntel} ${lib.getExe nvim.packages.x86_64-linux.neovide} "$@"
+          pkgs.writeShellScriptBin nvim.packages.x86_64-linux.nobbzvide.meta.mainProgram ''
+            exec ${lib.getExe nix-gl.packages.x86_64-linux.nixGLIntel} ${lib.getExe nvim.packages.x86_64-linux.nobbzvide} "$@"
           ''
-        else nvim.packages.x86_64-linux.neovide;
+        else nvim.packages.x86_64-linux.nobbzvide;
     in
       lib.mkMerge [
-        [optisave pkgs.departure-mono pkgs.hydra-check nvim.packages.x86_64-linux.neovim neovide]
+        [optisave pkgs.departure-mono pkgs.hydra-check nvim.packages.x86_64-linux.nobbzvim neovide]
         (lib.mkIf pkgs.stdenv.isLinux [pkgs.dconf])
       ];
 
