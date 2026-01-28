@@ -31,8 +31,7 @@ in {
 
       p.fira-code
       p.cascadia-code
-
-      p.lefthook
+      p.nerd-fonts.symbols-only
 
       (p.writeShellScriptBin "timew" ''
         export TIMEWARRIORDB="${config.home.homeDirectory}/timmelzer@gmail.com/timewarrior"
