@@ -64,15 +64,38 @@ in {
               widgets = [
                 {
                   type = "monitor";
+                  # style = "compact";
                   title = "Services";
                   sites = [
                     {
                       title = "Blog";
                       url = "https://blog.nobbz.dev";
+                      icon = "mdi:newspaper";
                     }
                     {
-                      title = "vaultwarden";
+                      title = "Vaultwarden";
                       url = "https://passwords.mimas.internal.nobbz.dev";
+                      icon = "si:vaultwarden";
+                    }
+                    {
+                      title = "Gitea";
+                      url = "https://gitea.mimas.internal.nobbz.dev";
+                      icon = "si:gitea";
+                    }
+                    {
+                      title = "Restic";
+                      url = "https://restic.mimas.internal.nobbz.dev";
+                      icon = "mdi:cloud-upload";
+                    }
+                    {
+                      title = "SearxNG";
+                      url = "https://search.mimas.internal.nobbz.dev";
+                      icon = "si:searxng";
+                    }
+                    {
+                      title = "Paperless";
+                      url = "https://paperless.mimas.internal.nobbz.dev";
+                      icon = "si:paperlessngx";
                     }
                   ];
                 }
