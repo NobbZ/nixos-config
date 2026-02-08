@@ -13,7 +13,13 @@
   boot.kernelModules = ["kvm-intel"];
   boot.kernelParams = ["intel_pstate=active"];
   boot.extraModulePackages = [];
-  boot.supportedFilesystems = ["ntfs" "exfat" "avfs" "xfs"];
+
+  boot.supportedFilesystems = {
+    ntfs = true;
+    exfat = true;
+    avfs = true;
+    xfs = true;
+  };
 
   hardware.cpu.intel.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
