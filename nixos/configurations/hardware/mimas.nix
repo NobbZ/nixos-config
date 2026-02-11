@@ -57,6 +57,12 @@
     options = ["nofail"];
   };
 
+  fileSystems."/var/lib/immich" = {
+    device = "/dev/usbpool/immich";
+    fsType = "xfs";
+    options = ["nofail"];
+  };
+
   fileSystems."/var/lib/prometheus2" = {
     device = "/dev/pool/prometheus";
     fsType = "ext4";
