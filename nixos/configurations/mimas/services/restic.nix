@@ -90,9 +90,13 @@ in {
     listenAddress = "127.0.0.1:${toString resticPort}";
   };
 
-  # We have an extra mount to put restic data on, we need to make sure it is properly
-  # mounted before writing anything to it
-  systemd.services.restic-rest-server.after = ["var-lib-restic.mount"];
+  systemd.services.restic-rest-server = {
+    # We have an extra mount to put restic data on, we need to make sure it is properly
+    # mounted before writing anything to it
+    after = ["var-lib-restic.mount"];
+    wants = ["var-lib-restic.mount"];
+    unitConfig.RequiresMountsFor = ["/var/lib/restic"];
+  };
 
   # Add an appropriate router for traefik
   services.traefik.dynamicConfigOptions.http.routers.restic = {

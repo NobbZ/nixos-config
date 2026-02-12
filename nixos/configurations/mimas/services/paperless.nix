@@ -1,4 +1,18 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: let
+  services = [
+    "paperless-consumer"
+    "paperless-scheduler"
+    "paperless-task-queue"
+    "paperless-web"
+  ];
+
+  mount = "var-lib-paperless.mount";
+  path = "/var/lib/paperless";
+in {
   services.paperless = {
     enable = true;
     address = "0.0.0.0";
@@ -6,10 +20,11 @@
     settings.PAPERLESS_OCR_LANGUAGE = "deu+eng";
   };
 
-  systemd.services.paperless-consumer.after = ["var-lib-paperless.mount"];
-  systemd.services.paperless-scheduler.after = ["var-lib-paperless.mount"];
-  systemd.services.paperless-task-queue.after = ["var-lib-paperless.mount"];
-  systemd.services.paperless-web.after = ["var-lib-paperless.mount"];
+  systemd.services = lib.genAttrs services (_name: {
+    after = [mount];
+    wants = [mount];
+    unitConfig.RequiresMountsFor = [path];
+  });
 
   services.traefik.dynamicConfigOptions.http.routers.paperless = {
     entryPoints = ["https" "http"];

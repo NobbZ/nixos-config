@@ -21,6 +21,12 @@
     };
   };
 
+  systemd.services.grafana = {
+    after = ["var-lib-grafana.mount"];
+    wants = ["var-lib-grafana.mount"];
+    unitConfig.RequiresMountsFor = ["/var/lib/grafana"];
+  };
+
   services.traefik.dynamicConfigOptions.http.routers.grafana = {
     entryPoints = ["https" "http"];
     rule = "Host(`grafana.mimas.internal.nobbz.dev`)";

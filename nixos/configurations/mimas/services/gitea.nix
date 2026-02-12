@@ -56,7 +56,11 @@ in {
     settings."git.timeout".PULL = 3600; # 1 hour
     settings."git.timeout".GC = 3600; # 1 hour
   };
-  systemd.services.gitea.after = ["var-lib-gitea.mount"];
+  systemd.services.gitea = {
+    after = ["var-lib-gitea.mount"];
+    wants = ["var-lib-gitea.mount"];
+    unitConfig.RequiresMountsFor = ["/var/lib/gitea"];
+  };
 
   systemd = {
     services.gitea-gc = {
