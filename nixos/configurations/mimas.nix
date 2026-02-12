@@ -13,6 +13,7 @@ in {
     ./mimas/services/gitea.nix
     ./mimas/services/glance.nix
     ./mimas/services/grafana.nix
+    ./mimas/services/immich.nix
     ./mimas/services/paperless.nix
     ./mimas/services/prometheus.nix
     (import ./mimas/services/restic.nix inputs)
