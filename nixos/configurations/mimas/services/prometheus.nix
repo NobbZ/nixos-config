@@ -48,6 +48,12 @@
     ];
   };
 
+  systemd.services.prometheus = {
+    after = ["var-lib-prometheus2.mount"];
+    wants = ["var-lib-prometheus2.mount"];
+    unitConfig.RequiresMountsFor = ["/var/lib/prometheus2"];
+  };
+
   services.traefik.dynamicConfigOptions.http.routers.prometheus = {
     entryPoints = ["https" "http"];
     rule = "Host(`prometheus.mimas.internal.nobbz.dev`)";
