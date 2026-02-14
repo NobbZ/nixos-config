@@ -99,18 +99,20 @@ in {
   };
 
   # Add an appropriate router for traefik
-  services.traefik.dynamicConfigOptions.http.routers.restic = {
-    entryPoints = ["https" "http"];
-    rule = "Host(`restic.mimas.internal.nobbz.dev`)";
-    service = "restic";
-    tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
-    tls.certResolver = "mimasWildcard";
-  };
+  services.traefik.dynamic.files.restic.settings.http = {
+    routers.restic = {
+      entryPoints = ["https" "http"];
+      rule = "Host(`restic.mimas.internal.nobbz.dev`)";
+      service = "restic";
+      tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
+      tls.certResolver = "mimasWildcard";
+    };
 
-  # And the service configuration
-  services.traefik.dynamicConfigOptions.http.services.restic.loadBalancer = {
-    passHostHeader = false;
-    servers = [{url = "http://127.0.0.1:${toString resticPort}";}];
+    # And the service configuration
+    services.restic.loadBalancer = {
+      passHostHeader = false;
+      servers = [{url = "http://127.0.0.1:${toString resticPort}";}];
+    };
   };
 
   systemd.timers.restic-system-snapshot-backup = {

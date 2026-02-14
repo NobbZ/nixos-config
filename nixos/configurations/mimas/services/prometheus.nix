@@ -54,16 +54,18 @@
     unitConfig.RequiresMountsFor = ["/var/lib/prometheus2"];
   };
 
-  services.traefik.dynamicConfigOptions.http.routers.prometheus = {
-    entryPoints = ["https" "http"];
-    rule = "Host(`prometheus.mimas.internal.nobbz.dev`)";
-    service = "prometheus";
-    tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
-    tls.certResolver = "mimasWildcard";
-  };
+  services.traefik.dynamic.files.prometheus.settings.http = {
+    routers.prometheus = {
+      entryPoints = ["https" "http"];
+      rule = "Host(`prometheus.mimas.internal.nobbz.dev`)";
+      service = "prometheus";
+      tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
+      tls.certResolver = "mimasWildcard";
+    };
 
-  services.traefik.dynamicConfigOptions.http.services.prometheus.loadBalancer = {
-    passHostHeader = true;
-    servers = [{url = "http://127.0.0.1:${toString config.services.prometheus.port}";}];
+    services.prometheus.loadBalancer = {
+      passHostHeader = true;
+      servers = [{url = "http://127.0.0.1:${toString config.services.prometheus.port}";}];
+    };
   };
 }
