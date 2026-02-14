@@ -87,16 +87,17 @@ in {
     };
   };
 
-  services.traefik.dynamicConfigOptions.http.routers.gitea = {
-    entryPoints = ["https" "http"];
-    rule = "Host(`gitea.mimas.internal.nobbz.dev`)";
-    service = "gitea";
-    tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
-    tls.certResolver = "mimasWildcard";
-  };
-
-  services.traefik.dynamicConfigOptions.http.services.gitea.loadBalancer = {
-    passHostHeader = true;
-    servers = [{url = "http://localhost:${toString config.services.gitea.settings.server.HTTP_PORT}";}];
+  services.traefik.dynamic.files.gitea.settings.http = {
+    routers.gitea = {
+      entryPoints = ["https" "http"];
+      rule = "Host(`gitea.mimas.internal.nobbz.dev`)";
+      service = "gitea";
+      tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
+      tls.certResolver = "mimasWildcard";
+    };
+    services.gitea.loadBalancer = {
+      passHostHeader = true;
+      servers = [{url = "http://localhost:${toString config.services.gitea.settings.server.HTTP_PORT}";}];
+    };
   };
 }

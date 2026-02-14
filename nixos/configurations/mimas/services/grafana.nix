@@ -27,16 +27,18 @@
     unitConfig.RequiresMountsFor = ["/var/lib/grafana"];
   };
 
-  services.traefik.dynamicConfigOptions.http.routers.grafana = {
-    entryPoints = ["https" "http"];
-    rule = "Host(`grafana.mimas.internal.nobbz.dev`)";
-    service = "grafana";
-    tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
-    tls.certResolver = "mimasWildcard";
-  };
+  services.traefik.dynamic.files.grafana.settings.http = {
+    routers.grafana = {
+      entryPoints = ["https" "http"];
+      rule = "Host(`grafana.mimas.internal.nobbz.dev`)";
+      service = "grafana";
+      tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
+      tls.certResolver = "mimasWildcard";
+    };
 
-  services.traefik.dynamicConfigOptions.http.services.grafana.loadBalancer = {
-    passHostHeader = true;
-    servers = [{url = "http://localhost:${toString config.services.grafana.settings.server.http_port}";}];
+    services.grafana.loadBalancer = {
+      passHostHeader = true;
+      servers = [{url = "http://localhost:${toString config.services.grafana.settings.server.http_port}";}];
+    };
   };
 }
