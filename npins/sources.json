@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "95b3ff2fbc513ae149b8f347b034e39830fceb9a",
-      "url": "https://github.com/jarun/advcpmv/archive/95b3ff2fbc513ae149b8f347b034e39830fceb9a.tar.gz",
-      "hash": "sha256-QL8gMHoBencOhKy8S6MeSuFvJs3Qi7pdCC//eZ3m08A="
+      "revision": "1635eb96e5dbf0dde06830db8aee0c840705d7ed",
+      "url": "https://github.com/jarun/advcpmv/archive/1635eb96e5dbf0dde06830db8aee0c840705d7ed.tar.gz",
+      "hash": "sha256-MXng6XgBl2QF8mqA5BG+LOSxs9ZhZfZusdhZ/Jmyebc="
     },
     "awesome": {
       "type": "Git",
@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "73b20cc3eca34c0dbe40e7798f469e1df787f44d",
-      "url": "https://github.com/awesomewm/awesome/archive/73b20cc3eca34c0dbe40e7798f469e1df787f44d.tar.gz",
-      "hash": "sha256-1NtuJQ4XaiS0uo9/ezQNT/NnTOqsfTTcsSog8QNlOWM="
+      "revision": "cab3e81dc6071e3c1c4bd15cf8fab91236c7f2bd",
+      "url": "https://github.com/awesomewm/awesome/archive/cab3e81dc6071e3c1c4bd15cf8fab91236c7f2bd.tar.gz",
+      "hash": "sha256-g4cSjASTulAIXM1nSRGqdBRNOyUDl8A+WlJhF3duq+E="
     },
     "catppuccin-bat": {
       "type": "Git",
@@ -61,9 +61,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "747c15de85a38748b28c29ac65616137dbb4c8b6",
-      "url": "https://github.com/Aloxaf/fzf-tab/archive/747c15de85a38748b28c29ac65616137dbb4c8b6.tar.gz",
-      "hash": "sha256-gatFp2kjyqaqi8hu0UWPDtQAy+X2VmyYNPP4aiNDdHg="
+      "revision": "fac145167f7ec1861233c54de0c8900b09c650fe",
+      "url": "https://github.com/Aloxaf/fzf-tab/archive/fac145167f7ec1861233c54de0c8900b09c650fe.tar.gz",
+      "hash": "sha256-1Ior+/9e+M+Fc1u0uq5HhknlGRS96q7tazhEE6rmx9Y="
     },
     "zsh-syntax-highlighting": {
       "type": "Git",
@@ -74,9 +74,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "1d85c692615a25fe2293bdd44b34c217d5d2bf04",
-      "url": "https://github.com/zsh-users/zsh-syntax-highlighting/archive/1d85c692615a25fe2293bdd44b34c217d5d2bf04.tar.gz",
-      "hash": "sha256-VMne38IQwqB4jwGUI2f3eEiSkT2ww7+G5ch7w+65GT0="
+      "revision": "5eb677bb0fa9a3e60f0eff031dc13926e093df92",
+      "url": "https://github.com/zsh-users/zsh-syntax-highlighting/archive/5eb677bb0fa9a3e60f0eff031dc13926e093df92.tar.gz",
+      "hash": "sha256-KRsQEDRsJdF7LGOMTZuqfbW6xdV5S38wlgdcCM98Y/Q="
     }
   },
   "version": 7

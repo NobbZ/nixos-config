@@ -37,6 +37,7 @@
   };
 
   programs.yazi.enable = true;
+  programs.yazi.shellWrapperName = "y";
 
   xsession.windowManager.awesome.autostart = [
     "${pkgs.blueman}/bin/blueman-applet"

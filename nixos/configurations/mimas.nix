@@ -12,10 +12,8 @@ in {
   imports = [
     ./mimas/services/gitea.nix
     ./mimas/services/glance.nix
-    ./mimas/services/grafana.nix
     ./mimas/services/immich.nix
     ./mimas/services/paperless.nix
-    ./mimas/services/prometheus.nix
     (import ./mimas/services/restic.nix inputs)
     ./mimas/services/rustic-timers.nix
     ./mimas/services/searx.nix
@@ -232,9 +230,8 @@ in {
   hardware.sane.enable = true;
 
   services.traefik.enable = true;
-  services.traefik.dynamic.dir = "/etc/traefik/dynamic";
   systemd.services.traefik.serviceConfig.EnvironmentFile = [config.sops.secrets.traefik.path];
-  services.traefik.static.settings = {
+  services.traefik.staticConfigOptions = {
     log.level = "DEBUG";
 
     api.dashboard = true;
@@ -278,15 +275,13 @@ in {
       };
     };
   };
-
-  services.traefik.dynamic.files.base.settings.http = {
-    routers = {
+  services.traefik.dynamicConfigOptions = {
+    http.routers = {
       api = {
         entrypoints = ["traefik"];
         rule = "PathPrefix(`/api/`)";
         service = "api@internal";
       };
-
       fritz = {
         entryPoints = ["https" "http"];
         rule = "Host(`fritz.mimas.internal.nobbz.dev`)";
@@ -294,9 +289,19 @@ in {
         tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
         tls.certResolver = "mimasWildcard";
       };
-    };
 
-    services = {
+      # minio-tls = {
+      #   entryPoints = [ "https" "experimental" ];
+      #   rule = "HostRegexp(`{subdomain:[a-z0-9]+}.mimas.internal.nobbz.dev`) && PathPrefix(`/`)";
+      #   service = "minio";
+      #   tls.domains = [{ main = "*.mimas.internal.nobbz.dev"; }];
+      #   tls.certresolver = "mimasWildcard";
+      # };
+    };
+    http.services = {
+      minio.loadBalancer.passHostHeader = true;
+      minio.loadBalancer.servers = [{url = "http://192.168.122.122/";}];
+
       fritz.loadBalancer.passHostHeader = false;
       fritz.loadBalancer.servers = [{url = "http://fritz.box";}];
     };

@@ -19,18 +19,16 @@ in {
     };
   };
 
-  services.traefik.dynamic.files.warden.settings.http = {
-    routers.warden = {
-      entryPoints = ["https" "http"];
-      rule = "Host(`${host}`)";
-      service = "vaultwarden";
-      tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
-      tls.certResolver = "mimasWildcard";
-    };
+  services.traefik.dynamicConfigOptions.http.routers.warden = {
+    entryPoints = ["https" "http"];
+    rule = "Host(`${host}`)";
+    service = "vaultwarden";
+    tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
+    tls.certResolver = "mimasWildcard";
+  };
 
-    services.vaultwarden.loadBalancer = {
-      passHostHeader = false;
-      servers = [{url = "http://127.0.0.1:${toString wardenPort}";}];
-    };
+  services.traefik.dynamicConfigOptions.http.services.vaultwarden.loadBalancer = {
+    passHostHeader = false;
+    servers = [{url = "http://127.0.0.1:${toString wardenPort}";}];
   };
 }

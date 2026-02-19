@@ -26,18 +26,16 @@ in {
     unitConfig.RequiresMountsFor = [path];
   });
 
-  services.traefik.dynamic.files.paperless.settings.http = {
-    routers.paperless = {
-      entryPoints = ["https" "http"];
-      rule = "Host(`paperless.mimas.internal.nobbz.dev`)";
-      service = "paperless";
-      tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
-      tls.certResolver = "mimasWildcard";
-    };
+  services.traefik.dynamicConfigOptions.http.routers.paperless = {
+    entryPoints = ["https" "http"];
+    rule = "Host(`paperless.mimas.internal.nobbz.dev`)";
+    service = "paperless";
+    tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
+    tls.certResolver = "mimasWildcard";
+  };
 
-    services.paperless.loadBalancer = {
-      passHostHeader = true;
-      servers = [{url = "http://localhost:${toString config.services.paperless.port}";}];
-    };
+  services.traefik.dynamicConfigOptions.http.services.paperless.loadBalancer = {
+    passHostHeader = true;
+    servers = [{url = "http://localhost:${toString config.services.paperless.port}";}];
   };
 }
