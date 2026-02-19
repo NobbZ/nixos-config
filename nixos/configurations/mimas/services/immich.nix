@@ -15,18 +15,16 @@
     unitConfig.RequiresMountsFor = ["/var/lib/immich"];
   };
 
-  services.traefik.dynamic.files.immich.settings.http = {
-    routers.immich = {
-      entryPoints = ["https" "http"];
-      rule = "Host(`immich.mimas.internal.nobbz.dev`)";
-      service = "immich";
-      tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
-      tls.certResolver = "mimasWildcard";
-    };
+  services.traefik.dynamicConfigOptions.http.routers.immich = {
+    entryPoints = ["https" "http"];
+    rule = "Host(`immich.mimas.internal.nobbz.dev`)";
+    service = "immich";
+    tls.domains = [{main = "*.mimas.internal.nobbz.dev";}];
+    tls.certResolver = "mimasWildcard";
+  };
 
-    services.immich.loadBalancer = {
-      passHostHeader = true;
-      servers = [{url = "http://localhost:${toString config.services.immich.port}";}];
-    };
+  services.traefik.dynamicConfigOptions.http.services.immich.loadBalancer = {
+    passHostHeader = true;
+    servers = [{url = "http://localhost:${toString config.services.immich.port}";}];
   };
 }

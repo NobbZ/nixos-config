@@ -107,18 +107,16 @@ in {
     };
   };
 
-  services.traefik.dynamic.files.glance.settings.http = {
-    routers.glance = {
-      entryPoints = ["http" "https"];
-      rule = "Host(`dashboard.nobbz.dev`)";
-      service = "glance";
-      tls.domains = [{main = "dashboard.nobbz.dev";}];
-      tls.certResolver = "dashboardNobbzDev";
-    };
+  services.traefik.dynamicConfigOptions.http.routers.glance = {
+    entryPoints = ["http" "https"];
+    rule = "Host(`dashboard.nobbz.dev`)";
+    service = "glance";
+    tls.domains = [{main = "dashboard.nobbz.dev";}];
+    tls.certResolver = "dashboardNobbzDev";
+  };
 
-    services.glance.loadBalancer = {
-      passHostHeader = true;
-      servers = [{url = "http://${host}:${toString port}";}];
-    };
+  services.traefik.dynamicConfigOptions.http.services.glance.loadBalancer = {
+    passHostHeader = true;
+    servers = [{url = "http://${host}:${toString port}";}];
   };
 }

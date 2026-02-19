@@ -52,7 +52,7 @@
     };
   };
 
-  services.traefik.dynamic.files.searx.settings.http = {
+  services.traefik.dynamicConfigOptions.http = {
     routers.searx = {
       entryPoints = ["http" "https"];
       rule = "Host(`${config.services.searx.domain}`)";
