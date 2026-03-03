@@ -111,7 +111,7 @@ in {
         else nvim.packages.x86_64-linux.nobbzvide;
     in
       lib.mkMerge [
-        [optisave pkgs.departure-mono pkgs.hydra-check nvim.packages.x86_64-linux.nobbzvim neovide]
+        ([optisave pkgs.departure-mono pkgs.hydra-check nvim.packages.${pkgs.stdenv.hostPlatform.system}.nobbzvim] ++ lib.optionals pkgs.stdenv.isLinux [neovide])
         (lib.mkIf pkgs.stdenv.isLinux [pkgs.dconf])
       ];
 
