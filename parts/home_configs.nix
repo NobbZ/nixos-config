@@ -43,6 +43,10 @@ in {
 
           entryPoint = lib.mkOption {
             type = lib.types.unspecified;
+          };
+
+          entryPointCalled = lib.mkOption {
+            type = lib.types.unspecified;
             readOnly = true;
           };
 
@@ -88,7 +92,8 @@ in {
         };
 
         config = lib.mkIf config.enable {
-          entryPoint = import "${self}/home/configurations/${config.username}_at_${config.hostname}.nix" (inputs // {inherit self;});
+          entryPoint = lib.mkDefault "${self}/home/configurations/${config.username}_at_${config.hostname}.nix";
+          entryPointCalled = import config.entryPoint (inputs // {inherit self;});
           base =
             if lib.strings.hasSuffix "-darwin" config.system
             then "Users"
@@ -97,7 +102,7 @@ in {
 
           finalModules =
             [
-              config.entryPoint
+              config.entryPointCalled
               {home = {inherit (config) username homeDirectory;};}
               {systemd.user.startServices = "sd-switch";}
               {news.display = "silent";}

@@ -1,4 +1,8 @@
-_: {pkgs, ...}: {
+_: {
+  pkgs,
+  lib,
+  ...
+}: {
   xdg.configFile."ghostty/config".text =
     # toml
     ''
@@ -11,5 +15,5 @@ _: {pkgs, ...}: {
       theme = "catppuccin-mocha"
     '';
 
-  home.packages = [pkgs.ghostty];
+  home.packages = lib.optionals pkgs.stdenv.isLinux [pkgs.ghostty];
 }

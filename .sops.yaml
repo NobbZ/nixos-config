@@ -3,6 +3,7 @@ keys:
   - &host_mimas age10jl78vwyqk622dpn2890l9jl4et3p7lsr8wh8vusem3j8jdxle8qg000qa
   - &user_nmelzer_mimas age1w6xjgskpxnlpleswumdhtt7x8zx35qn329yz3x7ftqdcmcxrrvnqnuf9d6
   - &user_nmelzer_phoebe age1vr0uq6mwv844yvm8pe7qxjxpqrekgel3lqfzuuqtfzj0ehz3hphqzsxjna
+  - &user_nmelzer_mbp age1ct3c6gkyj80jexly8a4wazs82emxsr5pq77m749udp05eaj6cdzqfgd25r
 creation_rules:
   - path_regex: secrets/[^/]+\.yaml$
     key_groups:
@@ -30,3 +31,4 @@ creation_rules:
           - *admin_nobbz
           - *user_nmelzer_mimas
           - *user_nmelzer_phoebe
+          - *user_nmelzer_mbp
