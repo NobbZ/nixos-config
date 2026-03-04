@@ -262,12 +262,19 @@ in {
           }
         ];
 
-        initContent = ''
-          bindkey "^[[1;5D" backward-word
-          bindkey "^[[1;5C" forward-word
+        initContent =
+          # zsh
+          ''
+            # Ctrl+Left/Right on many Linux terminal emulators
+            bindkey "^[[1;5D" backward-word
+            bindkey "^[[1;5C" forward-word
 
-          ZSH_AUTOSUGGEST_STRATEGY=(completion history)
-        '';
+            # macOS, option + left/right
+            bindkey '^[[1;3D' backward-word
+            bindkey '^[[1;3C' forward-word
+
+            ZSH_AUTOSUGGEST_STRATEGY=(completion history)
+          '';
 
         sessionVariables = {
           PROMPT_EOL_MARK = "%F{243}¶%f";
