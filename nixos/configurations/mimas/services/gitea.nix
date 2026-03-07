@@ -99,4 +99,13 @@ in {
     passHostHeader = true;
     servers = [{url = "http://localhost:${toString config.services.gitea.settings.server.HTTP_PORT}";}];
   };
+
+  services.monit.config = ''
+    check process gitea with pidfile /run/gitea/gitea.pid
+      start program = "${lib.getExe' pkgs.systemd "systemctl"} start gitea"
+      stop program = "${lib.getExe' pkgs.systemd "systemctl"} stop gitea"
+
+      if failed host gitea.mimas.internal.nobbz.dev port 443 protocol https for 4 cycles then restart
+      if failed host localhost port ${toString config.services.gitea.settings.server.HTTP_PORT} protocol http for 4 cycles then restart
+  '';
 }

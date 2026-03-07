@@ -13,6 +13,7 @@ in {
     ./mimas/services/gitea.nix
     ./mimas/services/glance.nix
     ./mimas/services/immich.nix
+    ./mimas/services/monit.nix
     ./mimas/services/paperless.nix
     (import ./mimas/services/restic.nix inputs)
     ./mimas/services/rustic-timers.nix
