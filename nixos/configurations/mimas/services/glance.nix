@@ -1,4 +1,9 @@
-{config, ...}: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (config.services.glance) settings;
   inherit (settings.server) port host;
 in {
@@ -119,4 +124,13 @@ in {
     passHostHeader = true;
     servers = [{url = "http://${host}:${toString port}";}];
   };
+
+  services.monit.config = ''
+    check process glance matching "glance .*glance.ya?ml"
+      start program = "${lib.getExe' pkgs.systemd "systemctl"} start glance"
+      stop program = "${lib.getExe' pkgs.systemd "systemctl"} stop glance"
+
+      if failed host dashboard.nobbz.dev port 443 protocol https for 4 cycles then restart
+      if failed host ${host} port ${toString port} protocol http for 4 cycles then restart
+  '';
 }

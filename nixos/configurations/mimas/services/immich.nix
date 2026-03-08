@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }: {
@@ -27,4 +28,13 @@
     passHostHeader = true;
     servers = [{url = "http://localhost:${toString config.services.immich.port}";}];
   };
+
+  services.monit.config = ''
+    check process immich matching "^immich$"
+      start program = "${lib.getExe' pkgs.systemd "systemctl"} start immich-server"
+      stop program = "${lib.getExe' pkgs.systemd "systemctl"} stop immich-server"
+
+      if failed host immich.mimas.internal.nobbz.dev port 443 protocol https for 4 cycles then restart
+      if failed host localhost port ${toString config.services.immich.port} protocol http for 4 cycles then restart
+  '';
 }

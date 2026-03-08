@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   services = [
@@ -41,4 +42,13 @@ in {
     passHostHeader = true;
     servers = [{url = "http://localhost:${toString config.services.paperless.port}";}];
   };
+
+  services.monit.config = ''
+    check process paperless-web matching "granian.*paperless.*application$"
+      start program = "${lib.getExe' pkgs.systemd "systemctl"} start paperless-web"
+      stop program = "${lib.getExe' pkgs.systemd "systemctl"} stop paperless-web"
+
+      if failed host ${domain} port 443 protocol https for 4 cycles then restart
+      if failed host localhost port ${toString config.services.paperless.port} protocol http for 4 cycles then restart
+  '';
 }
