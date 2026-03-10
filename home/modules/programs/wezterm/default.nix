@@ -44,9 +44,9 @@ _: {
       config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
       -- set the font
-      config.font_dirs = { '${pkgs.departure-mono}/share/fonts/otf' }
+      config.font_dirs = { '${config.lib.nobbz.iosevka}/share/fonts/truetype' }
       config.font_size = 11.0
-      config.font = wezterm.font("Departure Mono")
+      config.font = wezterm.font("Iosevka Fixed Slab")
 
       -- setting up keybindings
       config.keys = {
