@@ -12,6 +12,7 @@ in {
 
       email = "timmelzer@gmail.com";
       base_url = "https://passwords.mimas.internal.nobbz.dev";
+      ui_url = cfg.settings.base_url;
     };
   };
 }
