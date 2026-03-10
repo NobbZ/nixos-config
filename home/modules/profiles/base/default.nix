@@ -47,6 +47,36 @@
       cp -rv . $out
     '';
   };
+
+  iosevka = pkgs.iosevka.override {
+    privateBuildPlan = {
+      family = "Iosevka Fixed Slab";
+      spacing = "fixed";
+      serifs = "slab";
+      noCvSs = true;
+      exportGlyphNames = false;
+
+      variants.design = {
+        f = "serifless";
+      };
+
+      variants.italic = {
+        f = "tailed";
+      };
+
+      weights.Regular = {
+        shape = 400;
+        menu = 400;
+        css = 400;
+      };
+
+      weights.Bold = {
+        shape = 700;
+        menu = 700;
+        css = 700;
+      };
+    };
+  };
 in {
   options.profiles.base = {
     enable = lib.mkEnableOption "The base profile, should be always enabled";
@@ -55,6 +85,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    lib.nobbz = {inherit iosevka;};
+
     sops.secrets.nix-community = {
       path = "${config.home.homeDirectory}/.ssh/nix-community";
       mode = "0400";
@@ -111,7 +143,7 @@ in {
         else nvim.packages.x86_64-linux.nobbzvide;
     in
       lib.mkMerge [
-        ([optisave pkgs.departure-mono pkgs.hydra-check nvim.packages.${pkgs.stdenv.hostPlatform.system}.nobbzvim] ++ lib.optionals pkgs.stdenv.isLinux [neovide])
+        ([optisave pkgs.departure-mono iosevka pkgs.hydra-check nvim.packages.${pkgs.stdenv.hostPlatform.system}.nobbzvim] ++ lib.optionals pkgs.stdenv.isLinux [neovide])
         (lib.mkIf pkgs.stdenv.isLinux [pkgs.dconf])
       ];
 
