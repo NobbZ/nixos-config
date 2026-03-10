@@ -45,7 +45,7 @@ _: {
 
       -- set the font
       config.font_dirs = { '${pkgs.departure-mono}/share/fonts/otf' }
-      config.font_size = 11.0 * 1.25
+      config.font_size = 11.0
       config.font = wezterm.font("Departure Mono")
 
       -- setting up keybindings
