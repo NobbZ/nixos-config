@@ -12,7 +12,8 @@ in {
       pinentry = pkgs.pinentry-curses;
 
       email = "timmelzer@gmail.com";
-      base_url = base_url;
+
+      inherit base_url;
       ui_url = base_url;
     };
   };
