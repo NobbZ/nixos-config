@@ -22,6 +22,14 @@ in {
 
         ui.diff-formatter = [config.programs.git.settings.diff.external "--color=always" "$left" "$right"];
         ui.paginate = "never";
+        ui.show-cryptographic-signatures = true;
+
+        signing = {
+          behavior = "own";
+          backend = "ssh";
+          key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDIs3QshI6g2th7NgBm5GHgKQopsmPIGu6bkCC88Nm8I4yFCSySi2XCZDBTemBnjLMYyTH71zGmmO1rI2zrR2Br9UukMDBF0pL7To+lwGf8JMNn2XUXEW4IPhtCitK9P+YgkH5owa2Q37wHVLR2LydlYhz2jcou2+9rjVxepxklfvgDOVfrvYFQQBtCrsMPnhEPSoo9nnqF0+B1fj7Hh3jmH9axcSslcBc6Q5uZ4hPn7aAS7uCFTcr5KY9nhCkNpllh/7XYvN2GjW8f6rfA/Wd4bS7dBLzWIgyKTyoOEVvC6kTZ4mTjJbEZY5YXnlouz5+vhPu+qSUxGJ3nocQyrab3";
+          backends.ssh.allowed-signers = "${config.home.homeDirectory}/.ssh/allowed-signers";
+        };
       };
     };
 
