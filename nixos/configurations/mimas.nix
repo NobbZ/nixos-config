@@ -10,6 +10,7 @@
   steamPackages = ["steam" "steam-run" "steam-original" "steam-runtime" "steam-unwrapped"];
 in {
   imports = [
+    ./mimas/services/dawarich.nix
     ./mimas/services/gitea.nix
     ./mimas/services/glance.nix
     ./mimas/services/immich.nix
