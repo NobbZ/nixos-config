@@ -87,6 +87,12 @@
     };
   };
 
+  programs.vicinae = {
+    enable = true;
+
+    systemd.enable = true;
+  };
+
   xdg.configFile = {
     "rustic/mimas-hetzner.toml".text =
       # toml
