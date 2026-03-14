@@ -57,6 +57,12 @@
     options = ["nofail"];
   };
 
+  fileSystems."/var/lib/dawarich-web" = {
+    device = "/dev/usbpool/dawarich";
+    fsType = "xfs";
+    options = ["nofail"];
+  };
+
   fileSystems."/var/lib/immich" = {
     device = "/dev/usbpool/immich";
     fsType = "xfs";
@@ -73,6 +79,11 @@
     device = "/dev/pool/paperless";
     fsType = "ext4";
     options = ["nofail"];
+  };
+
+  fileSystems."/var/lib/postgresql" = {
+    device = "/dev/pool/postgres";
+    fsType = "xfs";
   };
 
   fileSystems."/var/lib/restic" = {

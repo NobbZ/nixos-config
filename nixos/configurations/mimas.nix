@@ -10,11 +10,13 @@
   steamPackages = ["steam" "steam-run" "steam-original" "steam-runtime" "steam-unwrapped"];
 in {
   imports = [
+    ./mimas/services/dawarich.nix
     ./mimas/services/gitea.nix
     ./mimas/services/glance.nix
     ./mimas/services/immich.nix
     ./mimas/services/monit.nix
     ./mimas/services/paperless.nix
+    ./mimas/services/postgres.nix
     (import ./mimas/services/restic.nix inputs)
     ./mimas/services/rustic-timers.nix
     ./mimas/services/searx.nix
