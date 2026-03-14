@@ -9,7 +9,6 @@
     database.enableVectors = false;
   };
 
-  services.postgresql.package = pkgs.postgresql_18;
   systemd.services.immich-server = {
     after = ["var-lib-immich.mount"];
     wants = ["var-lib-immich.mount"];

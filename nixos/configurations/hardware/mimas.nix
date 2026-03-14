@@ -75,6 +75,11 @@
     options = ["nofail"];
   };
 
+  fileSystems."/var/lib/postgresql" = {
+    device = "/dev/pool/postgres";
+    fsType = "xfs";
+  };
+
   fileSystems."/var/lib/restic" = {
     device = "/dev/usbpool/restic";
     fsType = "ext4";

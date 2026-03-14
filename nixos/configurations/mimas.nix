@@ -15,6 +15,7 @@ in {
     ./mimas/services/immich.nix
     ./mimas/services/monit.nix
     ./mimas/services/paperless.nix
+    ./mimas/services/postgres.nix
     (import ./mimas/services/restic.nix inputs)
     ./mimas/services/rustic-timers.nix
     ./mimas/services/searx.nix
