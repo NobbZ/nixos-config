@@ -11,7 +11,7 @@
     PHOTON_API_USE_HTTPS = "true";
   };
 
-  systemd.services.dawarich-web.unitConfig.RequiresMountsFor = ["/var/lib/dawarich-web"];
+  systemd.services.dawarich-web.unitConfig.RequiresMountsFor = ["/var/lib/dawarich"];
 
   services.postgresql.ensureDatabases = ["dawarich"];
   services.postgresql.ensureUsers = [

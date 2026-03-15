@@ -57,7 +57,7 @@
     options = ["nofail"];
   };
 
-  fileSystems."/var/lib/dawarich-web" = {
+  fileSystems."/var/lib/dawarich" = {
     device = "/dev/usbpool/dawarich";
     fsType = "xfs";
     options = ["nofail"];
