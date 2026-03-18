@@ -48,6 +48,7 @@
 
         advcp = upkgs.callPackage ./advcp {sources = npins;};
         "rofi/unicode" = upkgs.callPackage ./rofi-unicode {};
+        somewm = upkgs.callPackage ./some {sources = npins;};
       }
       (lib.mkIf pkgs.stdenv.isLinux {
         inherit (inputs'.switcher.packages) switcher;

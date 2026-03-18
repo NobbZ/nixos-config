@@ -65,6 +65,19 @@
       "url": "https://github.com/Aloxaf/fzf-tab/archive/fac145167f7ec1861233c54de0c8900b09c650fe.tar.gz",
       "hash": "sha256-1Ior+/9e+M+Fc1u0uq5HhknlGRS96q7tazhEE6rmx9Y="
     },
+    "somewm": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "trip-zip",
+        "repo": "somewm"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "7a87de1dbc62c46f329f64305107306ac0c73570",
+      "url": "https://github.com/trip-zip/somewm/archive/7a87de1dbc62c46f329f64305107306ac0c73570.tar.gz",
+      "hash": "sha256-/ZXFNZE4PT+iaEAVv/oEeEE2d6Dr2HGowQg5bEZnqbM="
+    },
     "zsh-syntax-highlighting": {
       "type": "Git",
       "repository": {
