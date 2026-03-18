@@ -6,7 +6,6 @@
 }: {
   services.immich = {
     enable = true;
-    database.enableVectors = false;
   };
 
   systemd.services.immich-server = {
