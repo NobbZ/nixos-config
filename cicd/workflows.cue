@@ -42,7 +42,7 @@ _freeSpace: githubactions.#Step & {
 
 _cachixBase: githubactions.#Step & {
 	name: "Set up cachix"
-	uses: "cachix/cachix-action@v16"
+	uses: "cachix/cachix-action@v17"
 	with: {
 		name:       "nobbz"
 		signingKey: "${{ secrets.CACHIX_SIGNING_KEY }}"
