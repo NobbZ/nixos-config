@@ -113,26 +113,80 @@ in {
     home.keyboard.layout = "de";
     home.packages = let
       optisave =
-        pkgs.resholve.writeScriptBin "optisave" {
-          inputs = builtins.attrValues {inherit (pkgs) fd pv gawk coreutils gnused;};
-          interpreter = "${pkgs.bash}/bin/bash";
-          execer = [
-            # TODO: Make this `might` or `can` in the long run
-            "cannot:${pkgs.fd}/bin/fd"
-            "cannot:${pkgs.pv}/bin/pv"
-          ];
-        } ''
-          count=$(fd . /nix/store/.links/ | pv -l | wc -l)
+        pkgs.writers.writePython3Bin "optisave" {libraries = pp: [pp.rich pp.humanize];}
+        # python
+        ''
+          import os
+          import stat
+          from humanize import naturalsize
+          from pathlib import Path
+          from rich.console import Console
+          from rich.progress import (
+              BarColumn,
+              MofNCompleteColumn,
+              Progress,
+              TaskProgressColumn,
+              TextColumn,
+              TimeRemainingColumn,
+          )
+          from rich.table import Table
 
-          # TODO: make resholve understant the call to `stat`
-          saved=$(fd . /nix/store/.links/ -X ${pkgs.coreutils}/bin/stat --format='%h %s' {} \
-            | pv -altrpe -s $count \
-            | awk '{sum += ($1 - 2) * $2} END {print sum}')
+          files = []
+          num_files = 0
+          total_size = 0
+          optimized_size = 0
 
-          printf "Currently hardlinking saves %sB (%s B)\n" \
-            "$(numfmt --to=iec-i --format='%.2f' ''${saved} \
-              | sed -E 's/([0-9])([A-Za-z])/\1 \2/')" \
-            "$(numfmt --to=none --format="%'f" ''${saved})"
+
+          def count_links(p, t_id):
+              global num_files
+              for file in Path("/nix/store/.links").iterdir():
+                  files.append(file)
+                  num_files = num_files + 1
+                  if num_files % 100000 == 0:
+                      p.reset(t_id, total=num_files, start=False)
+
+
+          def sum_sizes(p, t_id):
+              global optimized_size
+              global total_size
+              for file in files:
+                  s = os.stat(file, follow_symlinks=False)
+                  if not stat.S_ISLNK(s.st_mode):
+                      optimized_size = optimized_size + s.st_size
+                      total_size = total_size + s.st_size * s.st_nlink
+                  p.advance(t_id)
+
+
+          c = Console()
+          with Progress(
+              TextColumn("[progress.description]{task.description}"),
+              BarColumn(bar_width=None),
+              MofNCompleteColumn(),
+              TaskProgressColumn(),
+              TimeRemainingColumn(),
+              expand=True,
+              console=c,
+          ) as p:
+              t_id = p.add_task("Scanning Hardlinks", start=False, count=0, total=0)
+              count_links(p, t_id)
+              p.reset(t_id, total=num_files)
+              sum_sizes(p, t_id)
+
+          saved = total_size - optimized_size
+          saved_human = naturalsize(saved, binary=True)
+          optimized_human = naturalsize(optimized_size, binary=True)
+          total_human = naturalsize(total_size, binary=True)
+
+          t = Table()
+          t.add_column("label", justify="left")
+          t.add_column("size (hr)", justify="right")
+          t.add_column("size (raw)", justify="right")
+
+          t.add_row("unoptimized", str(total_human), str(total_size))
+          t.add_row("real", str(optimized_human), str(optimized_size))
+          t.add_row("saved", str(saved_human), str(saved))
+
+          c.print(t)
         '';
       neovide =
         if cfg.needsGL
