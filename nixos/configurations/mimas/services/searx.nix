@@ -19,6 +19,7 @@
         autocomplete = "google";
         favicon_resolver = "google";
         default_lang = "auto";
+        formats = ["json" "html"];
       };
 
       server.port = 8888;
