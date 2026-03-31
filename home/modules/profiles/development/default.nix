@@ -34,6 +34,8 @@ in {
     programs.git = {
       enable = true;
 
+      signing.format = null;
+
       settings.user.name = "Norbert Melzer";
       settings.user.email = "timmelzer@gmail.com";
 

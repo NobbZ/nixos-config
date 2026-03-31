@@ -69,6 +69,7 @@ in {
   services.playerctld.enable = true;
 
   gtk.gtk2.force = true;
+  gtk.gtk4.theme = config.gtk.theme;
 
   programs.ssh.includes = [
     config.sops.secrets.ssh.path

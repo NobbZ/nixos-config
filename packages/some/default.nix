@@ -8,6 +8,9 @@
   gobject-introspection,
   libdrm,
   libinput,
+  librsvg,
+  libxcb-util,
+  libxcb-wm,
   libxkbcommon,
   linux-pam,
   lua,
@@ -21,8 +24,6 @@
   wayland-scanner,
   which,
   wlroots,
-  xorg,
-  librsvg,
   extraLuaPackages ? (_: []),
 }: let
   luaEnv = lua.withPackages (lp:
@@ -46,30 +47,37 @@ in
     ];
 
     buildInputs = [
-      linux-pam
       cairo
       dbus
       gdk-pixbuf
-      wlroots
-      wayland-scanner
       glib
       libdrm
       libinput
+      librsvg
+      libxcb-util
+      libxcb-wm
       libxkbcommon
+      linux-pam
       lua
       luaEnv
       pango
       wayland
       wayland-protocols
-      xorg.xcbutilwm
-      xorg.xcbutil
-      librsvg
+      wayland-scanner
+      wlroots
     ];
 
     env = {
       LUA_CPATH = "${luaEnv}/lib/lua/${lua.luaversion}/?.so";
       LUA_PATH = "${luaEnv}/share/lua/${lua.luaversion}/?.lua;;";
     };
+
+    prePatch = ''
+      # if not patched, meson will try to install the user-unit into the systemd
+      # store path.
+      substituteInPlace meson.build \
+        --replace-fail "systemd_user_unit_dir = systemd_dep.get_variable('systemduserunitdir')" "systemd_user_unit_dir = '$out/share/systemd/user'"
+    '';
 
     postInstall = ''
       # Don't use wrapProgram or the wrapper will duplicate the --search
