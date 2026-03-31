@@ -50,7 +50,7 @@ _: {
         "ctrl+shift+z=toggle_split_zoom"
         "ctrl+z=toggle_split_zoom"
         "ctrl+shift+p=toggle_command_palette"
-        "super+ctrl+shift+^=global:toggle_quick_terminal"
+        "global:super+ctrl+shift+^=toggle_quick_terminal"
       ];
     };
 
