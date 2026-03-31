@@ -34,7 +34,7 @@ _: {
         "ctrl+shift+arrow_left=goto_split:left"
 
         # tab management
-        "ctrl+shift+t=next_tab"
+        "ctrl+shift+t=new_tab"
 
         # tab switching
         "ctrl+tab=next_tab"
@@ -42,6 +42,7 @@ _: {
 
         # Clipboard
         "ctrl+shift+c=copy_to_clipboard"
+        "ctrl+shift+v=paste_from_clipboard"
 
         "ctrl++=increase_font_size:1"
         "ctrl+-=decrease_font_size:1"
@@ -49,7 +50,7 @@ _: {
         "ctrl+shift+z=toggle_split_zoom"
         "ctrl+z=toggle_split_zoom"
         "ctrl+shift+p=toggle_command_palette"
-        "ctrl+shift+^=toggle_quick_terminal"
+        "super+ctrl+shift+^=global:toggle_quick_terminal"
       ];
     };
 
