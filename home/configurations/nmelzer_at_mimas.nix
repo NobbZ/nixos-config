@@ -16,6 +16,7 @@
   dconf.enable = true;
 
   gtk.gtk2.force = true;
+  gtk.gtk4.theme = config.gtk.theme;
 
   home.packages = builtins.attrValues {
     inherit (pkgs) keybase-gui freerdp keepassxc nix-output-monitor discord;
