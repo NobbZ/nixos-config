@@ -7,7 +7,8 @@ _: {
     enable = true;
     clearDefaultKeybinds = true;
     installBatSyntax = true;
-    systemd.enable = true;
+    # FIXME: nix-community/home-manager#9011; integration causes GHOSTTY to restart even without any changes in the config
+    systemd.enable = false;
 
     settings = {
       theme = "catppuccin-mocha";
