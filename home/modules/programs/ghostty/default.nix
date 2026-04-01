@@ -4,11 +4,16 @@ _: {
   ...
 }: {
   programs.ghostty = {
-    enable = true;
+    enable = pkgs.stdenv.isDarwin || pkgs.stdenv.isLinux;
     clearDefaultKeybinds = true;
     installBatSyntax = true;
     # FIXME: nix-community/home-manager#9011; integration causes GHOSTTY to restart even without any changes in the config
     systemd.enable = false;
+
+    package =
+      if pkgs.stdenv.isDarwin
+      then pkgs.ghostty-bin
+      else pkgs.ghostty;
 
     settings = {
       theme = "catppuccin-mocha";
