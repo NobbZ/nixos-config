@@ -18,6 +18,8 @@ _: {
     settings = {
       theme = "catppuccin-mocha";
 
+      unfocused-split-opacity = 1;
+
       font-size = 11;
       font-family = "Iosevka Fixed Slab";
       font-feature = ["calt=0" "clig=0" "liga=0"];
