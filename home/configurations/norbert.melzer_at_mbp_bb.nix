@@ -51,6 +51,7 @@ in {
 
   programs.ssh.includes = [
     config.sops.secrets.ssh.path
+    "~/.ssh/config.d/*.conf"
   ];
 
   programs.ssh.matchBlocks = {
@@ -67,6 +68,14 @@ in {
       user = "nmelzer";
     });
   };
+
+  programs.zsh.initContent = lib.mkMerge [
+    (lib.mkOrder 500 "export ASDF_DATA_DIR=$HOME/.local/state/asdf")
+    # Loading the completions from brew has issues due to ownership as the brew
+    # folder is managed by another admin user and not root.
+    # (lib.mkOrder 550 "fpath+=$(brew --prefix)/share/zsh/site-functions")
+    "path=(\${ASDF_DATA_DIR:-$HOME/.asdf}/shims $path)"
+  ];
 
   nix.settings.extra-experimental-features = ["flakes" "nix-command"];
   nix.extraOptions = "!include ${config.sops.secrets."access-tokens".path}";
