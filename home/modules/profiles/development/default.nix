@@ -26,6 +26,8 @@ in {
 
         aliases = {
           l = ["log" "-r" "(trunk()..@):: | (trunk()..@)-"];
+          pl = ["git" "fetch" "--all-remotes"];
+          ps = ["git" "push"];
         };
       };
     };
