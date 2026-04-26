@@ -22,9 +22,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "496008691facf3d962c487588741db3ec9654c52",
-      "url": "https://github.com/awesomewm/awesome/archive/496008691facf3d962c487588741db3ec9654c52.tar.gz",
-      "hash": "sha256-d4wFOCXbohgEWxB4KgWF2K5hExMuCB5x4NvVCNVSZM4="
+      "revision": "c104846a2cc954ce97077146e5964667c81c2165",
+      "url": "https://github.com/awesomewm/awesome/archive/c104846a2cc954ce97077146e5964667c81c2165.tar.gz",
+      "hash": "sha256-l3fGfMEy2i4sNOvsxYFB5gsgswJPRLHk35cxQNB1tR0="
     },
     "catppuccin-bat": {
       "type": "Git",
@@ -74,9 +74,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "cb0b8e47125f3f167610f335ec8ce12b6d52d8fd",
-      "url": "https://github.com/trip-zip/somewm/archive/cb0b8e47125f3f167610f335ec8ce12b6d52d8fd.tar.gz",
-      "hash": "sha256-xdOvVKQsxsqZ7LJ8YZKDjpK9gqTgueyw2Hep85SJU6M="
+      "revision": "3d41255cef0daf6ec127a1cc124e5e27032ef1b9",
+      "url": "https://github.com/trip-zip/somewm/archive/3d41255cef0daf6ec127a1cc124e5e27032ef1b9.tar.gz",
+      "hash": "sha256-mCTmUQP4FGZvnqYsB/v3cZEfoHFBONiFPFkS2XPhLAc="
     },
     "zsh-syntax-highlighting": {
       "type": "Git",
