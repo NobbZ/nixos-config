@@ -90,8 +90,6 @@
 
   programs.vicinae = {
     enable = true;
-
-    systemd.enable = true;
   };
 
   xdg.configFile = {
