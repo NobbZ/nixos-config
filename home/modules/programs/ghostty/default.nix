@@ -24,42 +24,48 @@ _: {
       font-family = "Iosevka Fixed Slab";
       font-feature = ["calt=0" "clig=0" "liga=0"];
 
-      keybind = [
-        # Pane management
-        "ctrl+alt+shift+5=new_split:right"
-        "ctrl+alt+shift+2=new_split:down"
+      keybind =
+        [
+          # Pane management
+          "ctrl+alt+shift+5=new_split:right"
+          "ctrl+alt+shift+2=new_split:down"
 
-        # Pane resizing
-        "super+ctrl+shift+arrow_up=resize_split:up,5"
-        "super+ctrl+shift+arrow_right=resize_split:right,5"
-        "super+ctrl+shift+arrow_down=resize_split:down,5"
-        "super+ctrl+shift+arrow_left=resize_split:left,5"
+          # Pane resizing
+          "super+ctrl+shift+arrow_up=resize_split:up,5"
+          "super+ctrl+shift+arrow_right=resize_split:right,5"
+          "super+ctrl+shift+arrow_down=resize_split:down,5"
+          "super+ctrl+shift+arrow_left=resize_split:left,5"
 
-        # Pane switching
-        "ctrl+shift+arrow_up=goto_split:up"
-        "ctrl+shift+arrow_right=goto_split:right"
-        "ctrl+shift+arrow_down=goto_split:down"
-        "ctrl+shift+arrow_left=goto_split:left"
+          # Pane switching
+          "ctrl+shift+arrow_up=goto_split:up"
+          "ctrl+shift+arrow_right=goto_split:right"
+          "ctrl+shift+arrow_down=goto_split:down"
+          "ctrl+shift+arrow_left=goto_split:left"
 
-        # tab management
-        "ctrl+shift+t=new_tab"
+          # tab management
+          "ctrl+shift+t=new_tab"
 
-        # tab switching
-        "ctrl+tab=next_tab"
-        "ctrl+shift+tab=previous_tab"
+          # tab switching
+          "ctrl+tab=next_tab"
+          "ctrl+shift+tab=previous_tab"
 
-        # Clipboard
-        "ctrl+shift+c=copy_to_clipboard"
-        "ctrl+shift+v=paste_from_clipboard"
-
-        "ctrl++=increase_font_size:1"
-        "ctrl+-=decrease_font_size:1"
-        "ctrl+0=reset_font_size"
-        "ctrl+shift+z=toggle_split_zoom"
-        "ctrl+z=toggle_split_zoom"
-        "ctrl+shift+p=toggle_command_palette"
-        "global:super+ctrl+shift+^=toggle_quick_terminal"
-      ];
+          # Clipboard
+          "ctrl+shift+c=copy_to_clipboard"
+          "ctrl+shift+v=paste_from_clipboard"
+        ]
+        ++ (lib.optionals pkgs.stdenv.isDarwin [
+          "super+c=copy_to_clipboard"
+          "super+v=paste_from_clipboard"
+        ])
+        ++ [
+          # Misc bindings
+          "ctrl++=increase_font_size:1"
+          "ctrl+-=decrease_font_size:1"
+          "ctrl+0=reset_font_size"
+          "ctrl+shift+z=toggle_split_zoom"
+          "ctrl+z=toggle_split_zoom"
+          "ctrl+shift+p=toggle_command_palette"
+        ];
     };
 
     themes = {
