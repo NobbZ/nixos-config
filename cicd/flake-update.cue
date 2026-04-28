@@ -11,8 +11,10 @@ workflows: updater: githubactions.#Workflow & {
 	jobs: {
 		generate_matrix: {
 			outputs: {
-				packages: "${{ steps.gen_packages.outputs.packages }}"
-				checks:   "${{ steps.gen_checks.outputs.checks }}"
+				packages:        "${{ steps.gen_packages.outputs.packages }}"
+				checks:          "${{ steps.gen_checks.outputs.checks }}"
+				packages_darwin: "${{ steps.gen_packages_darwin.outputs.packages_darwin }}"
+				checks_darwin:   "${{ steps.gen_checks_darwin.outputs.checks_darwin }}"
 			}
 			steps: [
 				_cloneRepo,
@@ -33,6 +35,20 @@ workflows: updater: githubactions.#Workflow & {
 					run: """
 						checks=$(jq -c '.checks."x86_64-linux" | keys' < flake.json)
 						printf "checks=%s" "$checks" >> "${GITHUB_OUTPUT}"
+						"""
+				},
+				{
+					id: "gen_packages_darwin"
+					run: """
+						packages_darwin=$(jq -c '.packages."aarch64-darwin" | keys' < flake.json)
+						printf "packages_darwin=%s" "$packages_darwin" >> "${GITHUB_OUTPUT}"
+						"""
+				},
+				{
+					id: "gen_checks_darwin"
+					run: """
+						checks_darwin=$(jq -c '.checks."aarch64-darwin" | keys' < flake.json)
+						printf "checks_darwin=%s" "$checks_darwin" >> "${GITHUB_OUTPUT}"
 						"""
 				},
 			]
@@ -56,11 +72,13 @@ workflows: updater: githubactions.#Workflow & {
 		]
 		build_flake: _buildFlake & {_flakeLock: true}
 		build_checks: _buildChecks & {_flakeLock: true}
+		build_flake_darwin: _buildFlakeDarwin & {_flakeLock: true}
+		build_checks_darwin: _buildChecksDarwin & {_flakeLock: true}
 		check_flake: _checkFlake & {_flakeLock: true}
 
 		push_update: {
 			permissions: "write-all"
-			needs: ["update_flake", "build_flake", "build_checks", "check_flake"]
+			needs: ["update_flake", "build_flake", "build_checks", "check_flake", "build_flake_darwin", "build_checks_darwin"]
 			steps: [
 				_cloneRepo,
 				_restoreFlakeLock,
