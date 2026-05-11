@@ -10,11 +10,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778381765,
-        "narHash": "sha256-FmHvOEC7p5IneOnmnwDlKLAgl8xpcpCHuawp/cpdPtQ=",
+        "lastModified": 1778468537,
+        "narHash": "sha256-5utE4+ptVcpT8xX5dIuCflXgcBFp6PDhEH/gzcZgj2Q=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "9ea9de45e69d9754a33b1fb9731835f60467183b",
+        "rev": "b4285e87b7f1eb0824b264a90316b3ccac9da1d8",
         "type": "github"
       },
       "original": {
@@ -200,11 +200,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1778365864,
-        "narHash": "sha256-ImoT/wqmgMImf2dAC+E0MverAdA4QXsedOeES9B7Ezw=",
+        "lastModified": 1778444552,
+        "narHash": "sha256-f18pIiR9q/p1vHY93gmAum7aHhQOG49oGvAB9+lptRo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "2f419037039a152448c5f4ae9494154753d1b399",
+        "rev": "dcebe66f958673729896eec2de4abfd86ef22d21",
         "type": "github"
       },
       "original": {
@@ -256,11 +256,11 @@
         "nixpkgs-regression": "nixpkgs-regression"
       },
       "locked": {
-        "lastModified": 1778249748,
-        "narHash": "sha256-D+3kaW4NUUaiFTsEpmregtGZVniljBThg/O0JIjRL8k=",
+        "lastModified": 1778422772,
+        "narHash": "sha256-z0jqtz6N92vUnY11paSExIbjm0IrzetxAcTdiLEwlvo=",
         "owner": "nixos",
         "repo": "nix",
-        "rev": "616df97974fd29b79f83502f63854d6d471ee055",
+        "rev": "6d4308e4e32a6735fcc118d684c9a546de57c9a4",
         "type": "github"
       },
       "original": {
@@ -313,11 +313,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1771903837,
-        "narHash": "sha256-jEA8WggGKtMFeNeCKq3NK8cLEjJmG6/RLUElYYbBZ0E=",
-        "rev": "e764fc9a405871f1f6ca3d1394fb422e0a0c3951",
+        "lastModified": 1778003029,
+        "narHash": "sha256-amc4Y3GF3+anUi7IJeLVzf7hVqLb3ZqCGzYtkVyp7Qw=",
+        "rev": "0c88e1f2bdb93d5999019e99cb0e61e1fe2af4c5",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/25.11/nixos-25.11.6495.e764fc9a4058/nixexprs.tar.xz"
+        "url": "https://releases.nixos.org/nixos/25.11/nixos-25.11.10470.0c88e1f2bdb9/nixexprs.tar.xz"
       },
       "original": {
         "type": "tarball",
@@ -524,11 +524,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1778244568,
-        "narHash": "sha256-O9d5LNIurmzmt/rKjvfDwBxlycpab9/mlL4qDFicgHc=",
+        "lastModified": 1778457564,
+        "narHash": "sha256-dn3Y1xM7FNrNPzkYYYCx7409Le53QVOV+LlCXwtKCjw=",
         "owner": "wamserma",
         "repo": "flake-programs-sqlite",
-        "rev": "381a5da49f82734d2dd462dc6a4e0a51378f68f6",
+        "rev": "345c5c0cfc4d3ef5e923fd964c4598f9afde0213",
         "type": "github"
       },
       "original": {
