@@ -83,10 +83,13 @@
     nvim.url = "github:nobbz/nobbz-vim";
     nvim.inputs.parts.follows = "parts";
     nvim.inputs.nixpkgs.follows = "nixpkgs";
+    nvim.inputs.wrapper-manager.follows = "wrapper-manager";
 
     switcher.url = "github:nobbz/nix-switcher?ref=main";
     # switcher.inputs.nixpkgs.follows = "nixpkgs";
     switcher.inputs.flake-parts.follows = "parts";
+
+    wrapper-manager.url = "github:viperml/wrapper-manager";
 
     parts.url = "github:hercules-ci/flake-parts";
     parts.inputs.nixpkgs-lib.follows = "nixpkgs";

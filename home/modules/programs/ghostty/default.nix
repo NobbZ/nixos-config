@@ -1,4 +1,4 @@
-_: {
+{wrapper-manager, ...}: {
   pkgs,
   lib,
   ...
@@ -13,7 +13,11 @@ _: {
     package =
       if pkgs.stdenv.isDarwin
       then pkgs.ghostty-bin
-      else pkgs.ghostty;
+      else
+        (wrapper-manager.lib.wrapWith pkgs {
+          basePackage = pkgs.ghostty;
+          env.GTK_IM_MODULE.value = "simple";
+        });
 
     settings = {
       theme = "catppuccin-mocha";
