@@ -480,7 +480,9 @@
           "parts"
         ],
         "treefmt-nix": "treefmt-nix",
-        "wrapper-manager": "wrapper-manager"
+        "wrapper-manager": [
+          "wrapper-manager"
+        ]
       },
       "locked": {
         "lastModified": 1778134987,
@@ -553,7 +555,8 @@
         "parts": "parts",
         "programsdb": "programsdb",
         "sops-nix": "sops-nix",
-        "switcher": "switcher"
+        "switcher": "switcher",
+        "wrapper-manager": "wrapper-manager"
       }
     },
     "rust-overlay": {
