@@ -43,7 +43,7 @@ in {
   security.chromiumSuidSandbox.enable = true;
 
   zramSwap.enable = true;
-  zramSwap.memoryPercent = 25;
+  zramSwap.memoryPercent = 100;
 
   services.lvm.boot.thin.enable = true;
   boot.enableContainers = false;
