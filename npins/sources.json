@@ -61,9 +61,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "0983009f8666f11e91a2ee1f88cfdb748d14f656",
-      "url": "https://github.com/Aloxaf/fzf-tab/archive/0983009f8666f11e91a2ee1f88cfdb748d14f656.tar.gz",
-      "hash": "sha256-yvPQyuK4Dw+LkwxrkWTRcw4PIf/79fW61jWbEg8Pe9Y="
+      "revision": "24105b15714bfec37989ed5c5b6e60f572253019",
+      "url": "https://github.com/Aloxaf/fzf-tab/archive/24105b15714bfec37989ed5c5b6e60f572253019.tar.gz",
+      "hash": "sha256-YhTSu0P7mFlVx1zBvbT0jNstkamcZHhPYJHKMAHgyuM="
     },
     "somewm": {
       "type": "Git",
@@ -74,9 +74,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "3d41255cef0daf6ec127a1cc124e5e27032ef1b9",
-      "url": "https://github.com/trip-zip/somewm/archive/3d41255cef0daf6ec127a1cc124e5e27032ef1b9.tar.gz",
-      "hash": "sha256-mCTmUQP4FGZvnqYsB/v3cZEfoHFBONiFPFkS2XPhLAc="
+      "revision": "ba36e32ae6a901ae5ac85fcd2bbfb4230901d199",
+      "url": "https://github.com/trip-zip/somewm/archive/ba36e32ae6a901ae5ac85fcd2bbfb4230901d199.tar.gz",
+      "hash": "sha256-VKDMWBZ/bWo+jKrSZiMjT29Rg38J2BznsaUl6LYTZns="
     },
     "zsh-syntax-highlighting": {
       "type": "Git",
@@ -92,5 +92,5 @@
       "hash": "sha256-VMne38IQwqB4jwGUI2f3eEiSkT2ww7+G5ch7w+65GT0="
     }
   },
-  "version": 7
+  "version": 8
 }
