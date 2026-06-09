@@ -38,9 +38,7 @@
 
     src = npins.fzf-tab;
 
-    # we need this patch due to a bug between fzf-tab and p10k:
-    # https://github.com/Aloxaf/fzf-tab/issues/176
-    patches = [./colums-fix.patch];
+    patches = [];
 
     installPhase = ''
       mkdir -p $out
