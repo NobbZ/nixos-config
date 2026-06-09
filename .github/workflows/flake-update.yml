@@ -36,6 +36,43 @@ jobs:
       matrix:
         check: ${{fromJson(needs.generate_matrix.outputs.checks)}}
       max-parallel: 5
+  build_checks_darwin:
+    needs:
+      - generate_matrix
+      - update_flake
+    runs-on: macos-14
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.TEST_TOKEN }}
+      - name: Install nix
+        uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |-
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.TEST_TOKEN }}
+            experimental-features = nix-command flakes
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+          install_url: https://releases.nixos.org/nix/nix-2.32.5/install
+      - name: Set up cachix
+        uses: cachix/cachix-action@v17
+        with:
+          name: nobbz
+          signingKey: ${{ secrets.CACHIX_SIGNING_KEY }}
+          skipPush: true
+      - name: Restore flake.lock
+        uses: actions/download-artifact@v8
+        with:
+          name: flake_lock
+      - name: Build the check
+        run: nix build .#checks.aarch64-darwin.${{ matrix.check }} --no-link
+    strategy:
+      fail-fast: false
+      matrix:
+        check: ${{fromJson(needs.generate_matrix.outputs.checks_darwin)}}
+      max-parallel: 5
   build_flake:
     needs:
       - generate_matrix
@@ -77,6 +114,45 @@ jobs:
           - package: installer-iso
         package: ${{fromJson(needs.generate_matrix.outputs.packages)}}
       max-parallel: 5
+  build_flake_darwin:
+    needs:
+      - generate_matrix
+      - update_flake
+    runs-on: macos-14
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.TEST_TOKEN }}
+      - name: Install nix
+        uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |-
+            auto-optimise-store = true
+            access-tokens = github.com=${{ secrets.TEST_TOKEN }}
+            experimental-features = nix-command flakes
+            substituters = https://cache.nixos.org/ https://nix-community.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+          install_url: https://releases.nixos.org/nix/nix-2.32.5/install
+      - name: Set up cachix
+        uses: cachix/cachix-action@v17
+        with:
+          name: nobbz
+          pathsToPush: result
+          signingKey: ${{ secrets.CACHIX_SIGNING_KEY }}
+      - name: Restore flake.lock
+        uses: actions/download-artifact@v8
+        with:
+          name: flake_lock
+      - name: Build everything
+        run: nix build .#${{ matrix.package }}
+    strategy:
+      fail-fast: false
+      matrix:
+        exclude:
+          - package: installer-iso
+        package: ${{fromJson(needs.generate_matrix.outputs.packages_darwin)}}
+      max-parallel: 5
   check_flake:
     continue-on-error: true
     needs:
@@ -107,7 +183,9 @@ jobs:
   generate_matrix:
     outputs:
       checks: ${{ steps.gen_checks.outputs.checks }}
+      checks_darwin: ${{ steps.gen_checks_darwin.outputs.checks_darwin }}
       packages: ${{ steps.gen_packages.outputs.packages }}
+      packages_darwin: ${{ steps.gen_packages_darwin.outputs.packages_darwin }}
     runs-on: ubuntu-24.04
     steps:
       - name: Clone Repository
@@ -134,12 +212,22 @@ jobs:
         run: |-
           checks=$(jq -c '.checks."x86_64-linux" | keys' < flake.json)
           printf "checks=%s" "$checks" >> "${GITHUB_OUTPUT}"
+      - id: gen_packages_darwin
+        run: |-
+          packages_darwin=$(jq -c '.packages."aarch64-darwin" | keys' < flake.json)
+          printf "packages_darwin=%s" "$packages_darwin" >> "${GITHUB_OUTPUT}"
+      - id: gen_checks_darwin
+        run: |-
+          checks_darwin=$(jq -c '.checks."aarch64-darwin" | keys' < flake.json)
+          printf "checks_darwin=%s" "$checks_darwin" >> "${GITHUB_OUTPUT}"
   push_update:
     needs:
       - update_flake
       - build_flake
       - build_checks
       - check_flake
+      - build_flake_darwin
+      - build_checks_darwin
     permissions: write-all
     runs-on: ubuntu-24.04
     steps:
