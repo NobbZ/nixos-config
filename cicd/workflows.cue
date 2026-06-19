@@ -10,7 +10,7 @@ workflows: [_]: githubactions.#Workflow & {
 
 _cloneRepo: githubactions.#Step & {
 	name: "Clone Repository"
-	uses: "actions/checkout@v6"
+	uses: "actions/checkout@v7"
 	with: token: "${{ secrets.TEST_TOKEN }}"
 }
 
