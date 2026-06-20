@@ -127,6 +127,59 @@ _buildChecks: githubactions.#Job & {
 	]
 }
 
+_buildFlakeDarwin: githubactions.#Job & {
+	_flakeLock!: bool
+	"runs-on": "macos-14"
+	needs: [
+		"generate_matrix",
+		if _flakeLock {"update_flake"},
+	]
+	strategy: {
+		"fail-fast":    false
+		"max-parallel": 5
+		matrix: {
+			package: "${{fromJson(needs.generate_matrix.outputs.packages_darwin)}}"
+			exclude: [{package: "installer-iso"}]
+		}
+	}
+	steps: [
+		_cloneRepo,
+		_installNix,
+		_cachix,
+		if _flakeLock {_restoreFlakeLock},
+		{
+			name: "Build everything"
+			run:  "nix build .#${{ matrix.package }}"
+		},
+	]
+}
+
+_buildChecksDarwin: githubactions.#Job & {
+	_flakeLock!: bool
+	"runs-on": "macos-14"
+	needs: [
+		"generate_matrix",
+		if _flakeLock {"update_flake"},
+	]
+	strategy: {
+		"fail-fast":    false
+		"max-parallel": 5
+		matrix: {
+			check: "${{fromJson(needs.generate_matrix.outputs.checks_darwin)}}"
+		}
+	}
+	steps: [
+		_cloneRepo,
+		_installNix,
+		_cachixNoPush,
+		if _flakeLock {_restoreFlakeLock},
+		{
+			name: "Build the check"
+			run:  "nix build .#checks.aarch64-darwin.${{ matrix.check }} --no-link"
+		},
+	]
+}
+
 _checkFlake: githubactions.#Job & {
 	_flakeLock!: bool
 	needs: [
