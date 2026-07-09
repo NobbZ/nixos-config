@@ -10,11 +10,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783480927,
-        "narHash": "sha256-S5bOGxxrYcFRVIIxqaEsjSwyIQjTjdjX3hCeAMAWiq0=",
+        "lastModified": 1783568636,
+        "narHash": "sha256-C118TUr5iashM/XFG+GW0QRyFC8nS1ezvsR244vu3HM=",
         "owner": "nix-community",
         "repo": "emacs-overlay",
-        "rev": "5f712bbd17df232fb4900e8fc236516c4d854d84",
+        "rev": "5443e671783cad46463e2641975fa8db33d4e9b8",
         "type": "github"
       },
       "original": {
@@ -197,11 +197,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783479733,
-        "narHash": "sha256-d/JatqgG+Pmo+IuCTZfnrEAPWU3fdha48GQeXuFO+bE=",
+        "lastModified": 1783550008,
+        "narHash": "sha256-qbbZUk9IG9dLNwCPwdPBs6I5clxwugRpP+1YU+GPK20=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "cee3f0e7fec85d80c149c7afc29926747f7bd3c2",
+        "rev": "f4d01c1d87c7c2ec909549165d5a8338f1bd3315",
         "type": "github"
       },
       "original": {
@@ -253,11 +253,11 @@
         "nixpkgs-regression": "nixpkgs-regression"
       },
       "locked": {
-        "lastModified": 1783369919,
-        "narHash": "sha256-n06XChnmO2Dukk8vjBQNmNI3tEc4ugTD+6Gv1erBE6w=",
+        "lastModified": 1783546204,
+        "narHash": "sha256-lMvyBFy7jl8cnUI8efQuW8lxgIiwUhw6CHEmDpK0mfw=",
         "owner": "nixos",
         "repo": "nix",
-        "rev": "9a06fdc75f0b5c20e11276824b5cc3b034829e8a",
+        "rev": "ac94798c753e48fd0b36128a029ed8aecebe9b56",
         "type": "github"
       },
       "original": {
@@ -523,11 +523,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1783461094,
-        "narHash": "sha256-zO1dYn+IeHtWKWa/D19rn5IjvzEUmabxnE4XEk+rsgE=",
+        "lastModified": 1783564598,
+        "narHash": "sha256-rXpXH1hw5uQrptYjY/jjKDjYntAXtLkFsFElox4u4S4=",
         "owner": "wamserma",
         "repo": "flake-programs-sqlite",
-        "rev": "14e1ada4f8f83bbd33edf7583b683429ae5e37d4",
+        "rev": "314740f282425183d49ddc37342746b6dfb9a308",
         "type": "github"
       },
       "original": {
@@ -701,11 +701,11 @@
     },
     "wrapper-manager": {
       "locked": {
-        "lastModified": 1783429887,
-        "narHash": "sha256-LtBfJm5M9mingZO/Klh07DXgPBmDXr/it71hs2MgQ6A=",
+        "lastModified": 1783493101,
+        "narHash": "sha256-LqqlRrZVLdCr/fmfXj/j7bUpvv02Ct3TVInWRxs20a8=",
         "owner": "viperml",
         "repo": "wrapper-manager",
-        "rev": "7ea55499c2920efbaab51d842fdebdd92528dab5",
+        "rev": "531d7752716f5097f05c709d6727299d70c69b62",
         "type": "github"
       },
       "original": {
