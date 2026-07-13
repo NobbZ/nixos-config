@@ -113,9 +113,6 @@
     emacs.inputs.nixpkgs.follows = "nixpkgs";
     emacs.inputs.nixpkgs-stable.follows = "nixpkgs";
 
-    nixos-vscode-server.url = "github:msteen/nixos-vscode-server";
-    nixos-vscode-server.inputs.nixpkgs.follows = "nixpkgs";
-
     sops-nix.url = "github:Mic92/sops-nix";
   };
 }

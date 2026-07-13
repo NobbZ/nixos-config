@@ -96,8 +96,6 @@ in {
 
     manual.manpages.enable = false;
 
-    services.vscode-server.enable = lib.mkDefault pkgs.stdenv.isLinux;
-
     home.sessionVariables = {
       EDITOR = "nvim";
     };
