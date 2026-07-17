@@ -29,7 +29,7 @@ in {
             default = inputs.nixpkgs;
           };
 
-          system = lib.mkOption {type = lib.types.enum ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];};
+          system = lib.mkOption {type = lib.types.enum ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];};
 
           username = lib.mkOption {
             type = lib.types.str;
@@ -106,7 +106,6 @@ in {
               {home = {inherit (config) username homeDirectory;};}
               {systemd.user.startServices = "sd-switch";}
               {news.display = "silent";}
-              inputs.nixos-vscode-server.nixosModules.home
               inputs.sops-nix.homeManagerModules.sops
             ]
             ++ config.modules
