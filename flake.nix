@@ -80,6 +80,9 @@
     nixpkgs-insync-v3.follows = "nixpkgs";
     nixpkgs-pre-rust.url = "github:nixos/nixpkgs?ref=57d0d4a8f302";
 
+    noctalia.url = "github:noctalia-dev/noctalia";
+    noctalia.inputs.nixpkgs.follows = "nixpkgs";
+
     nvim.url = "github:nobbz/nobbz-vim";
     nvim.inputs.parts.follows = "parts";
     nvim.inputs.nixpkgs.follows = "nixpkgs";

@@ -1,7 +1,11 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{self, ...} @ inputs: {
+{
+  self,
+  noctalia,
+  ...
+} @ inputs: {
   config,
   pkgs,
   lib,
@@ -82,6 +86,7 @@ in {
   environment.systemPackages = with pkgs; [
     virt-manager
     iptables
+    noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -119,6 +124,8 @@ in {
   programs.partition-manager.enable = true;
 
   programs.kdeconnect.enable = true;
+
+  programs.mango.enable = true;
 
   # security.polkit.enable = true;
 

@@ -1,9 +1,17 @@
-{self, ...}: {
+{
+  self,
+  noctalia,
+  ...
+}: {
   config,
   pkgs,
   lib,
   ...
 }: {
+  imports = [
+    noctalia.homeModules.default
+  ];
+
   nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "obsidian"];
 
   activeProfiles = ["browsing" "development"];
@@ -24,6 +32,20 @@
     inherit (pkgs) gnome-tweaks;
     inherit (pkgs) vscode wezterm;
   };
+
+  programs.noctalia = {
+    enable = true;
+
+    settings = {
+      theme = {
+        mode = "dark";
+        source = "builtin";
+        builtin = "Catppuccin";
+      };
+    };
+  };
+
+  xdg.configFile."mango/config.conf".source = ./mango.conf;
 
   programs.htop = {
     settings = {
