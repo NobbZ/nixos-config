@@ -426,6 +426,26 @@
         "type": "github"
       }
     },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785687494,
+        "narHash": "sha256-jFve5FghMvgVfWxUrQ9MqPMzt8nwNX2sltm2jkNAYXk=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "rev": "7242ed4d4c31e4b54d591a7855b3cd81ffd14fe8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "type": "github"
+      }
+    },
     "nvim": {
       "inputs": {
         "gen-luarc": "gen-luarc",
@@ -508,6 +528,7 @@
           "nixpkgs"
         ],
         "nixpkgs-pre-rust": "nixpkgs-pre-rust",
+        "noctalia": "noctalia",
         "nvim": "nvim",
         "parts": "parts",
         "programsdb": "programsdb",
