@@ -78,7 +78,6 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     # nixpkgs-insync-v3.url = "github:nixos/nixpkgs?ref=32fdc268e921994e3f38088486ddfe765d11df93";
     nixpkgs-insync-v3.follows = "nixpkgs";
-    nixpkgs-pre-rust.url = "github:nixos/nixpkgs?ref=57d0d4a8f302";
 
     noctalia.url = "github:noctalia-dev/noctalia";
     noctalia.inputs.nixpkgs.follows = "nixpkgs";
