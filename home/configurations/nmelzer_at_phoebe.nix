@@ -12,7 +12,7 @@
   inherit (lib.hm) dag;
   spkgs = self.packages.${pkgs.stdenv.hostPlatform.system};
 in {
-  nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "obsidian" "slack"];
+  nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "discord-unwrapped" "obsidian" "slack"];
   nixpkgs.config.permittedInsecurePackages = ["electron-25.9.0"];
   profiles.base.needsGL = true;
 
