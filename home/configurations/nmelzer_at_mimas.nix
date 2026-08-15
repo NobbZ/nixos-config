@@ -12,7 +12,7 @@
     noctalia.homeModules.default
   ];
 
-  nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "obsidian"];
+  nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "discord-unwrapped" "obsidian"];
 
   activeProfiles = ["browsing" "development"];
 
