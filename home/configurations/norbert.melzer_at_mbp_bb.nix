@@ -82,4 +82,8 @@ in {
   nix.package = nix.packages.${pkgs.stdenv.hostPlatform.system}.nix-cli;
 
   home.stateVersion = "26.05";
+
+  home.packages = [
+    pkgs.awscli2
+  ];
 }
