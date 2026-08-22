@@ -272,6 +272,10 @@ in {
             user = "root";
           };
 
+          "tangled.org" = {
+            identityFile = "~/.ssh/id_ed25519";
+          };
+
           "gitlab.com" = {
             addressFamily = "inet";
             identityFile = "~/.ssh/gitlab";
