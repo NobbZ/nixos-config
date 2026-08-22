@@ -26,6 +26,8 @@
   gtk.gtk2.force = true;
   gtk.gtk4.theme = config.gtk.theme;
 
+  xdg.configFile."gtk-4.0/gtk.css".force = true;
+
   home.packages = builtins.attrValues {
     inherit (pkgs) keybase-gui freerdp keepassxc nix-output-monitor discord;
     inherit (pkgs) obsidian;
