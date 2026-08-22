@@ -317,6 +317,10 @@ in {
 
         extraConfig = ''
           set -ag terminal-overrides ",xterm-256color:RGB"
+
+          set -g status-right-length 100
+          set -g @catppuccin_host_text " #h"
+          set -agF status-right "#{E:@catppuccin_status_host}"
         '';
       };
 
