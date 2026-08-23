@@ -9,7 +9,7 @@ _: {
   }: {
     formatter = pkgs.alejandra;
 
-    apps.rotate.meta.description = "rotate keys for sops";
+    apps.rotate.meta.description = "rotate data keys of all sops-encrypted secrets";
     apps.rotate.program = let
       sopsrotate = pkgs.writeShellScript "sops-rotate" ''
         file=$1
@@ -18,12 +18,11 @@ _: {
         ${pkgs.sops}/bin/sops -r -i "''${file}"
       '';
       rotate = pkgs.writeShellScript "rotate" ''
-        ${pkgs.git}/bin/git switch -c rotate-$(${pkgs.coreutils}/bin/date -Idate) >/dev/null || true
+        set -euo pipefail
+        cd "$(${pkgs.git}/bin/git rev-parse --show-toplevel)"
 
-        ${pkgs.findutils}/bin/find secrets -type f -exec ${sopsrotate} '{}' \;
-
-        ${pkgs.git}/bin/git add secrets
-        ${pkgs.git}/bin/git commit -m "chore: rotate secrets $(${pkgs.coreutils}/bin/date -Idate)"
+        ${pkgs.findutils}/bin/find secrets -type f \
+          -exec ${sopsrotate} '{}' \;
       '';
     in "${rotate}";
 

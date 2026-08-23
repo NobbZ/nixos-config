@@ -61,6 +61,17 @@ make workflows                 # Regenerate all workflows from CUE
 make check                     # Validate CUE matches generated YAML
 ```
 
+### Secret Rotation
+```bash
+nix run .#rotate               # Rotate sops data keys of all files in secrets/
+```
+- Intended as the final step before pushing: jj snapshots the rotated
+  files into whatever change `@` currently points at
+- Manual by design: this repo uses jj, which does not execute git hooks,
+  so no lefthook/CI automation covers this
+- Only rotates the per-file data key; secret values stay unchanged.
+  Editing `.sops.yaml` recipients additionally requires `sops updatekeys`
+
 ## Code Style Guidelines
 
 ### Nix Formatting
@@ -191,7 +202,7 @@ Modules should be exported in `default.nix` files:
 ## Important Notes
 
 - **Ignore Files**: `npins/default.nix` and `packages/nodePackages/node-env.nix` are generated
-- **Secret Management**: Uses sops-nix with age encryption
+- **Secret Management**: Uses sops-nix with age encryption. Rotate data keys via `nix run .#rotate` as a pre-push ritual (jj runs no hooks, so this cannot be automated); recipient changes additionally need `sops updatekeys`
 - **Caching**: Uses nobbz and nix-community cachix caches
 - **Build Time**: Full flake check takes 30+ minutes, test individual outputs first
 
