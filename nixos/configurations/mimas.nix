@@ -127,6 +127,14 @@ in {
 
   programs.mango.enable = true;
 
+  programs.uwsm.enable = true;
+  programs.uwsm.waylandCompositors = {
+    mango = {
+      prettyName = "Mango (UWSM)";
+      binPath = "/run/current-system/sw/bin/mango";
+    };
+  };
+
   # security.polkit.enable = true;
 
   # services.hydra = {
