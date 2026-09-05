@@ -160,10 +160,7 @@ in {
   # Enable touchpad support.
   # services.xserver.libinput.enable = true;
 
-  # Enable the KDE Desktop Environment.
   services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  services.xserver.windowManager.awesome.enable = true;
   xdg.portal.enable = true;
 
   services.dbus.packages = [pkgs.dconf];
