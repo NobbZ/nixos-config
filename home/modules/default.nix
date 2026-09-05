@@ -19,6 +19,5 @@
 
     "misc/awesome" = ./misc/awesome;
     "misc/home" = ./misc/home;
-    "misc/rofi" = ./misc/rofi;
   };
 }
