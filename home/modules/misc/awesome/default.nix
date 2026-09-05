@@ -6,8 +6,6 @@
 }: let
   cfg = config.xsession.windowManager.awesome;
 
-  flameshot = lib.getExe pkgs.flameshot;
-
   bls = lib.getExe (pkgs.betterlockscreen.override {withDunst = false;});
   scrot = lib.getExe pkgs.scrot;
 
@@ -438,7 +436,6 @@ in {
          awful.key({ modkey, "Shift" },   "e", function () awful.util.spawn('${cfg.emojiPicker}')    end, {description = "open emoji picker",    group = "launcher"}),
 
          awful.key({ modkey },            "y", function () awful.util.spawn('${cfg.lockCommand}')    end, {description = "lock screen",          group = "client"  }),
-         awful.key({ modkey },            "b", function () awful.util.spawn('${flameshot} gui')      end, {description = "create screenshot",    group = "client"  }),
 
          awful.key({ modkey }, "x",
             function ()

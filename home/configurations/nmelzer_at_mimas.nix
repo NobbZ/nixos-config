@@ -79,7 +79,6 @@
     kbfs.enable = true;
     insync.enable = true;
     playerctld.enable = true;
-    flameshot.enable = true;
 
     rustic = {
       enable = true;
