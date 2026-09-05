@@ -65,11 +65,6 @@
   programs.yazi.enable = true;
   programs.yazi.shellWrapperName = "y";
 
-  xsession.windowManager.awesome.autostart = [
-    "${pkgs.blueman}/bin/blueman-applet"
-    "${pkgs.networkmanagerapplet}/bin/nm-applet"
-  ];
-
   systemd.user.tmpfiles.rules = [
     "d ${config.home.homeDirectory}/tmp 700 ${config.home.username} users 14d"
   ];
@@ -79,7 +74,6 @@
     kbfs.enable = true;
     insync.enable = true;
     playerctld.enable = true;
-    flameshot.enable = true;
 
     rustic = {
       enable = true;

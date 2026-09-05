@@ -93,7 +93,7 @@ in {
 
         config = lib.mkIf config.enable {
           entryPoint = lib.mkDefault "${self}/home/configurations/${config.username}_at_${config.hostname}.nix";
-          entryPointCalled = import config.entryPoint (inputs // {inherit self;});
+          entryPointCalled = lib.modules.importApply config.entryPoint (inputs // {inherit self;});
           base =
             if lib.strings.hasSuffix "-darwin" config.system
             then "Users"
