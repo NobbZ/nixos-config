@@ -17,7 +17,6 @@
     "services/insync" = ./services/insync;
     "services/rustic" = ./services/rustic;
 
-    "misc/awesome" = ./misc/awesome;
     "misc/home" = ./misc/home;
   };
 }
