@@ -166,13 +166,14 @@ in {
       # tile,scroller,grid,deck,monocle,center_tile,vertical_tile,vertical_scroller
       tagrule=id:1,layout_name:tile
       tagrule=id:2,layout_name:tile
+      tagrule=id:2,monitor_name:eDP-1,layout_name:vertical_scroller
       tagrule=id:3,layout_name:tile
       tagrule=id:4,layout_name:tile
       tagrule=id:5,layout_name:tile
       tagrule=id:6,layout_name:tile
       tagrule=id:7,layout_name:tile
       tagrule=id:8,layout_name:tile
-      tagrule=id:9,layout_name:tile
+      tagrule=id:9,layout_name:scroller
 
       # Key Bindings
       # key name refer to `xev` or `wev` command output,
@@ -342,6 +343,11 @@ in {
               --copy-command wl-copy \
               --output-filename ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
         ''}
+
+      # window rules
+      windowrule=tags:1,monitor:eDP-1,appid:discord
+      windowrule=tags:2,monitor:eDP-1,appid:google-chrome
+      windowrule=tags:9,monitor:eDP-1,appid:signal
 
       # layer rule
       layerrule=animation_type_open:zoom,layer_name:rofi
