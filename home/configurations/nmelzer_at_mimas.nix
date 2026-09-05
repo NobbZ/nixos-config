@@ -13,6 +13,7 @@
   ];
 
   nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "discord-unwrapped" "obsidian"];
+  nixpkgs.config.permittedInsecurePackages = ["keybase-gui-6.5.1"];
 
   activeProfiles = ["browsing" "development"];
 
