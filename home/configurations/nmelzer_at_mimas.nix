@@ -36,6 +36,8 @@
     inherit (pkgs) vscode wezterm;
   };
 
+  programs.mango.enable = true;
+
   programs.noctalia = {
     enable = true;
 
@@ -47,8 +49,6 @@
       };
     };
   };
-
-  xdg.configFile."mango/config.conf".source = ./mango.conf;
 
   programs.htop = {
     settings = {
