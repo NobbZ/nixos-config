@@ -11,6 +11,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    home.packages = [pkgs.bibata-cursors];
+
     xdg.configFile."mango/config.conf".text = ''
       # More option see https://github.com/DreamMaoMao/mango/wiki/
 
@@ -111,6 +113,7 @@ in {
       enable_floating_snap=0
       snap_distance=30
       cursor_size=24
+      cursor_theme=Bibata-Modern-Classic
       drag_tile_to_tile=1
       drag_tile_small=1
 
@@ -137,10 +140,10 @@ in {
       mouse_natural_scrolling=0
 
       # Appearance
-      gappih=5
-      gappiv=5
-      gappoh=10
-      gappov=10
+      gappih=2
+      gappiv=2
+      gappoh=4
+      gappov=4
       scratchpad_width_ratio=0.8
       scratchpad_height_ratio=0.9
       borderpx=4
