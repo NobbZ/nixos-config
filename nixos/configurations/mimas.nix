@@ -160,7 +160,20 @@ in {
   # Enable touchpad support.
   # services.xserver.libinput.enable = true;
 
-  services.displayManager.sddm.enable = true;
+  services.displayManager.noctalia-greeter = {
+    enable = true;
+
+    settings = {
+      cursor.size = 24;
+      keyboard.layout = "de";
+    };
+
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+    };
+  };
+
   xdg.portal.enable = true;
 
   services.dbus.packages = [pkgs.dconf];
