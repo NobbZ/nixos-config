@@ -91,7 +91,7 @@
     # switcher.inputs.nixpkgs.follows = "nixpkgs";
     switcher.inputs.flake-parts.follows = "parts";
 
-    wrapper-manager.url = "github:viperml/wrapper-manager";
+    wrapper-manager.url = "git+https://codeberg.org/viperML/wrapper-manager";
 
     parts.url = "github:hercules-ci/flake-parts";
     parts.inputs.nixpkgs-lib.follows = "nixpkgs";

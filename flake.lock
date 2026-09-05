@@ -650,17 +650,17 @@
     },
     "wrapper-manager": {
       "locked": {
-        "lastModified": 1788338967,
-        "narHash": "sha256-ERCTzitF650HHNvTOPMAB3rTi6ptcwatmrx9QFkreKs=",
-        "owner": "viperml",
-        "repo": "wrapper-manager",
-        "rev": "05d5c2a8f0a6091cc17573d9a0c0de59269b8534",
-        "type": "github"
+        "lastModified": 1788355120,
+        "narHash": "sha256-JEuM7FjlX48cpDhDrkeIch5nNYANux5o0wcw8vnwUuE=",
+        "ref": "refs/heads/master",
+        "rev": "5dbc685119c53a10c3f9a74b2716107413889796",
+        "revCount": 95,
+        "type": "git",
+        "url": "https://codeberg.org/viperML/wrapper-manager"
       },
       "original": {
-        "owner": "viperml",
-        "repo": "wrapper-manager",
-        "type": "github"
+        "type": "git",
+        "url": "https://codeberg.org/viperML/wrapper-manager"
       }
     }
   },
