@@ -11,7 +11,11 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [pkgs.bibata-cursors];
+    home.packages = [
+      pkgs.bibata-cursors
+      pkgs.yt-dlp
+      pkgs.mpv
+    ];
 
     xdg.configFile."mango/config.conf".text = ''
       # More option see https://github.com/DreamMaoMao/mango/wiki/
