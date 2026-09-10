@@ -40,6 +40,8 @@
   programs.noctalia = {
     enable = true;
 
+    package = pkgs.noctalia;
+
     settings = {
       theme = {
         mode = "dark";
