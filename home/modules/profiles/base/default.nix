@@ -75,6 +75,41 @@
       };
     };
   };
+
+  # Shortens a path fish/p10k style: $HOME becomes ~, every ancestor
+  # directory collapses to its initial, only the last segment stays
+  # intact: /home/nmelzer/Projects/jj-nixos-config -> ~/P/jj-nixos-config
+  tmux-abbr-path = pkgs.writeShellScript "tmux-abbr-path" ''
+    awk -v h="$HOME" '
+      BEGIN {
+        p = ARGV[1];
+        if (h != "" && index(p, h) == 1 &&
+            (length(p) == length(h) || substr(p, length(h) + 1, 1) == "/")) {
+          p = "~" substr(p, length(h) + 1);
+        }
+
+        if (p == "" || p == "/") {
+          print p;
+          exit;
+        }
+
+        n = split(p, parts, "/");
+        first = (substr(p, 1, 1) == "/") ? 2 : 1;
+
+        out = "";
+        for (i = first; i < n; i++) {
+          if (parts[i] == "") continue;
+          if (substr(parts[i], 1, 1) == "." && length(parts[i]) > 1) {
+            out = out "." substr(parts[i], 2, 1) "/";
+          } else {
+            out = out substr(parts[i], 1, 1) "/";
+          }
+        }
+
+        print out parts[n];
+      }
+    ' "$1"
+  '';
 in {
   options.profiles.base = {
     enable = lib.mkEnableOption "The base profile, should be always enabled";
@@ -311,6 +346,7 @@ in {
             extraConfig = ''
               set -g @catppuccin_flavor "mocha"
               set -g @catppuccin_window_status_style "rounded"
+              set -g @catppuccin_directory_icon "󰉋"
             '';
           }
         ];
@@ -318,9 +354,13 @@ in {
         extraConfig = ''
           set -ag terminal-overrides ",xterm-256color:RGB"
 
-          set -g status-right-length 100
+          set -g status-interval 5
+          set -g status-right-length 200
           set -g @catppuccin_host_text " #h"
-          set -agF status-right "#{E:@catppuccin_status_host}"
+          set -g @catppuccin_directory_text "#(${tmux-abbr-path} '#{pane_current_path}')"
+          set -g  status-right "#{E:@catppuccin_status_directory}"
+          set -ag status-right "#{E:@catppuccin_status_host}"
+          set -ag status-right "#{E:@catppuccin_status_date_time}"
         '';
       };
 
