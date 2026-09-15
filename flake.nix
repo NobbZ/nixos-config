@@ -101,19 +101,13 @@
 
     nix.url = "github:nixos/nix";
     nix.inputs.flake-parts.follows = "parts";
-    # a libgit2 in the current version fails to build with the nix provided patches.
-    # therefore using upstreams pin for now.
-    # nix.inputs.nixpkgs.follows = "nixpkgs";
+    nix.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-gl.url = "github:nix-community/nixgl";
     nix-gl.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    emacs.url = "github:nix-community/emacs-overlay";
-    emacs.inputs.nixpkgs.follows = "nixpkgs";
-    emacs.inputs.nixpkgs-stable.follows = "nixpkgs";
 
     sops-nix.url = "github:Mic92/sops-nix";
   };
