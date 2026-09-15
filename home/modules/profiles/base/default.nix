@@ -346,7 +346,7 @@ in {
             extraConfig = ''
               set -g @catppuccin_flavor "mocha"
               set -g @catppuccin_window_status_style "rounded"
-              set -g @catppuccin_directory_icon "󰉋"
+              set -g @catppuccin_directory_icon " "
             '';
           }
         ];
