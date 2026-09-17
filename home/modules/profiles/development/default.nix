@@ -29,6 +29,13 @@ in {
           pl = ["git" "fetch" "--all-remotes"];
           ps = ["git" "push"];
         };
+
+        revset-aliases = {
+          last_release = "heads(::main & tags())";
+          since_release = "last_release::main";
+          _active = "mine() & mutable()";
+          active = "parents(roots(_active)) | _active";
+        };
       };
     };
 
