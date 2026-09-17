@@ -107,6 +107,7 @@ in {
               {systemd.user.startServices = "sd-switch";}
               {news.display = "silent";}
               inputs.sops-nix.homeManagerModules.sops
+              "${self}/mixed/fix_sops.nix"
             ]
             ++ config.modules
             ++ builtins.attrValues self.homeManagerModules

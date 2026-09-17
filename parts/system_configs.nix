@@ -93,6 +93,7 @@ in {
               {nixpkgs.hostPlatform.system = config.system;}
               {programs.command-not-found.enable = true;}
               inputs.sops-nix.nixosModules.sops
+              "${self}/mixed/fix_sops.nix"
             ]
             ++ config.modules
             ++ builtins.attrValues {
