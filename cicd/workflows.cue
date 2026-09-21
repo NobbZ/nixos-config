@@ -16,7 +16,7 @@ _cloneRepo: githubactions.#Step & {
 
 _installCue: githubactions.#Step & {
 	name: "Install Cue"
-	uses: "cue-lang/setup-cue@v1.0.1"
+	uses: "cue-lang/setup-cue@v2.0.0"
 	with: version: "v0.14.2"
 }
 
