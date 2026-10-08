@@ -21,7 +21,7 @@ in {
   nix.extraOptions = "!include ${config.sops.secrets."access-tokens".path}";
   nix.package = nix.packages.${pkgs.stdenv.hostPlatform.system}.nix-cli;
 
-  activeProfiles = ["development"];
+  activeProfiles = ["development" "browsing"];
 
   sops.age.sshKeyPaths = ["${sshConfigPath}/id_ed25519"];
   sops.defaultSopsFile = "${self}/secrets/phoebe/nmelzer/default.yaml";
