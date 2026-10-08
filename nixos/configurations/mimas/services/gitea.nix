@@ -46,7 +46,6 @@
 in {
   services.gitea = {
     enable = true;
-    settings.server.DOMAIN = "gitea.mimas.internal.nobbz.dev";
     settings.server.HTTP_ADDR = "127.0.0.1";
     settings.server.ROOT_URL = lib.mkForce "https://gitea.mimas.internal.nobbz.dev/";
     settings."git.timeout".DEFAULT = 3600; # 1 hour
