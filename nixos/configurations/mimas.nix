@@ -86,6 +86,7 @@ in {
   environment.systemPackages = with pkgs; [
     virt-manager
     iptables
+    udiskie
     noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
@@ -350,6 +351,8 @@ in {
     (communityBuilder "build-box" "x86_64-linux")
     (communityBuilder "aarch64-build.box" "aarch64-linux")
   ];
+
+  services.udisks2.enable = true;
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
