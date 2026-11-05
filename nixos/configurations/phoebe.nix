@@ -13,6 +13,20 @@ in {
   imports = [
   ];
 
+  services.displayManager.noctalia-greeter = {
+    enable = true;
+
+    settings = {
+      cursor.size = 24;
+      keyboard.layout = "de";
+    };
+
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+    };
+  };
+
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
   services.tailscale.enable = true;
