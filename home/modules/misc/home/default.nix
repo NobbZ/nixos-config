@@ -19,6 +19,7 @@
       ++ (builtins.attrValues {
         inherit (pkgs.nerd-fonts) symbols-only;
         inherit (pkgs) annextimelog;
+        inherit (pkgs) opencode rtk;
       });
   };
 }
