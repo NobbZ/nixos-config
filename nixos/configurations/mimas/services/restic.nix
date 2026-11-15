@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  resticPort = 9999;
+  resticPort = config.lib.nobbz.mimas.ports.restic-rest;
 
   inherit (pkgs) proot mount umount restic;
 

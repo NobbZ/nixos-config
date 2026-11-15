@@ -6,7 +6,19 @@ _: _: {
     rhea.v4 = "72.24.2.1";
     rhea.v6 = "fcc5:ee64:a0b7:9bb6:2ed8:0000:0000:0001";
 
-    mimas.v4 = "172.24.152.168";
-    mimas.v6 = "fcc5:ee64:a0cd:9c36:c3ff:0000:0000:0001";
+    mimas = {
+      v4 = "172.24.152.168";
+      v6 = "fcc5:ee64:a0cd:9c36:c3ff:0000:0000:0001";
+      ports = {
+        dawarich = 3000;
+        gitea = 3001;
+        glance = 3002;
+        immich = 3003;
+        paperless = 3004;
+        restic-rest = 3005;
+        searxng = 3006;
+        vaultwarden = 3007;
+      };
+    };
   };
 }

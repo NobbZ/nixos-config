@@ -11,7 +11,7 @@ in {
     enable = true;
 
     settings = {
-      server.port = 9000;
+      server.port = config.lib.nobbz.mimas.ports.glance;
 
       theme = {
         background-color = "240 21 15";

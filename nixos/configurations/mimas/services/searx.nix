@@ -22,7 +22,7 @@
         formats = ["json" "html"];
       };
 
-      server.port = 8888;
+      server.port = config.lib.nobbz.mimas.ports.searxng;
 
       engines = [
         {
