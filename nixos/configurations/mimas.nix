@@ -25,6 +25,7 @@ in {
     ./mimas/services/rustic-timers.nix
     ./mimas/services/searx.nix
     ./mimas/services/vaultwarden.nix
+    ./mimas/services/windmill.nix
   ];
 
   services.tailscale.enable = true;

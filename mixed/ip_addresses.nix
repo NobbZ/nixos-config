@@ -18,6 +18,7 @@ _: _: {
         restic-rest = 3005;
         searxng = 3006;
         vaultwarden = 3007;
+        windmill = 3008;
       };
     };
   };
