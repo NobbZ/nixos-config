@@ -6,6 +6,8 @@
 }: {
   services.immich = {
     enable = true;
+
+    port = config.lib.nobbz.mimas.ports.immich;
   };
 
   systemd.services.immich-server = {

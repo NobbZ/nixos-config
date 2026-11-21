@@ -19,7 +19,7 @@ in {
   services.paperless = {
     enable = true;
     address = "0.0.0.0";
-    port = 58080;
+    port = config.lib.nobbz.mimas.ports.paperless;
     settings.PAPERLESS_OCR_LANGUAGE = "deu+eng";
     settings.PAPERLESS_URL = "https://${domain}";
   };

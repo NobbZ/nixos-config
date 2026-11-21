@@ -2,7 +2,7 @@
   services.dawarich = {
     enable = true;
     localDomain = "dawarich.mimas.internal.nobbz.dev";
-    webPort = 3001;
+    webPort = config.lib.nobbz.mimas.ports.dawarich;
     configureNginx = false;
   };
 

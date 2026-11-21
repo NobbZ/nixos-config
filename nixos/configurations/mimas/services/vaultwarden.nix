@@ -1,6 +1,6 @@
 {config, ...}: let
   host = "passwords.mimas.internal.nobbz.dev";
-  wardenPort = 10000;
+  wardenPort = config.lib.nobbz.mimas.ports.vaultwarden;
 in {
   sops.secrets.warden = {};
 
