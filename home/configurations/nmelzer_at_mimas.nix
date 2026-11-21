@@ -8,12 +8,19 @@
   lib,
   ...
 }: {
+  assertions = [
+    {
+      assertion = pkgs.keybase-gui.version == "6.6.3";
+      messages = "Keybase got updated";
+    }
+  ];
+
   imports = [
     noctalia.homeModules.default
   ];
 
   nixpkgs.allowedUnfree = ["google-chrome" "vscode" "discord" "discord-unwrapped" "obsidian"];
-  nixpkgs.config.permittedInsecurePackages = ["keybase-gui-6.5.1"];
+  nixpkgs.config.permittedInsecurePackages = ["keybase-gui-6.6.3"];
 
   activeProfiles = ["browsing" "development"];
 
