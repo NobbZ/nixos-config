@@ -10,7 +10,29 @@
     text = ''
       repositories_base_folder=$1
 
-      echo "Performing garbage collection for all repos in $repositories_base_folder"
+      # <N> is the syslog priority prefix: journald parses it from our
+      # stdout stream (SyslogLevelPrefix=, enabled by default), strips it
+      # from the message and stores it as the entry's PRIORITY. The level
+      # name stays in the message so it is visible in plain journalctl.
+      log() {
+        local level=$1
+        shift
+
+        local priority
+        case $level in
+          debug) priority=7 ;;
+          info) priority=6 ;;
+          warn) priority=4 ;;
+          error) priority=3 ;;
+          *) priority=6 ;;
+        esac
+
+        printf '<%s>[%s] %s\n' "$priority" "$level" "$*"
+      }
+
+      trap 'log error "garbage collection aborted (exit $?)"' ERR
+
+      log info "Performing garbage collection for all repos in $repositories_base_folder"
 
       systemd-notify --ready
 
@@ -22,15 +44,15 @@
         idx=$((idx + 1))
         short_name=''${repo#"$repositories_base_folder"/}
 
-        echo "Starting garbage collection for $short_name"
+        log info "Starting garbage collection for $short_name"
         systemd-notify --status="$idx/$repo_count: $short_name"
         git -C "$repo" gc --aggressive --no-quiet
-        echo "Finished garbage collection for $short_name"
+        log info "Finished garbage collection for $short_name"
       done
 
       systemd-notify --stopping
 
-      echo "Overall garbage collection succeeded"
+      log info "Overall garbage collection succeeded"
     '';
   };
 in {
