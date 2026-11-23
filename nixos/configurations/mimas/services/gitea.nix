@@ -4,45 +4,35 @@
   config,
   ...
 }: let
-  writeNuBin = pkgs.writers.writeNuBin.override {makeBinaryWrapper = pkgs.makeShellWrapper;};
+  gitea-gc-script = pkgs.writeShellApplication {
+    name = "gitea-gc";
+    runtimeInputs = [pkgs.findutils pkgs.git pkgs.systemd];
+    text = ''
+      repositories_base_folder=$1
 
-  find = lib.getExe pkgs.findutils;
-  git = lib.getExe pkgs.git;
-  systemd-notify = lib.getExe' pkgs.systemd "systemd-notify";
+      echo "Performing garbage collection for all repos in $repositories_base_folder"
 
-  gitea-gc-script =
-    writeNuBin "gitea-gc"
-    # nu
-    ''
-      use std log
+      systemd-notify --ready
 
-      def main [
-        repositories_base_folder: string,
-      ] {
-        log info $"Performing garbage collection for all repos in ($repositories_base_folder)"
+      mapfile -d "" -t repos < <(find "$repositories_base_folder" -maxdepth 2 -name '*.git' -print0)
+      repo_count=''${#repos[@]}
+      idx=0
 
-        let repo_paths = run-external ${find} $repositories_base_folder "-maxdepth" 2 "-name" '*.git' | lines
-        let repo_count = $repo_paths | length
+      for repo in "''${repos[@]}"; do
+        idx=$((idx + 1))
+        short_name=''${repo#"$repositories_base_folder"/}
 
-        run-external ${systemd-notify} "--ready"
+        echo "Starting garbage collection for $short_name"
+        systemd-notify --status="$idx/$repo_count: $short_name"
+        git -C "$repo" gc --aggressive --no-quiet
+        echo "Finished garbage collection for $short_name"
+      done
 
-        $repo_paths | enumerate | each {|itm|
-          let repo = $itm.item
-          let idx = $itm.index
+      systemd-notify --stopping
 
-          let short_name = $repo | str substring --grapheme-clusters ($repositories_base_folder + "/" | str length)..-1
-
-          log info $"Starting garbage collection for ($short_name)"
-          run-external ${systemd-notify} $"--status=($idx + 1)/($repo_count): ($short_name)"
-          run-external ${git} "-C" $repo gc "--aggressive" "--no-quiet"
-          log info $"Finished garbage collection for ($short_name)"
-        }
-
-        run-external ${systemd-notify} "--stopping"
-
-        log info "Overall garbage collection suceeded"
-      }
+      echo "Overall garbage collection succeeded"
     '';
+  };
 in {
   services.gitea = {
     enable = true;
@@ -66,9 +56,6 @@ in {
     services.gitea-gc = {
       description = "Garbage Collect gitea repositories";
       restartIfChanged = false;
-      environment = {
-        NU_LOG_LEVEL = "DEBUG";
-      };
       serviceConfig = {
         CPUAccounting = true;
         CPUQuota = "200%";
