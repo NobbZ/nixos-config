@@ -349,8 +349,8 @@ in {
       window_rule=tags:9,monitor:eDP-1,app_id:signal
       window_rule=tags:9,monitor:eDP-1,app_id:insync
 
-      monitor_rule=name:^HDMI-A-1$,width:1920,height:1080,x:0,y:0,primary:1
-      monitor_rule=name:^eDP-1$,width:1920,height:1080,x:1920,y:0,primary:1
+      monitor_rule=name:^HDMI-A-1$,width:1920,height:1080,x:0,y:0,refresh:60
+      monitor_rule=name:^eDP-1$,width:1920,height:1080,x:1920,y:0,primary:1,refresh:60
 
       # layer rule
       layer_rule=animation_type_open:zoom,layer_name:rofi
